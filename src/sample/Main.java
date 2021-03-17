@@ -6,14 +6,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-        primaryStage.setTitle("boop");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+    public void start(Stage primaryStage) throws IOException {
+        Stage mainStage = new Stage();
+        mainStage.setMaximized(true);
+        mainPage(mainStage);
+    }
+    
+    public void mainPage(Stage mainStage) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
+        Scene mainScene = new Scene(root);
+        mainStage.setTitle("Excelsior");
+        mainStage.setScene(mainScene);
+        mainStage.show();
     }
 
 
