@@ -50,7 +50,7 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/resources/images/buttons/face-left.png'); -fx-background-size: 100%; -fx-background-repeat: no-repeat" />
+                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('../../resources/images/buttons/face-left.png'); -fx-background-size: 100%; -fx-background-repeat: no-repeat" />
                                              </children>
                                           </GridPane>
                                        </children></AnchorPane>
