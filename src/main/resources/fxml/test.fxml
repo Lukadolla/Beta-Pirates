@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.7348484848484849" layoutX="46.0" layoutY="24.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
          <items>
@@ -53,13 +53,78 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('../../resources/images/buttons/face-left.png'); -fx-background-size: 100%; -fx-background-repeat: no-repeat" />
-                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('../../resources/images/buttons/face-left.png'); -fx-background-size: 100%; -fx-background-repeat: no-repeat" GridPane.rowIndex="1" />
-                                                <ImageView fitHeight="67.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                                                   <image>
-                                                      <Image url="@../../resources/images/buttons/face-left.png" />
-                                                   </image>
-                                                </ImageView>
+                                                <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="73.0">
+                                                   <graphic>
+                                                      <ImageView>
+                                                         <image>
+                                                            <Image url="@../images/buttons/face-left.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="73.0" GridPane.rowIndex="1" >
+                                                    <graphic>
+                                                        <ImageView>
+                                                            <image>
+                                                                <Image url="@../images/buttons/face-left.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="73.0" GridPane.rowIndex="2" >
+                                                    <graphic>
+                                                        <ImageView>
+                                                            <image>
+                                                                <Image url="@../images/buttons/face-left.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="73.0" GridPane.columnIndex="1" >
+                                                    <graphic>
+                                                        <ImageView>
+                                                            <image>
+                                                                <Image url="@../images/buttons/face-left.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="1" >
+                                                    <graphic>
+                                                        <ImageView>
+                                                            <image>
+                                                                <Image url="@../images/buttons/face-left.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="2" >
+                                                    <graphic>
+                                                        <ImageView>
+                                                            <image>
+                                                                <Image url="@../images/buttons/face-left.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="73.0" GridPane.columnIndex="1" GridPane.rowIndex="3" >
+                                                    <graphic>
+                                                        <ImageView>
+                                                            <image>
+                                                                <Image url="@../images/buttons/face-left.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="73.0" GridPane.rowIndex="3" >
+                                                    <graphic>
+                                                        <ImageView>
+                                                            <image>
+                                                                <Image url="@../images/buttons/face-left.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
                                              </children>
                                           </GridPane>
                                        </children></AnchorPane>
@@ -74,7 +139,7 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="93.0" prefWidth="598.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;" />
          </items>
       </SplitPane>
-      <MenuBar prefHeight="26.0" prefWidth="600.0">
+      <MenuBar prefHeight="26.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
                <items>
