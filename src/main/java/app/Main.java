@@ -20,7 +20,7 @@ public class Main extends Application {
     }
     
     public void mainPage(Stage mainStage) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
         Scene mainScene = new Scene(root);
         mainStage.setTitle("Excelsior");
         mainStage.setScene(mainScene);
