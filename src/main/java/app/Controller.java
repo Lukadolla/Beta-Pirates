@@ -18,10 +18,10 @@ import java.util.ResourceBundle;
 public class Controller {
 
     @FXML
-    Button rotate;
+    ImageView isSelected; //Global variable to track which section of the panel is currently selected
 
     @FXML
-    ImageView isSelected;
+    Button rotateCharacter;
 
     @FXML
     private ImageView bottomLeftIV;
@@ -30,44 +30,44 @@ public class Controller {
     private ImageView bottomRightIV;
 
     @FXML
-    private void insertCharacterLeft(ActionEvent event) throws IOException{
+    private void insertCharacterLeft(ActionEvent event) {
         event.consume();
         loadImageLeft();
     }
 
     @FXML
-    private void insertCharacterRight(ActionEvent event) throws IOException{
+    private void insertCharacterRight(ActionEvent event) {
         event.consume();
         loadImageRight();
     }
 
     @FXML
-    public void loadImageLeft() throws IOException{
+    public void loadImageLeft() {
         Image image = new Image(selectImage());
         bottomLeftIV.setImage(image);
 
-        bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
             isSelected = bottomLeftIV;
-            rotate.setDisable(false);
+            rotateCharacter.setDisable(false);  //Enable rotate function
             event.consume();
         });
     }
 
     @FXML
-    public void loadImageRight() throws IOException{
+    public void loadImageRight() {
         Image image = new Image(selectImage());
         bottomRightIV.setImage(image);
         bottomRightIV.setScaleX(-1);
 
-        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom right image
             isSelected = bottomRightIV;
-            rotate.setDisable(false);
+            rotateCharacter.setDisable(false);  //Enable rotate function
             event.consume();
         });
     }
 
     @FXML
-    public String selectImage() throws IOException {
+    public String selectImage() {   //Method to get absolute path of desired image selected by the user
        String imagePath = "";
 
         FileChooser chooser = new FileChooser();
