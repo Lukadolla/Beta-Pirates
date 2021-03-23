@@ -73,7 +73,7 @@
                         <AnchorPane fx:id="bottomRightAnchor" GridPane.columnIndex="2" GridPane.rowIndex="2">
                           <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                              <ImageView fitHeight="${bottomRightAnchor.height}" fitWidth="${bottomRightAnchor.width}" managed="false" pickOnBounds="true">
+                              <ImageView fx:id="bottomRightIV" fitHeight="${bottomRightAnchor.height}" fitWidth="${bottomRightAnchor.width}" managed="false" pickOnBounds="true">
 
                               </ImageView>
                             </children>
@@ -112,7 +112,7 @@
                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/add-text.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/thought-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="3" />
                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/landscape.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-left.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" />
+                                <Button onAction="#insertCharacterRight" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-left.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" />
                               </children>
                             </GridPane>
                           </children></AnchorPane>
