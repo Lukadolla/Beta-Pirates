@@ -3,6 +3,7 @@ package app;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
@@ -15,6 +16,9 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class Controller {
+
+    @FXML
+    Button rotate;
 
     @FXML
     ImageView isSelected;
@@ -44,6 +48,7 @@ public class Controller {
 
         bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             isSelected = bottomLeftIV;
+            rotate.setDisable(false);
             event.consume();
         });
     }
@@ -56,6 +61,7 @@ public class Controller {
 
         bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             isSelected = bottomRightIV;
+            rotate.setDisable(false);
             event.consume();
         });
     }
