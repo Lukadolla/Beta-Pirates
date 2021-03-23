@@ -106,7 +106,7 @@
                               </rowConstraints>
                               <children>
                                 <Button onAction="#insertCharacterLeft" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" />
-                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/change-direction.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="1" />
+                                <Button onAction="#rotate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/change-direction.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="1" />
                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/gender.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/text-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="2" />
                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/add-text.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
