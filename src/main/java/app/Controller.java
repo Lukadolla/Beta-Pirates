@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.image.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -14,6 +15,9 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class Controller {
+
+    @FXML
+    ImageView isSelected;
 
     @FXML
     private ImageView bottomLeftIV;
@@ -37,6 +41,11 @@ public class Controller {
     public void loadImageLeft() throws IOException{
         Image image = new Image(selectImage());
         bottomLeftIV.setImage(image);
+
+        bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            isSelected = bottomLeftIV;
+            event.consume();
+        });
     }
 
     @FXML
@@ -44,6 +53,11 @@ public class Controller {
         Image image = new Image(selectImage());
         bottomRightIV.setImage(image);
         bottomRightIV.setScaleX(-1);
+
+        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            isSelected = bottomRightIV;
+            event.consume();
+        });
     }
 
     @FXML
@@ -60,4 +74,8 @@ public class Controller {
        return "file:" + imagePath;
     }
 
+    @FXML
+    public void rotate(){
+        isSelected.setScaleX(isSelected.getScaleX() * -1);
+    }
 }
