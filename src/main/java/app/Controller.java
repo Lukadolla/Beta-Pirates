@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.image.*;
+import javafx.stage.DirectoryChooser;
 
 import java.io.File;
 import java.io.IOException;
