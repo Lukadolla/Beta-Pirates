@@ -44,9 +44,7 @@
                           <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                               <ImageView fitHeight="${centreLeftAnchor.height}" fitWidth="${centreLeftAnchor.width}" managed="false" pickOnBounds="true">
-                                <image>
-                                  <Image url="@../images/characters/angry.png" />
-                                </image>
+
                               </ImageView>
                             </children>
                           </HBox>
@@ -56,9 +54,7 @@
                           <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                               <ImageView fitHeight="${centreRightAnchor.height}" fitWidth="${centreRightAnchor.width}" managed="false" pickOnBounds="true">
-                                <image>
-                                  <Image url="@../images/characters/angry.png" />
-                                </image>
+
                               </ImageView>
                             </children>
                           </HBox>
@@ -67,10 +63,8 @@
                         <AnchorPane fx:id="bottomLeftAnchor" GridPane.columnIndex="0" GridPane.rowIndex="2">
                           <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                              <ImageView fitHeight="${bottomLeftAnchor.height}" fitWidth="${bottomLeftAnchor.width}" managed="false" pickOnBounds="true">
-                                <image>
-                                  <Image url="@../images/characters/angry.png" />
-                                </image>
+                              <ImageView fx:id="bottomLeftIV" fitHeight="${bottomLeftAnchor.height}" fitWidth="${bottomLeftAnchor.width}" managed="false" pickOnBounds="true">
+
                               </ImageView>
                             </children>
                           </HBox>
@@ -80,9 +74,7 @@
                           <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                               <ImageView fitHeight="${bottomRightAnchor.height}" fitWidth="${bottomRightAnchor.width}" managed="false" pickOnBounds="true">
-                                <image>
-                                  <Image url="@../images/characters/attacking.png" />
-                                </image>
+
                               </ImageView>
                             </children>
                           </HBox>
@@ -113,7 +105,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                               <children>
-                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" />
+                                <Button onAction="#insertCharacterLeft" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" />
                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/change-direction.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="1" />
                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/gender.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/text-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="2" />
