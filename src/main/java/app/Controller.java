@@ -145,8 +145,6 @@ public class Controller {
             helpStage.setTitle("Help");
             helpStage.setScene(helpScene);
             helpStage.show();
-
-
         }
     }
 }
