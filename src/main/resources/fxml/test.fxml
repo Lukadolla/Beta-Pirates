@@ -81,7 +81,7 @@
                             </children>
                           </HBox>
                         </AnchorPane>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;" />
+                        <TextArea fx:id="YourTextArea" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;" />
                         <TextArea prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #111111;" GridPane.columnIndex="2" />
 
                       </children>
