@@ -2,16 +2,20 @@ package app;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,6 +23,7 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.scene.layout.Region;
 
 public class Controller{
 
@@ -36,6 +41,9 @@ public class Controller{
 
     @FXML
     private ImageView bottomRightIV;
+
+    @FXML
+    private MenuItem helpMenu;
 
     @FXML
     private Region bottomLeftBorder;
@@ -116,5 +124,31 @@ public class Controller{
         }
         selectedBorder = newBorder;
         selectedBorder.setVisible(true);
+    }
+
+    @FXML
+    public void help() throws IOException{
+
+        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
+        currentPath += "/src/main/resources/help.txt";
+
+        File helpFile = new File(currentPath);
+
+        if(!helpFile.exists())
+        {
+            throw new FileNotFoundException("ERROR: File not found");
+        }
+
+        else
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
+            Stage helpStage = new Stage();
+            Scene helpScene = new Scene(root);
+            helpStage.setTitle("Help");
+            helpStage.setScene(helpScene);
+            helpStage.show();
+
+
+        }
     }
 }
