@@ -21,11 +21,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import javafx.scene.layout.Region;
 
 public class Controller {
 
     @FXML
     ImageView isSelected; //Global variable to track which section of the panel is currently selected
+
+    @FXML
+    Region selectedBorder = null; //Global variable to track which border is currently selected
 
     @FXML
     Button rotateCharacter;
@@ -38,6 +42,12 @@ public class Controller {
 
     @FXML
     private MenuItem helpMenu;
+
+    @FXML
+    private Region bottomLeftBorder;
+
+    @FXML
+    private Region bottomRightBorder;
 
     @FXML
     private void insertCharacterLeft(ActionEvent event) {
@@ -64,6 +74,7 @@ public class Controller {
         bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
             isSelected = bottomLeftIV;
             rotateCharacter.setDisable(false);  //Enable rotate function
+            setBorder(bottomLeftBorder);
             event.consume();
         });
     }
@@ -80,6 +91,7 @@ public class Controller {
         bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom right image
             isSelected = bottomRightIV;
             rotateCharacter.setDisable(false);  //Enable rotate function
+            setBorder(bottomRightBorder);
             event.consume();
         });
     }
@@ -101,6 +113,15 @@ public class Controller {
     @FXML
     public void rotate(){
         isSelected.setScaleX(isSelected.getScaleX() * -1);
+    }
+
+    @FXML
+    private void setBorder(Region newBorder) {
+        if(selectedBorder != null){
+            selectedBorder.setVisible(false);
+        }
+        selectedBorder = newBorder;
+        selectedBorder.setVisible(true);
     }
 
     @FXML
