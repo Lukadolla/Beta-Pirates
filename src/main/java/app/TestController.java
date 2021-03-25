@@ -30,7 +30,7 @@ public class TestController {
     private Comic mainComic = new Comic();
 
     @FXML
-    ImageView isSelected; //Global variable to track which section of the panel is currently selected
+    ImageView currentlySelected; //Global variable to track which section of the panel is currently selected
 
     @FXML
     Region selectedBorder = null; //Global variable to track which border is currently selected
@@ -77,6 +77,7 @@ public class TestController {
     @FXML
     public void clickLeft(){
         bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
+            currentlySelected = bottomLeftIV;
             mainComic.setSelected(mainComic.getLeftCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
             setBorder(bottomLeftBorder);
@@ -95,6 +96,7 @@ public class TestController {
     @FXML
     public void clickRight(){
         bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
+            currentlySelected = bottomRightIV;
             mainComic.setSelected(mainComic.getRightCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
             setBorder(bottomRightBorder);
@@ -118,7 +120,8 @@ public class TestController {
 
     @FXML
     public void rotate(){
-        isSelected.setScaleX(isSelected.getScaleX() * -1);
+        mainComic.getSelected().changeFacing();
+        currentlySelected.setScaleX(currentlySelected.getScaleX() * -1);
     }
 
     @FXML
