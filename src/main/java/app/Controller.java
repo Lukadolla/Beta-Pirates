@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
@@ -22,10 +21,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import javafx.scene.layout.Region;
 
-public class Controller{
+
+
+public class Controller {
 
     @FXML
     ImageView isSelected; //Global variable to track which section of the panel is currently selected
