@@ -1,29 +1,42 @@
 package app;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import javafx.scene.layout.Region;
 
-public class TestController{
+
+
+public class TestController {
 
     private Comic mainComic = new Comic();
+
+    @FXML
+    ImageView isSelected; //Global variable to track which section of the panel is currently selected
+
+    @FXML
+    Region selectedBorder = null; //Global variable to track which border is currently selected
+
+    @FXML
+    Button rotateCharacter;
 
     @FXML
     private ImageView bottomLeftIV;
@@ -32,16 +45,13 @@ public class TestController{
     private ImageView bottomRightIV;
 
     @FXML
-    Button rotateCharacter;
+    private MenuItem helpMenu;
 
     @FXML
     private Region bottomLeftBorder;
 
     @FXML
     private Region bottomRightBorder;
-
-    @FXML
-    Region selectedBorder = null; //Global variable to track which border is currently selected
 
     @FXML
     private void insertCharacterLeft(ActionEvent event) {
@@ -51,10 +61,17 @@ public class TestController{
     }
 
     @FXML
+    private void insertCharacterRight(ActionEvent event) {
+        event.consume();
+        loadImageRight();
+        clickRight();
+    }
+
+    @FXML
     public void loadImageLeft() {
         Image image = new Image(selectImage());
         mainComic.setLeftCharacter(new Character(image));
-        bottomLeftIV.setImage(image);
+        bottomLeftIV.setImage(mainComic.getLeftCharacter().getImage());
     }
 
     @FXML
@@ -63,6 +80,24 @@ public class TestController{
             mainComic.setSelected(mainComic.getLeftCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
             setBorder(bottomLeftBorder);
+            event.consume();
+        });
+    }
+
+    @FXML
+    public void loadImageRight() {
+        Image image = new Image(selectImage());
+        mainComic.setRightCharacter(new Character(image));
+        bottomRightIV.setImage(mainComic.getRightCharacter().getImage());
+        bottomRightIV.setScaleX(-1);
+    }
+
+    @FXML
+    public void clickRight(){
+        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
+            mainComic.setSelected(mainComic.getRightCharacter());
+            rotateCharacter.setDisable(false);  //Enable rotate function
+            setBorder(bottomRightBorder);
             event.consume();
         });
     }
@@ -82,6 +117,11 @@ public class TestController{
     }
 
     @FXML
+    public void rotate(){
+        isSelected.setScaleX(isSelected.getScaleX() * -1);
+    }
+
+    @FXML
     private void setBorder(Region newBorder) {
         if(selectedBorder != null){
             selectedBorder.setVisible(false);
@@ -91,7 +131,7 @@ public class TestController{
     }
 
     @FXML
-    public void help() throws IOException {
+    public void help() throws IOException{
 
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         currentPath += "/src/main/resources/help.txt";
@@ -113,5 +153,4 @@ public class TestController{
             helpStage.show();
         }
     }
-
 }
