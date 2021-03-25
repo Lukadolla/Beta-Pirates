@@ -54,29 +54,29 @@ public class Controller {
     @FXML
     private void insertCharacterLeft(ActionEvent event) {
         event.consume();
-        loadImageLeft();
-        clickLeft();
+        loadImage(bottomLeftIV);
+        clickImage(bottomLeftIV, bottomLeftBorder);
     }
 
     @FXML
     private void insertCharacterRight(ActionEvent event) {
         event.consume();
-        loadImageRight();
-        clickRight();
+        loadImage(bottomRightIV);
+        clickImage(bottomRightIV, bottomRightBorder);
     }
 
     @FXML
-    public void loadImageLeft() {
+    public void loadImage(ImageView imageView) {
         Image image = new Image(selectImage());
-        bottomLeftIV.setImage(image);
+        imageView.setImage(image);
     }
 
     @FXML
-    public void clickLeft(){
-        bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
-            isSelected = bottomLeftIV;
+    public void clickImage(ImageView imageView, Region border){
+        imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
+            isSelected = imageView;
             rotateCharacter.setDisable(false);  //Enable rotate function
-            setBorder(bottomLeftBorder);
+            setBorder(border);
             event.consume();
         });
     }
