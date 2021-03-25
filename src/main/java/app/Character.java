@@ -6,22 +6,20 @@ public class Character {
 
   private int facing;
   private Image image;
-  private boolean selected;
   private String gender;
   private String skinColour;
   private String hairColour;
 
-  public Character(){
+  public Character(Image image){
     facing = 1;
-    selected = false;
     gender = "female";
+    this.image = image;
   }
 
-  public Character(int facing, Image image, boolean selected, String gender,
+  public Character(int facing, Image image, String gender,
       String skinColour, String hairColour) {
     this.facing = facing;
     this.image = image;
-    this.selected = selected;
     this.gender = gender;
     this.skinColour = skinColour;
     this.hairColour = hairColour;
@@ -47,14 +45,6 @@ public class Character {
 
   public void setImage(Image image) {
     this.image = image;
-  }
-
-  public boolean isSelected() {
-    return selected;
-  }
-
-  public void setSelected(boolean selected) {
-    this.selected = selected;
   }
 
   public String getGender() {
