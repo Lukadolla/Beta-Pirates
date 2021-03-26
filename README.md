@@ -34,7 +34,6 @@ https://openjfx.io/openjfx-docs/
 
 The user can insert the characters into the left or right pannels of the comic by pressing the corresponding character insertion buttons found at the top 
 of the rightmost section. Once the button is pressed, a separate window of the file explorer appears which opens a directory containig all character poses. The user can then select whichever character they wish and press open to insert them into the pannel. The character inserted into the right hand side is automatically rotated to face the
-character on the left. When a character is inserted, they can be selected(indicated by a highlight around the border of the image) and rotated using the rotation button.
-The top bar has a help section which displays a set of instructions for the user on how the application is run. The application window now also launches with an icon in the top left corner of the screen.
+character on the left. When a character is inserted, they can be selected(indicated by a highlight around the border of the image) and rotated using the rotation button. The rotate button is greyed out when the application is launched as it only becomes active once a character is selected. The top bar has a help section which displays a set of instructions for the user on how to use the application. The application window now also launches with an icon in the top left corner of the screen.
 
 
