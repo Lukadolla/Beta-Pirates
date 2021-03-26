@@ -135,25 +135,11 @@ public class TestController {
 
     @FXML
     public void help() throws IOException{
-
-        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
-        currentPath += "/src/main/resources/help.txt";
-
-        File helpFile = new File(currentPath);
-
-        if(!helpFile.exists())
-        {
-            throw new FileNotFoundException("ERROR: File not found");
-        }
-
-        else
-        {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
             Stage helpStage = new Stage();
             Scene helpScene = new Scene(root);
             helpStage.setTitle("Help");
             helpStage.setScene(helpScene);
             helpStage.show();
-        }
     }
 }
