@@ -20,7 +20,7 @@ public class Main extends Application {
         mainStage.setMinHeight(192.0);
         mainStage.setMinWidth(256.0);
     }
-    
+
     public void mainPage(Stage mainStage) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
 
