@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.TestController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="600.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
    <children>
-      <TextArea layoutX="177.0" layoutY="99.0" prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Text layoutX="14.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Excelsior">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exelsior is a program for creating custom comic strips with just a few clicks.">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions on use:">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To insert a character into the left panel, press the button showing the character on the left." />
+      <Text layoutX="14.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To insert a character into the right panel, press the other button with the character on the right." />
+      <Text layoutX="12.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Characters can be chosen from a series of character poses by clicking on the desired pose and pressing open." wrappingWidth="575.1331787109375" />
+      <Text layoutX="12.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the direction the individual characters are facing by selecting the desired character and pressing the rotate button." wrappingWidth="563.017578125" />
+      <Text layoutX="12.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The rotate button is greyed out by default until a character is selected." />
+      <Text layoutX="14.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Your selection will be indicated by a highlight around the clicked image." />
    </children>
 </AnchorPane>
-
