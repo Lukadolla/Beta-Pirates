@@ -22,7 +22,7 @@ public class Main extends Application {
     }
     
     public void mainPage(Stage mainStage) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
 
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
         currentPath += "/src/main/resources/images/buttons/icon.png";
