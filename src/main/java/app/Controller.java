@@ -27,8 +27,10 @@ import javafx.scene.layout.Region;
 
 public class Controller {
 
+    private Comic mainComic = new Comic();
+
     @FXML
-    ImageView isSelected; //Global variable to track which section of the panel is currently selected
+    ImageView currentlySelected; //Global variable to track which section of the panel is currently selected
 
     @FXML
     Region selectedBorder = null; //Global variable to track which border is currently selected
@@ -54,29 +56,31 @@ public class Controller {
     @FXML
     private void insertCharacterLeft(ActionEvent event) {
         event.consume();
-        loadImage(bottomLeftIV);
-        clickImage(bottomLeftIV, bottomLeftBorder);
+        loadImageLeft();
+        clickLeft();
     }
 
     @FXML
     private void insertCharacterRight(ActionEvent event) {
         event.consume();
-        loadImage(bottomRightIV);
-        clickImage(bottomRightIV, bottomRightBorder);
+        loadImageRight();
+        clickRight();
     }
 
     @FXML
-    public void loadImage(ImageView imageView) {
+    public void loadImageLeft() {
         Image image = new Image(selectImage());
-        imageView.setImage(image);
+        mainComic.setLeftCharacter(new Character(image));
+        bottomLeftIV.setImage(mainComic.getLeftCharacter().getImage());
     }
 
     @FXML
-    public void clickImage(ImageView imageView, Region border){
-        imageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
-            isSelected = imageView;
+    public void clickLeft(){
+        bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
+            currentlySelected = bottomLeftIV;
+            mainComic.setSelected(mainComic.getLeftCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
-            setBorder(border);
+            setBorder(bottomLeftBorder);
             event.consume();
         });
     }
@@ -84,14 +88,16 @@ public class Controller {
     @FXML
     public void loadImageRight() {
         Image image = new Image(selectImage());
-        bottomRightIV.setImage(image);
+        mainComic.setRightCharacter(new Character(image));
+        bottomRightIV.setImage(mainComic.getRightCharacter().getImage());
         bottomRightIV.setScaleX(-1);
     }
 
     @FXML
     public void clickRight(){
-        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom right image
-            isSelected = bottomRightIV;
+        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
+            currentlySelected = bottomRightIV;
+            mainComic.setSelected(mainComic.getRightCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
             setBorder(bottomRightBorder);
             event.consume();
@@ -100,7 +106,7 @@ public class Controller {
 
     @FXML
     public String selectImage() {   //Method to get absolute path of desired image selected by the user
-       String imagePath = "";
+        String imagePath = "";
 
         FileChooser chooser = new FileChooser();
         String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
@@ -109,12 +115,13 @@ public class Controller {
 
         imagePath = chooser.showOpenDialog(new Stage()).toString();
 
-       return "file:" + imagePath;
+        return "file:" + imagePath;
     }
 
     @FXML
     public void rotate(){
-        isSelected.setScaleX(isSelected.getScaleX() * -1);
+        mainComic.getSelected().changeFacing();
+        currentlySelected.setScaleX(currentlySelected.getScaleX() * -1);
     }
 
     @FXML
