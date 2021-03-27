@@ -67,7 +67,7 @@
                               <ImageView fx:id="bottomLeftIV" fitHeight="${bottomLeftAnchor.height}" fitWidth="${bottomLeftAnchor.width}" managed="false" pickOnBounds="true">
 
                               </ImageView>
-                                             <Region fx:id="bottomLeftBorder" prefHeight="102.0" prefWidth="108.0" style="-fx-border-color: #2a52be; visibility: false; -fx-border-width: 2px;" HBox.hgrow="ALWAYS" />
+                              <Region fx:id="bottomLeftBorder" prefHeight="102.0" prefWidth="108.0" style="-fx-border-color: #2a52be; visibility: false; -fx-border-width: 2px;" HBox.hgrow="ALWAYS" />
                             </children>
                           </HBox>
                         </AnchorPane>
@@ -78,7 +78,7 @@
                               <ImageView fx:id="bottomRightIV" fitHeight="${bottomRightAnchor.height}" fitWidth="${bottomRightAnchor.width}" managed="false" pickOnBounds="true">
 
                               </ImageView>
-                                             <Region fx:id="bottomRightBorder" prefHeight="102.0" prefWidth="108.0" style="-fx-border-color: #2a52be; visibility: false; -fx-border-width: 2px;" HBox.hgrow="ALWAYS" />
+                              <Region fx:id="bottomRightBorder" prefHeight="102.0" prefWidth="108.0" style="-fx-border-color: #2a52be; visibility: false; -fx-border-width: 2px;" HBox.hgrow="ALWAYS" />
                             </children>
                           </HBox>
                         </AnchorPane>
@@ -149,11 +149,11 @@
             <MenuItem mnemonicParsing="false" text="Configure" />
           </items>
         </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-              <items>
-                <MenuItem fx:id="helpMenu" onAction="#help" mnemonicParsing="false" text="Help" />
-              </items>
-            </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem fx:id="helpMenu" onAction="#help" mnemonicParsing="false" text="Help" />
+          </items>
+        </Menu>
       </menus>
     </MenuBar>
   </children>

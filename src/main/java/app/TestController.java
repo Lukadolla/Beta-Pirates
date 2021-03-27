@@ -135,11 +135,11 @@ public class TestController {
 
     @FXML
     public void help() throws IOException{
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
-            Stage helpStage = new Stage();
-            Scene helpScene = new Scene(root);
-            helpStage.setTitle("Help");
-            helpStage.setScene(helpScene);
-            helpStage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
+        Stage helpStage = new Stage();
+        Scene helpScene = new Scene(root);
+        helpStage.setTitle("Help");
+        helpStage.setScene(helpScene);
+        helpStage.show();
     }
 }
