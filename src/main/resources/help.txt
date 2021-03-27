@@ -1,8 +1,11 @@
-# Welcome to Excelsior
+Welcome to Excelsior
 
 Exelsior is a program for creating custom comic strips with just a few clicks.
 
-###Instructions on use
+Instructions on use:
 - To insert a character into the left panel, press the button showing the character on the left.
 - To insert a character into the right panel, press the other button with the character on the right.
+- Characters can be chosen from a series of character poses by clicking on the desired pose and pressing open.
 - You can change the direction the individual characters are facing by selecting the desired character and pressing the rotate button.
+- The rotate button is greyed out by default until a character is selected.
+- Your selection will be indicated by a highlight around the clicked image.
