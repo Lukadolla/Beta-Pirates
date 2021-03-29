@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -25,7 +26,7 @@ public class Main extends Application {
     }
 
     public void mainPage(Stage mainStage) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
 
         URL url = getClass().getResource("/images/buttons/icon.png");
         String currentPath = url.toString();

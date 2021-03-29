@@ -25,12 +25,14 @@ Repository for Software Engineering Project 3
 ## Instructions on setting up and running the project
 Java version: 8
 
-The following link outlines ways to set up the JavaFX project if versions other than Java 8 are used. You will need to add a library which is pointing to the lib file of the JavaFX SDK. The link walks through this process for a variety of IDEs and Java versions.
+The following link outlines ways to set up the JavaFX project if versions other than Java 8 are used. You will need to add a library which is pointing to the lib file of the JavaFX SDK as well as edit the VM options (The VM options only need to be edited if a version other than Java 8 is used). The link walks through this process for a variety of IDEs and Java versions.
 https://openjfx.io/openjfx-docs/
 
 For IntelliJ users: File >> Project Structure >> Libraries >> '+' icon and navigate to the lib file of your Java SDK
 
-We have created a .jar file in the root directory which runs when ran from inside an IDE like Intellij as well as command line. Navigate to the root project folder and use the command: java -jar Beta_Pirates.jar. However, the .jar file must remain in this directory in order to run properly. It still runs from within the IDE which can be done by right clicking on the .jar file and selecting "Run Beta_Pirates.jar".
+To edit VM options: Run >> Edit Configurations >> Enter relevant command from the article into the VM options box.
+
+We have created a .jar file in the root directory of the project which runs when ran from inside an IDE like Intellij as well as command line. Navigate to the root project folder and use the command: java -jar Beta_Pirates.jar. However, the .jar file must remain in this directory in order to run properly. It still runs from within the IDE which can be done by right clicking on the .jar file and selecting "Run Beta_Pirates.jar".
 
 ## General Info about implementation of Sprint 2
 
