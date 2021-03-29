@@ -5,38 +5,44 @@ import javafx.scene.image.Image;
 public class Character {
 
   private int position;
+  private int facing;
   private Image image;
   private String gender;
   private String skinColour;
   private String hairColour;
 
   public Character(Image image, int position){
-    this.position = position;
+    this.position=position;
+    facing = 1;
     gender = "female";
     this.image = image;
   }
 
-  public Character(int position, Image image, String gender,
+  public Character(int facing, Image image, String gender,
       String skinColour, String hairColour) {
-    this.position = position;
+    this.facing = facing;
     this.image = image;
     this.gender = gender;
     this.skinColour = skinColour;
     this.hairColour = hairColour;
   }
 
-  public int getPosition() {
-    return position;
+  public int getPosition() { return position; }
+
+  public void setPosition(int position) {this.position=position;}
+
+  public int getFacing() {
+    return facing;
   }
 
-  public void setPosition(int position) {
-    if (position == 1 || position == -1) {
-      this.position = position;
+  public void setFacing(int facing) {
+    if (facing == 1 || facing == -1) {
+      this.facing = facing;
     }
   }
 
-  public void changePosition(){
-    position *= -1;
+  public void changeFacing(){
+    facing *= -1;
   }
 
   public Image getImage() {

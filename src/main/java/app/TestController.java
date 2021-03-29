@@ -140,7 +140,7 @@ public class TestController {
 
     @FXML
     public void rotate(){
-        mainComic.getSelected().changePosition();
+        mainComic.getSelected().changeFacing();
         currentlySelected.setScaleX(currentlySelected.getScaleX() * -1);
     }
 

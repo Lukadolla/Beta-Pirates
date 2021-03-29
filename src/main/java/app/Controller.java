@@ -70,7 +70,7 @@ public class Controller{
     @FXML
     public void loadImageLeft() {
         Image image = new Image(selectImage());
-        mainComic.setLeftCharacter(new Character(image));
+        mainComic.setLeftCharacter(new Character(image, 0));
         bottomLeftIV.setImage(mainComic.getLeftCharacter().getImage());
     }
 
@@ -88,7 +88,7 @@ public class Controller{
     @FXML
     public void loadImageRight() {
         Image image = new Image(selectImage());
-        mainComic.setRightCharacter(new Character(image));
+        mainComic.setRightCharacter(new Character(image, 1));
         bottomRightIV.setImage(mainComic.getRightCharacter().getImage());
         bottomRightIV.setScaleX(-1);
     }
