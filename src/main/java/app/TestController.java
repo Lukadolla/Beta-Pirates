@@ -122,8 +122,9 @@ public class TestController {
         String imagePath = "";
 
         FileChooser chooser = new FileChooser();
-        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
-        currentPath += "/src/main/resources/images/characters";
+        URL url = getClass().getResource("/images/characters");
+        String toTrim = url.toString();
+        String currentPath = toTrim.substring(6);
         chooser.setInitialDirectory(new File(currentPath));
 
         imagePath = chooser.showOpenDialog(new Stage()).toString();

@@ -97,7 +97,7 @@
                                           <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="-20.0" layoutY="33.0" prefHeight="265.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <content>
                                               <AnchorPane fx:id="toResize" minHeight="250.0" onMouseClicked="#resize" prefWidth="135.0">
-<!--                                          <AnchorPane fx:id="toResize" minHeight="250.0" onMouseClicked="#resize" prefWidth="135.0" prefHeight="${heightReference.height * 4}">-->
+<!--                                          <AnchorPane fx:id="toResize" minHeight="250.0" prefWidth="135.0" prefHeight="${heightReference.height * 4}">-->
                                                    <children>
                                                       <GridPane prefHeight="574.0" prefWidth="135.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                                                         <columnConstraints>
