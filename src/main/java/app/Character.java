@@ -4,13 +4,15 @@ import javafx.scene.image.Image;
 
 public class Character {
 
+  private int position;
   private int facing;
   private Image image;
   private String gender;
   private String skinColour;
   private String hairColour;
 
-  public Character(Image image){
+  public Character(Image image, int position){
+    this.position=position;
     facing = 1;
     gender = "female";
     this.image = image;
@@ -24,6 +26,10 @@ public class Character {
     this.skinColour = skinColour;
     this.hairColour = hairColour;
   }
+
+  public int getPosition() { return position; }
+
+  public void setPosition(int position) {this.position=position;}
 
   public int getFacing() {
     return facing;
