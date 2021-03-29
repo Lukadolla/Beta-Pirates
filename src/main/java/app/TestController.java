@@ -11,6 +11,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -52,6 +54,17 @@ public class TestController {
 
     @FXML
     private Region bottomRightBorder;
+
+    @FXML
+    private AnchorPane toResize;
+
+    @FXML
+    private GridPane heightReference;
+
+    @FXML
+    private void resize(){
+        toResize.setPrefHeight(heightReference.getHeight() * 4);
+    }
 
     @FXML
     private void insertCharacterLeft(ActionEvent event) {
