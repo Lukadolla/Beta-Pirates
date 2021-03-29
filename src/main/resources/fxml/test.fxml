@@ -17,212 +17,212 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.TestController">
-    <children>
-        <SplitPane dividerPositions="0.7348484848484849" layoutX="46.0" layoutY="24.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
-            <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                    <children>
-                        <SplitPane dividerPositions="0.44966442953020136" layoutX="44.0" layoutY="47.0" prefHeight="267.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <items>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;">
-                                    <children>
-                                        <TextField layoutX="36.0" layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                        <TextField layoutX="46.0" layoutY="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                        <GridPane layoutX="53.0" prefHeight="267.0" prefWidth="265.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
+  <children>
+    <SplitPane dividerPositions="0.7348484848484849" layoutX="46.0" layoutY="24.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <SplitPane dividerPositions="0.44966442953020136" layoutX="44.0" layoutY="47.0" prefHeight="267.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;">
+                  <children>
+                    <TextField layoutX="36.0" layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    <TextField layoutX="46.0" layoutY="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                    <GridPane layoutX="53.0" prefHeight="267.0" prefWidth="265.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                      <children>
 
-                                                <AnchorPane fx:id="centreLeftAnchor" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                                    <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                        <children>
-                                                            <ImageView fitHeight="${centreLeftAnchor.height}" fitWidth="${centreLeftAnchor.width}" managed="false" pickOnBounds="true">
+                        <AnchorPane fx:id="centreLeftAnchor" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                          <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                              <ImageView fitHeight="${centreLeftAnchor.height}" fitWidth="${centreLeftAnchor.width}" managed="false" pickOnBounds="true">
 
-                                                            </ImageView>
-                                                        </children>
-                                                    </HBox>
-                                                </AnchorPane>
+                              </ImageView>
+                            </children>
+                          </HBox>
+                        </AnchorPane>
 
-                                                <AnchorPane fx:id="centreRightAnchor" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                    <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                        <children>
-                                                            <ImageView fitHeight="${centreRightAnchor.height}" fitWidth="${centreRightAnchor.width}" managed="false" pickOnBounds="true">
+                        <AnchorPane fx:id="centreRightAnchor" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                          <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                              <ImageView fitHeight="${centreRightAnchor.height}" fitWidth="${centreRightAnchor.width}" managed="false" pickOnBounds="true">
 
-                                                            </ImageView>
-                                                        </children>
-                                                    </HBox>
-                                                </AnchorPane>
+                              </ImageView>
+                            </children>
+                          </HBox>
+                        </AnchorPane>
 
-                                                <AnchorPane fx:id="bottomLeftAnchor" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                                                    <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                        <children>
-                                                            <ImageView fx:id="bottomLeftIV" fitHeight="${bottomLeftAnchor.height}" fitWidth="${bottomLeftAnchor.width}" managed="false" pickOnBounds="true">
+                        <AnchorPane fx:id="bottomLeftAnchor" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                          <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                              <ImageView fx:id="bottomLeftIV" fitHeight="${bottomLeftAnchor.height}" fitWidth="${bottomLeftAnchor.width}" managed="false" pickOnBounds="true">
 
-                                                            </ImageView>
-                                                            <Region fx:id="bottomLeftBorder" prefHeight="102.0" prefWidth="108.0" style="-fx-border-color: #2a52be; visibility: false; -fx-border-width: 2px;" HBox.hgrow="ALWAYS" />
-                                                        </children>
-                                                    </HBox>
-                                                </AnchorPane>
+                              </ImageView>
+                              <Region fx:id="bottomLeftBorder" prefHeight="102.0" prefWidth="108.0" style="-fx-border-color: #2a52be; visibility: false; -fx-border-width: 2px;" HBox.hgrow="ALWAYS" />
+                            </children>
+                          </HBox>
+                        </AnchorPane>
 
-                                                <AnchorPane fx:id="bottomRightAnchor" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                    <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                        <children>
-                                                            <ImageView fx:id="bottomRightIV" fitHeight="${bottomRightAnchor.height}" fitWidth="${bottomRightAnchor.width}" managed="false" pickOnBounds="true">
+                        <AnchorPane fx:id="bottomRightAnchor" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                          <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                              <ImageView fx:id="bottomRightIV" fitHeight="${bottomRightAnchor.height}" fitWidth="${bottomRightAnchor.width}" managed="false" pickOnBounds="true">
 
-                                                            </ImageView>
-                                                            <Region fx:id="bottomRightBorder" prefHeight="102.0" prefWidth="108.0" style="-fx-border-color: #2a52be; visibility: false; -fx-border-width: 2px;" HBox.hgrow="ALWAYS" />
-                                                        </children>
-                                                    </HBox>
-                                                </AnchorPane>
-                                                <TextArea prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;" />
-                                                <TextArea prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #111111;" GridPane.columnIndex="2" />
+                              </ImageView>
+                              <Region fx:id="bottomRightBorder" prefHeight="102.0" prefWidth="108.0" style="-fx-border-color: #2a52be; visibility: false; -fx-border-width: 2px;" HBox.hgrow="ALWAYS" />
+                            </children>
+                          </HBox>
+                        </AnchorPane>
+                        <TextArea prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;" />
+                        <TextArea prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #111111;" GridPane.columnIndex="2" />
 
-                                            </children>
-                                        </GridPane>
-                                    </children></AnchorPane>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                    <children>
-                                        <SplitPane dividerPositions="0.503708281829419" layoutX="24.0" layoutY="45.0" prefHeight="265.0" prefWidth="324.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <items>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-insets: 3; -fx-border-radius: 3; -fx-border-width: 2;">
-                                       <children>
-                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="-20.0" layoutY="33.0" prefHeight="265.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <content>
-                                              <AnchorPane fx:id="toResize" minHeight="250.0" onMouseClicked="#resize" prefWidth="135.0">
-<!--                                          <AnchorPane fx:id="toResize" minHeight="250.0" prefWidth="135.0" prefHeight="${heightReference.height * 4}">-->
-                                                   <children>
-                                                      <GridPane prefHeight="574.0" prefWidth="135.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
-                                                        <columnConstraints>
-                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                        </columnConstraints>
-                                                        <rowConstraints>
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        </rowConstraints>
-                                                         <children>
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="13" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="14" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="15" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="12" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="11" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="10" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="9" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="8" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="7" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="6" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="5" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="4" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="3" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="2" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="1" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" />
-                                                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" />
-                                                         </children>
-                                                      </GridPane>
-                                                   </children>
-                                                </AnchorPane>
-                                            </content>
-                                          </ScrollPane>
-                                       </children></AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;">
-                                                    <children>
-                                                        <GridPane fx:id="heightReference" layoutX="-29.0" layoutY="88.0" prefHeight="266.4" prefWidth="159.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                            <columnConstraints>
-                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            </columnConstraints>
-                                                            <rowConstraints>
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            </rowConstraints>
-                                                            <children>
-                                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#insertCharacterLeft" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" />
-                                                                <Button fx:id="rotateCharacter" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#rotate" style="-fx-background-image: url('/images/buttons/change-direction.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="1" />
-                                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/gender.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/text-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="2" />
-                                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/add-text.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/thought-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="3" />
-                                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/landscape.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#insertCharacterRight" style="-fx-background-image: url('/images/buttons/face-left.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" />
-                                                            </children>
-                                                        </GridPane>
-                                                    </children></AnchorPane>
-                                            </items>
-                                        </SplitPane>
-                                    </children>
+                      </children>
+                    </GridPane>
+                  </children></AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                    <SplitPane dividerPositions="0.503708281829419" layoutX="24.0" layoutY="45.0" prefHeight="265.0" prefWidth="324.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-insets: 3; -fx-border-radius: 3; -fx-border-width: 2;">
+                          <children>
+                            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="-20.0" layoutY="33.0" prefHeight="265.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <content>
+                                <AnchorPane fx:id="toResize" minHeight="250.0" onMouseClicked="#resize" prefWidth="135.0">
+                                  <!--                                          <AnchorPane fx:id="toResize" minHeight="250.0" prefWidth="135.0" prefHeight="${heightReference.height * 4}">-->
+                                  <children>
+                                    <GridPane prefHeight="574.0" prefWidth="135.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                      <children>
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="13" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="14" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="15" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="12" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="11" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="10" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="9" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="8" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="7" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="6" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="5" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="4" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="3" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="2" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="1" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" />
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" />
+                                      </children>
+                                    </GridPane>
+                                  </children>
                                 </AnchorPane>
-                            </items>
-                        </SplitPane>
-                    </children>
+                              </content>
+                            </ScrollPane>
+                          </children></AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;">
+                          <children>
+                            <GridPane fx:id="heightReference" layoutX="-29.0" layoutY="88.0" prefHeight="266.4" prefWidth="159.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                              <children>
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#insertCharacterLeft" style="-fx-background-image: url('/images/buttons/face-right.png'); -fx-background-size: 100% 100%;" />
+                                <Button fx:id="rotateCharacter" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#rotate" style="-fx-background-image: url('/images/buttons/change-direction.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="1" />
+                                <Button fx:id="changeGender" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changeGender" style="-fx-background-image: url('/images/buttons/gender.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/text-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="2" />
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/add-text.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/thought-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="3" />
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/landscape.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#insertCharacterRight" style="-fx-background-image: url('/images/buttons/face-left.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" />
+                              </children>
+                            </GridPane>
+                          </children></AnchorPane>
+                      </items>
+                    </SplitPane>
+                  </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="93.0" prefWidth="598.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;" />
-            </items>
-        </SplitPane>
-        <MenuBar prefHeight="26.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Save as XML" />
-                        <MenuItem mnemonicParsing="false" text="Save as HTML" />
-                        <MenuItem mnemonicParsing="false" text="Load XML" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="View">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="View" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Configure">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Configure" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                    <items>
-                        <MenuItem fx:id="helpMenu" mnemonicParsing="false" onAction="#help" text="Help" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-    </children>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="93.0" prefWidth="598.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;" />
+      </items>
+    </SplitPane>
+    <MenuBar prefHeight="26.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Save as XML" />
+            <MenuItem mnemonicParsing="false" text="Save as HTML" />
+            <MenuItem mnemonicParsing="false" text="Load XML" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="View">
+          <items>
+            <MenuItem mnemonicParsing="false" text="View" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Configure">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Configure" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem fx:id="helpMenu" mnemonicParsing="false" onAction="#help" text="Help" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </children>
 </AnchorPane>

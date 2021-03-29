@@ -11,6 +11,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -39,6 +40,9 @@ public class TestController {
 
     @FXML
     Button rotateCharacter;
+
+    @FXML
+    Button changeGender;
 
     @FXML
     private ImageView bottomLeftIV;
@@ -83,7 +87,7 @@ public class TestController {
     @FXML
     public void loadImageLeft() {
         Image image = new Image(selectImage());
-        mainComic.setLeftCharacter(new Character(image));
+        mainComic.setLeftCharacter(new Character(image, 0));
         bottomLeftIV.setImage(mainComic.getLeftCharacter().getImage());
     }
 
@@ -93,6 +97,7 @@ public class TestController {
             currentlySelected = bottomLeftIV;
             mainComic.setSelected(mainComic.getLeftCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
+            changeGender.setDisable(false);
             setBorder(bottomLeftBorder);
             event.consume();
         });
@@ -101,7 +106,7 @@ public class TestController {
     @FXML
     public void loadImageRight() {
         Image image = new Image(selectImage());
-        mainComic.setRightCharacter(new Character(image));
+        mainComic.setRightCharacter(new Character(image, 1));
         bottomRightIV.setImage(mainComic.getRightCharacter().getImage());
         bottomRightIV.setScaleX(-1);
     }
@@ -112,6 +117,7 @@ public class TestController {
             currentlySelected = bottomRightIV;
             mainComic.setSelected(mainComic.getRightCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
+            changeGender.setDisable(false);
             setBorder(bottomRightBorder);
             event.consume();
         });
@@ -134,7 +140,7 @@ public class TestController {
 
     @FXML
     public void rotate(){
-        mainComic.getSelected().changeFacing();
+        mainComic.getSelected().changePosition();
         currentlySelected.setScaleX(currentlySelected.getScaleX() * -1);
     }
 
@@ -155,5 +161,82 @@ public class TestController {
         helpStage.setTitle("Help");
         helpStage.setScene(helpScene);
         helpStage.show();
+    }
+
+    public void changeSkinColour(Character character, ImageView iv) {
+        Image image = character.getImage();
+        int h = (int)image.getHeight();
+        int w = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(w, h);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+
+        for(int x=0;x<w;x++){
+            for(int y=0;y<h;y++){
+                Color color = PR.getColor(x, y);
+                if(color.equals(Color.web("ffe8d8"))){
+                    color = Color.web("ff0000");
+                }
+                PW.setColor(x, y, color);
+            }
+        }
+        iv.setImage(wImage);
+        character.setImage(wImage);
+    }
+
+    public void changeGender() {
+        Character character = mainComic.getSelected();
+
+        if(character.getGender().equals("female")){
+            setMale(character);
+        }
+        else{
+            setFemale(character);
+        }
+    }
+
+    private void setMale(Character character) {
+        Image image = character.getImage();
+        int h = (int)image.getHeight();
+        int w = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(w, h);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+
+        for(int x=0;x<w;x++){
+            for(int y=0;y<h;y++){
+                Color color = PR.getColor(x, y);
+                if(isLips(color)){
+                    color = Color.web("ffe8d9");
+                }
+                PW.setColor(x, y, color);
+            }
+        }
+        character.setGender("male");
+        if(character.getPosition()==0){
+            bottomLeftIV.setImage(wImage);
+        }
+        else {
+            bottomRightIV.setImage(wImage);
+        }
+    }
+
+    private void setFemale(Character character){
+        bottomRightIV.setImage(character.getImage());
+        character.setGender("female");
+    }
+
+    private boolean isLips(Color color){
+
+        boolean isItLips = false;
+
+        if(color.getRed()==1 && 0.8>color.getGreen() && 0.8>color.getBlue()){
+            isItLips = true;
+        }
+        else if(color.getBlue()==0 && color.getGreen()==0 && color.getRed()>0){
+            isItLips = true;
+        }
+
+        return isItLips;
     }
 }
