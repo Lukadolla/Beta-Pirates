@@ -30,7 +30,7 @@ https://openjfx.io/openjfx-docs/
 
 For IntelliJ users: File >> Project Structure >> Libraries >> '+' icon and navigate to the lib file of your Java SDK
 
-To edit VM options: Edit >> Edit Configurations >> Enter relevant command from the article into the VM options box.
+To edit VM options: Run >> Edit Configurations >> Enter relevant command from the article into the VM options box.
 
 We have created a .jar file in the root directory of the project which runs when ran from inside an IDE like Intellij as well as command line. Navigate to the root project folder and use the command: java -jar Beta_Pirates.jar. However, the .jar file must remain in this directory in order to run properly. It still runs from within the IDE which can be done by right clicking on the .jar file and selecting "Run Beta_Pirates.jar".
 
