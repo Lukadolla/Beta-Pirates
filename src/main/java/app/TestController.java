@@ -222,7 +222,12 @@ public class TestController {
     }
 
     private void setFemale(Character character){
-        bottomRightIV.setImage(character.getImage());
+        if(character.getPosition()==0){
+            bottomLeftIV.setImage(character.getImage());
+        }
+        else {
+            bottomRightIV.setImage(character.getImage());
+        }
         character.setGender("female");
     }
 
@@ -230,10 +235,10 @@ public class TestController {
 
         boolean isItLips = false;
 
-        if(color.getRed()==1 && 0.8>color.getGreen() && 0.8>color.getBlue()){
+        if(color.getRed()==1 && color.getGreen()<0.6 && color.getBlue()>=color.getGreen()/2){
             isItLips = true;
         }
-        else if(color.getBlue()==0 && color.getGreen()==0 && color.getRed()>0){
+        else if(color.getGreen()==0 && color.getBlue()==0 && color.getRed()>0.8){
             isItLips = true;
         }
 
