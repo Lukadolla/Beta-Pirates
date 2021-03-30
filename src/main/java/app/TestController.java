@@ -225,7 +225,12 @@ public class TestController {
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
         Color colour;
-        Color maleColour = new Color(0, 0, 0, 0);
+        Color maleColour = null;
+
+        System.out.println(h);
+        System.out.println(w);
+        System.out.println(PR.getColor(250, 150));
+        System.out.println(mainComic.getSelected().getMaleHairColour().toString());
 
         if(mainComic.getSelected().getGender().equals("male"))
         {
@@ -257,23 +262,23 @@ public class TestController {
                     else if(colour.equals(mainComic.getSelected().getMaleHairColour()))
                     {
                         //BROKEN
-                        Color newColour=getChosenHairColour();
-                        System.out.println(newColour.toString());
-                        colour = new Color(newColour.getRed()+0.01, newColour.getGreen(), newColour.getBlue(), newColour.getOpacity());
-                        maleColour=colour;
-                        System.out.println(colour.toString());
+                        Color newColour = getChosenHairColour();
+                        colour = new Color(newColour.getRed() + 0.01, newColour.getGreen(), newColour.getBlue(), newColour.getOpacity());
+                        maleColour = colour;
                     }
 
                     PW.setColor(x, y, colour);
                 }
             }
-            System.out.println(maleColour);
             mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
+            System.out.println(mainComic.getSelected().getFemaleHairColour().toString());
             mainComic.getSelected().setMaleHairColour(maleColour);
+            System.out.println(mainComic.getSelected().getMaleHairColour().toString());
 
         }
 
         currentlySelected.setImage(wImage);
+        System.out.println("End");
     }
 
     @FXML
