@@ -190,7 +190,7 @@
                                                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#insertCharacterRight" style="-fx-background-image: url('/images/buttons/face-left.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" />
                                                 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="4">
                                                    <children>
-                                                      <ColorPicker layoutY="19.0" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="74.0" promptText="Hair Colour" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0" />
+                                                      <ColorPicker onAction="#changeHairColour" fx:id="hairColourPicker" disable="true" layoutY="19.0" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="74.0" promptText="Hair Colour" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0" />
                                                       <Text layoutX="13.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hair Colour:" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <font>
                                                             <Font name="Arial" size="16.0" />
@@ -200,7 +200,7 @@
                                                 </AnchorPane>
                                                 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                                    <children>
-                                                      <ColorPicker layoutY="19.0" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="74.0" promptText="Body Colour" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0" />
+                                                      <ColorPicker fx:id="bodyColourPicker" disable="true" layoutY="19.0" maxWidth="1.7976931348623157E308" onAction="#changeSkinColour" prefHeight="33.0" prefWidth="74.0" promptText="Body Colour" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0" />
                                                       <Text layoutX="4.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Body Colour:" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <font>
                                                             <Font name="Arial" size="16.0" />

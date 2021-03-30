@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
@@ -66,6 +67,12 @@ public class TestController {
     private GridPane heightReference;
 
     @FXML
+    private ColorPicker bodyColourPicker;
+
+    @FXML
+    private ColorPicker hairColourPicker;
+
+    @FXML
     private void resize(){
         toResize.setPrefHeight(heightReference.getHeight() * 4);
     }
@@ -98,6 +105,8 @@ public class TestController {
             mainComic.setSelected(mainComic.getLeftCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
             changeGender.setDisable(false);
+            bodyColourPicker.setDisable(false);
+            hairColourPicker.setDisable(false);
             setBorder(bottomLeftBorder);
             event.consume();
         });
@@ -118,6 +127,8 @@ public class TestController {
             mainComic.setSelected(mainComic.getRightCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
             changeGender.setDisable(false);
+            bodyColourPicker.setDisable(false);
+            hairColourPicker.setDisable(false);
             setBorder(bottomRightBorder);
             event.consume();
         });
@@ -163,27 +174,109 @@ public class TestController {
         helpStage.show();
     }
 
-    public void changeSkinColour(Character character, ImageView iv) {
-        Image image = character.getImage();
+    @FXML
+    public Color getChosenBodyColour(){
+       return bodyColourPicker.getValue();
+    }
+
+    @FXML
+    public void changeSkinColour() {
+        Image image = currentlySelected.getImage();
         int h = (int)image.getHeight();
         int w = (int)image.getWidth();
+        boolean changed = false;
+
         WritableImage wImage = new WritableImage(w, h);
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
+        Color colour;
 
         for(int x=0;x<w;x++){
             for(int y=0;y<h;y++){
-                Color color = PR.getColor(x, y);
-                if(color.equals(Color.web("ffe8d8"))){
-                    color = Color.web("ff0000");
+                colour = PR.getColor(x, y);
+                if(colour.equals(mainComic.getSelected().getSkinColour())){
+                    colour = getChosenBodyColour();
+                    changed = true;
                 }
-                PW.setColor(x, y, color);
+                PW.setColor(x, y, colour);
             }
         }
-        iv.setImage(wImage);
-        character.setImage(wImage);
+        if(changed)
+        {
+            mainComic.getSelected().setSkinColour(getChosenBodyColour());
+        }
+        currentlySelected.setImage(wImage);
     }
 
+
+    @FXML
+    public Color getChosenHairColour(){
+        return hairColourPicker.getValue();
+    }
+
+    @FXML
+    public void changeHairColour() {
+        Image image = currentlySelected.getImage();
+        int h = (int)image.getHeight();
+        int w = (int)image.getWidth();
+        boolean changed = false;
+
+        WritableImage wImage = new WritableImage(w, h);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+        Color colour;
+
+        if(mainComic.getSelected().getGender().equals("male"))
+        {
+            for(int x=0;x<w;x++){
+                for(int y=0;y<h;y++){
+                    colour = PR.getColor(x, y);
+                    if(colour.equals(mainComic.getSelected().getMaleHairColour())){
+                        colour = getChosenHairColour();
+                        changed = true;
+                    }
+                    PW.setColor(x, y, colour);
+                }
+            }
+            if(changed)
+            {
+                mainComic.getSelected().setMaleHairColour(getChosenHairColour());
+            }
+        }
+
+        if(mainComic.getSelected().getGender().equals("female"))
+        {
+            for(int x=0;x<w;x++){
+                for(int y=0;y<h;y++){
+                    colour = PR.getColor(x, y);
+                    if(colour.equals(mainComic.getSelected().getFemaleHairColour())){
+                        colour = getChosenHairColour();
+                        changed = true;
+                    }
+
+                    else if(changed && colour.equals(mainComic.getSelected().getMaleHairColour()))
+                    {
+                        //BROKEN
+                        System.out.println(getChosenHairColour().toString());
+                        long newColour = Long.parseLong(getChosenHairColour().toString(), 16);
+                        System.out.println(newColour);
+                        newColour += 1;
+                        colour = Color.web(Long.toString(newColour));
+                    }
+
+                    PW.setColor(x, y, colour);
+                }
+            }
+            if(changed)
+            {
+                mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
+            }
+        }
+
+        currentlySelected.setImage(wImage);
+    }
+
+    @FXML
     public void changeGender() {
         Character character = mainComic.getSelected();
 
