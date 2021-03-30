@@ -225,6 +225,7 @@ public class TestController {
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
         Color colour;
+        Color maleColour = new Color(0, 0, 0, 0);
 
         if(mainComic.getSelected().getGender().equals("male"))
         {
@@ -251,27 +252,25 @@ public class TestController {
                     colour = PR.getColor(x, y);
                     if(colour.equals(mainComic.getSelected().getFemaleHairColour())){
                         colour = getChosenHairColour();
-                        changed = true;
                     }
 
-                    else if(changed && colour.equals(mainComic.getSelected().getMaleHairColour()))
+                    else if(colour.equals(mainComic.getSelected().getMaleHairColour()))
                     {
                         //BROKEN
-                        System.out.println(getChosenHairColour().toString());
-                        int newColour = Integer.parseInt(getChosenHairColour().toString(), 16);
-                        System.out.println(newColour);
-                        newColour += 1;
-                        String temp = Integer.toHexString(newColour);
-                        colour = Color.web(temp);
+                        Color newColour=getChosenHairColour();
+                        System.out.println(newColour.toString());
+                        colour = new Color(newColour.getRed()+0.01, newColour.getGreen(), newColour.getBlue(), newColour.getOpacity());
+                        maleColour=colour;
+                        System.out.println(colour.toString());
                     }
 
                     PW.setColor(x, y, colour);
                 }
             }
-            if(changed)
-            {
-                mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
-            }
+            System.out.println(maleColour);
+            mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
+            mainComic.getSelected().setMaleHairColour(maleColour);
+
         }
 
         currentlySelected.setImage(wImage);
