@@ -205,6 +205,7 @@ public class TestController {
         {
             mainComic.getSelected().setSkinColour(getChosenBodyColour());
         }
+        mainComic.getSelected().setImage(wImage);
         currentlySelected.setImage(wImage);
     }
 
@@ -276,7 +277,7 @@ public class TestController {
             System.out.println(mainComic.getSelected().getMaleHairColour().toString());
 
         }
-
+        mainComic.getSelected().setImage(wImage);
         currentlySelected.setImage(wImage);
         System.out.println("End");
     }
@@ -307,9 +308,16 @@ public class TestController {
                 if(isLips(color)){
                     color = Color.web("ffe8d9");
                 }
+                else if(color.equals(character.getFemaleHairColour())){
+                    color = Color.web("fffffe");
+                }
+                else if(color.equals(Color.web("ecb4b5"))){
+                    color = Color.web("feffff");
+                }
                 PW.setColor(x, y, color);
             }
         }
+
         character.setGender("male");
         if(character.getPosition()==0){
             bottomLeftIV.setImage(wImage);
