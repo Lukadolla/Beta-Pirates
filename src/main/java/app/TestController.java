@@ -225,6 +225,7 @@ public class TestController {
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
         Color colour;
+        Color maleColour = new Color(0, 0, 0, 0);
 
         if(mainComic.getSelected().getGender().equals("male"))
         {
@@ -244,7 +245,7 @@ public class TestController {
             }
         }
 
-        if(mainComic.getSelected().getGender().equals("female"))
+        else if(mainComic.getSelected().getGender().equals("female"))
         {
             for(int x=0;x<w;x++){
                 for(int y=0;y<h;y++){
@@ -256,20 +257,22 @@ public class TestController {
 
                     else if(changed && colour.equals(mainComic.getSelected().getMaleHairColour()))
                     {
-                        //BROKEN
-                        System.out.println(getChosenHairColour().toString());
-                        long newColour = Long.parseLong(getChosenHairColour().toString(), 16);
-                        System.out.println(newColour);
-                        newColour += 1;
-                        colour = Color.web(Long.toString(newColour));
+                        colour = getChosenHairColour();
+                        Double red = colour.getRed();
+                        if(red == 1){
+                            red = .98;
+                        }
+                        Color test = new Color(red + 0.01, colour.getGreen(), colour.getBlue(), colour.getOpacity());
+                        maleColour = test;
                     }
 
-                    PW.setColor(x, y, colour);
+                    PW.setColor(x, y, maleColour);
                 }
             }
             if(changed)
             {
                 mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
+                mainComic.getSelected().setMaleHairColour(maleColour);
             }
         }
 
