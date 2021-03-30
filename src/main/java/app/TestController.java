@@ -22,6 +22,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -176,7 +177,7 @@ public class TestController {
 
     @FXML
     public Color getChosenBodyColour(){
-       return bodyColourPicker.getValue();
+        return bodyColourPicker.getValue();
     }
 
     @FXML
@@ -226,12 +227,7 @@ public class TestController {
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
         Color colour;
-        Color maleColour = null;
-
-        System.out.println(h);
-        System.out.println(w);
-        System.out.println(PR.getColor(250, 150));
-        System.out.println(mainComic.getSelected().getMaleHairColour().toString());
+        Color maleColour = new Color(0, 0, 0, 0);
 
         if(mainComic.getSelected().getGender().equals("male"))
         {
@@ -260,26 +256,22 @@ public class TestController {
                         colour = getChosenHairColour();
                     }
 
-                    else if(colour.equals(mainComic.getSelected().getMaleHairColour()))
+                    else if(colour.toString().equals(mainComic.getSelected().getMaleHairColour().toString()))
                     {
-                        //BROKEN
-                        Color newColour = getChosenHairColour();
-                        colour = new Color(newColour.getRed() + 0.01, newColour.getGreen(), newColour.getBlue(), newColour.getOpacity());
-                        maleColour = colour;
+                        Double[] RGB = changeTone(getChosenHairColour());
+                        colour = new Color(RGB[0], RGB[1], RGB[2], getChosenHairColour().getOpacity());
+                        maleColour=colour;
                     }
 
                     PW.setColor(x, y, colour);
                 }
             }
             mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
-            System.out.println(mainComic.getSelected().getFemaleHairColour().toString());
             mainComic.getSelected().setMaleHairColour(maleColour);
-            System.out.println(mainComic.getSelected().getMaleHairColour().toString());
 
         }
         mainComic.getSelected().setImage(wImage);
         currentlySelected.setImage(wImage);
-        System.out.println("End");
     }
 
     @FXML
@@ -349,5 +341,29 @@ public class TestController {
         }
 
         return isItLips;
+    }
+
+    private Double[] changeTone(Color colour){
+        Double[] colourList = new Double[3];
+        colourList[0] = colour.getRed();
+        colourList[1] = colour.getGreen();
+        colourList[2] = colour.getBlue();
+
+        if(colourList[0] < 0.990 && colourList[0] != 0){
+            colourList[0] += 0.01;
+        }
+        else if(colourList[1] < 0.990 && colourList[1] != 0){
+            colourList[1] += 0.01;
+        }
+        else{
+            if(colourList[2] < 0.990){
+                colourList[2] += 0.01;
+            }
+            else{
+                colourList[2] -= 0.01;
+            }
+        }
+
+        return colourList;
     }
 }
