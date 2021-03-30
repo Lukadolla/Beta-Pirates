@@ -258,10 +258,11 @@ public class TestController {
                     {
                         //BROKEN
                         System.out.println(getChosenHairColour().toString());
-                        long newColour = Long.parseLong(getChosenHairColour().toString(), 16);
+                        int newColour = Integer.parseInt(getChosenHairColour().toString(), 16);
                         System.out.println(newColour);
                         newColour += 1;
-                        colour = Color.web(Long.toString(newColour));
+                        String temp = Integer.toHexString(newColour);
+                        colour = Color.web(temp);
                     }
 
                     PW.setColor(x, y, colour);
