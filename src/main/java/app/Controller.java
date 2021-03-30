@@ -11,6 +11,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -25,7 +28,7 @@ import javafx.scene.layout.Region;
 
 
 
-public class Controller{
+public class Controller {
 
     private Comic mainComic = new Comic();
 
@@ -37,6 +40,9 @@ public class Controller{
 
     @FXML
     Button rotateCharacter;
+
+    @FXML
+    Button changeGender;
 
     @FXML
     private ImageView bottomLeftIV;
@@ -52,6 +58,17 @@ public class Controller{
 
     @FXML
     private Region bottomRightBorder;
+
+    @FXML
+    private AnchorPane toResize;
+
+    @FXML
+    private GridPane heightReference;
+
+    @FXML
+    private void resize(){
+        toResize.setPrefHeight(heightReference.getHeight() * 4);
+    }
 
     @FXML
     private void insertCharacterLeft(ActionEvent event) {
@@ -80,6 +97,7 @@ public class Controller{
             currentlySelected = bottomLeftIV;
             mainComic.setSelected(mainComic.getLeftCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
+            changeGender.setDisable(false);
             setBorder(bottomLeftBorder);
             event.consume();
         });
@@ -99,6 +117,7 @@ public class Controller{
             currentlySelected = bottomRightIV;
             mainComic.setSelected(mainComic.getRightCharacter());
             rotateCharacter.setDisable(false);  //Enable rotate function
+            changeGender.setDisable(false);
             setBorder(bottomRightBorder);
             event.consume();
         });
@@ -109,8 +128,9 @@ public class Controller{
         String imagePath = "";
 
         FileChooser chooser = new FileChooser();
-        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
-        currentPath += "/src/main/resources/images/characters";
+        URL url = getClass().getResource("/images/characters");
+        String toTrim = url.toString();
+        String currentPath = toTrim.substring(6);
         chooser.setInitialDirectory(new File(currentPath));
 
         imagePath = chooser.showOpenDialog(new Stage()).toString();
@@ -135,11 +155,93 @@ public class Controller{
 
     @FXML
     public void help() throws IOException{
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
-            Stage helpStage = new Stage();
-            Scene helpScene = new Scene(root);
-            helpStage.setTitle("Help");
-            helpStage.setScene(helpScene);
-            helpStage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
+        Stage helpStage = new Stage();
+        Scene helpScene = new Scene(root);
+        helpStage.setTitle("Help");
+        helpStage.setScene(helpScene);
+        helpStage.show();
+    }
+
+    public void changeSkinColour(Character character, ImageView iv) {
+        Image image = character.getImage();
+        int h = (int)image.getHeight();
+        int w = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(w, h);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+
+        for(int x=0;x<w;x++){
+            for(int y=0;y<h;y++){
+                Color color = PR.getColor(x, y);
+                if(color.equals(Color.web("ffe8d8"))){
+                    color = Color.web("ff0000");
+                }
+                PW.setColor(x, y, color);
+            }
+        }
+        iv.setImage(wImage);
+        character.setImage(wImage);
+    }
+
+    public void changeGender() {
+        Character character = mainComic.getSelected();
+
+        if(character.getGender().equals("female")){
+            setMale(character);
+        }
+        else{
+            setFemale(character);
+        }
+    }
+
+    private void setMale(Character character) {
+        Image image = character.getImage();
+        int h = (int)image.getHeight();
+        int w = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(w, h);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+
+        for(int x=0;x<w;x++){
+            for(int y=0;y<h;y++){
+                Color color = PR.getColor(x, y);
+                if(isLips(color)){
+                    color = Color.web("ffe8d9");
+                }
+                PW.setColor(x, y, color);
+            }
+        }
+        character.setGender("male");
+        if(character.getPosition()==0){
+            bottomLeftIV.setImage(wImage);
+        }
+        else {
+            bottomRightIV.setImage(wImage);
+        }
+    }
+
+    private void setFemale(Character character){
+        if(character.getPosition()==0){
+            bottomLeftIV.setImage(character.getImage());
+        }
+        else {
+            bottomRightIV.setImage(character.getImage());
+        }
+        character.setGender("female");
+    }
+
+    private boolean isLips(Color color){
+
+        boolean isItLips = false;
+
+        if(color.getRed()==1 && color.getGreen()<0.6 && color.getBlue()>=color.getGreen()/2){
+            isItLips = true;
+        }
+        else if(color.getGreen()==0 && color.getBlue()==0 && color.getRed()>0.8){
+            isItLips = true;
+        }
+
+        return isItLips;
     }
 }
