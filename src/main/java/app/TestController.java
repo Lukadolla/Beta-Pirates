@@ -245,35 +245,32 @@ public class TestController {
             }
         }
 
-        else if(mainComic.getSelected().getGender().equals("female"))
+        if(mainComic.getSelected().getGender().equals("female"))
         {
             for(int x=0;x<w;x++){
                 for(int y=0;y<h;y++){
                     colour = PR.getColor(x, y);
                     if(colour.equals(mainComic.getSelected().getFemaleHairColour())){
                         colour = getChosenHairColour();
-                        changed = true;
                     }
 
-                    else if(changed && colour.equals(mainComic.getSelected().getMaleHairColour()))
+                    else if(colour.equals(mainComic.getSelected().getMaleHairColour()))
                     {
-                        colour = getChosenHairColour();
-                        Double red = colour.getRed();
-                        if(red == 1){
-                            red = .98;
-                        }
-                        Color test = new Color(red + 0.01, colour.getGreen(), colour.getBlue(), colour.getOpacity());
-                        maleColour = test;
+                        //BROKEN
+                        Color newColour=getChosenHairColour();
+                        System.out.println(newColour.toString());
+                        colour = new Color(newColour.getRed()+0.01, newColour.getGreen(), newColour.getBlue(), newColour.getOpacity());
+                        maleColour=colour;
+                        System.out.println(colour.toString());
                     }
 
-                    PW.setColor(x, y, maleColour);
+                    PW.setColor(x, y, colour);
                 }
             }
-            if(changed)
-            {
-                mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
-                mainComic.getSelected().setMaleHairColour(maleColour);
-            }
+            System.out.println(maleColour);
+            mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
+            mainComic.getSelected().setMaleHairColour(maleColour);
+
         }
 
         currentlySelected.setImage(wImage);
