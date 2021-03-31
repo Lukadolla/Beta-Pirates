@@ -22,6 +22,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -176,7 +177,7 @@ public class TestController {
 
     @FXML
     public Color getChosenBodyColour(){
-       return bodyColourPicker.getValue();
+        return bodyColourPicker.getValue();
     }
 
     @FXML
@@ -255,20 +256,16 @@ public class TestController {
                         colour = getChosenHairColour();
                     }
 
-                    else if(colour.equals(mainComic.getSelected().getMaleHairColour()))
+                    else if(colour.toString().equals(mainComic.getSelected().getMaleHairColour().toString()))
                     {
-                        //BROKEN
-                        Color newColour=getChosenHairColour();
-                        System.out.println(newColour.toString());
-                        colour = new Color(newColour.getRed()+0.01, newColour.getGreen(), newColour.getBlue(), newColour.getOpacity());
+                        Double[] RGB = changeTone(getChosenHairColour());
+                        colour = new Color(RGB[0], RGB[1], RGB[2], getChosenHairColour().getOpacity());
                         maleColour=colour;
-                        System.out.println(colour.toString());
                     }
 
                     PW.setColor(x, y, colour);
                 }
             }
-            System.out.println(maleColour);
             mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
             mainComic.getSelected().setMaleHairColour(maleColour);
 
@@ -363,5 +360,29 @@ public class TestController {
         }
 
         return isItLips;
+    }
+
+    private Double[] changeTone(Color colour){
+        Double[] colourList = new Double[3];
+        colourList[0] = colour.getRed();
+        colourList[1] = colour.getGreen();
+        colourList[2] = colour.getBlue();
+
+        if(colourList[0] < 0.990 && colourList[0] != 0){
+            colourList[0] += 0.01;
+        }
+        else if(colourList[1] < 0.990 && colourList[1] != 0){
+            colourList[1] += 0.01;
+        }
+        else{
+            if(colourList[2] < 0.990){
+                colourList[2] += 0.01;
+            }
+            else{
+                colourList[2] -= 0.01;
+            }
+        }
+
+        return colourList;
     }
 }
