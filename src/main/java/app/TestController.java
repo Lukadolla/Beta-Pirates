@@ -137,13 +137,12 @@ public class TestController {
 
     @FXML
     public String selectImage() {   //Method to get absolute path of desired image selected by the user
-        String imagePath = "";
 
         FileChooser chooser = new FileChooser();
         URL url = getClass().getResource("/images/characters");
         String toTrim = url.toString();
-        String currentPath = toTrim.substring(6);
-        chooser.setInitialDirectory(new File(currentPath));
+        String imagePath = toTrim.substring(6);
+        chooser.setInitialDirectory(new File(imagePath));
 
         imagePath = chooser.showOpenDialog(new Stage()).toString();
 
