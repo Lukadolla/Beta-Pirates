@@ -243,9 +243,8 @@ public class TestController {
             }
             if(changed)
             {
-                Double[] RGB = changeTone(getChosenHairColour());
                 mainComic.getSelected().setMaleHairColour(getChosenHairColour());
-                mainComic.getSelected().setFemaleHairColour(new Color(RGB[0], RGB[1], RGB[2], getChosenHairColour().getOpacity()));
+                mainComic.getSelected().setFemaleHairColour(changeTone(getChosenHairColour()));
             }
         }
 
@@ -260,8 +259,7 @@ public class TestController {
 
                     else if(colour.toString().equals(mainComic.getSelected().getMaleHairColour().toString()))
                     {
-                        Double[] RGB = changeTone(getChosenHairColour());
-                        colour = new Color(RGB[0], RGB[1], RGB[2], getChosenHairColour().getOpacity());
+                        colour = changeTone(getChosenHairColour());
                         maleColour=colour;
                     }
 
@@ -300,7 +298,8 @@ public class TestController {
             for(int y=0;y<h;y++){
                 Color color = PR.getColor(x, y);
                 if(isLips(color)){
-                    color = Color.web("ffe8d9");
+                    color = changeTone(mainComic.getSelected().getSkinColour());
+                    mainComic.getSelected().setLipColour(color);
                 }
                 else if(color.toString().equals(character.getFemaleHairColour().toString())){
                     color = Color.web("fffffe");
@@ -328,7 +327,7 @@ public class TestController {
         for(int x=0;x<w;x++){
             for(int y=0;y<h;y++){
                 Color color = PR.getColor(x, y);
-                if(color.equals(Color.web("ffe8d9"))){
+                if(color.toString().equals(mainComic.getSelected().getLipColour().toString())){
                     color = Color.web("ff0000");
                 }
                 else if(color.equals(Color.web("fffffe"))){
@@ -360,7 +359,7 @@ public class TestController {
         return isItLips;
     }
 
-    private Double[] changeTone(Color colour){
+    private Color changeTone(Color colour){
         Double[] colourList = new Double[3];
         colourList[0] = colour.getRed();
         colourList[1] = colour.getGreen();
@@ -381,6 +380,8 @@ public class TestController {
             }
         }
 
-        return colourList;
+        Color changedTone = new Color(colourList[0], colourList[1], colourList[2], colour.getOpacity());
+
+        return changedTone;
     }
 }

@@ -12,6 +12,7 @@ public class Character {
   private Color skinColour;
   private Color maleHairColour;
   private Color femaleHairColour;
+  private Color lipColour;
 
   public Character(Image image, int position){
     this.position=position;
@@ -21,6 +22,7 @@ public class Character {
     skinColour = Color.web("ffe8d8");
     maleHairColour = Color.web("f9ff00");
     femaleHairColour = Color.web("f0ff00");
+    lipColour = Color.web("ff0000");
   }
 
   public int getPosition() { return position; }
@@ -80,4 +82,8 @@ public class Character {
   public void setFemaleHairColour(Color hairColour) {
     this.femaleHairColour = hairColour;
   }
+
+  public Color getLipColour(){ return lipColour;}
+
+  public void setLipColour(Color lipColour){ this.lipColour = lipColour;}
 }
