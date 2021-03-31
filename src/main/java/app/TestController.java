@@ -380,8 +380,6 @@ public class TestController {
             }
         }
 
-        Color changedTone = new Color(colourList[0], colourList[1], colourList[2], colour.getOpacity());
-
-        return changedTone;
+        return new Color(colourList[0], colourList[1], colourList[2], colour.getOpacity());
     }
 }
