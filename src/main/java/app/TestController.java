@@ -234,7 +234,7 @@ public class TestController {
             for(int x=0;x<w;x++){
                 for(int y=0;y<h;y++){
                     colour = PR.getColor(x, y);
-                    if(colour.equals(mainComic.getSelected().getMaleHairColour())){
+                    if(colour.toString().equals(mainComic.getSelected().getMaleHairColour().toString())){
                         colour = getChosenHairColour();
                         changed = true;
                     }
