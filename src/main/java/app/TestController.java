@@ -234,7 +234,7 @@ public class TestController {
             for(int x=0;x<w;x++){
                 for(int y=0;y<h;y++){
                     colour = PR.getColor(x, y);
-                    if(colour.equals(mainComic.getSelected().getMaleHairColour())){
+                    if(colour.toString().equals(mainComic.getSelected().getMaleHairColour().toString())){
                         colour = getChosenHairColour();
                         changed = true;
                     }
@@ -243,7 +243,9 @@ public class TestController {
             }
             if(changed)
             {
+                Double[] RGB = changeTone(getChosenHairColour());
                 mainComic.getSelected().setMaleHairColour(getChosenHairColour());
+                mainComic.getSelected().setFemaleHairColour(new Color(RGB[0], RGB[1], RGB[2], getChosenHairColour().getOpacity()));
             }
         }
 
@@ -252,7 +254,7 @@ public class TestController {
             for(int x=0;x<w;x++){
                 for(int y=0;y<h;y++){
                     colour = PR.getColor(x, y);
-                    if(colour.equals(mainComic.getSelected().getFemaleHairColour())){
+                    if(colour.toString().equals(mainComic.getSelected().getFemaleHairColour().toString())){
                         colour = getChosenHairColour();
                     }
 
@@ -300,7 +302,7 @@ public class TestController {
                 if(isLips(color)){
                     color = Color.web("ffe8d9");
                 }
-                else if(color.equals(character.getFemaleHairColour())){
+                else if(color.toString().equals(character.getFemaleHairColour().toString())){
                     color = Color.web("fffffe");
                 }
                 else if(color.equals(Color.web("ecb4b5"))){
@@ -311,12 +313,8 @@ public class TestController {
         }
 
         character.setGender("male");
-        if(character.getPosition()==0){
-            bottomLeftIV.setImage(wImage);
-        }
-        else {
-            bottomRightIV.setImage(wImage);
-        }
+        currentlySelected.setImage(wImage);
+        character.setImage(wImage);
     }
 
     private void setFemale(Character character) {
@@ -331,7 +329,7 @@ public class TestController {
             for(int y=0;y<h;y++){
                 Color color = PR.getColor(x, y);
                 if(color.equals(Color.web("ffe8d9"))){
-                    color = Color.web("ffe8d9");
+                    color = Color.web("ff0000");
                 }
                 else if(color.equals(Color.web("fffffe"))){
                     color = character.getFemaleHairColour();
