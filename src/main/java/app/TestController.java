@@ -319,14 +319,33 @@ public class TestController {
         }
     }
 
-    private void setFemale(Character character){
-        if(character.getPosition()==0){
-            bottomLeftIV.setImage(character.getImage());
+    private void setFemale(Character character) {
+        Image image = character.getImage();
+        int h = (int)image.getHeight();
+        int w = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(w, h);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+
+        for(int x=0;x<w;x++){
+            for(int y=0;y<h;y++){
+                Color color = PR.getColor(x, y);
+                if(color.equals(Color.web("ffe8d9"))){
+                    color = Color.web("ffe8d9");
+                }
+                else if(color.equals(Color.web("fffffe"))){
+                    color = character.getFemaleHairColour();
+                }
+                else if(color.equals(Color.web("feffff"))){
+                    color = Color.web("ecb4b5");
+                }
+                PW.setColor(x, y, color);
+            }
         }
-        else {
-            bottomRightIV.setImage(character.getImage());
-        }
+
         character.setGender("female");
+        currentlySelected.setImage(wImage);
+        character.setImage(wImage);
     }
 
     private boolean isLips(Color color){
