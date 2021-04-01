@@ -85,6 +85,9 @@ public class TestController {
         event.consume();
         loadImageLeft();
         clickLeft();
+        if(bottomLeftBorder.isVisible()){
+            bottomLeftBorder.setVisible(false);
+        }
     }
 
     @FXML
@@ -92,6 +95,9 @@ public class TestController {
         event.consume();
         loadImageRight();
         clickRight();
+        if(bottomRightBorder.isVisible()){
+            bottomRightBorder.setVisible(false);
+        }
     }
 
     @FXML
