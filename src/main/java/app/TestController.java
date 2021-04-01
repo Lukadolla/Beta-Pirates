@@ -289,26 +289,26 @@ public class TestController {
 
     private void setMale(Character character) {
         Image image = character.getImage();
-        int h = (int)image.getHeight();
-        int w = (int)image.getWidth();
-        WritableImage wImage = new WritableImage(w, h);
+        int imageHeight = (int)image.getHeight();
+        int imageWidth = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
 
-        for(int x=0;x<w;x++){
-            for(int y=0;y<h;y++){
-                Color color = PR.getColor(x, y);
-                if(isLips(color)){
-                    color = changeTone(mainComic.getSelected().getSkinColour());
-                    mainComic.getSelected().setLipColour(color);
+        for(int i = 0; i < imageWidth; i++){
+            for(int j = 0; j < imageHeight; j++){
+                Color colour = PR.getColor(i, j);
+                if(isLips(colour)){
+                    colour = changeTone(mainComic.getSelected().getSkinColour());
+                    mainComic.getSelected().setLipColour(colour);
                 }
-                else if(compareColours(color, character.getFemaleHairColour())){
-                    color = Color.web("fffffe");
+                else if(compareColours(colour, character.getFemaleHairColour())){
+                    colour = Color.web("fffffe");
                 }
-                else if(color.equals(Color.web("ecb4b5"))){
-                    color = Color.web("feffff");
+                else if(colour.equals(Color.web("ecb4b5"))){
+                    colour = Color.web("feffff");
                 }
-                PW.setColor(x, y, color);
+                PW.setColor(i, j, colour);
             }
         }
 
@@ -319,25 +319,25 @@ public class TestController {
 
     private void setFemale(Character character) {
         Image image = character.getImage();
-        int h = (int)image.getHeight();
-        int w = (int)image.getWidth();
-        WritableImage wImage = new WritableImage(w, h);
+        int imageHeight = (int)image.getHeight();
+        int imageWidth = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
 
-        for(int x=0;x<w;x++){
-            for(int y=0;y<h;y++){
-                Color color = PR.getColor(x, y);
-                if(color.toString().equals(mainComic.getSelected().getLipColour().toString())){
-                    color = Color.web("ff0000");
+        for(int i = 0; i < imageWidth; i++){
+            for(int j = 0; j < imageHeight; j++){
+                Color colour = PR.getColor(i, j);
+                if(colour.toString().equals(mainComic.getSelected().getLipColour().toString())){
+                    colour = Color.web("ff0000");
                 }
-                else if(color.equals(Color.web("fffffe"))){
-                    color = character.getFemaleHairColour();
+                else if(colour.equals(Color.web("fffffe"))){
+                    colour = character.getFemaleHairColour();
                 }
-                else if(color.equals(Color.web("feffff"))){
-                    color = Color.web("ecb4b5");
+                else if(colour.equals(Color.web("feffff"))){
+                    colour = Color.web("ecb4b5");
                 }
-                PW.setColor(x, y, color);
+                PW.setColor(i, j, colour);
             }
         }
 
@@ -384,10 +384,10 @@ public class TestController {
         return new Color(colourList[0], colourList[1], colourList[2], colour.getOpacity());
     }
 
-    private boolean compareColours(Color one, Color two){
+    private boolean compareColours(Color colour_1, Color colour_2){
 
-        if((Math.abs(one.getRed() - two.getRed()) < 0.01) && (Math.abs(one.getGreen() - two.getGreen()) < 0.01) && (Math.abs(one.getBlue() - two.getBlue()) < 0.01)){
-            if(one.getOpacity() == two.getOpacity()){
+        if((Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01)){
+            if(colour_1.getOpacity() == colour_2.getOpacity()){
                 return true;
             }
         }
