@@ -43,10 +43,10 @@ public class TestController {
     Region selectedBorder = null; //Global variable to track which border is currently selected
 
     @FXML
-    Button rotateCharacter;
+    Button rotateCharacterButton;
 
     @FXML
-    Button changeGender;
+    Button changeGenderButton;
 
     @FXML
     private ImageView bottomLeftIV;
@@ -64,10 +64,10 @@ public class TestController {
     private Region bottomRightBorder;
 
     @FXML
-    private AnchorPane toResize;
+    private AnchorPane scrollAnchorPane;
 
     @FXML
-    private GridPane heightReference;
+    private GridPane buttonsGridPane;
 
     @FXML
     private ColorPicker bodyColourPicker;
@@ -77,7 +77,7 @@ public class TestController {
 
     @FXML
     private void resize(){
-        toResize.setPrefHeight(heightReference.getHeight() * 4);
+        scrollAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
     }
 
     @FXML
@@ -96,8 +96,8 @@ public class TestController {
 
     @FXML
     public void loadImageLeft() {
-        Image image = new Image(selectImage());
-        mainComic.setLeftCharacter(new Character(image, 0));
+        Image characterImage = new Image(selectImage());
+        mainComic.setLeftCharacter(new Character(characterImage, 0));
         bottomLeftIV.setImage(mainComic.getLeftCharacter().getImage());
     }
 
@@ -106,8 +106,8 @@ public class TestController {
         bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
             currentlySelected = bottomLeftIV;
             mainComic.setSelected(mainComic.getLeftCharacter());
-            rotateCharacter.setDisable(false);  //Enable rotate function
-            changeGender.setDisable(false);
+            rotateCharacterButton.setDisable(false);  //Enable rotate function
+            changeGenderButton.setDisable(false);
             bodyColourPicker.setDisable(false);
             hairColourPicker.setDisable(false);
             setBorder(bottomLeftBorder);
@@ -117,8 +117,8 @@ public class TestController {
 
     @FXML
     public void loadImageRight() {
-        Image image = new Image(selectImage());
-        mainComic.setRightCharacter(new Character(image, 1));
+        Image characterImage = new Image(selectImage());
+        mainComic.setRightCharacter(new Character(characterImage, 1));
         bottomRightIV.setImage(mainComic.getRightCharacter().getImage());
         bottomRightIV.setScaleX(-1);
     }
@@ -128,8 +128,8 @@ public class TestController {
         bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
             currentlySelected = bottomRightIV;
             mainComic.setSelected(mainComic.getRightCharacter());
-            rotateCharacter.setDisable(false);  //Enable rotate function
-            changeGender.setDisable(false);
+            rotateCharacterButton.setDisable(false);  //Enable rotate function
+            changeGenderButton.setDisable(false);
             bodyColourPicker.setDisable(false);
             hairColourPicker.setDisable(false);
             setBorder(bottomRightBorder);
@@ -141,8 +141,8 @@ public class TestController {
     public String selectImage() {   //Method to get absolute path of desired image selected by the user
 
         FileChooser chooser = new FileChooser();
-        URL url = getClass().getResource("/images/characters");
-        String toTrim = url.toString();
+        URL imageUrl = getClass().getResource("/images/characters");
+        String toTrim = imageUrl.toString();
         String imagePath = toTrim.substring(6);
         chooser.setInitialDirectory(new File(imagePath));
 
@@ -184,23 +184,23 @@ public class TestController {
     @FXML
     public void changeSkinColour() {
         Image image = currentlySelected.getImage();
-        int h = (int)image.getHeight();
-        int w = (int)image.getWidth();
+        int imageHeight = (int)image.getHeight();
+        int imageWidth = (int)image.getWidth();
         boolean changed = false;
 
-        WritableImage wImage = new WritableImage(w, h);
+        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
         Color colour;
 
-        for(int x=0;x<w;x++){
-            for(int y=0;y<h;y++){
-                colour = PR.getColor(x, y);
+        for(int i = 0; i < imageWidth; i++){
+            for(int j = 0; j < imageHeight; j++){
+                colour = PR.getColor(i, j);
                 if(colour.equals(mainComic.getSelected().getSkinColour())){
                     colour = getChosenBodyColour();
                     changed = true;
                 }
-                PW.setColor(x, y, colour);
+                PW.setColor(i, j, colour);
             }
         }
         if(changed)
@@ -220,26 +220,26 @@ public class TestController {
     @FXML
     public void changeHairColour() {
         Image image = currentlySelected.getImage();
-        int h = (int)image.getHeight();
-        int w = (int)image.getWidth();
+        int imageHeight = (int)image.getHeight();
+        int imageWidth = (int)image.getWidth();
         boolean changed = false;
 
-        WritableImage wImage = new WritableImage(w, h);
+        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
         Color colour;
-        Color maleColour = new Color(0, 0, 0, 0);
+        Color maleHairColour = new Color(0, 0, 0, 0);
 
         if(mainComic.getSelected().getGender().equals("male"))
         {
-            for(int x=0;x<w;x++){
-                for(int y=0;y<h;y++){
-                    colour = PR.getColor(x, y);
+            for(int i = 0; i < imageWidth; i++){
+                for(int j = 0; j < imageHeight; j++){
+                    colour = PR.getColor(i, j);
                     if(compareColours(colour, mainComic.getSelected().getMaleHairColour())){
                         colour = getChosenHairColour();
                         changed = true;
                     }
-                    PW.setColor(x, y, colour);
+                    PW.setColor(i, j, colour);
                 }
             }
             if(changed)
@@ -251,24 +251,24 @@ public class TestController {
 
         if(mainComic.getSelected().getGender().equals("female"))
         {
-            for(int x=0;x<w;x++){
-                for(int y=0;y<h;y++){
-                    colour = PR.getColor(x, y);
+            for(int i = 0; i < imageWidth; i++){
+                for(int j = 0; j < imageHeight; j++){
+                    colour = PR.getColor(i, j);
                     if(compareColours(colour, mainComic.getSelected().getFemaleHairColour())){
                         colour = getChosenHairColour();
                     }
 
-                    else if(compareColours(colour, mainComic.getSelected().getMaleHairColour()))
+                    else if(colour.toString().equals(mainComic.getSelected().getMaleHairColour().toString()))
                     {
                         colour = changeTone(getChosenHairColour());
-                        maleColour=colour;
+                        maleHairColour = colour;
                     }
 
-                    PW.setColor(x, y, colour);
+                    PW.setColor(i, j, colour);
                 }
             }
             mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
-            mainComic.getSelected().setMaleHairColour(maleColour);
+            mainComic.getSelected().setMaleHairColour(maleHairColour);
 
         }
         mainComic.getSelected().setImage(wImage);
@@ -302,7 +302,7 @@ public class TestController {
                     color = changeTone(mainComic.getSelected().getSkinColour());
                     mainComic.getSelected().setLipColour(color);
                 }
-                else if(compareColours(color, character.getFemaleHairColour())){
+                else if(color.toString().equals(character.getFemaleHairColour().toString())){
                     color = Color.web("fffffe");
                 }
                 else if(color.equals(Color.web("ecb4b5"))){
