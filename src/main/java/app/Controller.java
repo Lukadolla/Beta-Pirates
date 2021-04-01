@@ -60,14 +60,14 @@ public class Controller {
     private Region bottomRightBorder;
 
     @FXML
-    private AnchorPane toResize;
+    private AnchorPane charactersAnchorPane;
 
     @FXML
-    private GridPane heightReference;
+    private GridPane buttonsGridPane;
 
     @FXML
     private void resize(){
-        toResize.setPrefHeight(heightReference.getHeight() * 4);
+        charactersAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
     }
 
     @FXML
