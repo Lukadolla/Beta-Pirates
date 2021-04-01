@@ -258,7 +258,7 @@ public class TestController {
                         colour = getChosenHairColour();
                     }
 
-                    else if(colour.toString().equals(mainComic.getSelected().getMaleHairColour().toString()))
+                    else if(compareColours(colour, mainComic.getSelected().getMaleHairColour()))
                     {
                         colour = changeTone(getChosenHairColour());
                         maleHairColour = colour;
@@ -302,7 +302,7 @@ public class TestController {
                     color = changeTone(mainComic.getSelected().getSkinColour());
                     mainComic.getSelected().setLipColour(color);
                 }
-                else if(color.toString().equals(character.getFemaleHairColour().toString())){
+                else if(compareColours(color, character.getFemaleHairColour())){
                     color = Color.web("fffffe");
                 }
                 else if(color.equals(Color.web("ecb4b5"))){
