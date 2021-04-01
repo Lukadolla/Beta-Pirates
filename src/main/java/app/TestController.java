@@ -25,9 +25,11 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.scene.layout.Region;
 
+import static jdk.nashorn.internal.objects.NativeMath.round;
 
 
 public class TestController {
@@ -233,7 +235,7 @@ public class TestController {
             for(int x=0;x<w;x++){
                 for(int y=0;y<h;y++){
                     colour = PR.getColor(x, y);
-                    if(colour.toString().equals(mainComic.getSelected().getMaleHairColour().toString())){
+                    if(compareColours(colour, mainComic.getSelected().getMaleHairColour())){
                         colour = getChosenHairColour();
                         changed = true;
                     }
@@ -252,11 +254,11 @@ public class TestController {
             for(int x=0;x<w;x++){
                 for(int y=0;y<h;y++){
                     colour = PR.getColor(x, y);
-                    if(colour.toString().equals(mainComic.getSelected().getFemaleHairColour().toString())){
+                    if(compareColours(colour, mainComic.getSelected().getFemaleHairColour())){
                         colour = getChosenHairColour();
                     }
 
-                    else if(colour.toString().equals(mainComic.getSelected().getMaleHairColour().toString()))
+                    else if(compareColours(colour, mainComic.getSelected().getMaleHairColour()))
                     {
                         colour = changeTone(getChosenHairColour());
                         maleColour=colour;
@@ -300,7 +302,7 @@ public class TestController {
                     color = changeTone(mainComic.getSelected().getSkinColour());
                     mainComic.getSelected().setLipColour(color);
                 }
-                else if(color.toString().equals(character.getFemaleHairColour().toString())){
+                else if(compareColours(color, character.getFemaleHairColour())){
                     color = Color.web("fffffe");
                 }
                 else if(color.equals(Color.web("ecb4b5"))){
@@ -380,5 +382,15 @@ public class TestController {
         }
 
         return new Color(colourList[0], colourList[1], colourList[2], colour.getOpacity());
+    }
+
+    private boolean compareColours(Color one, Color two){
+
+        if((Math.abs(one.getRed() - two.getRed()) < 0.01) && (Math.abs(one.getGreen() - two.getGreen()) < 0.01) && (Math.abs(one.getBlue() - two.getBlue()) < 0.01)){
+            if(one.getOpacity() == two.getOpacity()){
+                return true;
+            }
+        }
+        return false;
     }
 }
