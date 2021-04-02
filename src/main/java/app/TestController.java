@@ -380,10 +380,7 @@ public class TestController {
     private boolean isHair(Color colour){
         Character character = mainComic.getSelected();
         boolean isItHair = false;
-        if(compareColours(colour, character.getFemaleHairColour())){
-            isItHair = true;
-        }
-        else if(colour.getRed()>=0.85 && colour.getGreen()>=0.85 && colour.getBlue()<0.3){
+        if(colour.getRed()>=0.85 && colour.getGreen()>=0.85 && colour.getBlue()<0.3){
             isItHair = true;
         }
         else if(colour.getRed()>=0.95 && colour.getGreen()>=0.95 && colour.getBlue()<0.5){
@@ -392,6 +389,9 @@ public class TestController {
 
         if(compareColours(colour, character.getMaleHairColour()) || colour.equals(Color.web("fbff5e")) || colour.equals(Color.web("ffff66")) || colour.equals(Color.web("ffff4d"))){
             isItHair = false;
+        }
+        if(compareColours(colour, character.getFemaleHairColour())){
+            isItHair = true;
         }
         return isItHair;
     }
