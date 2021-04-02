@@ -198,19 +198,25 @@ public class TestController {
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
         Color colour;
+        Color lipColour = new Color(0,0,0,0);
 
         for(int i = 0; i < imageWidth; i++){
             for(int j = 0; j < imageHeight; j++){
                 colour = PR.getColor(i, j);
-                if(colour.equals(mainComic.getSelected().getSkinColour())){
+                if(compareColours(colour, mainComic.getSelected().getSkinColour())){
                     colour = getChosenBodyColour();
                     changed = true;
+                }
+                else if(mainComic.getSelected().getGender().equals("male") && compareColours(colour, mainComic.getSelected().getLipColour())){
+                    colour = changeTone(getChosenBodyColour());
+                    lipColour = colour;
                 }
                 PW.setColor(i, j, colour);
             }
         }
         if(changed)
         {
+            mainComic.getSelected().setLipColour(lipColour);
             mainComic.getSelected().setSkinColour(getChosenBodyColour());
         }
         mainComic.getSelected().setImage(wImage);
