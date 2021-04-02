@@ -1,9 +1,10 @@
 package app;
 
+import java.net.MalformedURLException;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,32 +13,31 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.URL;
-import java.nio.file.Paths;
-import java.text.DecimalFormat;
-import java.util.ResourceBundle;
 import javafx.scene.layout.Region;
-
-import static jdk.nashorn.internal.objects.NativeMath.round;
-
+import static javafx.geometry.Pos.CENTER;
 
 public class TestController {
 
-    private Comic mainComic = new Comic();
+    private Comic comic = new Comic();
+    private CharacterList characterList = new CharacterList();
+    private int charactersMenuSelectionId;
+    private List<Image> characterImages;
+    // Track character selection independent of comic selection:
+    private ImageView comicCharacterSelection;
 
     @FXML
-    ImageView currentlySelected; //Global variable to track which section of the panel is currently selected
+    private Region characterMenuBorder;
+
+    @FXML
+    ImageView comicSelection; //Global variable to track which section of the panel is currently selected
 
     @FXML
     Region selectedBorder = null; //Global variable to track which border is currently selected
@@ -64,10 +64,13 @@ public class TestController {
     private Region bottomRightBorder;
 
     @FXML
-    private AnchorPane scrollAnchorPane;
+    private AnchorPane characterMenuAnchorPane;
 
     @FXML
     private GridPane buttonsGridPane;
+
+    @FXML
+    private GridPane charactersGridPane;
 
     @FXML
     private ColorPicker bodyColourPicker;
@@ -75,92 +78,119 @@ public class TestController {
     @FXML
     private ColorPicker hairColourPicker;
 
+    public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
+        this.charactersMenuSelectionId = charactersMenuSelectionId;
+    }
+
     @FXML
     private void resize(){
-        scrollAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
+        characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
     }
 
     @FXML
-    private void insertCharacterLeft(ActionEvent event) {
-        event.consume();
-        loadImageLeft();
-        clickLeft();
-        if(bottomLeftBorder.isVisible()){
-            bottomLeftBorder.setVisible(false);
+    private void loadCharacterImages() throws MalformedURLException {
+
+        characterList.loadImages(new File("src/main/resources/images/characters"));
+
+        this.characterImages = characterList.getImages();
+
+        int columnIndex = 0;
+
+        for (int selectedImage = 0; selectedImage < characterImages.size(); selectedImage++) {
+            int rowIndex = (selectedImage/2);
+            ImageView imageview = new ImageView(characterImages.get(selectedImage));
+            int finalSelectedImage = selectedImage;
+            imageview.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                setCharactersMenuSelectionId(finalSelectedImage);
+                insertCharacter(finalSelectedImage);
+                event.consume();
+            });
+
+            HBox characterHbox = new HBox(imageview);
+            characterHbox.setId("characterHbox"+selectedImage);
+            characterHbox.setAlignment(CENTER);
+            AnchorPane characterAnchorPane = new AnchorPane(characterHbox);
+            imageview.fitWidthProperty().bind(characterAnchorPane.widthProperty());
+            imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
+            imageview.setManaged(false);
+            imageview.setPickOnBounds(true);
+
+            charactersGridPane.add(characterAnchorPane,columnIndex,rowIndex);
+
+            columnIndex = (columnIndex == 0) ? 1 : 0;
         }
     }
 
     @FXML
-    private void insertCharacterRight(ActionEvent event) {
-        event.consume();
-        loadImageRight();
-        clickRight();
-        if(bottomRightBorder.isVisible()){
-            bottomRightBorder.setVisible(false);
+    private void addCharacterRight(ActionEvent event) throws MalformedURLException {
+        if (characterImages == null) {
+            loadCharacterImages();
         }
+        setBorder(bottomRightBorder);
+        comicSelection = bottomRightIV;
+        comicCharacterSelection = bottomRightIV;
+//        setBorder(characterMenuBorder);
+        event.consume();
+    }
+
+    public void insertCharacter(int selectedImage) {
+        if (comicCharacterSelection == bottomLeftIV) {
+            insertLeftCharacter(selectedImage);
+        } else insertRightCharacter(selectedImage);
     }
 
     @FXML
-    public void loadImageLeft() {
-        Image characterImage = new Image(selectImage());
-        mainComic.setLeftCharacter(new Character(characterImage, 0));
-        bottomLeftIV.setImage(mainComic.getLeftCharacter().getImage());
-    }
-
-    @FXML
-    public void clickLeft(){
-        bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
-            currentlySelected = bottomLeftIV;
-            mainComic.setSelected(mainComic.getLeftCharacter());
-            rotateCharacterButton.setDisable(false);  //Enable rotate function
-            changeGenderButton.setDisable(false);
-            bodyColourPicker.setDisable(false);
-            hairColourPicker.setDisable(false);
-            setBorder(bottomLeftBorder);
-            event.consume();
-        });
-    }
-
-    @FXML
-    public void loadImageRight() {
-        Image characterImage = new Image(selectImage());
-        mainComic.setRightCharacter(new Character(characterImage, 1));
-        bottomRightIV.setImage(mainComic.getRightCharacter().getImage());
+    public void insertRightCharacter(int selectedImage){
+        comic.setRightCharacter(new Character(characterImages.get(selectedImage), 1));
+        comic.setSelected(comic.getRightCharacter());
+        bottomRightIV.setImage(comic.getRightCharacter().getImage());
         bottomRightIV.setScaleX(-1);
-    }
-
-    @FXML
-    public void clickRight(){
-        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> { //Event handler for bottom left image
-            currentlySelected = bottomRightIV;
-            mainComic.setSelected(mainComic.getRightCharacter());
-            rotateCharacterButton.setDisable(false);  //Enable rotate function
-            changeGenderButton.setDisable(false);
-            bodyColourPicker.setDisable(false);
-            hairColourPicker.setDisable(false);
+        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             setBorder(bottomRightBorder);
+            comicSelection = bottomRightIV;
+            comicCharacterSelection = bottomRightIV;
             event.consume();
         });
+        rotateCharacterButton.setDisable(false);
+        changeGenderButton.setDisable(false);
+        bodyColourPicker.setDisable(false);
+        hairColourPicker.setDisable(false);
     }
 
     @FXML
-    public String selectImage() {   //Method to get absolute path of desired image selected by the user
+    private void addCharacterLeft(ActionEvent event) throws MalformedURLException {
+        if (characterImages == null) {
+            loadCharacterImages();
+        }
+        setBorder(bottomLeftBorder);
+        comicSelection = bottomLeftIV;
+        comicCharacterSelection = bottomLeftIV;
+//        setBorder(characterMenuBorder);
+        event.consume();
+    }
 
-        FileChooser chooser = new FileChooser();
-        URL imageUrl = getClass().getResource("/images/characters");
-        String toTrim = imageUrl.toString();
-        String imagePath = toTrim.substring(6);
-        chooser.setInitialDirectory(new File(imagePath));
-
-        imagePath = chooser.showOpenDialog(new Stage()).toString();
-
-        return "file:" + imagePath;
+    @FXML
+    public void insertLeftCharacter(int selectedImage){
+        comic.setLeftCharacter(new Character(characterImages.get(selectedImage), 1));
+        comic.setSelected(comic.getLeftCharacter());
+        bottomLeftIV.setImage(comic.getLeftCharacter().getImage());
+        bottomLeftIV.setScaleX(-1);
+        bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            setBorder(bottomLeftBorder);
+            comicSelection = bottomLeftIV;
+            comicCharacterSelection = bottomLeftIV;
+            event.consume();
+        });
+        rotateCharacterButton.setDisable(false);
+        changeGenderButton.setDisable(false);
+        bodyColourPicker.setDisable(false);
+        hairColourPicker.setDisable(false);
     }
 
     @FXML
     public void rotate(){
-        mainComic.getSelected().changeFacing();
-        currentlySelected.setScaleX(currentlySelected.getScaleX() * -1);
+        comic.getSelected().changeFacing();
+        comicSelection.setScaleX(comicSelection.getScaleX() * -1);
     }
 
     @FXML
@@ -189,7 +219,7 @@ public class TestController {
 
     @FXML
     public void changeSkinColour() {
-        Image image = currentlySelected.getImage();
+        Image image = comicSelection.getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
         boolean changed = false;
@@ -203,11 +233,12 @@ public class TestController {
         for(int i = 0; i < imageWidth; i++){
             for(int j = 0; j < imageHeight; j++){
                 colour = PR.getColor(i, j);
-                if(compareColours(colour, mainComic.getSelected().getSkinColour())){
+                if(compareColours(colour, comic.getSelected().getSkinColour())){
                     colour = getChosenBodyColour();
                     changed = true;
                 }
-                else if(mainComic.getSelected().getGender().equals("male") && compareColours(colour, mainComic.getSelected().getLipColour())){
+                else if(comic.getSelected().getGender().equals("male") && compareColours(colour, comic
+                    .getSelected().getLipColour())){
                     colour = changeTone(getChosenBodyColour());
                     lipColour = colour;
                 }
@@ -216,13 +247,12 @@ public class TestController {
         }
         if(changed)
         {
-            mainComic.getSelected().setLipColour(lipColour);
-            mainComic.getSelected().setSkinColour(getChosenBodyColour());
+            comic.getSelected().setLipColour(lipColour);
+            comic.getSelected().setSkinColour(getChosenBodyColour());
         }
-        mainComic.getSelected().setImage(wImage);
-        currentlySelected.setImage(wImage);
+        comic.getSelected().setImage(wImage);
+        comicSelection.setImage(wImage);
     }
-
 
     @FXML
     public Color getChosenHairColour(){
@@ -231,7 +261,7 @@ public class TestController {
 
     @FXML
     public void changeHairColour() {
-        Image image = currentlySelected.getImage();
+        Image image = comicSelection.getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
         boolean changed = false;
@@ -242,12 +272,12 @@ public class TestController {
         Color colour;
         Color maleHairColour = new Color(0, 0, 0, 0);
 
-        if(mainComic.getSelected().getGender().equals("male"))
+        if(comic.getSelected().getGender().equals("male"))
         {
             for(int i = 0; i < imageWidth; i++){
                 for(int j = 0; j < imageHeight; j++){
                     colour = PR.getColor(i, j);
-                    if(compareColours(colour, mainComic.getSelected().getMaleHairColour())){
+                    if(compareColours(colour, comic.getSelected().getMaleHairColour())){
                         colour = getChosenHairColour();
                         changed = true;
                     }
@@ -256,21 +286,21 @@ public class TestController {
             }
             if(changed)
             {
-                mainComic.getSelected().setMaleHairColour(getChosenHairColour());
-                mainComic.getSelected().setFemaleHairColour(changeTone(getChosenHairColour()));
+                comic.getSelected().setMaleHairColour(getChosenHairColour());
+                comic.getSelected().setFemaleHairColour(changeTone(getChosenHairColour()));
             }
         }
 
-        if(mainComic.getSelected().getGender().equals("female"))
+        if(comic.getSelected().getGender().equals("female"))
         {
             for(int i = 0; i < imageWidth; i++){
                 for(int j = 0; j < imageHeight; j++){
                     colour = PR.getColor(i, j);
-                    if(compareColours(colour, mainComic.getSelected().getFemaleHairColour())){
+                    if(compareColours(colour, comic.getSelected().getFemaleHairColour())){
                         colour = getChosenHairColour();
                     }
 
-                    else if(compareColours(colour, mainComic.getSelected().getMaleHairColour()))
+                    else if(compareColours(colour, comic.getSelected().getMaleHairColour()))
                     {
                         colour = changeTone(getChosenHairColour());
                         maleHairColour = colour;
@@ -279,17 +309,17 @@ public class TestController {
                     PW.setColor(i, j, colour);
                 }
             }
-            mainComic.getSelected().setFemaleHairColour(getChosenHairColour());
-            mainComic.getSelected().setMaleHairColour(maleHairColour);
+            comic.getSelected().setFemaleHairColour(getChosenHairColour());
+            comic.getSelected().setMaleHairColour(maleHairColour);
 
         }
-        mainComic.getSelected().setImage(wImage);
-        currentlySelected.setImage(wImage);
+        comic.getSelected().setImage(wImage);
+        comicSelection.setImage(wImage);
     }
 
     @FXML
     public void changeGender() {
-        Character character = mainComic.getSelected();
+        Character character = comic.getSelected();
 
         if(character.getGender().equals("female")){
             setMale(character);
@@ -311,8 +341,8 @@ public class TestController {
             for(int j = 0; j < imageHeight; j++){
                 Color colour = PR.getColor(i, j);
                 if(isLips(colour)){
-                    colour = changeTone(mainComic.getSelected().getSkinColour());
-                    mainComic.getSelected().setLipColour(colour);
+                    colour = changeTone(comic.getSelected().getSkinColour());
+                    comic.getSelected().setLipColour(colour);
                 }
                 else if(isHair(colour)){
                     colour = Color.web("fffffe");
@@ -325,7 +355,7 @@ public class TestController {
         }
 
         character.setGender("male");
-        currentlySelected.setImage(wImage);
+        comicSelection.setImage(wImage);
         character.setImage(wImage);
     }
 
@@ -354,7 +384,7 @@ public class TestController {
         }
 
         character.setGender("female");
-        currentlySelected.setImage(wImage);
+        comicSelection.setImage(wImage);
         character.setImage(wImage);
     }
 
@@ -378,7 +408,7 @@ public class TestController {
     }
 
     private boolean isHair(Color colour){
-        Character character = mainComic.getSelected();
+        Character character = comic.getSelected();
         boolean isItHair = false;
         if(colour.getRed()>=0.85 && colour.getGreen()>=0.85 && colour.getBlue()<0.3){
             isItHair = true;
@@ -397,7 +427,7 @@ public class TestController {
     }
 
     private boolean isBows(Color colour){
-        Character character = mainComic.getSelected();
+        Character character = comic.getSelected();
         boolean isItBows = false;
         if(colour.equals(Color.web("ecb4b5"))){
             isItBows = true;

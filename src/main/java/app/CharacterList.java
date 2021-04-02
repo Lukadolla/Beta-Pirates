@@ -19,18 +19,18 @@ public class CharacterList {
   // investigate replacing directory parameter with something like:
   // URL imageUrl = getClass().getResource("/images/characters");
 
-  public void loadCharacterImages(File directory) throws MalformedURLException {
+  public void loadImages(File directory) throws MalformedURLException {
     File[] images = directory.listFiles();
 
-    if (characterImages != null){
-      for (File image : images ) {
+    if (characterImages != null)
+      for (File image : images) {
         try {
-          this.addImage(new Image(image.toURI().toURL().toExternalForm(), 100, 100, true, true) );
+          this.addImage(new Image(image.toURI().toURL().toExternalForm(), 100, 100, true, true));
         } catch (MalformedURLException e) {
           e.printStackTrace();
         }
       }
-    } else System.out.println("Directory error");
+    else System.out.println("Directory error");
 
   }
 
@@ -38,7 +38,7 @@ public class CharacterList {
     characterImages.add(image);
   }
 
-  public List<Image> getCharacterImages() {
+  public List<Image> getImages() {
     return characterImages;
   }
 
