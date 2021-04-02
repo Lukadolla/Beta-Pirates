@@ -314,10 +314,10 @@ public class TestController {
                     colour = changeTone(mainComic.getSelected().getSkinColour());
                     mainComic.getSelected().setLipColour(colour);
                 }
-                else if(compareColours(colour, character.getFemaleHairColour())){
+                else if(isHair(colour)){
                     colour = Color.web("fffffe");
                 }
-                else if(colour.equals(Color.web("ecb4b5"))){
+                else if(isBows(colour)){
                     colour = Color.web("feffff");
                 }
                 PW.setColor(i, j, colour);
@@ -340,7 +340,7 @@ public class TestController {
         for(int i = 0; i < imageWidth; i++){
             for(int j = 0; j < imageHeight; j++){
                 Color colour = PR.getColor(i, j);
-                if(compareColours(colour, mainComic.getSelected().getLipColour())){
+                if(compareColours(colour, character.getLipColour())){
                     colour = Color.web("ff0000");
                 }
                 else if(colour.equals(Color.web("fffffe"))){
@@ -372,20 +372,54 @@ public class TestController {
         return isItLips;
     }
 
+    private boolean isHair(Color colour){
+        Character character = mainComic.getSelected();
+        boolean isItHair = false;
+        if(compareColours(colour, character.getFemaleHairColour())){
+            isItHair = true;
+        }
+        else if(colour.getRed()>=0.85 && colour.getGreen()>=0.85 && colour.getBlue()<0.3){
+            isItHair = true;
+        }
+        else if(colour.getRed()>=0.95 && colour.getGreen()>=0.95 && colour.getBlue()<0.5){
+            isItHair = true;
+        }
+
+        if(compareColours(colour, character.getMaleHairColour()) || colour.equals(Color.web("fbff5e"))){
+            isItHair = false;
+        }
+        return isItHair;
+    }
+
+    private boolean isBows(Color colour){
+        Character character = mainComic.getSelected();
+        boolean isItBows = false;
+        if(colour.equals(Color.web("ecb4b5"))){
+            isItBows = true;
+        }
+        else if(colour.getRed()>=0.9 && colour.getRed()<1 && colour.getGreen()-colour.getBlue()<0.02 && colour.getBlue()-colour.getGreen()<0.02 && colour.getGreen()<colour.getRed()){
+            isItBows = true;
+        }
+        else if(colour.getRed()>=0.9 && colour.getRed()<1 && colour.getGreen()>=0.75 && colour.getGreen()<=0.85 && colour.getBlue()<=0.5 && colour.getBlue()>0.35){
+            isItBows = true;
+        }
+        return isItBows;
+    }
+
     private Color changeTone(Color colour){
         Double[] colourList = new Double[3];
         colourList[0] = colour.getRed();
         colourList[1] = colour.getGreen();
         colourList[2] = colour.getBlue();
 
-        if(colourList[0] < 0.980 && colourList[0] != 0){
+        if(colourList[0] <= 0.98 && colourList[0] != 0){
             colourList[0] += 0.02;
         }
-        else if(colourList[1] < 0.980 && colourList[1] != 0){
+        else if(colourList[1] <= 0.98 && colourList[1] != 0){
             colourList[1] += 0.02;
         }
         else{
-            if(colourList[2] < 0.980){
+            if(colourList[2] <= 0.98){
                 colourList[2] += 0.02;
             }
             else{
@@ -398,9 +432,6 @@ public class TestController {
 
     private boolean compareColours(Color colour_1, Color colour_2){
 
-        if((Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01) && (colour_1.getOpacity() == colour_2.getOpacity())){
-                return true;
-        }
-        return false;
+        return (Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01) && (colour_1.getOpacity() == colour_2.getOpacity());
     }
 }
