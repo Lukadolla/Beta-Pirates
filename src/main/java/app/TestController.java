@@ -369,7 +369,12 @@ public class TestController {
             isItLips = true;
         }
 
+        if(color.equals(Color.web("ff6666")) || color.equals(Color.web("ff8080")) || color.equals(Color.web("ff9999")) || color.equals(Color.web("ffb3b3")) || color.equals(Color.web("ffcccc"))) {
+            isItLips = false;
+        }
+
         return isItLips;
+
     }
 
     private boolean isHair(Color colour){
@@ -385,7 +390,7 @@ public class TestController {
             isItHair = true;
         }
 
-        if(compareColours(colour, character.getMaleHairColour()) || colour.equals(Color.web("fbff5e"))){
+        if(compareColours(colour, character.getMaleHairColour()) || colour.equals(Color.web("fbff5e")) || colour.equals(Color.web("ffff66")) || colour.equals(Color.web("ffff4d"))){
             isItHair = false;
         }
         return isItHair;
@@ -402,6 +407,10 @@ public class TestController {
         }
         else if(colour.getRed()>=0.9 && colour.getRed()<1 && colour.getGreen()>=0.75 && colour.getGreen()<=0.85 && colour.getBlue()<=0.5 && colour.getBlue()>0.35){
             isItBows = true;
+        }
+
+        if(colour.equals(Color.web("e64d4d"))){
+            isItBows=false;
         }
         return isItBows;
     }
