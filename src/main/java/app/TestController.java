@@ -334,7 +334,7 @@ public class TestController {
         for(int i = 0; i < imageWidth; i++){
             for(int j = 0; j < imageHeight; j++){
                 Color colour = PR.getColor(i, j);
-                if(colour.toString().equals(mainComic.getSelected().getLipColour().toString())){
+                if(compareColours(colour, mainComic.getSelected().getLipColour())){
                     colour = Color.web("ff0000");
                 }
                 else if(colour.equals(Color.web("fffffe"))){
@@ -372,18 +372,18 @@ public class TestController {
         colourList[1] = colour.getGreen();
         colourList[2] = colour.getBlue();
 
-        if(colourList[0] < 0.990 && colourList[0] != 0){
-            colourList[0] += 0.01;
+        if(colourList[0] < 0.980 && colourList[0] != 0){
+            colourList[0] += 0.02;
         }
-        else if(colourList[1] < 0.990 && colourList[1] != 0){
-            colourList[1] += 0.01;
+        else if(colourList[1] < 0.980 && colourList[1] != 0){
+            colourList[1] += 0.02;
         }
         else{
-            if(colourList[2] < 0.990){
-                colourList[2] += 0.01;
+            if(colourList[2] < 0.980){
+                colourList[2] += 0.02;
             }
             else{
-                colourList[2] -= 0.01;
+                colourList[2] -= 0.02;
             }
         }
 
@@ -392,10 +392,8 @@ public class TestController {
 
     private boolean compareColours(Color colour_1, Color colour_2){
 
-        if((Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01)){
-            if(colour_1.getOpacity() == colour_2.getOpacity()){
+        if((Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01) && (colour_1.getOpacity() == colour_2.getOpacity())){
                 return true;
-            }
         }
         return false;
     }
