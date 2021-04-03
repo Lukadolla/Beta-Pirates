@@ -102,7 +102,11 @@ public class TestController {
             int rowIndex = (selectedImage/2);
             ImageView imageview = new ImageView(characterImages.get(selectedImage));
             int finalSelectedImage = selectedImage;
-            imageview.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+
+            Region region = new Region();
+            region.setVisible(true);
+            region.setStyle("-fx-border-color: #bbc4c4");
+            region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 setCharactersMenuSelectionId(finalSelectedImage);
                 insertCharacter(finalSelectedImage);
                 event.consume();
@@ -111,7 +115,11 @@ public class TestController {
             HBox characterHbox = new HBox(imageview);
             characterHbox.setId("characterHbox"+selectedImage);
             characterHbox.setAlignment(CENTER);
-            AnchorPane characterAnchorPane = new AnchorPane(characterHbox);
+            AnchorPane characterAnchorPane = new AnchorPane(characterHbox, region);
+            AnchorPane.setLeftAnchor(region, 0.0);
+            AnchorPane.setRightAnchor(region, 0.0);
+            AnchorPane.setTopAnchor(region, 0.0);
+            AnchorPane.setBottomAnchor(region, 0.0);
             imageview.fitWidthProperty().bind(characterAnchorPane.widthProperty());
             imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
             imageview.setManaged(false);
