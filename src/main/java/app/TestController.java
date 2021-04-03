@@ -10,18 +10,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import javafx.scene.layout.Region;
+
 import static javafx.geometry.Pos.CENTER;
 
 public class TestController {
@@ -78,6 +77,9 @@ public class TestController {
     @FXML
     private ColorPicker hairColourPicker;
 
+    @FXML
+    private ScrollPane midScrollPane;
+
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
         this.charactersMenuSelectionId = charactersMenuSelectionId;
     }
@@ -114,6 +116,7 @@ public class TestController {
             imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
             imageview.setManaged(false);
             imageview.setPickOnBounds(true);
+            imageview.setVisible(true);
 
             charactersGridPane.add(characterAnchorPane,columnIndex,rowIndex);
 
@@ -124,6 +127,7 @@ public class TestController {
     @FXML
     private void addCharacterRight(ActionEvent event) throws MalformedURLException {
         if (characterImages == null) {
+            midScrollPane.setVisible(true);
             loadCharacterImages();
         }
         setBorder(bottomRightBorder);
@@ -155,11 +159,13 @@ public class TestController {
         changeGenderButton.setDisable(false);
         bodyColourPicker.setDisable(false);
         hairColourPicker.setDisable(false);
+        removeHairAA(comic.getRightCharacter());
     }
 
     @FXML
     private void addCharacterLeft(ActionEvent event) throws MalformedURLException {
         if (characterImages == null) {
+            midScrollPane.setVisible(true);
             loadCharacterImages();
         }
         setBorder(bottomLeftBorder);
@@ -184,6 +190,7 @@ public class TestController {
         changeGenderButton.setDisable(false);
         bodyColourPicker.setDisable(false);
         hairColourPicker.setDisable(false);
+        removeHairAA(comic.getLeftCharacter());
     }
 
     @FXML
@@ -471,5 +478,10 @@ public class TestController {
     private boolean compareColours(Color colour_1, Color colour_2){
 
         return (Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01) && (colour_1.getOpacity() == colour_2.getOpacity());
+    }
+
+    private void removeHairAA(Character character){
+        setMale(character);
+        setFemale(character);
     }
 }
