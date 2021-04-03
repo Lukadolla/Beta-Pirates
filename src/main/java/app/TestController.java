@@ -174,7 +174,6 @@ public class TestController {
         comic.setLeftCharacter(new Character(characterImages.get(selectedImage), 1));
         comic.setSelected(comic.getLeftCharacter());
         bottomLeftIV.setImage(comic.getLeftCharacter().getImage());
-        bottomLeftIV.setScaleX(-1);
         bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             setBorder(bottomLeftBorder);
             comicSelection = bottomLeftIV;
