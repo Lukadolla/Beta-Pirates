@@ -25,7 +25,7 @@ public class CharacterList {
     if (characterImages != null)
       for (File image : images) {
         try {
-          this.addImage(new Image(image.toURI().toURL().toExternalForm(), 100, 100, true, true));
+          this.addImage(new Image(image.toURI().toURL().toExternalForm(), 1920, 1080, true, true));
         } catch (MalformedURLException e) {
           e.printStackTrace();
         }
