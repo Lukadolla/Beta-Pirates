@@ -327,6 +327,8 @@ public class TestController {
         character.setGender("male");
         currentlySelected.setImage(wImage);
         character.setImage(wImage);
+
+        removeFemaleAA(character);
     }
 
     private void setFemale(Character character) {
@@ -403,4 +405,34 @@ public class TestController {
         }
         return false;
     }
+
+    private void removeFemaleAA(Character character){
+        Image image = character.getImage();
+        int imageHeight = (int)image.getHeight();
+        int imageWidth = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+        boolean firstBorder = false;
+        boolean secondBorder = false;
+
+        for(int i = 0; i < imageWidth; i++){
+            for(int j = 0; j < imageHeight; j++){
+                Color colour = PR.getColor(i, j);
+                if(!(colour.equals(Color.web("fffffe"))) && !(colour.equals(Color.web("ffffff"))) && i > 20 && j > 20 && i < imageHeight-20 && j < imageHeight-20){
+                    if(PR.getColor(i-1, j).equals(Color.web("ffffff")) || PR.getColor(i, j-1).equals(Color.web("ffffff"))){
+                        if(PR.getColor(i+1, j).equals(Color.web("fffffe")) || PR.getColor(i, j+1).equals(Color.web("fffffe"))){
+                            colour = Color.web("ffffff");
+                        }
+                    }
+                }
+                PW.setColor(i, j, colour);
+            }
+        }
+
+        currentlySelected.setImage(wImage);
+        character.setImage(wImage);
+    }
+
+
 }
