@@ -161,13 +161,14 @@ public class TestController {
             setBorder(bottomRightBorder);
             comicSelection = bottomRightIV;
             comicCharacterSelection = bottomRightIV;
+            comic.setSelected(comic.getRightCharacter());
             event.consume();
         });
         rotateCharacterButton.setDisable(false);
         changeGenderButton.setDisable(false);
         bodyColourPicker.setDisable(false);
         hairColourPicker.setDisable(false);
-        removeHairAA(comic.getRightCharacter());
+        removeHairAA();
     }
 
     @FXML
@@ -192,13 +193,14 @@ public class TestController {
             setBorder(bottomLeftBorder);
             comicSelection = bottomLeftIV;
             comicCharacterSelection = bottomLeftIV;
+            comic.setSelected(comic.getLeftCharacter());
             event.consume();
         });
         rotateCharacterButton.setDisable(false);
         changeGenderButton.setDisable(false);
         bodyColourPicker.setDisable(false);
         hairColourPicker.setDisable(false);
-        removeHairAA(comic.getLeftCharacter());
+        removeHairAA();
     }
 
     @FXML
@@ -252,7 +254,7 @@ public class TestController {
                     changed = true;
                 }
                 else if(comic.getSelected().getGender().equals("male") && compareColours(colour, comic
-                    .getSelected().getLipColour())){
+                        .getSelected().getLipColour())){
                     colour = changeTone(getChosenBodyColour());
                     lipColour = colour;
                 }
@@ -333,18 +335,17 @@ public class TestController {
 
     @FXML
     public void changeGender() {
-        Character character = comic.getSelected();
 
-        if(character.getGender().equals("female")){
-            setMale(character);
+        if(comic.getSelected().getGender().equals("female")){
+            setMale();
         }
         else{
-            setFemale(character);
+            setFemale();
         }
     }
 
-    private void setMale(Character character) {
-        Image image = character.getImage();
+    private void setMale() {
+        Image image = comic.getSelected().getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
         WritableImage wImage = new WritableImage(imageWidth, imageHeight);
@@ -368,15 +369,13 @@ public class TestController {
             }
         }
 
-        character.setGender("male");
+        comic.getSelected().setGender("male");
         comicSelection.setImage(wImage);
-        character.setImage(wImage);
-
-        removeFemaleAA(character);
+        comic.getSelected().setImage(wImage);
     }
 
-    private void setFemale(Character character) {
-        Image image = character.getImage();
+    private void setFemale() {
+        Image image = comic.getSelected().getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
         WritableImage wImage = new WritableImage(imageWidth, imageHeight);
@@ -386,11 +385,11 @@ public class TestController {
         for(int i = 0; i < imageWidth; i++){
             for(int j = 0; j < imageHeight; j++){
                 Color colour = PR.getColor(i, j);
-                if(compareColours(colour, character.getLipColour())){
+                if(compareColours(colour, comic.getSelected().getLipColour())){
                     colour = Color.web("ff0000");
                 }
                 else if(colour.equals(Color.web("fffffe"))){
-                    colour = character.getFemaleHairColour();
+                    colour = comic.getSelected().getFemaleHairColour();
                 }
                 else if(colour.equals(Color.web("feffff"))){
                     colour = Color.web("ecb4b5");
@@ -399,9 +398,9 @@ public class TestController {
             }
         }
 
-        character.setGender("female");
+        comic.getSelected().setGender("female");
         comicSelection.setImage(wImage);
-        character.setImage(wImage);
+        comic.getSelected().setImage(wImage);
     }
 
     private boolean isLips(Color color){
@@ -490,38 +489,8 @@ public class TestController {
         return (Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01) && (colour_1.getOpacity() == colour_2.getOpacity());
     }
 
-    private void removeHairAA(Character character){
-        setMale(character);
-        setFemale(character);
+    private void removeHairAA(){
+        setMale();
+        setFemale();
     }
-
-    private void removeFemaleAA(Character character){
-        Image image = character.getImage();
-        int imageHeight = (int)image.getHeight();
-        int imageWidth = (int)image.getWidth();
-        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
-        PixelWriter PW = wImage.getPixelWriter();
-        PixelReader PR = image.getPixelReader();
-        boolean firstBorder = false;
-        boolean secondBorder = false;
-
-        for(int i = 0; i < imageWidth; i++){
-            for(int j = 0; j < imageHeight; j++){
-                Color colour = PR.getColor(i, j);
-                if(!(colour.equals(Color.web("fffffe"))) && !(colour.equals(Color.web("ffffff"))) && i > 20 && j > 20 && i < imageHeight-20 && j < imageHeight-20){
-                    if(PR.getColor(i-1, j).equals(Color.web("ffffff")) || PR.getColor(i, j-1).equals(Color.web("ffffff"))){
-                        if(PR.getColor(i+1, j).equals(Color.web("fffffe")) || PR.getColor(i, j+1).equals(Color.web("fffffe"))){
-                            colour = Color.web("ffffff");
-                        }
-                    }
-                }
-                PW.setColor(i, j, colour);
-            }
-        }
-
-        currentlySelected.setImage(wImage);
-        character.setImage(wImage);
-    }
-
-
 }
