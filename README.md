@@ -44,9 +44,7 @@ We have created a .jar file in the root directory of the project which runs when
 The character models can now be inserted without the use of a file explorer. Instead the middle panel will load all the character images once a character insertion button
 is pressed. The desired character can be clicked in the menu and will be loaded into the corresponding pannel. A blue border indicates that the character is selected. Note that 
 the buttons with functionality currently will remain greyed out until you select a character and insert them into the panel. Once selected, the character's gender can be changed 
-by pressing the M/F button. This might be a little slow initially. The character's hair and body colours cab be changed using the colour pickers below the buttons. You can pick 
-a pre-made colour or press the "Custom Color" link to create your own colour. The anti-aliasing removal gets rid of most anti-aliasing around the hair as well as the lips. 
+by pressing the M/F button. This might be a little slow initially. The character's hair and body colours can be changed using the colour pickers below the buttons. You can pick 
+a pre-made colour or press the "Custom Color" link to create your own colour. Changing colours can take a little more that half a second. The anti-aliasing removal gets rid of most anti-aliasing around the hair as well as the lips. 
 
 For more information on how the program works, go to the help menu. 
-link 
-
