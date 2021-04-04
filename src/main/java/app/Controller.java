@@ -50,9 +50,6 @@ public class Controller {
     private ImageView bottomRightIV;
 
     @FXML
-    private MenuItem helpMenu;
-
-    @FXML
     private Region bottomLeftBorder;
 
     @FXML
@@ -74,7 +71,7 @@ public class Controller {
     private ColorPicker hairColourPicker;
 
     @FXML
-    private ScrollPane midScrollPane;
+    private ScrollPane midScrollPane;  //Middle character selection scroll pane
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
         this.charactersMenuSelectionId = charactersMenuSelectionId;
@@ -86,7 +83,7 @@ public class Controller {
     }
 
     @FXML
-    private void loadCharacterImages() throws MalformedURLException {
+    private void loadCharacterImages() throws MalformedURLException {  //Method that loads the character images into the middle panel
 
         characterList.loadImages(new File("src/main/resources/images/characters"));
 
@@ -129,7 +126,7 @@ public class Controller {
     }
 
     @FXML
-    private void addCharacterRight(ActionEvent event) throws MalformedURLException {
+    private void addCharacterRight(ActionEvent event) throws MalformedURLException {  //Highlights the right panel and sets up character insertion
         if (characterImages == null) {
             midScrollPane.setVisible(true);
             loadCharacterImages();
@@ -137,18 +134,17 @@ public class Controller {
         setBorder(bottomRightBorder);
         comicSelection = bottomRightIV;
         comicCharacterSelection = bottomRightIV;
-//        setBorder(characterMenuBorder);
         event.consume();
     }
 
-    public void insertCharacter(int selectedImage) {
+    public void insertCharacter(int selectedImage) {    //Determines where to place character based on the currently selected panel
         if (comicCharacterSelection == bottomLeftIV) {
             insertLeftCharacter(selectedImage);
         } else insertRightCharacter(selectedImage);
     }
 
     @FXML
-    public void insertRightCharacter(int selectedImage){
+    public void insertRightCharacter(int selectedImage){   //Adds character into right panel and enables buttons
         comic.setRightCharacter(new Character(characterImages.get(selectedImage), 1));
         comic.setSelected(comic.getRightCharacter());
         bottomRightIV.setImage(comic.getRightCharacter().getImage());
@@ -159,15 +155,13 @@ public class Controller {
             comicCharacterSelection = bottomRightIV;
             event.consume();
         });
-        rotateCharacterButton.setDisable(false);
-        changeGenderButton.setDisable(false);
-        bodyColourPicker.setDisable(false);
-        hairColourPicker.setDisable(false);
+        enableButtons();
         removeHairAA(comic.getRightCharacter());
     }
 
+
     @FXML
-    private void addCharacterLeft(ActionEvent event) throws MalformedURLException {
+    private void addCharacterLeft(ActionEvent event) throws MalformedURLException { //Highlights the left panel and sets up character insertion
         if (characterImages == null) {
             midScrollPane.setVisible(true);
             loadCharacterImages();
@@ -175,12 +169,11 @@ public class Controller {
         setBorder(bottomLeftBorder);
         comicSelection = bottomLeftIV;
         comicCharacterSelection = bottomLeftIV;
-//        setBorder(characterMenuBorder);
         event.consume();
     }
 
     @FXML
-    public void insertLeftCharacter(int selectedImage){
+    public void insertLeftCharacter(int selectedImage){ //Adds character into left panel and enables buttons
         comic.setLeftCharacter(new Character(characterImages.get(selectedImage), 1));
         comic.setSelected(comic.getLeftCharacter());
         bottomLeftIV.setImage(comic.getLeftCharacter().getImage());
@@ -190,11 +183,15 @@ public class Controller {
             comicCharacterSelection = bottomLeftIV;
             event.consume();
         });
+        enableButtons();
+        removeHairAA(comic.getLeftCharacter());
+    }
+
+    private void enableButtons() {  //Enables buttons and colour changing functionality
         rotateCharacterButton.setDisable(false);
         changeGenderButton.setDisable(false);
         bodyColourPicker.setDisable(false);
         hairColourPicker.setDisable(false);
-        removeHairAA(comic.getLeftCharacter());
     }
 
     @FXML
@@ -204,7 +201,7 @@ public class Controller {
     }
 
     @FXML
-    private void setBorder(Region newBorder) {
+    private void setBorder(Region newBorder) {  //Adds highlight border to specified region
         if(selectedBorder != null){
             selectedBorder.setVisible(false);
         }
@@ -213,22 +210,24 @@ public class Controller {
     }
 
     @FXML
-    public void help() throws IOException{
+    public void help() throws IOException{  //Opens help window
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
         Stage helpStage = new Stage();
         Scene helpScene = new Scene(root);
         helpStage.setTitle("Help");
+        helpStage.setHeight(500.0);
+        helpStage.setWidth(800.0);
         helpStage.setScene(helpScene);
         helpStage.show();
     }
 
     @FXML
-    public Color getChosenBodyColour(){
+    public Color getChosenBodyColour(){  //Gets body colour from colour picker
         return bodyColourPicker.getValue();
     }
 
     @FXML
-    public void changeSkinColour() {
+    public void changeSkinColour() {  //Changes skin colour
         Image image = comicSelection.getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -265,12 +264,12 @@ public class Controller {
     }
 
     @FXML
-    public Color getChosenHairColour(){
+    public Color getChosenHairColour(){ //Gets hair colour from colour picker
         return hairColourPicker.getValue();
     }
 
     @FXML
-    public void changeHairColour() {
+    public void changeHairColour() {  //Changes hair colour
         Image image = comicSelection.getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -282,7 +281,7 @@ public class Controller {
         Color colour;
         Color maleHairColour = new Color(0, 0, 0, 0);
 
-        if(comic.getSelected().getGender().equals("male"))
+        if(comic.getSelected().getGender().equals("male")) //Case where character is male
         {
             for(int i = 0; i < imageWidth; i++){
                 for(int j = 0; j < imageHeight; j++){
@@ -301,7 +300,7 @@ public class Controller {
             }
         }
 
-        if(comic.getSelected().getGender().equals("female"))
+        if(comic.getSelected().getGender().equals("female")) //Case where character is female
         {
             for(int i = 0; i < imageWidth; i++){
                 for(int j = 0; j < imageHeight; j++){
@@ -328,7 +327,7 @@ public class Controller {
     }
 
     @FXML
-    public void changeGender() {
+    public void changeGender() {  //Method that changes gender when button is pressed
         Character character = comic.getSelected();
 
         if(character.getGender().equals("female")){
@@ -339,7 +338,7 @@ public class Controller {
         }
     }
 
-    private void setMale(Character character) {
+    private void setMale(Character character) {  //Method that is called when changing from female to male
         Image image = character.getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -369,7 +368,7 @@ public class Controller {
         character.setImage(wImage);
     }
 
-    private void setFemale(Character character) {
+    private void setFemale(Character character) {  //Method that is called when changing from male to female
         Image image = character.getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -398,7 +397,7 @@ public class Controller {
         character.setImage(wImage);
     }
 
-    private boolean isLips(Color color){
+    private boolean isLips(Color color){  //Method to check if the character currently has lips and tones close to the lip colour
 
         boolean isItLips = false;
 
@@ -417,7 +416,7 @@ public class Controller {
 
     }
 
-    private boolean isHair(Color colour){
+    private boolean isHair(Color colour){ //Method to check tones close to the current hair colour to remove anti-aliasing later
         Character character = comic.getSelected();
         boolean isItHair = false;
         if(colour.getRed()>=0.85 && colour.getGreen()>=0.85 && colour.getBlue()<0.3){
@@ -436,8 +435,7 @@ public class Controller {
         return isItHair;
     }
 
-    private boolean isBows(Color colour){
-        Character character = comic.getSelected();
+    private boolean isBows(Color colour){ //Method to check tones close to the bow colour to remove anti-aliasing later
         boolean isItBows = false;
         if(colour.equals(Color.web("ecb4b5"))){
             isItBows = true;
@@ -455,7 +453,7 @@ public class Controller {
         return isItBows;
     }
 
-    private Color changeTone(Color colour){
+    private Color changeTone(Color colour){ //Method that changes the tone of the inputted colour slightly to allow for removing/adding female hair
         Double[] colourList = new Double[3];
         colourList[0] = colour.getRed();
         colourList[1] = colour.getGreen();
@@ -479,12 +477,12 @@ public class Controller {
         return new Color(colourList[0], colourList[1], colourList[2], colour.getOpacity());
     }
 
-    private boolean compareColours(Color colour_1, Color colour_2){
+    private boolean compareColours(Color colour_1, Color colour_2){  //Method used to compare 2 inputted colours to see if they are close to being the same shade
 
         return (Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01) && (colour_1.getOpacity() == colour_2.getOpacity());
     }
 
-    private void removeHairAA(Character character){
+    private void removeHairAA(Character character){  //Removing anti-aliasing on current character
         setMale(character);
         setFemale(character);
     }

@@ -19,7 +19,7 @@ public class CharacterList {
   // investigate replacing directory parameter with something like:
   // URL imageUrl = getClass().getResource("/images/characters");
 
-  public void loadImages(File directory) throws MalformedURLException {
+  public void loadImages(File directory) throws MalformedURLException {  //Loads images currently in the image directory
     File[] images = directory.listFiles();
 
     if (characterImages != null)
