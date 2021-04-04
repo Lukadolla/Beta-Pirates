@@ -19,10 +19,13 @@ public class Main extends Application {
         Stage mainStage = new Stage();
         Stage helpStage = new Stage();
         mainStage.setMaximized(true);
-        mainPage(mainStage);
-        helpPage(helpStage);
+        helpStage.setHeight(500.0);
+        helpStage.setWidth(800.0);
         mainStage.setMinHeight(192.0);
         mainStage.setMinWidth(256.0);
+        mainPage(mainStage);
+        helpPage(helpStage);
+
     }
 
     public void mainPage(Stage mainStage) throws IOException{

@@ -5,7 +5,9 @@ Exelsior is a program for creating custom comic strips with just a few clicks.
 Instructions on use:
 - To insert a character into the left panel, press the button showing the character on the left.
 - To insert a character into the right panel, press the other button with the character on the right.
-- Characters can be chosen from a series of character poses by clicking on the desired pose and pressing open.
+- A menu with all available character poses will appear in the middle panel. Select the desired character to insert it into the comic.
 - You can change the direction the individual characters are facing by selecting the desired character and pressing the rotate button.
-- The rotate button is greyed out by default until a character is selected.
+- The buttons will be greyed out by default until a character is inserted into the comic and is selected.
 - Your selection will be indicated by a highlight around the clicked image.
+- You can change the character's gender by pressing the M/F button.
+- The hair and body colour can be changed by selecting a colour from the drop down colour palette.

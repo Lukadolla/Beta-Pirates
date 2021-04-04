@@ -29,11 +29,7 @@ public class Controller {
     private CharacterList characterList = new CharacterList();
     private int charactersMenuSelectionId;
     private List<Image> characterImages;
-    // Track character selection independent of comic selection:
-    private ImageView comicCharacterSelection;
-
-    @FXML
-    private Region characterMenuBorder;
+    private ImageView comicCharacterSelection; // Track character selection independent of comic selection:
 
     @FXML
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
