@@ -45,11 +45,11 @@
                                             <children>
 
                                                 <AnchorPane fx:id="centreLeftAnchor" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                       <AnchorPane layoutX="18.0" layoutY="10.0" prefHeight="52.0" prefWidth="74.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="10.0">
+                                       <AnchorPane fx:id="centreLeftAnchorScale" layoutX="26.0" layoutY="19.0" prefHeight="33.0" prefWidth="54.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="19.0">
                                           <children>
                                                           <HBox alignment="CENTER">
                                                               <children>
-                                                                  <ImageView fx:id="centreLeft" fitHeight="${centreLeftAnchor.height}" fitWidth="${centreLeftAnchor.width}" managed="false" pickOnBounds="true">
+                                                                  <ImageView fx:id="centreLeft" fitHeight="${centreLeftAnchorScale.height}" fitWidth="${centreLeftAnchorScale.width}" managed="false" pickOnBounds="true">
 
                                                             </ImageView>
                                                               </children>
@@ -59,11 +59,11 @@
                                                 </AnchorPane>
 
                                                 <AnchorPane fx:id="centreRightAnchor" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <AnchorPane layoutX="17.0" layoutY="10.0" prefHeight="52.0" prefWidth="74.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="10.0">
+                                       <AnchorPane fx:id="centreRightAnchorScale" layoutX="25.0" layoutY="19.0" prefHeight="33.0" prefWidth="54.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="19.0">
                                           <children>
                                                           <HBox alignment="CENTER">
                                                               <children>
-                                                                  <ImageView fx:id="centreRight" fitHeight="${centreRightAnchor.height}" fitWidth="${centreRightAnchor.width}" managed="false" pickOnBounds="true">
+                                                                  <ImageView fx:id="centreRight" fitHeight="${centreRightAnchorScale.height}" fitWidth="${centreRightAnchorScale.width}" managed="false" pickOnBounds="true">
 
                                                             </ImageView>
                                                               </children>
