@@ -90,6 +90,9 @@ public class TestController {
     @FXML
     private Button speechBubbleButton;
 
+    @FXML
+    private Button thoughtBubbleButton;
+
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
         this.charactersMenuSelectionId = charactersMenuSelectionId;
     }
@@ -527,5 +530,10 @@ public class TestController {
             comic.setCentreRight(imageView);
             centreRight.setImage(comic.getCentreRight().getImage());
         }
+    }
+
+    @FXML
+    private void addThoughtBubble(){
+
     }
 }
