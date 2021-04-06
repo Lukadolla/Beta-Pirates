@@ -243,6 +243,8 @@ public class TestController {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
         Stage helpStage = new Stage();
         Scene helpScene = new Scene(root);
+        helpStage.setHeight(500.0);
+        helpStage.setWidth(800.0);
         helpStage.setTitle("Help");
         helpStage.setScene(helpScene);
         helpStage.show();
