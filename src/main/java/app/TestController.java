@@ -217,6 +217,7 @@ public class TestController {
         bodyColourPicker.setDisable(false);
         hairColourPicker.setDisable(false);
         speechBubbleButton.setDisable(false);
+        thoughtBubbleButton.setDisable(false);
     }
 
     @FXML
@@ -523,7 +524,7 @@ public class TestController {
             comic.setCentreLeft(imageView);
             comic.getCentreLeft().setScaleX(-1);
             centreLeft.setImage(comic.getCentreLeft().getImage());
-            centreLeft.setScaleX(-1);
+            centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
         }
 
         else{
@@ -535,5 +536,22 @@ public class TestController {
     @FXML
     private void addThoughtBubble(){
 
+        URL url = getClass().getResource("/images/buttons/thought.png");
+        String currentPath = url.toString();
+
+        ImageView imageView = new ImageView(currentPath);
+
+        if(comic.getSelected().equals(comic.getLeftCharacter()))
+        {
+            comic.setCentreLeft(imageView);
+            comic.getCentreLeft().setScaleX(-1);
+            centreLeft.setImage(comic.getCentreLeft().getImage());
+            centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
+        }
+
+        else{
+            comic.setCentreRight(imageView);
+            centreRight.setImage(comic.getCentreRight().getImage());
+        }
     }
 }
