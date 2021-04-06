@@ -1,5 +1,8 @@
 package app;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class Comic {
 
   private Character leftCharacter;
@@ -9,6 +12,9 @@ public class Comic {
   private String bottomText;
   private String leftText;
   private String rightText;
+  private ImageView centreLeft;
+  private ImageView centreRight;
+
 
   // Add lines to bubbles
 
@@ -71,4 +77,19 @@ public class Comic {
     this.rightText = rightText;
   }
 
+  public void setCentreLeft(ImageView centreLeft) {
+    this.centreLeft = centreLeft;
+  }
+
+  public void setCentreRight(ImageView centreRight) {
+    this.centreRight = centreRight;
+  }
+
+  public ImageView getCentreLeft() {
+    return centreLeft;
+  }
+
+  public ImageView getCentreRight() {
+    return centreRight;
+  }
 }

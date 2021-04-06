@@ -1,6 +1,7 @@
 package app;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -79,6 +80,15 @@ public class TestController {
 
     @FXML
     private ScrollPane midScrollPane;
+
+    @FXML
+    private ImageView centreRight;
+
+    @FXML
+    private ImageView centreLeft;
+
+    @FXML
+    private Button speechBubbleButton;
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
         this.charactersMenuSelectionId = charactersMenuSelectionId;
@@ -164,10 +174,8 @@ public class TestController {
             comic.setSelected(comic.getRightCharacter());
             event.consume();
         });
-        rotateCharacterButton.setDisable(false);
-        changeGenderButton.setDisable(false);
-        bodyColourPicker.setDisable(false);
-        hairColourPicker.setDisable(false);
+
+        enableButtons();
         removeHairAA();
     }
 
@@ -196,11 +204,16 @@ public class TestController {
             comic.setSelected(comic.getLeftCharacter());
             event.consume();
         });
+        enableButtons();
+        removeHairAA();
+    }
+
+    private void enableButtons() {
         rotateCharacterButton.setDisable(false);
         changeGenderButton.setDisable(false);
         bodyColourPicker.setDisable(false);
         hairColourPicker.setDisable(false);
-        removeHairAA();
+        speechBubbleButton.setDisable(false);
     }
 
     @FXML
@@ -492,5 +505,27 @@ public class TestController {
     private void removeHairAA(){
         setMale();
         setFemale();
+    }
+
+    @FXML
+    private void addSpeechBubble(){
+
+        URL url = getClass().getResource("/images/buttons/speech.png");
+        String currentPath = url.toString();
+
+        ImageView imageView = new ImageView(currentPath);
+
+        if(comic.getSelected().equals(comic.getLeftCharacter()))
+        {
+            comic.setCentreLeft(imageView);
+            comic.getCentreLeft().setScaleX(-1);
+            centreLeft.setImage(comic.getCentreLeft().getImage());
+            centreLeft.setScaleX(-1);
+        }
+
+        else{
+            comic.setCentreRight(imageView);
+            centreRight.setImage(comic.getCentreRight().getImage());
+        }
     }
 }
