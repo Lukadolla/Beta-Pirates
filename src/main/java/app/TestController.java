@@ -91,10 +91,10 @@ public class TestController {
     private Button thoughtBubbleButton;
 
     @FXML
-    private TextArea leftTextField;
+    private TextField leftTextField;
 
     @FXML
-    private TextArea rightTextField;
+    private TextField rightTextField;
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
         this.charactersMenuSelectionId = charactersMenuSelectionId;
