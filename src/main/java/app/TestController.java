@@ -91,10 +91,10 @@ public class TestController {
     private Button thoughtBubbleButton;
 
     @FXML
-    private TextArea leftTextArea;
+    private TextArea leftTextField;
 
     @FXML
-    private TextArea rightTextArea;
+    private TextArea rightTextField;
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
         this.charactersMenuSelectionId = charactersMenuSelectionId;
@@ -543,12 +543,12 @@ public class TestController {
             comic.getCentreLeft().setScaleX(-1);
             centreLeft.setImage(comic.getCentreLeft().getImage());
             centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
-            leftTextArea.setDisable(false);
+            leftTextField.setDisable(false);
         }
         else{
             comic.setCentreRight(imageView);
             centreRight.setImage(comic.getCentreRight().getImage());
-            rightTextArea.setDisable(false);
+            rightTextField.setDisable(false);
         }
     }
 }
