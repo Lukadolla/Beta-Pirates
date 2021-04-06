@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -94,12 +95,12 @@
                                                 </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <TextField alignment="CENTER" prefHeight="41.6" prefWidth="148.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextField fx:id="leftTextField" disable="true" alignment="CENTER" prefHeight="41.6" prefWidth="148.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane GridPane.columnIndex="2">
                                        <children>
-                                          <TextField alignment="CENTER" prefHeight="41.6" prefWidth="148.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextField fx:id="rightTextField" disable="true" alignment="CENTER" prefHeight="41.6" prefWidth="148.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
 
@@ -168,7 +169,7 @@
                                                                 <Button fx:id="changeGenderButton" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changeGender" style="-fx-background-image: url('/images/buttons/gender.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                                 <Button fx:id="speechBubbleButton" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addSpeechBubble" style="-fx-background-image: url('/images/buttons/text-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="2" />
                                                                 <Button disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/add-text.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                                <Button fx:id="thoughtBubbleButton" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addThoughtBubble" style="-fx-background-image: url('/images/buttons/thought-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="3" />
+                                                                <Button onAction="#addThoughtBubble" fx:id="thoughtBubbleButton" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/thought-bubble.png'); -fx-background-size: 100% 100%;" GridPane.rowIndex="3" />
                                                                 <Button disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/landscape.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCharacterRight" style="-fx-background-image: url('/images/buttons/face-left.png'); -fx-background-size: 100% 100%;" GridPane.columnIndex="1" />
                                                                 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="4">

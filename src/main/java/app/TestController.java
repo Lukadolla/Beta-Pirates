@@ -8,10 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -92,6 +89,12 @@ public class TestController {
 
     @FXML
     private Button thoughtBubbleButton;
+
+    @FXML
+    private TextArea leftTextArea;
+
+    @FXML
+    private TextArea rightTextArea;
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
         this.charactersMenuSelectionId = charactersMenuSelectionId;
@@ -540,9 +543,12 @@ public class TestController {
             comic.getCentreLeft().setScaleX(-1);
             centreLeft.setImage(comic.getCentreLeft().getImage());
             centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
-        } else {
+            leftTextArea.setDisable(false);
+        }
+        else{
             comic.setCentreRight(imageView);
             centreRight.setImage(comic.getCentreRight().getImage());
+            rightTextArea.setDisable(false);
         }
     }
 }
