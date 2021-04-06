@@ -519,19 +519,9 @@ public class TestController {
 
         ImageView imageView = new ImageView(currentPath);
 
-        if(comic.getSelected().equals(comic.getLeftCharacter()))
-        {
-            comic.setCentreLeft(imageView);
-            comic.getCentreLeft().setScaleX(-1);
-            centreLeft.setImage(comic.getCentreLeft().getImage());
-            centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
-        }
-
-        else{
-            comic.setCentreRight(imageView);
-            centreRight.setImage(comic.getCentreRight().getImage());
-        }
+        insertBubble(imageView);
     }
+
 
     @FXML
     private void addThoughtBubble(){
@@ -541,15 +531,16 @@ public class TestController {
 
         ImageView imageView = new ImageView(currentPath);
 
-        if(comic.getSelected().equals(comic.getLeftCharacter()))
-        {
+        insertBubble(imageView);
+    }
+
+    private void insertBubble(ImageView imageView) {
+        if (comic.getSelected().equals(comic.getLeftCharacter())) {
             comic.setCentreLeft(imageView);
             comic.getCentreLeft().setScaleX(-1);
             centreLeft.setImage(comic.getCentreLeft().getImage());
             centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
-        }
-
-        else{
+        } else {
             comic.setCentreRight(imageView);
             centreRight.setImage(comic.getCentreRight().getImage());
         }
