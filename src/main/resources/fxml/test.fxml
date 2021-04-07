@@ -94,12 +94,18 @@
                                                 </AnchorPane>
                                     <AnchorPane prefHeight="34.0" prefWidth="110.0">
                                        <children>
-                                          <TextField fx:id="leftTextField" alignment="CENTER" disable="true" prefHeight="56.0" prefWidth="109.6" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextField fx:id="leftTextField" alignment="CENTER" disable="true" prefHeight="56.0" prefWidth="109.6" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <font>
+                                                <Font name="Rockwell" size="19.0"/>
+                                             </font></TextField>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane GridPane.columnIndex="2">
                                        <children>
-                                          <TextField fx:id="rightTextField" alignment="CENTER" disable="true" prefHeight="41.6" prefWidth="148.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextField fx:id="rightTextField" alignment="CENTER" disable="true" prefHeight="41.6" prefWidth="148.8" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                           <font>
+                                               <Font name="Rockwell" size="19.0"/>
+                                           </font></TextField>
                                        </children>
                                     </AnchorPane>
 

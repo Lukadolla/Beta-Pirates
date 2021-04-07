@@ -163,7 +163,6 @@ public class TestController {
         setBorder(bottomRightBorder);
         comicSelection = bottomRightIV;
         comicCharacterSelection = bottomRightIV;
-        comic.setSelected(comic.getRightCharacter());
 //        setBorder(characterMenuBorder);
         event.consume();
     }
@@ -205,7 +204,6 @@ public class TestController {
         setBorder(bottomLeftBorder);
         comicSelection = bottomLeftIV;
         comicCharacterSelection = bottomLeftIV;
-        comic.setSelected(comic.getLeftCharacter());
 //        setBorder(characterMenuBorder);
         event.consume();
     }
@@ -569,11 +567,13 @@ public class TestController {
             centreLeft.setImage(comic.getCentreLeft().getImage());
             centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
             leftTextField.setDisable(false);
+            leftTextField.setVisible(true);
         }
         else{
             comic.setCentreRight(imageView);
             centreRight.setImage(comic.getCentreRight().getImage());
             rightTextField.setDisable(false);
+            rightTextField.setVisible(true);
         }
     }
 
