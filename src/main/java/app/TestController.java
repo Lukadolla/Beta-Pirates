@@ -150,6 +150,9 @@ public class TestController {
 
     @FXML
     private void addCharacterRight(ActionEvent event) throws MalformedURLException {
+        if(bottomRightIV.getImage() == null){
+            disableButtons();
+        }
         if (characterImages == null) {
             midScrollPane.setVisible(true);
             loadCharacterImages();
@@ -187,6 +190,9 @@ public class TestController {
 
     @FXML
     private void addCharacterLeft(ActionEvent event) throws MalformedURLException {
+        if(bottomLeftIV.getImage() == null){
+            disableButtons();
+        }
         if (characterImages == null) {
             midScrollPane.setVisible(true);
             loadCharacterImages();
@@ -221,6 +227,15 @@ public class TestController {
         hairColourPicker.setDisable(false);
         speechBubbleButton.setDisable(false);
         thoughtBubbleButton.setDisable(false);
+    }
+
+    private void disableButtons() {
+        rotateCharacterButton.setDisable(true);
+        changeGenderButton.setDisable(true);
+        bodyColourPicker.setDisable(true);
+        hairColourPicker.setDisable(true);
+        speechBubbleButton.setDisable(true);
+        thoughtBubbleButton.setDisable(true);
     }
 
     @FXML
