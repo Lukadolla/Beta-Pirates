@@ -584,12 +584,14 @@ public class TestController {
             comic.setLeftCharacter(null);
             centreLeft.setImage(null);
             leftTextField.clear();
+            leftTextField.setVisible(false);
         }
         else{
             bottomRightIV.setImage(null);
             comic.setRightCharacter(null);
             centreRight.setImage(null);
             rightTextField.clear();
+            rightTextField.setVisible(false);
         }
         selectedBorder.setVisible(false);
         comic.setSelected(null);
