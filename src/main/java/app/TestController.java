@@ -563,11 +563,13 @@ public class TestController {
             centreLeft.setImage(comic.getCentreLeft().getImage());
             centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
             leftTextField.setDisable(false);
+            leftTextField.setVisible(true);
         }
         else{
             comic.setCentreRight(imageView);
             centreRight.setImage(comic.getCentreRight().getImage());
             rightTextField.setDisable(false);
+            rightTextField.setVisible(true);
         }
     }
 }
