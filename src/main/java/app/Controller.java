@@ -1,16 +1,14 @@
 package app;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -80,6 +78,24 @@ public class Controller {
     @FXML
     private ScrollPane midScrollPane;
 
+    @FXML
+    private ImageView centreRight;
+
+    @FXML
+    private ImageView centreLeft;
+
+    @FXML
+    private Button speechBubbleButton;
+
+    @FXML
+    private Button thoughtBubbleButton;
+
+    @FXML
+    private TextField leftTextField;
+
+    @FXML
+    private TextField rightTextField;
+
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
         this.charactersMenuSelectionId = charactersMenuSelectionId;
     }
@@ -134,6 +150,9 @@ public class Controller {
 
     @FXML
     private void addCharacterRight(ActionEvent event) throws MalformedURLException {
+        if(bottomRightIV.getImage() == null){
+            disableButtons();
+        }
         if (characterImages == null) {
             midScrollPane.setVisible(true);
             loadCharacterImages();
@@ -164,15 +183,16 @@ public class Controller {
             comic.setSelected(comic.getRightCharacter());
             event.consume();
         });
-        rotateCharacterButton.setDisable(false);
-        changeGenderButton.setDisable(false);
-        bodyColourPicker.setDisable(false);
-        hairColourPicker.setDisable(false);
+
+        enableButtons();
         removeHairAA();
     }
 
     @FXML
     private void addCharacterLeft(ActionEvent event) throws MalformedURLException {
+        if(bottomLeftIV.getImage() == null){
+            disableButtons();
+        }
         if (characterImages == null) {
             midScrollPane.setVisible(true);
             loadCharacterImages();
@@ -196,11 +216,26 @@ public class Controller {
             comic.setSelected(comic.getLeftCharacter());
             event.consume();
         });
+        enableButtons();
+        removeHairAA();
+    }
+
+    private void enableButtons() {
         rotateCharacterButton.setDisable(false);
         changeGenderButton.setDisable(false);
         bodyColourPicker.setDisable(false);
         hairColourPicker.setDisable(false);
-        removeHairAA();
+        speechBubbleButton.setDisable(false);
+        thoughtBubbleButton.setDisable(false);
+    }
+
+    private void disableButtons() {
+        rotateCharacterButton.setDisable(true);
+        changeGenderButton.setDisable(true);
+        bodyColourPicker.setDisable(true);
+        hairColourPicker.setDisable(true);
+        speechBubbleButton.setDisable(true);
+        thoughtBubbleButton.setDisable(true);
     }
 
     @FXML
@@ -223,6 +258,8 @@ public class Controller {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
         Stage helpStage = new Stage();
         Scene helpScene = new Scene(root);
+        helpStage.setHeight(500.0);
+        helpStage.setWidth(800.0);
         helpStage.setTitle("Help");
         helpStage.setScene(helpScene);
         helpStage.show();
@@ -492,5 +529,43 @@ public class Controller {
     private void removeHairAA(){
         setMale();
         setFemale();
+    }
+
+    @FXML
+    private void addSpeechBubble(){
+
+        URL url = getClass().getResource("/images/buttons/speech.png");
+        String currentPath = url.toString();
+
+        ImageView imageView = new ImageView(currentPath);
+
+        insertBubble(imageView);
+    }
+
+
+    @FXML
+    private void addThoughtBubble(){
+
+        URL url = getClass().getResource("/images/buttons/thought.png");
+        String currentPath = url.toString();
+
+        ImageView imageView = new ImageView(currentPath);
+
+        insertBubble(imageView);
+    }
+
+    private void insertBubble(ImageView imageView) {
+        if (comic.getSelected().equals(comic.getLeftCharacter())) {
+            comic.setCentreLeft(imageView);
+            comic.getCentreLeft().setScaleX(-1);
+            centreLeft.setImage(comic.getCentreLeft().getImage());
+            centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
+            leftTextField.setDisable(false);
+        }
+        else{
+            comic.setCentreRight(imageView);
+            centreRight.setImage(comic.getCentreRight().getImage());
+            rightTextField.setDisable(false);
+        }
     }
 }
