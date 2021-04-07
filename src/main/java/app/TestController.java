@@ -91,6 +91,9 @@ public class TestController {
     private Button thoughtBubbleButton;
 
     @FXML
+    private Button deleteCharacterButton;
+
+    @FXML
     private TextField leftTextField;
 
     @FXML
@@ -181,6 +184,7 @@ public class TestController {
             comicSelection = bottomRightIV;
             comicCharacterSelection = bottomRightIV;
             comic.setSelected(comic.getRightCharacter());
+            enableButtons();
             event.consume();
         });
 
@@ -227,6 +231,7 @@ public class TestController {
         hairColourPicker.setDisable(false);
         speechBubbleButton.setDisable(false);
         thoughtBubbleButton.setDisable(false);
+        deleteCharacterButton.setDisable(false);
     }
 
     private void disableButtons() {
@@ -236,6 +241,7 @@ public class TestController {
         hairColourPicker.setDisable(true);
         speechBubbleButton.setDisable(true);
         thoughtBubbleButton.setDisable(true);
+        deleteCharacterButton.setDisable(true);
     }
 
     @FXML
@@ -569,5 +575,26 @@ public class TestController {
             rightTextField.setDisable(false);
             rightTextField.setVisible(true);
         }
+    }
+
+    @FXML
+    private void deleteCharacter() {
+        if(comic.getSelected().equals(comic.getLeftCharacter())){
+            bottomLeftIV.setImage(null);
+            comic.setLeftCharacter(null);
+            centreLeft.setImage(null);
+            leftTextField.clear();
+        }
+        else{
+            bottomRightIV.setImage(null);
+            comic.setRightCharacter(null);
+            centreRight.setImage(null);
+            rightTextField.clear();
+        }
+        selectedBorder.setVisible(false);
+        comic.setSelected(null);
+        comicSelection = null;
+        comicCharacterSelection = null;
+        disableButtons();
     }
 }
