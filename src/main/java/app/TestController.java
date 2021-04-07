@@ -160,6 +160,7 @@ public class TestController {
         setBorder(bottomRightBorder);
         comicSelection = bottomRightIV;
         comicCharacterSelection = bottomRightIV;
+        comic.setSelected(comic.getRightCharacter());
 //        setBorder(characterMenuBorder);
         event.consume();
     }
@@ -200,6 +201,7 @@ public class TestController {
         setBorder(bottomLeftBorder);
         comicSelection = bottomLeftIV;
         comicCharacterSelection = bottomLeftIV;
+        comic.setSelected(comic.getLeftCharacter());
 //        setBorder(characterMenuBorder);
         event.consume();
     }
