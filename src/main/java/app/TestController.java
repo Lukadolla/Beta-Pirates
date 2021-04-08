@@ -599,4 +599,10 @@ public class TestController {
         comicCharacterSelection = null;
         disableButtons();
     }
+
+    @FXML
+    private void createTextGraphic(){
+        TextGraphic textGraphic = new TextGraphic("test");
+    }
+
 }
