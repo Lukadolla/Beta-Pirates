@@ -1,8 +1,13 @@
 package app;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.image.Image;
@@ -15,23 +20,15 @@ public class CharacterList {
     characterImages = new ArrayList<>();
   }
 
+  public void loadImages() throws IOException {  //Loads images currently in the image directory
 
-  // investigate replacing directory parameter with something like:
-  // URL imageUrl = getClass().getResource("/images/characters");
+    BufferedReader txtReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/images/characters/directoryList.txt")));
 
-  public void loadImages(File directory) throws MalformedURLException {  //Loads images currently in the image directory
-    File[] images = directory.listFiles();
-
-    if (characterImages != null)
-      for (File image : images) {
-        try {
-          this.addImage(new Image(image.toURI().toURL().toExternalForm(), 1920, 1080, true, true));
-        } catch (MalformedURLException e) {
-          e.printStackTrace();
-        }
-      }
-    else System.out.println("Directory error");
-
+    for (String line; (line = txtReader.readLine()) != null;) {
+        URL url = getClass().getResource(line);
+        String currentPath = url.toString();
+        this.addImage(new Image(currentPath));
+    }
   }
 
   private void addImage(Image image) {

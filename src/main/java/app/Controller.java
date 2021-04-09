@@ -91,6 +91,9 @@ public class Controller {
     private Button thoughtBubbleButton;
 
     @FXML
+    private Button deleteCharacterButton;
+
+    @FXML
     private TextField leftTextField;
 
     @FXML
@@ -106,9 +109,9 @@ public class Controller {
     }
 
     @FXML
-    private void loadCharacterImages() throws MalformedURLException {
+    private void loadCharacterImages() throws IOException {
 
-        characterList.loadImages(new File("src/main/resources/images/characters"));
+        characterList.loadImages();
 
         this.characterImages = characterList.getImages();
 
@@ -149,7 +152,7 @@ public class Controller {
     }
 
     @FXML
-    private void addCharacterRight(ActionEvent event) throws MalformedURLException {
+    private void addCharacterRight(ActionEvent event) throws IOException {
         if(bottomRightIV.getImage() == null){
             disableButtons();
         }
@@ -181,6 +184,7 @@ public class Controller {
             comicSelection = bottomRightIV;
             comicCharacterSelection = bottomRightIV;
             comic.setSelected(comic.getRightCharacter());
+            enableButtons();
             event.consume();
         });
 
@@ -189,7 +193,7 @@ public class Controller {
     }
 
     @FXML
-    private void addCharacterLeft(ActionEvent event) throws MalformedURLException {
+    private void addCharacterLeft(ActionEvent event) throws IOException {
         if(bottomLeftIV.getImage() == null){
             disableButtons();
         }
@@ -214,6 +218,7 @@ public class Controller {
             comicSelection = bottomLeftIV;
             comicCharacterSelection = bottomLeftIV;
             comic.setSelected(comic.getLeftCharacter());
+            enableButtons();
             event.consume();
         });
         enableButtons();
@@ -227,6 +232,7 @@ public class Controller {
         hairColourPicker.setDisable(false);
         speechBubbleButton.setDisable(false);
         thoughtBubbleButton.setDisable(false);
+        deleteCharacterButton.setDisable(false);
     }
 
     private void disableButtons() {
@@ -236,6 +242,7 @@ public class Controller {
         hairColourPicker.setDisable(true);
         speechBubbleButton.setDisable(true);
         thoughtBubbleButton.setDisable(true);
+        deleteCharacterButton.setDisable(true);
     }
 
     @FXML
@@ -561,11 +568,42 @@ public class Controller {
             centreLeft.setImage(comic.getCentreLeft().getImage());
             centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
             leftTextField.setDisable(false);
+            leftTextField.setVisible(true);
         }
         else{
             comic.setCentreRight(imageView);
             centreRight.setImage(comic.getCentreRight().getImage());
             rightTextField.setDisable(false);
+            rightTextField.setVisible(true);
         }
     }
+
+    @FXML
+    private void deleteCharacter() {
+        if(comic.getSelected().equals(comic.getLeftCharacter())){
+            bottomLeftIV.setImage(null);
+            comic.setLeftCharacter(null);
+            centreLeft.setImage(null);
+            leftTextField.clear();
+            leftTextField.setVisible(false);
+        }
+        else{
+            bottomRightIV.setImage(null);
+            comic.setRightCharacter(null);
+            centreRight.setImage(null);
+            rightTextField.clear();
+            rightTextField.setVisible(false);
+        }
+        selectedBorder.setVisible(false);
+        comic.setSelected(null);
+        comicSelection = null;
+        comicCharacterSelection = null;
+        disableButtons();
+    }
+
+    @FXML
+    private void createTextGraphic(){
+        TextGraphic textGraphic = new TextGraphic("test");
+    }
+
 }

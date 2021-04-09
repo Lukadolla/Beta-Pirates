@@ -109,9 +109,9 @@ public class TestController {
     }
 
     @FXML
-    private void loadCharacterImages() throws MalformedURLException {
+    private void loadCharacterImages() throws IOException {
 
-        characterList.loadImages(new File("src/main/resources/images/characters"));
+        characterList.loadImages();
 
         this.characterImages = characterList.getImages();
 
@@ -152,7 +152,7 @@ public class TestController {
     }
 
     @FXML
-    private void addCharacterRight(ActionEvent event) throws MalformedURLException {
+    private void addCharacterRight(ActionEvent event) throws IOException {
         if(bottomRightIV.getImage() == null){
             disableButtons();
         }
@@ -193,7 +193,7 @@ public class TestController {
     }
 
     @FXML
-    private void addCharacterLeft(ActionEvent event) throws MalformedURLException {
+    private void addCharacterLeft(ActionEvent event) throws IOException {
         if(bottomLeftIV.getImage() == null){
             disableButtons();
         }
@@ -218,6 +218,7 @@ public class TestController {
             comicSelection = bottomLeftIV;
             comicCharacterSelection = bottomLeftIV;
             comic.setSelected(comic.getLeftCharacter());
+            enableButtons();
             event.consume();
         });
         enableButtons();
