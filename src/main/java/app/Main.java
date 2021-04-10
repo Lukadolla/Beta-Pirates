@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException {  //Sets up necessary stages and scenes
         Stage mainStage = new Stage();
         Stage helpStage = new Stage();
         mainStage.setMaximized(true);
@@ -28,7 +28,7 @@ public class Main extends Application {
 
     }
 
-    public void mainPage(Stage mainStage) throws IOException{
+    public void mainPage(Stage mainStage) throws IOException{ //Loads the main page of the application and displays it
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
 
         URL url = getClass().getResource("/images/buttons/icon.png");
@@ -41,7 +41,7 @@ public class Main extends Application {
         mainStage.show();
     }
 
-    public void helpPage(Stage helpStage) throws IOException{
+    public void helpPage(Stage helpStage) throws IOException{ //Loads the help window and displays it
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
         Scene helpScene = new Scene(root);
         helpStage.setTitle("Help");
