@@ -27,11 +27,11 @@ public class TestController {
     private CharacterList characterList = new CharacterList();
     private int charactersMenuSelectionId;
     private List<Image> characterImages;
-    // Track character selection independent of comic selection:
-    private ImageView comicCharacterSelection;
+    
+    private ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
     @FXML
-    private Region characterMenuBorder;
+    private Region characterMenuBorder; //Global variable to track where the border is within the character menu
 
     @FXML
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
@@ -99,17 +99,17 @@ public class TestController {
     @FXML
     private TextField rightTextField;
 
-    public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {
+    public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
         this.charactersMenuSelectionId = charactersMenuSelectionId;
     }
 
     @FXML
-    private void resize(){
+    private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
     }
 
     @FXML
-    private void loadCharacterImages() throws IOException {
+    private void loadCharacterImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
 
         characterList.loadImages();
 
@@ -152,7 +152,7 @@ public class TestController {
     }
 
     @FXML
-    private void addCharacterRight(ActionEvent event) throws IOException {
+    private void addCharacterRight(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the right panel
         if(bottomRightIV.getImage() == null){
             disableButtons();
         }
@@ -163,7 +163,6 @@ public class TestController {
         setBorder(bottomRightBorder);
         comicSelection = bottomRightIV;
         comicCharacterSelection = bottomRightIV;
-//        setBorder(characterMenuBorder);
         event.consume();
     }
 
@@ -174,7 +173,7 @@ public class TestController {
     }
 
     @FXML
-    public void insertRightCharacter(int selectedImage){
+    public void insertRightCharacter(int selectedImage){  //Method that inserts a character into the right panel and adds character data to the Comic class
         comic.setRightCharacter(new Character(characterImages.get(selectedImage), 1));
         comic.setSelected(comic.getRightCharacter());
         bottomRightIV.setImage(comic.getRightCharacter().getImage());
@@ -193,7 +192,7 @@ public class TestController {
     }
 
     @FXML
-    private void addCharacterLeft(ActionEvent event) throws IOException {
+    private void addCharacterLeft(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the left panel
         if(bottomLeftIV.getImage() == null){
             disableButtons();
         }
@@ -209,7 +208,7 @@ public class TestController {
     }
 
     @FXML
-    public void insertLeftCharacter(int selectedImage){
+    public void insertLeftCharacter(int selectedImage){ //Method that inserts a character into the left panel and adds character data to the Comic class
         comic.setLeftCharacter(new Character(characterImages.get(selectedImage), 1));
         comic.setSelected(comic.getLeftCharacter());
         bottomLeftIV.setImage(comic.getLeftCharacter().getImage());
@@ -225,7 +224,7 @@ public class TestController {
         removeHairAA();
     }
 
-    private void enableButtons() {
+    private void enableButtons() { 
         rotateCharacterButton.setDisable(false);
         changeGenderButton.setDisable(false);
         bodyColourPicker.setDisable(false);
@@ -246,13 +245,13 @@ public class TestController {
     }
 
     @FXML
-    public void rotate(){
+    public void rotate(){ //Method to rotate a character
         comic.getSelected().changeFacing();
         comicSelection.setScaleX(comicSelection.getScaleX() * -1);
     }
 
     @FXML
-    private void setBorder(Region newBorder) {
+    private void setBorder(Region newBorder) { //Method that sets the border on a selected component
         if(selectedBorder != null){
             selectedBorder.setVisible(false);
         }
@@ -261,7 +260,7 @@ public class TestController {
     }
 
     @FXML
-    public void help() throws IOException{
+    public void help() throws IOException{  //Method called when user wants to display help menu
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
         Stage helpStage = new Stage();
         Scene helpScene = new Scene(root);
@@ -273,12 +272,12 @@ public class TestController {
     }
 
     @FXML
-    public Color getChosenBodyColour(){
+    public Color getChosenBodyColour(){  //Method that fetches the body colour chosen by the user from the ColourPicker
         return bodyColourPicker.getValue();
     }
 
     @FXML
-    public void changeSkinColour() {
+    public void changeSkinColour() {  //Method called when user wants to change the character's skin colour
         Image image = comicSelection.getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -315,12 +314,12 @@ public class TestController {
     }
 
     @FXML
-    public Color getChosenHairColour(){
+    public Color getChosenHairColour(){ //Method that fetches the hair colour chosen by the user from the ColourPicker
         return hairColourPicker.getValue();
     }
 
     @FXML
-    public void changeHairColour() {
+    public void changeHairColour() { //Method called when user wants to change the character's hair colour
         Image image = comicSelection.getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -332,7 +331,7 @@ public class TestController {
         Color colour;
         Color maleHairColour = new Color(0, 0, 0, 0);
 
-        if(comic.getSelected().getGender().equals("male"))
+        if(comic.getSelected().getGender().equals("male"))  //Changing male hair only if the character is male
         {
             for(int i = 0; i < imageWidth; i++){
                 for(int j = 0; j < imageHeight; j++){
@@ -351,7 +350,7 @@ public class TestController {
             }
         }
 
-        if(comic.getSelected().getGender().equals("female"))
+        if(comic.getSelected().getGender().equals("female")) //Changing both male and female hair only if the character is female
         {
             for(int i = 0; i < imageWidth; i++){
                 for(int j = 0; j < imageHeight; j++){
@@ -378,7 +377,7 @@ public class TestController {
     }
 
     @FXML
-    public void changeGender() {
+    public void changeGender() { //Method called when user presses the change gender button
 
         if(comic.getSelected().getGender().equals("female")){
             setMale();
@@ -388,7 +387,7 @@ public class TestController {
         }
     }
 
-    private void setMale() {
+    private void setMale() {  //Method that sets the current character to be male (removing female hair + lipstick)
         Image image = comic.getSelected().getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -418,7 +417,7 @@ public class TestController {
         comic.getSelected().setImage(wImage);
     }
 
-    private void setFemale() {
+    private void setFemale() { //Method that sets the current character to be female (adding female hair + lipstick)
         Image image = comic.getSelected().getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -447,7 +446,7 @@ public class TestController {
         comic.getSelected().setImage(wImage);
     }
 
-    private boolean isLips(Color color){
+    private boolean isLips(Color color){ //Method to check if the colour passed and colours close to it are the lip colour  
 
         boolean isItLips = false;
 
@@ -466,7 +465,7 @@ public class TestController {
 
     }
 
-    private boolean isHair(Color colour){
+    private boolean isHair(Color colour){ //Method to check if the colour passed and colours close to it are the current hair colour
         Character character = comic.getSelected();
         boolean isItHair = false;
         if(colour.getRed()>=0.85 && colour.getGreen()>=0.85 && colour.getBlue()<0.3){
@@ -485,7 +484,7 @@ public class TestController {
         return isItHair;
     }
 
-    private boolean isBows(Color colour){
+    private boolean isBows(Color colour){  //Method to check if the colour passed and colours close to it are the bow colour
         Character character = comic.getSelected();
         boolean isItBows = false;
         if(colour.equals(Color.web("ecb4b5"))){
@@ -504,7 +503,7 @@ public class TestController {
         return isItBows;
     }
 
-    private Color changeTone(Color colour){
+    private Color changeTone(Color colour){ //Method to change the tone slightly of the colour being passed in. This is done to ease colour changing and removing female hair
         Double[] colourList = new Double[3];
         colourList[0] = colour.getRed();
         colourList[1] = colour.getGreen();
@@ -528,18 +527,18 @@ public class TestController {
         return new Color(colourList[0], colourList[1], colourList[2], colour.getOpacity());
     }
 
-    private boolean compareColours(Color colour_1, Color colour_2){
+    private boolean compareColours(Color colour_1, Color colour_2){  //Method to compare 2 colours to see if they are within the same rough colour range
 
         return (Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01) && (colour_1.getOpacity() == colour_2.getOpacity());
     }
 
-    private void removeHairAA(){
+    private void removeHairAA(){  //Method to remove hair anti-aliasing by calling the setMale and setFemale methode which handle the AA
         setMale();
         setFemale();
     }
 
     @FXML
-    private void addSpeechBubble(){
+    private void addSpeechBubble(){ //Method called when user presses the speech bubble button
 
         URL url = getClass().getResource("/images/buttons/speech.png");
         String currentPath = url.toString();
@@ -551,7 +550,7 @@ public class TestController {
 
 
     @FXML
-    private void addThoughtBubble(){
+    private void addThoughtBubble(){ //Method called when user presses the thought bubble button
 
         URL url = getClass().getResource("/images/buttons/thought.png");
         String currentPath = url.toString();
@@ -561,7 +560,7 @@ public class TestController {
         insertBubble(imageView);
     }
 
-    private void insertBubble(ImageView imageView) {
+    private void insertBubble(ImageView imageView) { //Method that inserts the thought/speech bubble into the correct section of the comic
         if (comic.getSelected().equals(comic.getLeftCharacter())) {
             comic.setCentreLeft(imageView);
             comic.getCentreLeft().setScaleX(-1);
@@ -579,7 +578,7 @@ public class TestController {
     }
 
     @FXML
-    private void deleteCharacter() {
+    private void deleteCharacter() {  //Method called when the user presses the delete button which removes characters and text from the selected half of the comic
         if(comic.getSelected().equals(comic.getLeftCharacter())){
             bottomLeftIV.setImage(null);
             comic.setLeftCharacter(null);
