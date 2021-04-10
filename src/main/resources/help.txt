@@ -11,3 +11,5 @@ Instructions on use:
 - Your selection will be indicated by a highlight around the clicked image.
 - You can change the character's gender by pressing the M/F button.
 - The hair and body colour can be changed by selecting a colour from the drop down colour palette.
+- You can delete an character in the comic using the delete button when the character is selected.
+- To add text to the characters, press the speech/thought balloon buttons and type the text into the speech area.

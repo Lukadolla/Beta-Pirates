@@ -26,8 +26,10 @@
       <Text layoutX="12.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- A menu with all available character poses will appear in the middle panel. Select the desired character to insert it into the comic." wrappingWidth="575.1331787109375" />
       <Text layoutX="12.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the direction the individual characters are facing by selecting the desired character and pressing the rotate button." wrappingWidth="563.017578125" />
       <Text layoutX="12.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The buttons will be greyed out by default until a character is inserted into the comic and is selected." />
-      <Text layoutX="14.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Your selection will be indicated by a highlight around the clicked image." />
-      <Text layoutX="14.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the character's gender by pressing the M/F button." />
-      <Text layoutX="14.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The hair and body colour can be changed by selecting a colour from the drop down colour palette." />
+      <Text layoutX="14.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Your selection will be indicated by a highlight around the clicked image." />
+      <Text layoutX="14.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the character's gender by pressing the M/F button." />
+      <Text layoutX="14.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The hair and body colour can be changed by selecting a colour from the drop down colour palette." />
+      <Text layoutX="12.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can delete an character in the comic using the delete button when the character is selected." />
+      <Text layoutX="12.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To add text to the characters, press the speech/thought balloon buttons and type the text into the speech area." wrappingWidth="575.1331787109376" />
    </children>
 </AnchorPane>
