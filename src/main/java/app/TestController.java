@@ -189,6 +189,7 @@ public class TestController {
 
         enableButtons();
         removeHairAA();
+        clearBackground();
     }
 
     @FXML
@@ -222,6 +223,7 @@ public class TestController {
         });
         enableButtons();
         removeHairAA();
+        clearBackground();
     }
 
     private void enableButtons() { 
@@ -404,9 +406,11 @@ public class TestController {
                 }
                 else if(isHair(colour)){
                     colour = Color.web("fffffe");
+                    colour = new Color(colour.getRed(), colour.getGreen(), colour.getBlue(), 0);
                 }
                 else if(isBows(colour)){
                     colour = Color.web("feffff");
+                    colour = new Color(colour.getRed(), colour.getGreen(), colour.getBlue(), 0.01);
                 }
                 PW.setColor(i, j, colour);
             }
@@ -431,10 +435,10 @@ public class TestController {
                 if(compareColours(colour, comic.getSelected().getLipColour())){
                     colour = Color.web("ff0000");
                 }
-                else if(colour.equals(Color.web("fffffe"))){
+                else if(colour.getOpacity() == 0){
                     colour = comic.getSelected().getFemaleHairColour();
                 }
-                else if(colour.equals(Color.web("feffff"))){
+                else if(colour.getOpacity() < 0.02){
                     colour = Color.web("ecb4b5");
                 }
                 PW.setColor(i, j, colour);
@@ -604,4 +608,27 @@ public class TestController {
     private void createTextGraphic(){
         TextGraphic textGraphic = new TextGraphic("test");
     }
+
+    private void clearBackground() {
+        Image image = comic.getSelected().getImage();
+        int imageHeight = (int)image.getHeight();
+        int imageWidth = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+
+        for(int i = 0; i < imageWidth; i++){
+            for(int j = 0; j < imageHeight; j++){
+                Color colour = PR.getColor(i, j);
+                if(colour.equals(Color.web("ffffff"))){
+                    colour = new Color(1, 1, 1, 0.05);
+                }
+                PW.setColor(i, j, colour);
+            }
+        }
+
+        comicSelection.setImage(wImage);
+        comic.getSelected().setImage(wImage);
+    }
+
 }
