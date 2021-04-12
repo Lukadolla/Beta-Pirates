@@ -6,12 +6,9 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javax.imageio.ImageIO;
 
 public class TextGraphic {
 
@@ -21,10 +18,11 @@ public class TextGraphic {
   private FontMetrics fm;
   private int width;
   private int height;
-  private ImageView imageview;
+//  private ImageView imageview;
+  private Image image;
 
   public TextGraphic(String text) {
-    System.out.println("TextGraphic fired!");
+    System.out.println("TextGrap" + "/n hic fired!");
 
     g2d.setFont(font);
     fm = g2d.getFontMetrics();
@@ -48,16 +46,20 @@ public class TextGraphic {
     g2d.setColor(Color.BLACK);
     g2d.drawString(text, 0, fm.getAscent());
     g2d.dispose();
-    Image image = SwingFXUtils.toFXImage(img, null);
-    imageview.setImage(image);
+    this.image = SwingFXUtils.toFXImage(img, null);
+//    this.imageview.setImage(image);
   }
 
-  public ImageView setImageview() {
-    return imageview;
-  }
+//  public ImageView setImageview() {
+//    return imageview;
+//  }
 
-  public ImageView getImageview() {
-    return imageview;
+//  public ImageView getImageview() {
+//    return imageview;
+//  }
+
+  public Image getImage() {
+    return image;
   }
 
   }

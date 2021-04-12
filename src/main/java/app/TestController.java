@@ -100,6 +100,10 @@ public class TestController {
     @FXML
     private TextField rightTextField;
 
+    @FXML
+    private ImageView leftTextImageview;
+    private ImageView rightTextImageview;
+
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
         this.charactersMenuSelectionId = charactersMenuSelectionId;
     }
@@ -608,8 +612,9 @@ public class TestController {
     }
 
     @FXML
-    private void createTextGraphic(){
-        TextGraphic textGraphic = new TextGraphic("test");
+    private void insertTextGraphic(){
+        TextGraphic textGraphic = new TextGraphic("the quick brown fox \n jumped over the lazy hare");
+        leftTextImageview.setImage(textGraphic.getImage());
     }
 
     private void clearBackground() {
