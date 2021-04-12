@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="600.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
    <children>
-      <Text layoutX="14.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Excelsior">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="14.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exelsior is a program for creating custom comic strips with just a few clicks.">
-         <font>
-            <Font name="Arial" size="15.0" />
-         </font>
-      </Text>
-      <Text layoutX="14.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions on use:">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="14.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To insert a character into the left panel, press the button showing the character on the left." />
-      <Text layoutX="14.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To insert a character into the right panel, press the other button with the character on the right." />
-      <Text layoutX="12.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- A menu with all available character poses will appear in the middle panel. Select the desired character to insert it into the comic." wrappingWidth="575.1331787109375" />
-      <Text layoutX="12.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the direction the individual characters are facing by selecting the desired character and pressing the rotate button." wrappingWidth="563.017578125" />
-      <Text layoutX="12.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The buttons will be greyed out by default until a character is inserted into the comic and is selected." />
-      <Text layoutX="14.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Your selection will be indicated by a highlight around the clicked image." />
-      <Text layoutX="14.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the character's gender by pressing the M/F button." />
-      <Text layoutX="14.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The hair and body colour can be changed by selecting a colour from the drop down colour palette." />
-      <Text layoutX="12.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can delete an character in the comic using the delete button when the character is selected." />
-      <Text layoutX="12.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To add text to the characters, press the speech/thought balloon buttons and type the text into the speech area." wrappingWidth="575.1331787109376" />
+      <ScrollPane prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="578.0">
+               <children>
+                  <Text layoutX="1.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The hair and body colour can be changed by selecting a colour from the drop down colour palette." />
+                  <Text layoutX="1.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Excelsior">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exelsior is a program for creating custom comic strips with just a few clicks.">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="1.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions on use:">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="7.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To insert a character into the left panel, press the button showing the character on the left." />
+                  <Text layoutX="10.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To insert a character into the right panel, press the other button with the character on the right." />
+                  <Text layoutX="7.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- A menu with all available character poses will appear in the middle panel. Select the desired character to insert it into the comic." wrappingWidth="575.1331787109375" />
+                  <Text layoutX="7.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the direction the individual characters are facing by selecting the desired character and pressing the rotate button." wrappingWidth="563.017578125" />
+                  <Text layoutX="7.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The buttons will be greyed out by default until a character is inserted into the comic and is selected." />
+                  <Text layoutX="7.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Your selection will be indicated by a highlight around the clicked image." />
+                  <Text layoutX="1.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the character's gender by pressing the M/F button." />
+                  <Text layoutX="-1.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can delete an character in the comic using the delete button when the character is selected." />
+                  <Text layoutX="1.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To add text to the characters, press the speech/thought balloon buttons and type the text into the speech area." wrappingWidth="575.1331787109376" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
