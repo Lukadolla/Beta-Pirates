@@ -604,5 +604,4 @@ public class TestController {
     private void createTextGraphic(){
         TextGraphic textGraphic = new TextGraphic("test");
     }
-
 }
