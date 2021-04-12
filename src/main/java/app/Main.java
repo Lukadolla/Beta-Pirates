@@ -29,7 +29,7 @@ public class Main extends Application {
     }
 
     public void mainPage(Stage mainStage) throws IOException{ //Loads the main page of the application and displays it
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
 
         URL url = getClass().getResource("/images/buttons/icon.png");
         String currentPath = url.toString();

@@ -72,6 +72,11 @@
                                                 </AnchorPane>
 
                                                 <AnchorPane fx:id="bottomLeftAnchor" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                       <HBox alignment="CENTER">
+                                          <children>
+                                             <ImageView fx:id="bottomLeftBI" fitHeight="${bottomLeftAnchor.height}" fitWidth="${bottomLeftAnchor.width}" managed="false" pickOnBounds="true" />
+                                          </children>
+                                       </HBox>
                                                     <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                         <children>
                                                             <ImageView fx:id="bottomLeftIV" fitHeight="${bottomLeftAnchor.height}" fitWidth="${bottomLeftAnchor.width}" managed="false" pickOnBounds="true">
@@ -83,6 +88,11 @@
                                                 </AnchorPane>
 
                                                 <AnchorPane fx:id="bottomRightAnchor" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <HBox alignment="CENTER">
+                                          <children>
+                                             <ImageView fx:id="bottomRightBI" fitHeight="${bottomRightAnchor.height}" fitWidth="${bottomRightAnchor.width}" managed="false" pickOnBounds="true" />
+                                          </children>
+                                       </HBox>
                                                     <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                         <children>
                                                             <ImageView fx:id="bottomRightIV" fitHeight="${bottomRightAnchor.height}" fitWidth="${bottomRightAnchor.width}" managed="false" pickOnBounds="true">
