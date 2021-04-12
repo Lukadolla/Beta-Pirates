@@ -1,6 +1,5 @@
 package app;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
 import static javafx.geometry.Pos.CENTER;
@@ -24,7 +22,7 @@ import static javafx.geometry.Pos.CENTER;
 public class TestController {
 
     private Comic comic = new Comic();
-    private CharacterList characterList = new CharacterList();
+    private ImageLists imageLists = new ImageLists();
     private int charactersMenuSelectionId;
     private List<Image> characterImages;
     
@@ -94,6 +92,9 @@ public class TestController {
     private Button deleteCharacterButton;
 
     @FXML
+    private Button backgroundButton;
+
+    @FXML
     private TextField leftTextField;
 
     @FXML
@@ -111,9 +112,9 @@ public class TestController {
     @FXML
     private void loadCharacterImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
 
-        characterList.loadImages();
+        imageLists.loadCharacterImages();
 
-        this.characterImages = characterList.getImages();
+        this.characterImages = imageLists.getCharacterImages();
 
         int columnIndex = 0;
 
@@ -234,6 +235,7 @@ public class TestController {
         speechBubbleButton.setDisable(false);
         thoughtBubbleButton.setDisable(false);
         deleteCharacterButton.setDisable(false);
+        backgroundButton.setDisable(false);
     }
 
     private void disableButtons() {
@@ -244,6 +246,7 @@ public class TestController {
         speechBubbleButton.setDisable(true);
         thoughtBubbleButton.setDisable(true);
         deleteCharacterButton.setDisable(true);
+        backgroundButton.setDisable(true);
     }
 
     @FXML
@@ -631,4 +634,8 @@ public class TestController {
         comic.getSelected().setImage(wImage);
     }
 
+    @FXML
+    private void changeBackground(){
+
+    }
 }
