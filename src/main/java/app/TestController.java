@@ -36,6 +36,9 @@ public class TestController {
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
 
     @FXML
+    private ImageView background;
+
+    @FXML
     Region selectedBorder = null; //Global variable to track which border is currently selected
 
     @FXML
@@ -693,11 +696,11 @@ public class TestController {
             Region region = new Region();
             region.setVisible(true);
             region.setStyle("-fx-border-color: #bbc4c4");
-           /* region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                setCharactersMenuSelectionId(finalSelectedImage);
+
+           region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 insertBackground(finalSelectedImage);
                 event.consume();
-            });*/
+            });
 
             HBox backgroundHBox = new HBox(imageview);
             backgroundHBox.setId("backgroundHbox"+selectedImage);
@@ -718,4 +721,10 @@ public class TestController {
             columnIndex = (columnIndex == 0) ? 1 : 0;
         }
     }
+
+    private void insertBackground(int selectedImage){
+        comic.setBackground(new ImageView(backgroundImages.get(selectedImage)));
+        background.setImage(comic.getBackground().getImage());
+    }
+
 }

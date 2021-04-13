@@ -14,6 +14,7 @@ public class Comic {
   private String rightText;
   private ImageView centreLeft;
   private ImageView centreRight;
+  private ImageView background;
 
 
   // Add lines to bubbles
@@ -91,5 +92,13 @@ public class Comic {
 
   public ImageView getCentreRight() {
     return centreRight;
+  }
+
+  public ImageView getBackground() {
+    return background;
+  }
+
+  public void setBackground(ImageView background) {
+    this.background = background;
   }
 }
