@@ -18,16 +18,20 @@ public class TextGraphic {
   private FontMetrics fm;
   private int width;
   private int height;
+  private int lines;
 //  private ImageView imageview;
   private Image image;
 
   public TextGraphic(String text) {
-    System.out.println("TextGrap" + "/n hic fired!");
+    System.out.println("TextGraphic fired!");
+
+    String[] text_array = text.split("[\n]");
 
     g2d.setFont(font);
     fm = g2d.getFontMetrics();
-    width = fm.stringWidth(text);
-    height = fm.getHeight();
+    width = fm.stringWidth(getLongestLine(text_array));
+    lines = getLineCount(text);
+    height = fm.getHeight() * (lines + 4);
     g2d.dispose();
     img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     g2d = img.createGraphics();
@@ -44,22 +48,29 @@ public class TextGraphic {
     g2d.setColor(Color.WHITE);
     g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
     g2d.setColor(Color.BLACK);
-    g2d.drawString(text, 0, fm.getAscent());
+    for (int i = 1; i <= lines; ++i) {
+      g2d.drawString(text_array[i - 1], 0, fm.getAscent() * i);
+    }
     g2d.dispose();
     this.image = SwingFXUtils.toFXImage(img, null);
-//    this.imageview.setImage(image);
   }
 
-//  public ImageView setImageview() {
-//    return imageview;
-//  }
+  private static String getLongestLine(String[] arr) {
+    String max = arr[0];
+    for (int i = 1; i < arr.length; i++) {
+      if (max.length() < arr[i].length()) {
+        max = arr[i];
+      }
+    }
+    return max;
+  }
 
-//  public ImageView getImageview() {
-//    return imageview;
-//  }
+  public static int getLineCount(String text) {
+    return text.split("[\n]").length;
+  }
 
   public Image getImage() {
     return image;
   }
 
-  }
+}
