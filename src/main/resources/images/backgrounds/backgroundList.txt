@@ -1,1 +1,6 @@
+/images/backgrounds/default.png
 /images/backgrounds/windows.jpg
+/images/backgrounds/fire_room.jpg
+/images/backgrounds/shrek_swamp.jpg
+/images/backgrounds/street.jpg
+/images/backgrounds/dust_2.jpg
