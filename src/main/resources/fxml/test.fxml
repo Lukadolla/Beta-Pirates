@@ -167,6 +167,34 @@
 
                                                                             </children>
                                                                         </GridPane>
+
+                                                                        <GridPane fx:id="backgroundGridPane" disable="true" prefHeight="574.0" prefWidth="135.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                                                                            <columnConstraints>
+                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                            </columnConstraints>
+                                                                            <rowConstraints>
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                            </rowConstraints>
+                                                                            <children>
+
+                                                                            </children>
+                                                                        </GridPane>
                                                                     </children>
                                                                 </AnchorPane>
                                                             </content>
@@ -193,7 +221,7 @@
                                                                 <Button fx:id="speechBubbleButton" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addSpeechBubble" style="-fx-background-image: url('/images/buttons/text-bubble.png'); -fx-background-size: 100% 100%; -fx-background-color: #000000;" GridPane.rowIndex="2" />
                                                                 <Button fx:id="deleteCharacterButton" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteCharacter" style="-fx-background-image: url('/images/buttons/delete.png'); -fx-background-size: 100% 100%; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                 <Button fx:id="thoughtBubbleButton" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addThoughtBubble" style="-fx-background-image: url('/images/buttons/thought-bubble.png'); -fx-background-size: 100% 100%; -fx-background-color: #000000;" GridPane.rowIndex="3" />
-                                                                <Button fx:id="backgroundButton" onAction="#changeBackground" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-image: url('/images/buttons/landscape.png'); -fx-background-size: 100% 100%; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                <Button fx:id="backgroundButton" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changeBackground" style="-fx-background-image: url('/images/buttons/landscape.png'); -fx-background-size: 100% 100%; -fx-background-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                                 <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCharacterRight" style="-fx-background-image: url('/images/buttons/face-left.png'); -fx-background-size: 100% 100%; -fx-background-color: #000000;" GridPane.columnIndex="1" />
                                                                 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="4">
                                                                     <children>

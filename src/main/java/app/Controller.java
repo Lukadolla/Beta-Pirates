@@ -109,7 +109,7 @@ public class Controller {
     @FXML
     private void loadCharacterImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
 
-        imageLists.loadCharacterImages();
+        imageLists.loadCharacterImagesList();
 
         this.characterImages = imageLists.getCharacterImages();
 

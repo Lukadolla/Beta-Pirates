@@ -22,7 +22,7 @@ public class ImageLists {
     backgroundImages = new ArrayList<>();
   }
 
-  public void loadCharacterImages() throws IOException {  //Loads images currently in the image directory
+  public void loadCharacterImagesList() throws IOException {  //Loads images currently in the image directory
 
     BufferedReader txtReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/images/characters/directoryList.txt")));
 
@@ -33,14 +33,14 @@ public class ImageLists {
     }
   }
 
-  public void loadBackgroundImages() throws IOException {  //Loads images currently in the image directory
+  public void loadBackgroundImagesList() throws IOException {  //Loads images currently in the image directory
 
-    BufferedReader txtReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/images/characters/directoryList.txt")));
+    BufferedReader txtReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/images/backgrounds/backgroundList.txt")));
 
     for (String line; (line = txtReader.readLine()) != null;) {
       URL url = getClass().getResource(line);
       String currentPath = url.toString();
-      this.addCharacterImage(new Image(currentPath));
+      this.addBackgroundImage(new Image(currentPath));
     }
   }
 

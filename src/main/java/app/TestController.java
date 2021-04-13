@@ -25,6 +25,7 @@ public class TestController {
     private ImageLists imageLists = new ImageLists();
     private int charactersMenuSelectionId;
     private List<Image> characterImages;
+    private List<Image> backgroundImages;
     
     private ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
@@ -68,6 +69,9 @@ public class TestController {
     private GridPane charactersGridPane;
 
     @FXML
+    private GridPane backgroundGridPane;
+
+    @FXML
     private ColorPicker bodyColourPicker;
 
     @FXML
@@ -102,6 +106,8 @@ public class TestController {
 
     @FXML
     private ImageView leftTextImageview;
+
+    @FXML
     private ImageView rightTextImageview;
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
@@ -113,10 +119,10 @@ public class TestController {
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
     }
 
-    @FXML
+  @FXML
     private void loadCharacterImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
 
-        imageLists.loadCharacterImages();
+        imageLists.loadCharacterImagesList();
 
         this.characterImages = imageLists.getCharacterImages();
 
@@ -158,13 +164,21 @@ public class TestController {
 
     @FXML
     private void addCharacterRight(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the right panel
+
+        backgroundGridPane.setDisable(true);
+        backgroundGridPane.setVisible(false);
+
+        charactersGridPane.setDisable(false);
+        charactersGridPane.setVisible(true);
+
         if(bottomRightIV.getImage() == null){
             disableButtons();
         }
-        if (characterImages == null) {
+        if(characterImages == null){
             midScrollPane.setVisible(true);
             loadCharacterImages();
         }
+
         setBorder(bottomRightBorder);
         comicSelection = bottomRightIV;
         comicCharacterSelection = bottomRightIV;
@@ -199,13 +213,22 @@ public class TestController {
 
     @FXML
     private void addCharacterLeft(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the left panel
+
+        backgroundGridPane.setDisable(true);
+        backgroundGridPane.setVisible(false);
+
+        charactersGridPane.setDisable(false);
+        charactersGridPane.setVisible(true);
+
         if(bottomLeftIV.getImage() == null){
             disableButtons();
         }
-        if (characterImages == null) {
+
+        if(characterImages == null){
             midScrollPane.setVisible(true);
             loadCharacterImages();
         }
+
         setBorder(bottomLeftBorder);
         comicSelection = bottomLeftIV;
         comicCharacterSelection = bottomLeftIV;
@@ -640,7 +663,59 @@ public class TestController {
     }
 
     @FXML
-    private void changeBackground(){
+    private void changeBackground() throws IOException {
+        charactersGridPane.setDisable(true);
+        charactersGridPane.setVisible(false);
 
+        backgroundGridPane.setDisable(false);
+        backgroundGridPane.setVisible(true);
+
+        if(backgroundImages == null)
+        {
+            loadBackgroundImages();
+        }
+    }
+
+    @FXML
+    private void loadBackgroundImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
+
+        imageLists.loadBackgroundImagesList();
+
+        this.backgroundImages = imageLists.getBackgroundImages();
+
+        int columnIndex = 0;
+
+        for (int selectedImage = 0; selectedImage < backgroundImages.size(); selectedImage++) {
+            int rowIndex = (selectedImage/2);
+            ImageView imageview = new ImageView(backgroundImages.get(selectedImage));
+            int finalSelectedImage = selectedImage;
+
+            Region region = new Region();
+            region.setVisible(true);
+            region.setStyle("-fx-border-color: #bbc4c4");
+           /* region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                setCharactersMenuSelectionId(finalSelectedImage);
+                insertBackground(finalSelectedImage);
+                event.consume();
+            });*/
+
+            HBox backgroundHBox = new HBox(imageview);
+            backgroundHBox.setId("backgroundHbox"+selectedImage);
+            backgroundHBox.setAlignment(CENTER);
+            AnchorPane characterAnchorPane = new AnchorPane(backgroundHBox, region);
+            AnchorPane.setLeftAnchor(region, 0.0);
+            AnchorPane.setRightAnchor(region, 0.0);
+            AnchorPane.setTopAnchor(region, 0.0);
+            AnchorPane.setBottomAnchor(region, 0.0);
+            imageview.fitWidthProperty().bind(characterAnchorPane.widthProperty());
+            imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
+            imageview.setManaged(false);
+            imageview.setPickOnBounds(true);
+            imageview.setVisible(true);
+
+            backgroundGridPane.add(characterAnchorPane,columnIndex,rowIndex);
+
+            columnIndex = (columnIndex == 0) ? 1 : 0;
+        }
     }
 }
