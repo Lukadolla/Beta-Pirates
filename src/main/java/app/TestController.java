@@ -195,24 +195,30 @@ public class TestController {
                 event.consume();
             });
 
-            HBox characterHbox = new HBox(imageview);
-            characterHbox.setId("characterHbox"+selectedImage);
-            characterHbox.setAlignment(CENTER);
-            AnchorPane characterAnchorPane = new AnchorPane(characterHbox, region);
-            AnchorPane.setLeftAnchor(region, 0.0);
-            AnchorPane.setRightAnchor(region, 0.0);
-            AnchorPane.setTopAnchor(region, 0.0);
-            AnchorPane.setBottomAnchor(region, 0.0);
-            imageview.fitWidthProperty().bind(characterAnchorPane.widthProperty());
-            imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
-            imageview.setManaged(false);
-            imageview.setPickOnBounds(true);
-            imageview.setVisible(true);
+            AnchorPane characterAnchorPane = setUpMiddlePanel(selectedImage, imageview, region, "characterHbox");
 
             charactersGridPane.add(characterAnchorPane,columnIndex,rowIndex);
 
             columnIndex = (columnIndex == 0) ? 1 : 0;
         }
+    }
+
+    private AnchorPane setUpMiddlePanel(int selectedImage, ImageView imageview, Region region, String hBoxName) { //Method to set up structure of middle panel
+
+        HBox characterHbox = new HBox(imageview);
+        characterHbox.setId(hBoxName + selectedImage);
+        characterHbox.setAlignment(CENTER);
+        AnchorPane characterAnchorPane = new AnchorPane(characterHbox, region);
+        AnchorPane.setLeftAnchor(region, 0.0);
+        AnchorPane.setRightAnchor(region, 0.0);
+        AnchorPane.setTopAnchor(region, 0.0);
+        AnchorPane.setBottomAnchor(region, 0.0);
+        imageview.fitWidthProperty().bind(characterAnchorPane.widthProperty());
+        imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
+        imageview.setManaged(false);
+        imageview.setPickOnBounds(true);
+        imageview.setVisible(true);
+        return characterAnchorPane;
     }
 
     @FXML
@@ -756,19 +762,7 @@ public class TestController {
                 event.consume();
             });
 
-            HBox backgroundHBox = new HBox(imageview);
-            backgroundHBox.setId("backgroundHbox"+selectedImage);
-            backgroundHBox.setAlignment(CENTER);
-            AnchorPane characterAnchorPane = new AnchorPane(backgroundHBox, region);
-            AnchorPane.setLeftAnchor(region, 0.0);
-            AnchorPane.setRightAnchor(region, 0.0);
-            AnchorPane.setTopAnchor(region, 0.0);
-            AnchorPane.setBottomAnchor(region, 0.0);
-            imageview.fitWidthProperty().bind(characterAnchorPane.widthProperty());
-            imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
-            imageview.setManaged(false);
-            imageview.setPickOnBounds(true);
-            imageview.setVisible(true);
+            AnchorPane characterAnchorPane = setUpMiddlePanel(selectedImage, imageview, region, "backgroundHbox");
 
             backgroundGridPane.add(characterAnchorPane,columnIndex,rowIndex);
 
