@@ -218,7 +218,6 @@ public class TestController {
     @FXML
     private void addCharacterRight(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the right panel
 
-
         backgroundGridPane.setDisable(true);
         backgroundGridPane.setVisible(false);
 
@@ -233,6 +232,7 @@ public class TestController {
             loadCharacterImages();
         }
 
+        midScrollPane.setVvalue(0);
         setBorder(bottomRightBorder);
         comicSelection = bottomRightIV;
         comicCharacterSelection = bottomRightIV;
@@ -283,6 +283,7 @@ public class TestController {
             loadCharacterImages();
         }
 
+        midScrollPane.setVvalue(0);
         setBorder(bottomLeftBorder);
         comicSelection = bottomLeftIV;
         comicCharacterSelection = bottomLeftIV;
@@ -728,6 +729,8 @@ public class TestController {
         {
             loadBackgroundImages();
         }
+
+        midScrollPane.setVvalue(0);
     }
 
     @FXML
