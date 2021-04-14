@@ -4,3 +4,6 @@
 /images/backgrounds/shrek_swamp.jpg
 /images/backgrounds/street.jpg
 /images/backgrounds/dust_2.jpg
+/images/backgrounds/dorado_1.png
+/images/backgrounds/dorado_2.png
+/images/backgrounds/venice.png
