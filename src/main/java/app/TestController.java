@@ -269,6 +269,7 @@ public class TestController {
         enableButtons();
         removeHairAA();
         clearBackground();
+        removeAAPixels();
     }
 
     @FXML
@@ -313,6 +314,7 @@ public class TestController {
         enableButtons();
         removeHairAA();
         clearBackground();
+        removeAAPixels();
     }
 
     private void enableButtons() { 
@@ -629,6 +631,7 @@ public class TestController {
 
     private void removeHairAA(){  //Method to remove hair anti-aliasing by calling the setMale and setFemale methode which handle the AA
         setMale();
+        removeAAPixels();
         setFemale();
     }
 
@@ -773,6 +776,40 @@ public class TestController {
     private void insertBackground(int selectedImage){
         comic.setBackground(new ImageView(backgroundImages.get(selectedImage)));
         background.setImage(comic.getBackground().getImage());
+    }
+
+    private void removeAAPixels() {
+        Image image = comic.getSelected().getImage();
+        int imageHeight = (int) image.getHeight();
+        int imageWidth = (int) image.getWidth();
+        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+
+        for (int i = 1; i < imageWidth - 1; i++) {
+            for (int j = 1; j < imageHeight - 1; j++) {
+                Color colour = PR.getColor(i, j);
+                if (!colour.equals(Color.web("000000")) && !compareColours(colour, comic.getSelected().getFemaleHairColour()) && !isBows(colour) && !compareColours(colour, comic.getSelected().getMaleHairColour()) && colour.getOpacity() > 0.02) {
+                    Color leftPixel = PR.getColor(i - 1, j);
+                    Color rightPixel = PR.getColor(i + 1, j);
+                    Color topPixel = PR.getColor(i, j + 1);
+                    Color bottomPixel = PR.getColor(i, j - 1);
+                    if (leftPixel.getOpacity() > 0.04 && leftPixel.getOpacity() < 0.06 || leftPixel.getOpacity() < 0.2) {
+                        colour = new Color(1, 1, 1, 0.05);
+                    } else if (rightPixel.getOpacity() > 0.04 && rightPixel.getOpacity() < 0.06 || rightPixel.getOpacity() < 0.2) {
+                        colour = new Color(1, 1, 1, 0.05);
+                    } else if (topPixel.getOpacity() > 0.04 && topPixel.getOpacity() < 0.06 || topPixel.getOpacity() < 0.2) {
+                        colour = new Color(1, 1, 1, 0.05);
+                    } else if (bottomPixel.getOpacity() > 0.04 && bottomPixel.getOpacity() < 0.06 || bottomPixel.getOpacity() < 0.2) {
+                        colour = new Color(1, 1, 1, 0.05);
+                    }
+                }
+                PW.setColor(i, j, colour);
+            }
+        }
+
+        comicSelection.setImage(wImage);
+        comic.getSelected().setImage(wImage);
     }
 
 }
