@@ -6,6 +6,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,18 +21,27 @@ public class TextGraphic {
   private int width;
   private int height;
   private int lines;
-//  private ImageView imageview;
+  //  private ImageView imageview;
   private Image image;
+  private String text;
 
   public TextGraphic(String text) {
     System.out.println("TextGraphic fired!");
 
-    String[] text_array = text.split("[\n]");
+    this.text = text;
+
+    if (text.length() > 16) {
+      this.text = addNewLines(text);
+    }
+
+    System.out.println("- text after conditional = " + this.text);
+
+    String[] text_array = this.text.split("[\\r?\\n]");
 
     g2d.setFont(font);
     fm = g2d.getFontMetrics();
     width = fm.stringWidth(getLongestLine(text_array));
-    lines = getLineCount(text);
+    lines = getLineCount(this.text);
     height = fm.getHeight() * (lines + 4);
     g2d.dispose();
     img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -55,6 +66,23 @@ public class TextGraphic {
     this.image = SwingFXUtils.toFXImage(img, null);
   }
 
+  private String addNewLines(String text) {
+    System.out.println("-> addNewLines");
+    String[] words = text.split(" ");
+    System.out.println(words.toString());
+    int length = words.length;
+    System.out.println("-> length = " + length);
+    int middle = (length / 2) + (length % 2);
+    System.out.println("-> middle = " + middle);
+    String firstLine = Stream.of(words).limit(middle).collect(Collectors.joining(" "));
+    System.out.println("-> firstLine = " + firstLine);
+    String secondLine = Stream.of(words).skip(middle).collect(Collectors.joining(" "));
+    System.out.println("-> secondLine = " + secondLine);
+    String multipleLines = firstLine + "\n" + secondLine;
+    System.out.println("-> multipleLines = " + multipleLines);
+    return multipleLines;
+  }
+
   private static String getLongestLine(String[] arr) {
     String max = arr[0];
     for (int i = 1; i < arr.length; i++) {
@@ -65,7 +93,7 @@ public class TextGraphic {
     return max;
   }
 
-  public static int getLineCount(String text) {
+  public int getLineCount(String text) {
     return text.split("[\n]").length;
   }
 
