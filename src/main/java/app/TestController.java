@@ -26,7 +26,8 @@ public class TestController {
     private int charactersMenuSelectionId;
     private List<Image> characterImages;
     private List<Image> backgroundImages;
-    
+
+
     private ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
     @FXML
@@ -40,12 +41,6 @@ public class TestController {
 
     @FXML
     Region selectedBorder = null; //Global variable to track which border is currently selected
-
-    @FXML
-    Button rotateCharacterButton;
-
-    @FXML
-    Button changeGenderButton;
 
     @FXML
     private ImageView bottomLeftIV;
@@ -90,6 +85,12 @@ public class TestController {
     private ImageView centreLeft;
 
     @FXML
+    private Button rotateCharacterButton;
+
+    @FXML
+    private Button changeGenderButton;
+
+    @FXML
     private Button speechBubbleButton;
 
     @FXML
@@ -100,6 +101,12 @@ public class TestController {
 
     @FXML
     private Button backgroundButton;
+
+    @FXML
+    private Button addCharacterLeftButton;
+
+    @FXML
+    private Button addCharacterRightButton;
 
     @FXML
     private TextField leftTextField;
@@ -120,6 +127,49 @@ public class TestController {
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
+    }
+
+    @FXML
+    private void enableToolTips(){ //Method to enable tool tips when mouse is hovered over the buttons
+        addCharacterLeftButton.setTooltip(
+                new Tooltip("Add a character to the left side")
+        );
+
+        addCharacterRightButton.setTooltip(
+                new Tooltip("Add a character to the right side")
+        );
+
+        speechBubbleButton.setTooltip(
+                new Tooltip("Add speech bubble")
+        );
+
+        thoughtBubbleButton.setTooltip(
+                new Tooltip("Add thought bubble")
+        );
+
+        rotateCharacterButton.setTooltip(
+                new Tooltip("Rotate character")
+        );
+
+        changeGenderButton.setTooltip(
+                new Tooltip("Change gender of character")
+        );
+
+        deleteCharacterButton.setTooltip(
+                new Tooltip("Delete character")
+        );
+
+        backgroundButton.setTooltip(
+                new Tooltip("Add background")
+        );
+
+        hairColourPicker.setTooltip(
+                new Tooltip("Change hair colour")
+        );
+
+        bodyColourPicker.setTooltip(
+                new Tooltip("Change body colour")
+        );
     }
 
   @FXML
@@ -167,6 +217,7 @@ public class TestController {
 
     @FXML
     private void addCharacterRight(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the right panel
+
 
         backgroundGridPane.setDisable(true);
         backgroundGridPane.setVisible(false);
