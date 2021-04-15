@@ -7,3 +7,4 @@
 /images/backgrounds/dorado_1.png
 /images/backgrounds/dorado_2.png
 /images/backgrounds/venice.png
+/images/backgrounds/titanic.png
