@@ -8,3 +8,7 @@
 /images/backgrounds/dorado_2.png
 /images/backgrounds/venice.png
 /images/backgrounds/titanic.png
+/images/backgrounds/gordon.png
+/images/backgrounds/holy_place.png
+/images/backgrounds/mordor.jpg
+/images/backgrounds/nyan.jpg
