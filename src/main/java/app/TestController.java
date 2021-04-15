@@ -784,14 +784,44 @@ public class TestController {
         PixelWriter PW = wImage.getPixelWriter();
         PixelReader PR = image.getPixelReader();
 
-        for (int i = 1; i < imageWidth - 1; i++) {
-            for (int j = 1; j < imageHeight - 1; j++) {
+        for (int i = 0; i < imageWidth; i++) {
+            for (int j = 0; j < imageHeight; j++) {
                 Color colour = PR.getColor(i, j);
                 if (!colour.equals(Color.web("000000")) && !compareColours(colour, comic.getSelected().getFemaleHairColour()) && !isBows(colour) && !compareColours(colour, comic.getSelected().getMaleHairColour()) && colour.getOpacity() > 0.02) {
-                    Color leftPixel = PR.getColor(i - 1, j);
-                    Color rightPixel = PR.getColor(i + 1, j);
-                    Color topPixel = PR.getColor(i, j + 1);
-                    Color bottomPixel = PR.getColor(i, j - 1);
+
+                    Color leftPixel;
+                    Color rightPixel;
+                    Color bottomPixel;
+                    Color topPixel;
+
+                    if(i == 0){
+                        leftPixel = PR.getColor(i, j);
+                    }
+                    else {
+                        leftPixel = PR.getColor(i - 1, j);
+                    }
+
+                    if(i == imageWidth-1){
+                        rightPixel = PR.getColor(i, j);
+                    }
+                    else{
+                        rightPixel = PR.getColor(i + 1, j);
+                    }
+
+                    if(j == 0){
+                        bottomPixel = PR.getColor(i, j);
+                    }
+                    else{
+                        bottomPixel = PR.getColor(i, j - 1);
+                    }
+
+                    if(j == imageHeight-1){
+                        topPixel = PR.getColor(i, j);
+                    }
+                    else {
+                        topPixel = PR.getColor(i, j + 1);
+                    }
+
                     if (leftPixel.getOpacity() > 0.04 && leftPixel.getOpacity() < 0.06 || leftPixel.getOpacity() < 0.2) {
                         colour = new Color(1, 1, 1, 0.05);
                     } else if (rightPixel.getOpacity() > 0.04 && rightPixel.getOpacity() < 0.06 || rightPixel.getOpacity() < 0.2) {
