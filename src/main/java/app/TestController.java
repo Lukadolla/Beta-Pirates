@@ -505,7 +505,7 @@ public class TestController {
                 }
                 else if(isBows(colour)){
                     colour = Color.web("feffff");
-                    colour = new Color(colour.getRed(), colour.getGreen(), colour.getBlue(), 0.01);
+                    colour = new Color(colour.getRed(), colour.getGreen(), colour.getBlue(), 0.02);
                 }
                 PW.setColor(i, j, colour);
             }
@@ -533,7 +533,7 @@ public class TestController {
                 else if(colour.getOpacity() == 0){
                     colour = comic.getSelected().getFemaleHairColour();
                 }
-                else if(colour.getOpacity() < 0.02){
+                else if(colour.getOpacity() < 0.03 && colour.getOpacity() > 0.015){
                     colour = Color.web("ecb4b5");
                 }
                 PW.setColor(i, j, colour);
@@ -718,7 +718,7 @@ public class TestController {
             for(int j = 0; j < imageHeight; j++){
                 Color colour = PR.getColor(i, j);
                 if(colour.equals(Color.web("ffffff"))){
-                    colour = new Color(1, 1, 1, 0.05);
+                    colour = new Color(1, 1, 1, 0.01);
                 }
                 PW.setColor(i, j, colour);
             }
