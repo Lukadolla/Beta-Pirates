@@ -316,8 +316,8 @@ public class TestController {
         removeAAPixels();
     }
 
-    private void switchButtonState(boolean desiredState){
-        if(desiredState){
+    private void switchButtonState(boolean areEnabled){
+        if(areEnabled){
             rotateCharacterButton.setDisable(false);
             changeGenderButton.setDisable(false);
             bodyColourPicker.setDisable(false);
