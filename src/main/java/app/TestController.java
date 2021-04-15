@@ -238,7 +238,9 @@ public class TestController {
     public void insertCharacter(int selectedImage) {
         if (comicCharacterSelection == bottomLeftIV) {
             insertLeftCharacter(selectedImage);
-        } else insertRightCharacter(selectedImage);
+        } else if (comicCharacterSelection == bottomRightIV) {
+            insertRightCharacter(selectedImage);
+        }
     }
 
     @FXML
@@ -319,7 +321,6 @@ public class TestController {
             speechBubbleButton.setDisable(false);
             thoughtBubbleButton.setDisable(false);
             deleteCharacterButton.setDisable(false);
-            backgroundButton.setDisable(false);
         }
 
         else{
@@ -330,7 +331,6 @@ public class TestController {
             speechBubbleButton.setDisable(true);
             thoughtBubbleButton.setDisable(true);
             deleteCharacterButton.setDisable(true);
-            backgroundButton.setDisable(true);
         }
     }
 
@@ -728,6 +728,7 @@ public class TestController {
 
         if(backgroundImages == null)
         {
+            midScrollPane.setVisible(true);
             loadBackgroundImages();
         }
 
