@@ -227,7 +227,7 @@ public class TestController {
         swapMiddlePanel(backgroundGridPane, charactersGridPane);
 
         if(bottomRightIV.getImage() == null){
-            disableButtons();
+            switchButtonState(false);
         }
         if(characterImages == null){
             midScrollPane.setVisible(true);
@@ -258,11 +258,11 @@ public class TestController {
             comicSelection = bottomRightIV;
             comicCharacterSelection = bottomRightIV;
             comic.setSelected(comic.getRightCharacter());
-            enableButtons();
+            switchButtonState(true);
             event.consume();
         });
 
-        enableButtons();
+        switchButtonState(true);
         removeHairAA();
         clearBackground();
         removeAAPixels();
@@ -274,7 +274,7 @@ public class TestController {
         swapMiddlePanel(backgroundGridPane, charactersGridPane);
 
         if(bottomLeftIV.getImage() == null){
-            disableButtons();
+            switchButtonState(false);
         }
 
         if(characterImages == null){
@@ -307,36 +307,39 @@ public class TestController {
             comicSelection = bottomLeftIV;
             comicCharacterSelection = bottomLeftIV;
             comic.setSelected(comic.getLeftCharacter());
-            enableButtons();
+            switchButtonState(true);
             event.consume();
         });
-        enableButtons();
+        switchButtonState(true);
         removeHairAA();
         clearBackground();
         removeAAPixels();
     }
 
-    private void enableButtons() { 
-        rotateCharacterButton.setDisable(false);
-        changeGenderButton.setDisable(false);
-        bodyColourPicker.setDisable(false);
-        hairColourPicker.setDisable(false);
-        speechBubbleButton.setDisable(false);
-        thoughtBubbleButton.setDisable(false);
-        deleteCharacterButton.setDisable(false);
-        backgroundButton.setDisable(false);
+    private void switchButtonState(boolean desiredState){
+        if(desiredState){
+            rotateCharacterButton.setDisable(false);
+            changeGenderButton.setDisable(false);
+            bodyColourPicker.setDisable(false);
+            hairColourPicker.setDisable(false);
+            speechBubbleButton.setDisable(false);
+            thoughtBubbleButton.setDisable(false);
+            deleteCharacterButton.setDisable(false);
+            backgroundButton.setDisable(false);
+        }
+
+        else{
+            rotateCharacterButton.setDisable(true);
+            changeGenderButton.setDisable(true);
+            bodyColourPicker.setDisable(true);
+            hairColourPicker.setDisable(true);
+            speechBubbleButton.setDisable(true);
+            thoughtBubbleButton.setDisable(true);
+            deleteCharacterButton.setDisable(true);
+            backgroundButton.setDisable(true);
+        }
     }
 
-    private void disableButtons() {
-        rotateCharacterButton.setDisable(true);
-        changeGenderButton.setDisable(true);
-        bodyColourPicker.setDisable(true);
-        hairColourPicker.setDisable(true);
-        speechBubbleButton.setDisable(true);
-        thoughtBubbleButton.setDisable(true);
-        deleteCharacterButton.setDisable(true);
-        backgroundButton.setDisable(true);
-    }
 
     @FXML
     public void rotate(){ //Method to rotate a character
@@ -694,7 +697,7 @@ public class TestController {
         comic.setSelected(null);
         comicSelection = null;
         comicCharacterSelection = null;
-        disableButtons();
+        switchButtonState(false);
     }
 
     @FXML
