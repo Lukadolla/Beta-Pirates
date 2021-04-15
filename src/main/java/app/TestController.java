@@ -224,11 +224,7 @@ public class TestController {
     @FXML
     private void addCharacterRight(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the right panel
 
-        backgroundGridPane.setDisable(true);
-        backgroundGridPane.setVisible(false);
-
-        charactersGridPane.setDisable(false);
-        charactersGridPane.setVisible(true);
+        swapMiddlePanel(backgroundGridPane, charactersGridPane);
 
         if(bottomRightIV.getImage() == null){
             disableButtons();
@@ -275,11 +271,7 @@ public class TestController {
     @FXML
     private void addCharacterLeft(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the left panel
 
-        backgroundGridPane.setDisable(true);
-        backgroundGridPane.setVisible(false);
-
-        charactersGridPane.setDisable(false);
-        charactersGridPane.setVisible(true);
+        swapMiddlePanel(backgroundGridPane, charactersGridPane);
 
         if(bottomLeftIV.getImage() == null){
             disableButtons();
@@ -294,8 +286,15 @@ public class TestController {
         setBorder(bottomLeftBorder);
         comicSelection = bottomLeftIV;
         comicCharacterSelection = bottomLeftIV;
-//        setBorder(characterMenuBorder);
         event.consume();
+    }
+
+    private void swapMiddlePanel(GridPane currentPane, GridPane newPane) {  //Method that hides the old content of the middle panel and displays new content
+        currentPane.setDisable(true);
+        currentPane.setVisible(false);
+
+        newPane.setDisable(false);
+        newPane.setVisible(true);
     }
 
     @FXML
@@ -728,11 +727,7 @@ public class TestController {
 
     @FXML
     private void changeBackground() throws IOException {
-        charactersGridPane.setDisable(true);
-        charactersGridPane.setVisible(false);
-
-        backgroundGridPane.setDisable(false);
-        backgroundGridPane.setVisible(true);
+        swapMiddlePanel(charactersGridPane, backgroundGridPane);
 
         if(backgroundImages == null)
         {
