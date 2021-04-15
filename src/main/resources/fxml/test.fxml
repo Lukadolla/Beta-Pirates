@@ -104,7 +104,7 @@
                                                             <Font name="Rockwell" size="19.0" />
                                                         </font></TextField>
 
-                                                    <HBox alignment="CENTER" prefHeight="41.6" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <HBox alignment="CENTER" prefHeight="41.6" prefWidth="100.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                         <children>
                                                             <ImageView fx:id="leftTextImageview" fitHeight="${leftTextAnchor.height}" fitWidth="${leftTextAnchor.width}" managed="false" pickOnBounds="true">
                                                             </ImageView>
