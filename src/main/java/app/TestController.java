@@ -24,32 +24,26 @@ public class TestController {
     private Comic comic = new Comic();
     private ImageLists imageLists = new ImageLists();
     private int charactersMenuSelectionId;
-    private List<Image> characterImages;
-    private List<Image> backgroundImages;
+    private List<Image> characterImages;  //List of character Images
+    private List<Image> backgroundImages;  //List of backgrounds
 
 
     private ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
     @FXML
-    private Region characterMenuBorder; //Global variable to track where the border is within the character menu
-
-    @FXML
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
 
     @FXML
-    private ImageView background;
+    private ImageView background;  //ImageView containing the background image
 
     @FXML
     Region selectedBorder = null; //Global variable to track which border is currently selected
 
     @FXML
-    private ImageView bottomLeftIV;
+    private ImageView bottomLeftIV; //Bottom left ImageView where the character is inserted
 
     @FXML
-    private ImageView bottomRightIV;
-
-    @FXML
-    private MenuItem helpMenu;
+    private ImageView bottomRightIV; //Bottom right ImageView where the character is inserted
 
     @FXML
     private Region bottomLeftBorder;
