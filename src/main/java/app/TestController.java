@@ -113,6 +113,9 @@ public class TestController {
 
     @FXML
     private ImageView rightTextImageview;
+    
+    @FXML
+    private HBox leftHbox;
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
         this.charactersMenuSelectionId = charactersMenuSelectionId;
@@ -222,7 +225,11 @@ public class TestController {
 
         if(bottomRightIV.getImage() == null){
             switchButtonState(false);
+         } else {
+        switchButtonState(true);
         }
+
+
         if(characterImages == null){
             midScrollPane.setVisible(true);
             loadCharacterImages();
@@ -271,6 +278,8 @@ public class TestController {
 
         if(bottomLeftIV.getImage() == null){
             switchButtonState(false);
+        } else {
+            switchButtonState(true);
         }
 
         if(characterImages == null){
@@ -696,8 +705,9 @@ public class TestController {
 
     @FXML
     private void insertTextGraphic(){
-        TextGraphic textGraphic = new TextGraphic("the quick brown fox \n jumped over the lazy hare");
+        TextGraphic textGraphic = new TextGraphic("the quick brown fox jumped over the lazy dog");
         leftTextImageview.setImage(textGraphic.getImage());
+        leftHbox.setVisible(true);
     }
 
     private void clearBackground() {
