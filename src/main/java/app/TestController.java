@@ -23,7 +23,6 @@ public class TestController {
 
     private Comic comic = new Comic();
     private ImageLists imageLists = new ImageLists();
-    private int charactersMenuSelectionId;
     private List<Image> characterImages;  //List of character Images
     private List<Image> backgroundImages;  //List of backgrounds
 
@@ -118,7 +117,6 @@ public class TestController {
     private HBox leftHbox;
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
-        this.charactersMenuSelectionId = charactersMenuSelectionId;
     }
 
     @FXML
