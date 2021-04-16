@@ -360,7 +360,8 @@ public class TestController {
 
     @FXML
     public Color getChosenBodyColour(){  //Method that fetches the body colour chosen by the user from the ColourPicker
-        return bodyColourPicker.getValue();
+        Color chosenColour = checkColour(bodyColourPicker.getValue());
+        return chosenColour;
     }
 
     @FXML
@@ -402,7 +403,8 @@ public class TestController {
 
     @FXML
     public Color getChosenHairColour(){ //Method that fetches the hair colour chosen by the user from the ColourPicker
-        return hairColourPicker.getValue();
+        Color chosenColour = checkColour(hairColourPicker.getValue());
+        return chosenColour;
     }
 
     @FXML
@@ -830,6 +832,17 @@ public class TestController {
 
         comicSelection.setImage(wImage);
         comic.getSelected().setImage(wImage);
+    }
+
+    public Color checkColour(Color colour){
+        if(colour.equals(Color.web("000000"))){
+            colour = Color.web("00000f");
+        }
+        else if(colour.equals(Color.web("ffffff"))){
+            colour = Color.web("fffff0");
+        }
+
+        return colour;
     }
 
 }
