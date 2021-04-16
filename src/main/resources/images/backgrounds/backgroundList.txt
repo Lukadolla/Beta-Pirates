@@ -7,6 +7,7 @@
 /images/backgrounds/dorado_1.png
 /images/backgrounds/dorado_2.png
 /images/backgrounds/venice.png
+/images/backgrounds/casting_couch.png
 /images/backgrounds/titanic.png
 /images/backgrounds/gordon.png
 /images/backgrounds/holy_place.png
