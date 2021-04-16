@@ -23,7 +23,6 @@ public class TestController {
 
     private Comic comic = new Comic();
     private ImageLists imageLists = new ImageLists();
-    private int charactersMenuSelectionId;
     private List<Image> characterImages;  //List of character Images
     private List<Image> backgroundImages;  //List of backgrounds
 
@@ -118,7 +117,6 @@ public class TestController {
     private HBox leftHbox;
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
-        this.charactersMenuSelectionId = charactersMenuSelectionId;
     }
 
     @FXML
@@ -322,25 +320,14 @@ public class TestController {
     }
 
     private void switchButtonState(boolean areEnabled){
-        if(areEnabled){
-            rotateCharacterButton.setDisable(false);
-            changeGenderButton.setDisable(false);
-            bodyColourPicker.setDisable(false);
-            hairColourPicker.setDisable(false);
-            speechBubbleButton.setDisable(false);
-            thoughtBubbleButton.setDisable(false);
-            deleteCharacterButton.setDisable(false);
-        }
 
-        else{
-            rotateCharacterButton.setDisable(true);
-            changeGenderButton.setDisable(true);
-            bodyColourPicker.setDisable(true);
-            hairColourPicker.setDisable(true);
-            speechBubbleButton.setDisable(true);
-            thoughtBubbleButton.setDisable(true);
-            deleteCharacterButton.setDisable(true);
-        }
+            rotateCharacterButton.setDisable(!areEnabled);
+            changeGenderButton.setDisable(!areEnabled);
+            bodyColourPicker.setDisable(!areEnabled);
+            hairColourPicker.setDisable(!areEnabled);
+            speechBubbleButton.setDisable(!areEnabled);
+            thoughtBubbleButton.setDisable(!areEnabled);
+            deleteCharacterButton.setDisable(!areEnabled);
     }
 
 
@@ -373,7 +360,8 @@ public class TestController {
 
     @FXML
     public Color getChosenBodyColour(){  //Method that fetches the body colour chosen by the user from the ColourPicker
-        return bodyColourPicker.getValue();
+        Color chosenColour = checkColour(bodyColourPicker.getValue());
+        return chosenColour;
     }
 
     @FXML
@@ -415,7 +403,8 @@ public class TestController {
 
     @FXML
     public Color getChosenHairColour(){ //Method that fetches the hair colour chosen by the user from the ColourPicker
-        return hairColourPicker.getValue();
+        Color chosenColour = checkColour(hairColourPicker.getValue());
+        return chosenColour;
     }
 
     @FXML
@@ -843,6 +832,17 @@ public class TestController {
 
         comicSelection.setImage(wImage);
         comic.getSelected().setImage(wImage);
+    }
+
+    public Color checkColour(Color colour){
+        if(colour.equals(Color.web("000000"))){
+            colour = Color.web("00000f");
+        }
+        else if(colour.equals(Color.web("ffffff"))){
+            colour = Color.web("fffff0");
+        }
+
+        return colour;
     }
 
 }
