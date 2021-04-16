@@ -322,25 +322,14 @@ public class TestController {
     }
 
     private void switchButtonState(boolean areEnabled){
-        if(areEnabled){
-            rotateCharacterButton.setDisable(false);
-            changeGenderButton.setDisable(false);
-            bodyColourPicker.setDisable(false);
-            hairColourPicker.setDisable(false);
-            speechBubbleButton.setDisable(false);
-            thoughtBubbleButton.setDisable(false);
-            deleteCharacterButton.setDisable(false);
-        }
 
-        else{
-            rotateCharacterButton.setDisable(true);
-            changeGenderButton.setDisable(true);
-            bodyColourPicker.setDisable(true);
-            hairColourPicker.setDisable(true);
-            speechBubbleButton.setDisable(true);
-            thoughtBubbleButton.setDisable(true);
-            deleteCharacterButton.setDisable(true);
-        }
+            rotateCharacterButton.setDisable(!areEnabled);
+            changeGenderButton.setDisable(!areEnabled);
+            bodyColourPicker.setDisable(!areEnabled);
+            hairColourPicker.setDisable(!areEnabled);
+            speechBubbleButton.setDisable(!areEnabled);
+            thoughtBubbleButton.setDisable(!areEnabled);
+            deleteCharacterButton.setDisable(!areEnabled);
     }
 
 
