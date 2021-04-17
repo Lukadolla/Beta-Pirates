@@ -9,7 +9,7 @@
    <children>
       <ScrollPane prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="578.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="544.0" prefWidth="578.0">
                <children>
                   <Text layoutX="1.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The hair and body colour can be changed by selecting a colour from the drop down colour palette." />
                   <Text layoutX="1.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Excelsior">
@@ -36,6 +36,8 @@
                   <Text layoutX="1.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the character's gender by pressing the M/F button." />
                   <Text layoutX="-1.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can delete an character in the comic using the delete button when the character is selected." />
                   <Text layoutX="1.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To add text to the characters, press the speech/thought balloon buttons and type the text into the speech area." wrappingWidth="575.1331787109376" />
+                  <Text layoutX="1.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can add a background to the comic by pressing the background button and selecting an image from the middle panel." wrappingWidth="575.1331787109376" />
+                  <Text layoutX="1.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To add narrative text above or below a comic, enter it into the designated text area in the panel." wrappingWidth="575.1331787109376" />
                </children>
             </AnchorPane>
         </content>
