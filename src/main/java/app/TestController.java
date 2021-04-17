@@ -699,7 +699,7 @@ public class TestController {
         leftHbox.setVisible(true);
     }
 
-    private void clearBackground() {
+    private void clearBackground() {  //Method that removes the white background in the character images and makes it transparent instead
         Image image = comic.getSelected().getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -722,7 +722,7 @@ public class TestController {
     }
 
     @FXML
-    private void changeBackground() throws IOException {
+    private void changeBackground() throws IOException {  //Method called when change background button is pressed
         swapMiddlePanel(charactersGridPane, backgroundGridPane);
 
         if(backgroundImages == null)
@@ -765,12 +765,12 @@ public class TestController {
         }
     }
 
-    private void insertBackground(int selectedImage){
+    private void insertBackground(int selectedImage){  //Method that places the background into the comic panel
         comic.setBackground(new ImageView(backgroundImages.get(selectedImage)));
         background.setImage(comic.getBackground().getImage());
     }
 
-    private void removeAAPixels() {
+    private void removeAAPixels() {  //Mthod to remove anti-aliasing pixels in the image
         Image image = comic.getSelected().getImage();
         int imageHeight = (int) image.getHeight();
         int imageWidth = (int) image.getWidth();
@@ -834,7 +834,7 @@ public class TestController {
         comic.getSelected().setImage(wImage);
     }
 
-    public Color checkColour(Color colour){
+    public Color checkColour(Color colour){  //Method to check if the chosen colour is pure white/black and if so, changing the tone slightly
         if(colour.equals(Color.web("000000"))){
             colour = Color.web("00000f");
         }

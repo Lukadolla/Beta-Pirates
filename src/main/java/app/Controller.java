@@ -23,34 +23,26 @@ public class Controller {
 
     private Comic comic = new Comic();
     private ImageLists imageLists = new ImageLists();
-    private int charactersMenuSelectionId;
-    private List<Image> characterImages;
+    private List<Image> characterImages;  //List of character Images
+    private List<Image> backgroundImages;  //List of backgrounds
+
 
     private ImageView comicCharacterSelection; // Track character selection independent of comic selection
-
-    @FXML
-    private Region characterMenuBorder; //Global variable to track where the border is within the character menu
 
     @FXML
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
 
     @FXML
+    private ImageView background;  //ImageView containing the background image
+
+    @FXML
     Region selectedBorder = null; //Global variable to track which border is currently selected
 
     @FXML
-    Button rotateCharacterButton;
+    private ImageView bottomLeftIV; //Bottom left ImageView where the character is inserted
 
     @FXML
-    Button changeGenderButton;
-
-    @FXML
-    private ImageView bottomLeftIV;
-
-    @FXML
-    private ImageView bottomRightIV;
-
-    @FXML
-    private MenuItem helpMenu;
+    private ImageView bottomRightIV; //Bottom right ImageView where the character is inserted
 
     @FXML
     private Region bottomLeftBorder;
@@ -68,6 +60,9 @@ public class Controller {
     private GridPane charactersGridPane;
 
     @FXML
+    private GridPane backgroundGridPane;
+
+    @FXML
     private ColorPicker bodyColourPicker;
 
     @FXML
@@ -83,6 +78,12 @@ public class Controller {
     private ImageView centreLeft;
 
     @FXML
+    private Button rotateCharacterButton;
+
+    @FXML
+    private Button changeGenderButton;
+
+    @FXML
     private Button speechBubbleButton;
 
     @FXML
@@ -92,18 +93,78 @@ public class Controller {
     private Button deleteCharacterButton;
 
     @FXML
+    private Button backgroundButton;
+
+    @FXML
+    private Button addCharacterLeftButton;
+
+    @FXML
+    private Button addCharacterRightButton;
+
+    @FXML
     private TextField leftTextField;
 
     @FXML
     private TextField rightTextField;
 
+    @FXML
+    private ImageView leftTextImageview;
+
+    @FXML
+    private ImageView rightTextImageview;
+
+    @FXML
+    private HBox leftHbox;
+
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
-        this.charactersMenuSelectionId = charactersMenuSelectionId;
     }
 
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
+    }
+
+    @FXML
+    private void enableToolTips(){ //Method to enable tool tips when mouse is hovered over the buttons
+        addCharacterLeftButton.setTooltip(
+                new Tooltip("Add a character to the left side")
+        );
+
+        addCharacterRightButton.setTooltip(
+                new Tooltip("Add a character to the right side")
+        );
+
+        speechBubbleButton.setTooltip(
+                new Tooltip("Add speech bubble")
+        );
+
+        thoughtBubbleButton.setTooltip(
+                new Tooltip("Add thought bubble")
+        );
+
+        rotateCharacterButton.setTooltip(
+                new Tooltip("Rotate character")
+        );
+
+        changeGenderButton.setTooltip(
+                new Tooltip("Change gender of character")
+        );
+
+        deleteCharacterButton.setTooltip(
+                new Tooltip("Delete character")
+        );
+
+        backgroundButton.setTooltip(
+                new Tooltip("Add background")
+        );
+
+        hairColourPicker.setTooltip(
+                new Tooltip("Change hair colour")
+        );
+
+        bodyColourPicker.setTooltip(
+                new Tooltip("Change body colour")
+        );
     }
 
     @FXML
@@ -129,19 +190,7 @@ public class Controller {
                 event.consume();
             });
 
-            HBox characterHbox = new HBox(imageview);
-            characterHbox.setId("characterHbox"+selectedImage);
-            characterHbox.setAlignment(CENTER);
-            AnchorPane characterAnchorPane = new AnchorPane(characterHbox, region);
-            AnchorPane.setLeftAnchor(region, 0.0);
-            AnchorPane.setRightAnchor(region, 0.0);
-            AnchorPane.setTopAnchor(region, 0.0);
-            AnchorPane.setBottomAnchor(region, 0.0);
-            imageview.fitWidthProperty().bind(characterAnchorPane.widthProperty());
-            imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
-            imageview.setManaged(false);
-            imageview.setPickOnBounds(true);
-            imageview.setVisible(true);
+            AnchorPane characterAnchorPane = setUpMiddlePanel(selectedImage, imageview, region, "characterHbox");
 
             charactersGridPane.add(characterAnchorPane,columnIndex,rowIndex);
 
@@ -149,15 +198,42 @@ public class Controller {
         }
     }
 
+    private AnchorPane setUpMiddlePanel(int selectedImage, ImageView imageview, Region region, String hBoxName) { //Method to set up structure of middle panel
+
+        HBox characterHbox = new HBox(imageview);
+        characterHbox.setId(hBoxName + selectedImage);
+        characterHbox.setAlignment(CENTER);
+        AnchorPane characterAnchorPane = new AnchorPane(characterHbox, region);
+        AnchorPane.setLeftAnchor(region, 0.0);
+        AnchorPane.setRightAnchor(region, 0.0);
+        AnchorPane.setTopAnchor(region, 0.0);
+        AnchorPane.setBottomAnchor(region, 0.0);
+        imageview.fitWidthProperty().bind(characterAnchorPane.widthProperty());
+        imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
+        imageview.setManaged(false);
+        imageview.setPickOnBounds(true);
+        imageview.setVisible(true);
+        return characterAnchorPane;
+    }
+
     @FXML
     private void addCharacterRight(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the right panel
+
+        swapMiddlePanel(backgroundGridPane, charactersGridPane);
+
         if(bottomRightIV.getImage() == null){
-            disableButtons();
+            switchButtonState(false);
+        } else {
+            switchButtonState(true);
         }
-        if (characterImages == null) {
+
+
+        if(characterImages == null){
             midScrollPane.setVisible(true);
             loadCharacterImages();
         }
+
+        midScrollPane.setVvalue(0);
         setBorder(bottomRightBorder);
         comicSelection = bottomRightIV;
         comicCharacterSelection = bottomRightIV;
@@ -167,7 +243,9 @@ public class Controller {
     public void insertCharacter(int selectedImage) {
         if (comicCharacterSelection == bottomLeftIV) {
             insertLeftCharacter(selectedImage);
-        } else insertRightCharacter(selectedImage);
+        } else if (comicCharacterSelection == bottomRightIV) {
+            insertRightCharacter(selectedImage);
+        }
     }
 
     @FXML
@@ -181,28 +259,45 @@ public class Controller {
             comicSelection = bottomRightIV;
             comicCharacterSelection = bottomRightIV;
             comic.setSelected(comic.getRightCharacter());
-            enableButtons();
+            switchButtonState(true);
             event.consume();
         });
 
-        enableButtons();
+        switchButtonState(true);
         removeHairAA();
+        clearBackground();
+        removeAAPixels();
     }
 
     @FXML
     private void addCharacterLeft(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the left panel
+
+        swapMiddlePanel(backgroundGridPane, charactersGridPane);
+
         if(bottomLeftIV.getImage() == null){
-            disableButtons();
+            switchButtonState(false);
+        } else {
+            switchButtonState(true);
         }
-        if (characterImages == null) {
+
+        if(characterImages == null){
             midScrollPane.setVisible(true);
             loadCharacterImages();
         }
+
+        midScrollPane.setVvalue(0);
         setBorder(bottomLeftBorder);
         comicSelection = bottomLeftIV;
         comicCharacterSelection = bottomLeftIV;
-//        setBorder(characterMenuBorder);
         event.consume();
+    }
+
+    private void swapMiddlePanel(GridPane currentPane, GridPane newPane) {  //Method that hides the old content of the middle panel and displays new content
+        currentPane.setDisable(true);
+        currentPane.setVisible(false);
+
+        newPane.setDisable(false);
+        newPane.setVisible(true);
     }
 
     @FXML
@@ -215,32 +310,26 @@ public class Controller {
             comicSelection = bottomLeftIV;
             comicCharacterSelection = bottomLeftIV;
             comic.setSelected(comic.getLeftCharacter());
-            enableButtons();
+            switchButtonState(true);
             event.consume();
         });
-        enableButtons();
+        switchButtonState(true);
         removeHairAA();
+        clearBackground();
+        removeAAPixels();
     }
 
-    private void enableButtons() {
-        rotateCharacterButton.setDisable(false);
-        changeGenderButton.setDisable(false);
-        bodyColourPicker.setDisable(false);
-        hairColourPicker.setDisable(false);
-        speechBubbleButton.setDisable(false);
-        thoughtBubbleButton.setDisable(false);
-        deleteCharacterButton.setDisable(false);
+    private void switchButtonState(boolean areEnabled){
+
+        rotateCharacterButton.setDisable(!areEnabled);
+        changeGenderButton.setDisable(!areEnabled);
+        bodyColourPicker.setDisable(!areEnabled);
+        hairColourPicker.setDisable(!areEnabled);
+        speechBubbleButton.setDisable(!areEnabled);
+        thoughtBubbleButton.setDisable(!areEnabled);
+        deleteCharacterButton.setDisable(!areEnabled);
     }
 
-    private void disableButtons() {
-        rotateCharacterButton.setDisable(true);
-        changeGenderButton.setDisable(true);
-        bodyColourPicker.setDisable(true);
-        hairColourPicker.setDisable(true);
-        speechBubbleButton.setDisable(true);
-        thoughtBubbleButton.setDisable(true);
-        deleteCharacterButton.setDisable(true);
-    }
 
     @FXML
     public void rotate(){ //Method to rotate a character
@@ -271,7 +360,8 @@ public class Controller {
 
     @FXML
     public Color getChosenBodyColour(){  //Method that fetches the body colour chosen by the user from the ColourPicker
-        return bodyColourPicker.getValue();
+        Color chosenColour = checkColour(bodyColourPicker.getValue());
+        return chosenColour;
     }
 
     @FXML
@@ -313,7 +403,8 @@ public class Controller {
 
     @FXML
     public Color getChosenHairColour(){ //Method that fetches the hair colour chosen by the user from the ColourPicker
-        return hairColourPicker.getValue();
+        Color chosenColour = checkColour(hairColourPicker.getValue());
+        return chosenColour;
     }
 
     @FXML
@@ -402,9 +493,11 @@ public class Controller {
                 }
                 else if(isHair(colour)){
                     colour = Color.web("fffffe");
+                    colour = new Color(colour.getRed(), colour.getGreen(), colour.getBlue(), 0);
                 }
                 else if(isBows(colour)){
                     colour = Color.web("feffff");
+                    colour = new Color(colour.getRed(), colour.getGreen(), colour.getBlue(), 0.02);
                 }
                 PW.setColor(i, j, colour);
             }
@@ -429,10 +522,10 @@ public class Controller {
                 if(compareColours(colour, comic.getSelected().getLipColour())){
                     colour = Color.web("ff0000");
                 }
-                else if(colour.equals(Color.web("fffffe"))){
+                else if(colour.getOpacity() == 0){
                     colour = comic.getSelected().getFemaleHairColour();
                 }
-                else if(colour.equals(Color.web("feffff"))){
+                else if(colour.getOpacity() < 0.03 && colour.getOpacity() > 0.015){
                     colour = Color.web("ecb4b5");
                 }
                 PW.setColor(i, j, colour);
@@ -532,6 +625,7 @@ public class Controller {
 
     private void removeHairAA(){  //Method to remove hair anti-aliasing by calling the setMale and setFemale methode which handle the AA
         setMale();
+        removeAAPixels();
         setFemale();
     }
 
@@ -595,6 +689,160 @@ public class Controller {
         comic.setSelected(null);
         comicSelection = null;
         comicCharacterSelection = null;
-        disableButtons();
+        switchButtonState(false);
     }
+
+    @FXML
+    private void insertTextGraphic(){
+        TextGraphic textGraphic = new TextGraphic("the quick brown fox jumped over the lazy dog");
+        leftTextImageview.setImage(textGraphic.getImage());
+        leftHbox.setVisible(true);
+    }
+
+    private void clearBackground() {  //Method that removes the white background in the character images and makes it transparent instead
+        Image image = comic.getSelected().getImage();
+        int imageHeight = (int)image.getHeight();
+        int imageWidth = (int)image.getWidth();
+        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+
+        for(int i = 0; i < imageWidth; i++){
+            for(int j = 0; j < imageHeight; j++){
+                Color colour = PR.getColor(i, j);
+                if(colour.equals(Color.web("ffffff"))){
+                    colour = new Color(1, 1, 1, 0.01);
+                }
+                PW.setColor(i, j, colour);
+            }
+        }
+
+        comicSelection.setImage(wImage);
+        comic.getSelected().setImage(wImage);
+    }
+
+    @FXML
+    private void changeBackground() throws IOException {  //Method called when change background button is pressed
+        swapMiddlePanel(charactersGridPane, backgroundGridPane);
+
+        if(backgroundImages == null)
+        {
+            midScrollPane.setVisible(true);
+            loadBackgroundImages();
+        }
+
+        midScrollPane.setVvalue(0);
+    }
+
+    @FXML
+    private void loadBackgroundImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
+
+        imageLists.loadBackgroundImagesList();
+
+        this.backgroundImages = imageLists.getBackgroundImages();
+
+        int columnIndex = 0;
+
+        for (int selectedImage = 0; selectedImage < backgroundImages.size(); selectedImage++) {
+            int rowIndex = (selectedImage/2);
+            ImageView imageview = new ImageView(backgroundImages.get(selectedImage));
+            int finalSelectedImage = selectedImage;
+
+            Region region = new Region();
+            region.setVisible(true);
+            region.setStyle("-fx-border-color: #bbc4c4");
+
+            region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                insertBackground(finalSelectedImage);
+                event.consume();
+            });
+
+            AnchorPane characterAnchorPane = setUpMiddlePanel(selectedImage, imageview, region, "backgroundHbox");
+
+            backgroundGridPane.add(characterAnchorPane,columnIndex,rowIndex);
+
+            columnIndex = (columnIndex == 0) ? 1 : 0;
+        }
+    }
+
+    private void insertBackground(int selectedImage){  //Method that places the background into the comic panel
+        comic.setBackground(new ImageView(backgroundImages.get(selectedImage)));
+        background.setImage(comic.getBackground().getImage());
+    }
+
+    private void removeAAPixels() {  //Mthod to remove anti-aliasing pixels in the image
+        Image image = comic.getSelected().getImage();
+        int imageHeight = (int) image.getHeight();
+        int imageWidth = (int) image.getWidth();
+        WritableImage wImage = new WritableImage(imageWidth, imageHeight);
+        PixelWriter PW = wImage.getPixelWriter();
+        PixelReader PR = image.getPixelReader();
+
+        for (int i = 0; i < imageWidth; i++) {
+            for (int j = 0; j < imageHeight; j++) {
+                Color colour = PR.getColor(i, j);
+                if (!colour.equals(Color.web("000000")) && !compareColours(colour, comic.getSelected().getFemaleHairColour()) && !isBows(colour) && !compareColours(colour, comic.getSelected().getMaleHairColour()) && colour.getOpacity() > 0.02) {
+
+                    Color leftPixel;
+                    Color rightPixel;
+                    Color bottomPixel;
+                    Color topPixel;
+
+                    if(i == 0){
+                        leftPixel = PR.getColor(i, j);
+                    }
+                    else {
+                        leftPixel = PR.getColor(i - 1, j);
+                    }
+
+                    if(i == imageWidth-1){
+                        rightPixel = PR.getColor(i, j);
+                    }
+                    else{
+                        rightPixel = PR.getColor(i + 1, j);
+                    }
+
+                    if(j == 0){
+                        bottomPixel = PR.getColor(i, j);
+                    }
+                    else{
+                        bottomPixel = PR.getColor(i, j - 1);
+                    }
+
+                    if(j == imageHeight-1){
+                        topPixel = PR.getColor(i, j);
+                    }
+                    else {
+                        topPixel = PR.getColor(i, j + 1);
+                    }
+
+                    if (leftPixel.getOpacity() > 0.04 && leftPixel.getOpacity() < 0.06 || leftPixel.getOpacity() < 0.2) {
+                        colour = new Color(1, 1, 1, 0.05);
+                    } else if (rightPixel.getOpacity() > 0.04 && rightPixel.getOpacity() < 0.06 || rightPixel.getOpacity() < 0.2) {
+                        colour = new Color(1, 1, 1, 0.05);
+                    } else if (topPixel.getOpacity() > 0.04 && topPixel.getOpacity() < 0.06 || topPixel.getOpacity() < 0.2) {
+                        colour = new Color(1, 1, 1, 0.05);
+                    } else if (bottomPixel.getOpacity() > 0.04 && bottomPixel.getOpacity() < 0.06 || bottomPixel.getOpacity() < 0.2) {
+                        colour = new Color(1, 1, 1, 0.05);
+                    }
+                }
+                PW.setColor(i, j, colour);
+            }
+        }
+
+        comicSelection.setImage(wImage);
+        comic.getSelected().setImage(wImage);
+    }
+
+    public Color checkColour(Color colour){  //Method to check if the chosen colour is pure white/black and if so, changing the tone slightly
+        if(colour.equals(Color.web("000000"))){
+            colour = Color.web("00000f");
+        }
+        else if(colour.equals(Color.web("ffffff"))){
+            colour = Color.web("fffff0");
+        }
+
+        return colour;
+    }
+
 }
