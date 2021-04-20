@@ -655,7 +655,7 @@ public class TestController {
     @FXML
     private void addThoughtBubble(){ //Method called when user presses the thought bubble button
 
-        URL url = getClass().getResource("/images/buttons/thought.png");
+        URL url = getClass().getResource("/images/buttons/thought.PNG");
         String currentPath = url.toString();
 
         ImageView imageView = new ImageView(currentPath);
