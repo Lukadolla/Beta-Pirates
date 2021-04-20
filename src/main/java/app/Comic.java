@@ -1,5 +1,6 @@
 package app;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Comic {
@@ -14,6 +15,7 @@ public class Comic {
   private ImageView centreLeft;
   private ImageView centreRight;
   private ImageView background;
+  private Image comicImage;
 
 
   // Add lines to bubbles
@@ -99,5 +101,13 @@ public class Comic {
 
   public void setBackground(ImageView background) {
     this.background = background;
+  }
+
+  public Image getComicImage() {
+    return comicImage;
+  }
+
+  public void setComicImage(Image comicImage) {
+    this.comicImage = comicImage;
   }
 }

@@ -1,6 +1,7 @@
 package app;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -25,6 +26,8 @@ public class TestController {
     private ImageLists imageLists = new ImageLists();
     private List<Image> characterImages;  //List of character Images
     private List<Image> backgroundImages;  //List of backgrounds
+
+    private LinkedList<Comic> comicPanelList = new LinkedList<>();
 
 
     private ImageView comicCharacterSelection; // Track character selection independent of comic selection
@@ -52,6 +55,9 @@ public class TestController {
 
     @FXML
     private AnchorPane characterMenuAnchorPane;
+
+    @FXML
+    private AnchorPane backgroundImageScale;
 
     @FXML
     private GridPane buttonsGridPane;
@@ -112,9 +118,15 @@ public class TestController {
 
     @FXML
     private ImageView rightTextImageview;
+
+    @FXML
+    private ImageView PanelIV1;
     
     @FXML
     private HBox leftHbox;
+
+    @FXML
+    private MenuItem savePanel;
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
     }
@@ -842,6 +854,29 @@ public class TestController {
         }
 
         return colour;
+    }
+
+
+    @FXML
+    private void addToPanelList(){  //Method called when the save panel button is pressed
+
+        comic.setComicImage(getPanelAsImage());
+        selectedBorder.setVisible(true);
+        PanelIV1.setImage(comic.getComicImage());
+
+        comicPanelList.add(comic);
+    }
+
+    private Image getPanelAsImage(){
+        selectedBorder.setVisible(false);
+        return backgroundImageScale.snapshot(null, null);
+    }
+
+    private void loadBottomPanel(){
+
+        for(int panelImage = 0; panelImage < comicPanelList.size(); panelImage++){
+
+        }
     }
 
 }
