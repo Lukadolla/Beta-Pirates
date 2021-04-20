@@ -96,7 +96,7 @@ public class TestController {
     private Button backgroundButton;
 
     @FXML
-    private Button addCharacterLeftButton;
+    public Button addCharacterLeftButton;
 
     @FXML
     private Button addCharacterRightButton;
@@ -292,7 +292,7 @@ public class TestController {
         event.consume();
     }
 
-    private void swapMiddlePanel(GridPane currentPane, GridPane newPane) {  //Method that hides the old content of the middle panel and displays new content
+    void swapMiddlePanel(GridPane currentPane, GridPane newPane) {  //Method that hides the old content of the middle panel and displays new content
         currentPane.setDisable(true);
         currentPane.setVisible(false);
 
@@ -320,7 +320,6 @@ public class TestController {
     }
 
     private void switchButtonState(boolean areEnabled){
-
             rotateCharacterButton.setDisable(!areEnabled);
             changeGenderButton.setDisable(!areEnabled);
             bodyColourPicker.setDisable(!areEnabled);
