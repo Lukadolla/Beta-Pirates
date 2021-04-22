@@ -27,7 +27,7 @@ public class TestController {
     private List<Image> characterImages;  //List of character Images
     private List<Image> backgroundImages;  //List of backgrounds
 
-    private LinkedList<Comic> comicPanelList = new LinkedList<>();
+    private final LinkedList<Comic> comicPanelList = new LinkedList<>();
 
 
     private ImageView comicCharacterSelection; // Track character selection independent of comic selection
@@ -147,7 +147,6 @@ public class TestController {
     private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
         //scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 4);
-
     }
 
     @FXML
@@ -916,30 +915,32 @@ public class TestController {
             }
         }*/
 
-        ImageView image = new ImageView(comicPanelList.getLast().getComicImage());
+        for(int panelImage = 0; panelImage <= comicPanelList.size(); panelImage++)
+        {
+            ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
 
-        /*if(comicPanelList.size() >= 1){
-            comicImageGridPane.addColumn(comicPanelList.size());
-        }*/
+            HBox comicImageHbox = new HBox(image);
+            comicImageHbox.setId("comicImageHbox" + comicPanelList.size());
+            comicImageHbox.setAlignment(CENTER);
+            AnchorPane bottomPanelAnchorPane = new AnchorPane(comicImageHbox);
 
-        HBox comicImageHbox = new HBox(image);
-        comicImageHbox.setId("comicImageHbox" + comicPanelList.size());
-        comicImageHbox.setAlignment(CENTER);
-        AnchorPane bottomPanelAnchorPane = new AnchorPane(comicImageHbox);
+            image.fitWidthProperty().bind(bottomPanelAnchorPane.widthProperty());
+            image.fitHeightProperty().bind(bottomPanelAnchorPane.heightProperty());
+            image.setManaged(false);
+            image.setPickOnBounds(true);
+            image.setVisible(true);
+            image.setPreserveRatio(false);
 
-        image.fitWidthProperty().bind(bottomPanelAnchorPane.widthProperty());
-        image.fitHeightProperty().bind(bottomPanelAnchorPane.heightProperty());
-        image.setManaged(false);
-        image.setPickOnBounds(true);
-        image.setVisible(true);
-        image.setPreserveRatio(true);
+            //HBox test = new HBox(bottomPanelAnchorPane);
 
-        HBox test = new HBox(bottomPanelAnchorPane);
+            // scrollPaneAnchorPane.getChildren().add(bottomPanelAnchorPane);
 
-        testHBox.getChildren().add(test);
-        testHBox2.getChildren().add(test);
+        /*testHBox.getChildren().add(test);
+        testHBox2.getChildren().add(test);*/
 
-        //comicImageGridPane.add(bottomPanelAnchorPane,comicPanelList.size()-1, 0);
+            comicImageGridPane.add(bottomPanelAnchorPane, comicPanelList.size()-1, 0);
+
+        }
 
     }
 
