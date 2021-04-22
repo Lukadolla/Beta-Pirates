@@ -23,9 +23,6 @@ import static javafx.geometry.Pos.CENTER;
 public class TestController {
 
     private Comic comic = new Comic();
-    private ImageLists imageLists = new ImageLists();
-    private List<Image> characterImages;  //List of character Images
-    private List<Image> backgroundImages;  //List of backgrounds
 
     private LinkedList<Comic> comicPanelList = new LinkedList<>();
 
@@ -66,13 +63,13 @@ public class TestController {
     private GridPane buttonsGridPane;
 
     @FXML
-    private GridPane charactersGridPane;
+    protected GridPane charactersGridPane;
 
     @FXML
     private GridPane comicImageGridPane;
 
     @FXML
-    private GridPane backgroundGridPane;
+    protected GridPane backgroundGridPane;
 
     @FXML
     private ColorPicker bodyColourPicker;
@@ -81,7 +78,7 @@ public class TestController {
     private ColorPicker hairColourPicker;
 
     @FXML
-    private ScrollPane midScrollPane;
+    protected ScrollPane midScrollPane;
 
     @FXML
     private ImageView centreRight;
@@ -140,6 +137,8 @@ public class TestController {
     @FXML
     private HBox testHBox2;
 
+    private MidScrollPaneController midScrollPaneController = new MidScrollPaneController(this);
+
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
     }
 
@@ -193,80 +192,24 @@ public class TestController {
         );
     }
 
-  @FXML
-    private void loadCharacterImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
-
-        imageLists.loadCharacterImagesList();
-
-        this.characterImages = imageLists.getCharacterImages();
-
-        int columnIndex = 0;
-
-        for (int selectedImage = 0; selectedImage < characterImages.size(); selectedImage++) {
-            int rowIndex = (selectedImage/2);
-            ImageView imageview = new ImageView(characterImages.get(selectedImage));
-            int finalSelectedImage = selectedImage;
-
-            Region region = new Region();
-            region.setVisible(true);
-            region.setStyle("-fx-border-color: #bbc4c4");
-            region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                setCharactersMenuSelectionId(finalSelectedImage);
-                insertCharacter(finalSelectedImage);
-                event.consume();
-            });
-
-            AnchorPane characterAnchorPane = setUpMiddlePanel(selectedImage, imageview, region, "characterHbox");
-
-            charactersGridPane.add(characterAnchorPane,columnIndex,rowIndex);
-
-            columnIndex = (columnIndex == 0) ? 1 : 0;
-        }
-    }
-
-    private AnchorPane setUpMiddlePanel(int selectedImage, ImageView imageview, Region region, String hBoxName) { //Method to set up structure of middle panel
-
-        HBox characterHbox = new HBox(imageview);
-        characterHbox.setId(hBoxName + selectedImage);
-        characterHbox.setAlignment(CENTER);
-        AnchorPane characterAnchorPane = new AnchorPane(characterHbox, region);
-        AnchorPane.setLeftAnchor(region, 0.0);
-        AnchorPane.setRightAnchor(region, 0.0);
-        AnchorPane.setTopAnchor(region, 0.0);
-        AnchorPane.setBottomAnchor(region, 0.0);
-        imageview.fitWidthProperty().bind(characterAnchorPane.widthProperty());
-        imageview.fitHeightProperty().bind(characterAnchorPane.heightProperty());
-        imageview.setManaged(false);
-        imageview.setPickOnBounds(true);
-        imageview.setVisible(true);
-        return characterAnchorPane;
-    }
-
     @FXML
     private void addCharacterRight(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the right panel
 
-        swapMiddlePanel(backgroundGridPane, charactersGridPane);
+        midScrollPaneController.addCharacterPane();
 
         if(bottomRightIV.getImage() == null){
             switchButtonState(false);
-         } else {
-        switchButtonState(true);
+        } else {
+            switchButtonState(true);
         }
 
-
-        if(characterImages == null){
-            midScrollPane.setVisible(true);
-            loadCharacterImages();
-        }
-
-        midScrollPane.setVvalue(0);
         setBorder(bottomRightBorder);
         comicSelection = bottomRightIV;
         comicCharacterSelection = bottomRightIV;
         event.consume();
     }
 
-    public void insertCharacter(int selectedImage) {
+    public void insertCharacter(Image selectedImage) {
         if (comicCharacterSelection == bottomLeftIV) {
             insertLeftCharacter(selectedImage);
         } else if (comicCharacterSelection == bottomRightIV) {
@@ -275,8 +218,8 @@ public class TestController {
     }
 
     @FXML
-    public void insertRightCharacter(int selectedImage){  //Method that inserts a character into the right panel and adds character data to the Comic class
-        comic.setRightCharacter(new Character(characterImages.get(selectedImage), 1));
+    public void insertRightCharacter(Image selectedImage){  //Method that inserts a character into the right panel and adds character data to the Comic class
+        comic.setRightCharacter(new Character(selectedImage, 1));
         comic.setSelected(comic.getRightCharacter());
         bottomRightIV.setImage(comic.getRightCharacter().getImage());
         bottomRightIV.setScaleX(-1);
@@ -298,7 +241,7 @@ public class TestController {
     @FXML
     private void addCharacterLeft(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the left panel
 
-        swapMiddlePanel(backgroundGridPane, charactersGridPane);
+        midScrollPaneController.addCharacterPane();
 
         if(bottomLeftIV.getImage() == null){
             switchButtonState(false);
@@ -306,29 +249,15 @@ public class TestController {
             switchButtonState(true);
         }
 
-        if(characterImages == null){
-            midScrollPane.setVisible(true);
-            loadCharacterImages();
-        }
-
-        midScrollPane.setVvalue(0);
         setBorder(bottomLeftBorder);
         comicSelection = bottomLeftIV;
         comicCharacterSelection = bottomLeftIV;
         event.consume();
     }
 
-    void swapMiddlePanel(GridPane currentPane, GridPane newPane) {  //Method that hides the old content of the middle panel and displays new content
-        currentPane.setDisable(true);
-        currentPane.setVisible(false);
-
-        newPane.setDisable(false);
-        newPane.setVisible(true);
-    }
-
     @FXML
-    public void insertLeftCharacter(int selectedImage){ //Method that inserts a character into the left panel and adds character data to the Comic class
-        comic.setLeftCharacter(new Character(characterImages.get(selectedImage), 1));
+    public void insertLeftCharacter(Image selectedImage){ //Method that inserts a character into the left panel and adds character data to the Comic class
+        comic.setLeftCharacter(new Character(selectedImage, 1));
         comic.setSelected(comic.getLeftCharacter());
         bottomLeftIV.setImage(comic.getLeftCharacter().getImage());
         bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -346,13 +275,13 @@ public class TestController {
     }
 
     private void switchButtonState(boolean areEnabled){
-            rotateCharacterButton.setDisable(!areEnabled);
-            changeGenderButton.setDisable(!areEnabled);
-            bodyColourPicker.setDisable(!areEnabled);
-            hairColourPicker.setDisable(!areEnabled);
-            speechBubbleButton.setDisable(!areEnabled);
-            thoughtBubbleButton.setDisable(!areEnabled);
-            deleteCharacterButton.setDisable(!areEnabled);
+        rotateCharacterButton.setDisable(!areEnabled);
+        changeGenderButton.setDisable(!areEnabled);
+        bodyColourPicker.setDisable(!areEnabled);
+        hairColourPicker.setDisable(!areEnabled);
+        speechBubbleButton.setDisable(!areEnabled);
+        thoughtBubbleButton.setDisable(!areEnabled);
+        deleteCharacterButton.setDisable(!areEnabled);
     }
 
 
@@ -562,7 +491,7 @@ public class TestController {
         comic.getSelected().setImage(wImage);
     }
 
-    private boolean isLips(Color color){ //Method to check if the colour passed and colours close to it are the lip colour  
+    private boolean isLips(Color color){ //Method to check if the colour passed and colours close to it are the lip colour
 
         boolean isItLips = false;
 
@@ -679,18 +608,31 @@ public class TestController {
 
     private void insertBubble(ImageView imageView) { //Method that inserts the thought/speech bubble into the correct section of the comic
         if (comic.getSelected().equals(comic.getLeftCharacter())) {
-            comic.setCentreLeft(imageView);
-            comic.getCentreLeft().setScaleX(-1);
-            centreLeft.setImage(comic.getCentreLeft().getImage());
-            centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
-            leftTextField.setDisable(false);
-            leftTextField.setVisible(true);
+            if(comic.getCentreLeft()!=null && centreLeft.getImage().equals(imageView.getImage())){
+                comic.setCentreLeft(null);
+                centreLeft.setImage(null);
+                leftTextField.clear();
+                leftTextField.setVisible(false);
+            } else {
+                comic.setCentreLeft(imageView);
+                comic.getCentreLeft().setScaleX(-1);
+                centreLeft.setImage(comic.getCentreLeft().getImage());
+                centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
+                leftTextField.setDisable(false);
+                leftTextField.setVisible(true);
+            }
         }
         else{
-            comic.setCentreRight(imageView);
-            centreRight.setImage(comic.getCentreRight().getImage());
-            rightTextField.setDisable(false);
-            rightTextField.setVisible(true);
+            if(comic.getCentreRight()!=null && comic.getCentreRight().equals(imageView)){
+                comic.setCentreRight(null);
+                rightTextField.clear();
+                rightTextField.setVisible(false);
+            } else {
+                comic.setCentreRight(imageView);
+                centreRight.setImage(comic.getCentreRight().getImage());
+                rightTextField.setDisable(false);
+                rightTextField.setVisible(true);
+            }
         }
     }
 
@@ -748,50 +690,12 @@ public class TestController {
 
     @FXML
     private void changeBackground() throws IOException {  //Method called when change background button is pressed
-        swapMiddlePanel(charactersGridPane, backgroundGridPane);
-
-        if(backgroundImages == null)
-        {
-            midScrollPane.setVisible(true);
-            loadBackgroundImages();
-        }
-
-        midScrollPane.setVvalue(0);
+        midScrollPaneController.addBackgroundPane();
     }
 
-    @FXML
-    private void loadBackgroundImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
-
-        imageLists.loadBackgroundImagesList();
-
-        this.backgroundImages = imageLists.getBackgroundImages();
-
-        int columnIndex = 0;
-
-        for (int selectedImage = 0; selectedImage < backgroundImages.size(); selectedImage++) {
-            int rowIndex = (selectedImage/2);
-            ImageView imageview = new ImageView(backgroundImages.get(selectedImage));
-            int finalSelectedImage = selectedImage;
-
-            Region region = new Region();
-            region.setVisible(true);
-            region.setStyle("-fx-border-color: #bbc4c4");
-
-           region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                insertBackground(finalSelectedImage);
-                event.consume();
-            });
-
-            AnchorPane characterAnchorPane = setUpMiddlePanel(selectedImage, imageview, region, "backgroundHbox");
-
-            backgroundGridPane.add(characterAnchorPane,columnIndex,rowIndex);
-
-            columnIndex = (columnIndex == 0) ? 1 : 0;
-        }
-    }
-
-    private void insertBackground(int selectedImage){  //Method that places the background into the comic panel
-        comic.setBackground(new ImageView(backgroundImages.get(selectedImage)));
+    protected void insertBackground(Image selectedImage){  //Method that places the background into the comic panel
+        System.out.println("hello");
+        comic.setBackground(new ImageView(selectedImage));
         background.setImage(comic.getBackground().getImage());
     }
 
