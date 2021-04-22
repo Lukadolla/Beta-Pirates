@@ -137,6 +137,9 @@ public class TestController {
     @FXML
     private HBox testHBox2;
 
+    @FXML
+    private GridPane bottomGridPane;
+
     private MidScrollPaneController midScrollPaneController = new MidScrollPaneController(this);
 
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
@@ -145,7 +148,7 @@ public class TestController {
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
-        //scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 4);
+        scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 30);
 
     }
 
@@ -608,31 +611,18 @@ public class TestController {
 
     private void insertBubble(ImageView imageView) { //Method that inserts the thought/speech bubble into the correct section of the comic
         if (comic.getSelected().equals(comic.getLeftCharacter())) {
-            if(comic.getCentreLeft()!=null && centreLeft.getImage().equals(imageView.getImage())){
-                comic.setCentreLeft(null);
-                centreLeft.setImage(null);
-                leftTextField.clear();
-                leftTextField.setVisible(false);
-            } else {
-                comic.setCentreLeft(imageView);
-                comic.getCentreLeft().setScaleX(-1);
-                centreLeft.setImage(comic.getCentreLeft().getImage());
-                centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
-                leftTextField.setDisable(false);
-                leftTextField.setVisible(true);
-            }
+            comic.setCentreLeft(imageView);
+            comic.getCentreLeft().setScaleX(-1);
+            centreLeft.setImage(comic.getCentreLeft().getImage());
+            centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
+            leftTextField.setDisable(false);
+            leftTextField.setVisible(true);
         }
         else{
-            if(comic.getCentreRight()!=null && comic.getCentreRight().equals(imageView)){
-                comic.setCentreRight(null);
-                rightTextField.clear();
-                rightTextField.setVisible(false);
-            } else {
-                comic.setCentreRight(imageView);
-                centreRight.setImage(comic.getCentreRight().getImage());
-                rightTextField.setDisable(false);
-                rightTextField.setVisible(true);
-            }
+            comic.setCentreRight(imageView);
+            centreRight.setImage(comic.getCentreRight().getImage());
+            rightTextField.setDisable(false);
+            rightTextField.setVisible(true);
         }
     }
 
@@ -793,57 +783,21 @@ public class TestController {
 
     private void loadBottomPanel(){
 
-        /*for(int panelImage = 0; panelImage < comicPanelList.size(); panelImage++){
-
-            ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
-
-            if(panelImage > 0){
-                comicImageGridPane.addColumn(panelImage);
-            }
-
-            HBox comicImageHbox = new HBox(image);
-            comicImageHbox.setId("comicImageHbox" + panelImage);
-            comicImageHbox.setAlignment(CENTER);
-            AnchorPane bottomPanelAnchorPane = new AnchorPane(comicImageHbox);
-
-            image.fitWidthProperty().bind(bottomPanelAnchorPane.widthProperty());
-            image.fitHeightProperty().bind(bottomPanelAnchorPane.heightProperty());
-            image.setManaged(false);
-            image.setPickOnBounds(true);
-            image.setVisible(true);
-            image.setPreserveRatio(true);
-
-            //scrollPaneAnchorPane.setPrefWidth(changeGenderButton.getWidth() * panelImage + 1);
-
-            if(panelImage == comicPanelList.size() - 1){
-                comicImageGridPane.add(bottomPanelAnchorPane, panelImage, 0);
-            }
-        }*/
-
         ImageView image = new ImageView(comicPanelList.getLast().getComicImage());
-
-        /*if(comicPanelList.size() >= 1){
-            comicImageGridPane.addColumn(comicPanelList.size());
-        }*/
 
         HBox comicImageHbox = new HBox(image);
         comicImageHbox.setId("comicImageHbox" + comicPanelList.size());
         comicImageHbox.setAlignment(CENTER);
-        AnchorPane bottomPanelAnchorPane = new AnchorPane(comicImageHbox);
+        AnchorPane panelAnchorPane = new AnchorPane(comicImageHbox);
 
-        image.fitWidthProperty().bind(bottomPanelAnchorPane.widthProperty());
-        image.fitHeightProperty().bind(bottomPanelAnchorPane.heightProperty());
+        image.fitWidthProperty().bind(panelAnchorPane.widthProperty());
+        image.fitHeightProperty().bind(panelAnchorPane.heightProperty());
         image.setManaged(false);
         image.setPickOnBounds(true);
         image.setVisible(true);
-        image.setPreserveRatio(true);
+        image.setPreserveRatio(false);
 
-        HBox test = new HBox(bottomPanelAnchorPane);
-
-        testHBox.getChildren().add(test);
-        testHBox2.getChildren().add(test);
-
-        //comicImageGridPane.add(bottomPanelAnchorPane,comicPanelList.size()-1, 0);
+        bottomGridPane.add(panelAnchorPane,comicPanelList.size()-1,0);
 
     }
 
