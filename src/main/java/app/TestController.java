@@ -140,13 +140,16 @@ public class TestController {
     @FXML
     private HBox testHBox2;
 
+    @FXML
+    private GridPane bottomGridPane;
+
     public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
     }
 
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
-        //scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 4);
+        scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 30);
 
     }
 
@@ -889,57 +892,21 @@ public class TestController {
 
     private void loadBottomPanel(){
 
-        /*for(int panelImage = 0; panelImage < comicPanelList.size(); panelImage++){
-
-            ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
-
-            if(panelImage > 0){
-                comicImageGridPane.addColumn(panelImage);
-            }
-
-            HBox comicImageHbox = new HBox(image);
-            comicImageHbox.setId("comicImageHbox" + panelImage);
-            comicImageHbox.setAlignment(CENTER);
-            AnchorPane bottomPanelAnchorPane = new AnchorPane(comicImageHbox);
-
-            image.fitWidthProperty().bind(bottomPanelAnchorPane.widthProperty());
-            image.fitHeightProperty().bind(bottomPanelAnchorPane.heightProperty());
-            image.setManaged(false);
-            image.setPickOnBounds(true);
-            image.setVisible(true);
-            image.setPreserveRatio(true);
-
-            //scrollPaneAnchorPane.setPrefWidth(changeGenderButton.getWidth() * panelImage + 1);
-
-            if(panelImage == comicPanelList.size() - 1){
-                comicImageGridPane.add(bottomPanelAnchorPane, panelImage, 0);
-            }
-        }*/
-
         ImageView image = new ImageView(comicPanelList.getLast().getComicImage());
-
-        /*if(comicPanelList.size() >= 1){
-            comicImageGridPane.addColumn(comicPanelList.size());
-        }*/
 
         HBox comicImageHbox = new HBox(image);
         comicImageHbox.setId("comicImageHbox" + comicPanelList.size());
         comicImageHbox.setAlignment(CENTER);
-        AnchorPane bottomPanelAnchorPane = new AnchorPane(comicImageHbox);
+        AnchorPane panelAnchorPane = new AnchorPane(comicImageHbox);
 
-        image.fitWidthProperty().bind(bottomPanelAnchorPane.widthProperty());
-        image.fitHeightProperty().bind(bottomPanelAnchorPane.heightProperty());
+        image.fitWidthProperty().bind(panelAnchorPane.widthProperty());
+        image.fitHeightProperty().bind(panelAnchorPane.heightProperty());
         image.setManaged(false);
         image.setPickOnBounds(true);
         image.setVisible(true);
-        image.setPreserveRatio(true);
+        image.setPreserveRatio(false);
 
-        HBox test = new HBox(bottomPanelAnchorPane);
-
-        testHBox.getChildren().add(test);
-        testHBox2.getChildren().add(test);
-
-        //comicImageGridPane.add(bottomPanelAnchorPane,comicPanelList.size()-1, 0);
+        bottomGridPane.add(panelAnchorPane,comicPanelList.size()-1,0);
 
     }
 
