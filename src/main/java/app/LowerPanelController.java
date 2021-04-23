@@ -52,6 +52,7 @@ public class LowerPanelController {
         private Image getPanelAsImage(){
             mainController.selectedBorder.setVisible(false);
             saveText();
+            removeNullText();
             return mainController.backgroundImageScale.snapshot(null, null);
         }
 
@@ -203,7 +204,8 @@ public class LowerPanelController {
             mainController.comic.setBottomText(panelComic.getBottomText());
             mainController.bottomText.setText(panelComic.getBottomText());
 
-
+            mainController.topText.setVisible(true);
+            mainController.bottomText.setVisible(true);
         }
 
         public void redrawRightCharacter(Character rightCharacter){  //Method that inserts a character into the right panel and adds character data to the Comic class
@@ -250,8 +252,23 @@ public class LowerPanelController {
             }
         }
 
-
-
-
+        private void removeNullText(){
+            if(mainController.leftTextField.getText().equals("")){
+                mainController.leftTextField.clear();
+                mainController.leftTextField.setVisible(false);
+                mainController.centreLeft.setImage(null);
+            }
+            if(mainController.rightTextField.getText().equals("")){
+                mainController.rightTextField.clear();
+                mainController.rightTextField.setVisible(false);
+                mainController.centreRight.setImage(null);
+            }
+            if(mainController.topText.getText().equals("")){
+                mainController.topText.setVisible(false);
+            }
+            if(mainController.bottomText.getText().equals("")){
+                mainController.bottomText.setVisible(false);
+            }
+        }
 
 }

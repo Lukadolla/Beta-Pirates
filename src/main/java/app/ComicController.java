@@ -81,41 +81,4 @@ public class ComicController {
         mainController.comic.setBackground(new ImageView(selectedImage));
         mainController.background.setImage(mainController.comic.getBackground().getImage());
     }
-
-    public void saveText(){
-        mainController.comic.setLeftText(mainController.leftTextField.getText());
-        mainController.comic.setBottomText(mainController.bottomText.getText());
-        mainController.comic.setRightText(mainController.rightTextField.getText());
-        mainController.comic.setTopText(mainController.topText.getText());
-    }
-
-    public void setNullTextInvisible(){
-        if(mainController.topText.getText() == null){
-            mainController.topText.setVisible(false);
-        }
-        if(mainController.bottomText.getText() == null){
-            mainController.bottomText.setVisible(false);
-        }
-        if(mainController.leftTextField.getText() == null){
-            mainController.leftTextField.setVisible(false);
-            mainController.centreLeft.setVisible(false);
-        }
-        if(mainController.rightTextField.getText() == null){
-            mainController.rightTextField.setVisible(false);
-            mainController.centreRight.setVisible(false);
-        }
-    }
-
-    public void setTextVisible(){
-        mainController.topText.setVisible(true);
-        mainController.bottomText.setVisible(true);
-        if(mainController.centreLeft.getImage()!=null){
-            mainController.leftTextField.setVisible(true);
-            mainController.centreLeft.setVisible(true);
-        }
-        if(mainController.centreRight.getImage()!=null){
-            mainController.rightTextField.setVisible(true);
-            mainController.centreRight.setVisible(true);
-        }
-    }
 }
