@@ -1,6 +1,5 @@
 package app;
 
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,11 +29,11 @@ public class ComicController {
             System.out.println(mainController.comicSelection);
             System.out.println(mainController.comicCharacterSelection);
             System.out.println(mainController.comic.getSelected());
-            mainController.getButtonsController().switchButtonState(true);
+            mainController.getButtonController().switchButtonState(true);
             event.consume();
         });
 
-        mainController.getButtonsController().switchButtonState(true);
+        mainController.getButtonController().switchButtonState(true);
         mainController.removeHairAA();
         mainController.clearBackground();
         mainController.removeAAPixels();
@@ -49,10 +48,10 @@ public class ComicController {
             mainController.comicSelection = mainController.bottomLeftIV;
             mainController.comicCharacterSelection = mainController.bottomLeftIV;
             mainController.comic.setSelected(mainController.comic.getLeftCharacter());
-            mainController.getButtonsController().switchButtonState(true);
+            mainController.getButtonController().switchButtonState(true);
             event.consume();
         });
-        mainController.getButtonsController().switchButtonState(true);
+        mainController.getButtonController().switchButtonState(true);
         mainController.removeHairAA();
         mainController.clearBackground();
         mainController.removeAAPixels();

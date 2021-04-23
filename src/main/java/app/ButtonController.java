@@ -11,12 +11,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
-public class ButtonsController {
+public class ButtonController {
 
   private TestController mainController;
 
 
-  public ButtonsController(TestController controller) { this.mainController = controller; }
+  public ButtonController(TestController controller) { this.mainController = controller; }
 
   @FXML
   void enableToolTips(){ //Method to enable tool tips when mouse is hovered over the buttons

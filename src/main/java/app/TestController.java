@@ -23,15 +23,15 @@ public class TestController {
 
     Comic comic = new Comic();
     private LinkedList<Comic> comicPanelList = new LinkedList<>();
-    private ButtonsController buttonsController = new ButtonsController(this);
+    private ButtonController buttonController = new ButtonController(this);
 
     ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
     @FXML
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
 
-    ButtonsController getButtonsController() {
-        return buttonsController;
+    ButtonController getButtonController() {
+        return buttonController;
     }
 
     @FXML
@@ -176,43 +176,43 @@ public class TestController {
 
     @FXML
     private void addCharacterRight(ActionEvent event) throws IOException {
-        buttonsController.addCharacterRight();
+        buttonController.addCharacterRight();
         event.consume();
     }
 
     @FXML
     private void addCharacterLeft(ActionEvent event) throws IOException {
-        buttonsController.addCharacterLeft();
+        buttonController.addCharacterLeft();
         event.consume();
     }
 
     @FXML
     private void changeGender(ActionEvent event) throws IOException {
-        buttonsController.changeGender();
+        buttonController.changeGender();
         event.consume();
     }
 
     @FXML
     private void addSpeechBubble(ActionEvent event) throws IOException {
-        buttonsController.addSpeechBubble();
+        buttonController.addSpeechBubble();
         event.consume();
     }
 
     @FXML
     private void addThoughtBubble(ActionEvent event) throws IOException {
-        buttonsController.addThoughtBubble();
+        buttonController.addThoughtBubble();
         event.consume();
     }
 
     @FXML
     private void deleteCharacter(ActionEvent event) throws IOException {
-        buttonsController.deleteCharacter();
+        buttonController.deleteCharacter();
         event.consume();
     }
 
     @FXML
     private void enableToolTips(MouseEvent event) throws IOException {
-        buttonsController.enableToolTips();
+        buttonController.enableToolTips();
         event.consume();
     }
 
@@ -523,7 +523,7 @@ public class TestController {
         comic.setSelected(null);
         comicSelection = null;
         comicCharacterSelection = null;
-        buttonsController.switchButtonState(false);
+        buttonController.switchButtonState(false);
     }
 
     @FXML
