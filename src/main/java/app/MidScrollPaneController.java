@@ -119,7 +119,7 @@ public class MidScrollPaneController {
             region.setStyle("-fx-border-color: #bbc4c4");
 
             region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                mainController.insertBackground(backgroundImages.get(finalSelectedImage));
+                mainController.getComicController().insertBackground(backgroundImages.get(finalSelectedImage));
                 event.consume();
             });
 

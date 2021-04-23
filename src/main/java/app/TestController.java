@@ -503,25 +503,6 @@ public class TestController {
         setFemale();
     }
 
-
-
-    void insertBubble(ImageView imageView) { //Method that inserts the thought/speech bubble into the correct section of the comic
-        if (comic.getSelected().equals(comic.getLeftCharacter())) {
-            comic.setCentreLeft(imageView);
-            comic.getCentreLeft().setScaleX(-1);
-            centreLeft.setImage(comic.getCentreLeft().getImage());
-            centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
-            leftTextField.setDisable(false);
-            leftTextField.setVisible(true);
-        }
-        else{
-            comic.setCentreRight(imageView);
-            centreRight.setImage(comic.getCentreRight().getImage());
-            rightTextField.setDisable(false);
-            rightTextField.setVisible(true);
-        }
-    }
-
     @FXML
     private void deleteCharacter() {  //Method called when the user presses the delete button which removes characters and text from the selected half of the comic
         if(comic.getSelected().equals(comic.getLeftCharacter())){
@@ -577,11 +558,6 @@ public class TestController {
     @FXML
     private void changeBackground() throws IOException {  //Method called when change background button is pressed
         midScrollPaneController.addBackgroundPane();
-    }
-
-    protected void insertBackground(Image selectedImage){  //Method that places the background into the comic panel
-        comic.setBackground(new ImageView(selectedImage));
-        background.setImage(comic.getBackground().getImage());
     }
 
     void removeAAPixels() {  //Mthod to remove anti-aliasing pixels in the image

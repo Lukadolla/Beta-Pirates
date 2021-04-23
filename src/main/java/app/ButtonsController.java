@@ -131,7 +131,7 @@ public class ButtonsController {
 
     ImageView imageView = new ImageView(currentPath);
 
-    mainController.insertBubble(imageView);
+    mainController.getComicController().insertBubble(imageView);
   }
 
 
@@ -143,7 +143,7 @@ public class ButtonsController {
 
     ImageView imageView = new ImageView(currentPath);
 
-    mainController.insertBubble(imageView);
+    mainController.getComicController().insertBubble(imageView);
   }
 
   @FXML
