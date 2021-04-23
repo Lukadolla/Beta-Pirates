@@ -1,5 +1,6 @@
 package app;
 
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -72,6 +73,13 @@ public class ComicController {
             mainController.rightTextField.setDisable(false);
             mainController.rightTextField.setVisible(true);
         }
+    }
+
+    @FXML
+    private void insertTextGraphic(){
+        TextGraphic textGraphic = new TextGraphic("the quick brown fox jumped over the lazy dog");
+        mainController.leftTextImageview.setImage(textGraphic.getImage());
+        mainController.leftHbox.setVisible(true);
     }
 
     protected void insertBackground(Image selectedImage){  //Method that places the background into the comic panel
