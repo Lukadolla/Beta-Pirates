@@ -23,7 +23,6 @@ public class Main extends Application {
         mainStage.setMinWidth(256.0);
         mainPage(mainStage);
         helpPage(helpStage);
-
     }
 
     public void mainPage(Stage mainStage) throws IOException{ //Loads the main page of the application and displays it

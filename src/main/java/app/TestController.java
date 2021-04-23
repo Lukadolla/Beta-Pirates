@@ -22,15 +22,42 @@ import static javafx.geometry.Pos.CENTER;
 
 public class TestController {
 
-    private Comic comic = new Comic();
-
+    Comic comic = new Comic();
     private LinkedList<Comic> comicPanelList = new LinkedList<>();
+    private ButtonsController buttonsController = new ButtonsController(this);
 
-
-    private ImageView comicCharacterSelection; // Track character selection independent of comic selection
+    ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
     @FXML
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
+
+    ButtonsController getButtonsController() {
+        return buttonsController;
+    }
+
+    @FXML
+    Button rotateCharacterButton;
+
+    @FXML
+    Button changeGenderButton;
+
+    @FXML
+    Button speechBubbleButton;
+
+    @FXML
+    Button thoughtBubbleButton;
+
+    @FXML
+    Button deleteCharacterButton;
+
+    @FXML
+    Button backgroundButton;
+
+    @FXML
+    Button addCharacterLeftButton;
+
+    @FXML
+    Button addCharacterRightButton;
 
     @FXML
     private ImageView background;  //ImageView containing the background image
@@ -39,16 +66,16 @@ public class TestController {
     Region selectedBorder = null; //Global variable to track which border is currently selected
 
     @FXML
-    private ImageView bottomLeftIV; //Bottom left ImageView where the character is inserted
+    ImageView bottomLeftIV; //Bottom left ImageView where the character is inserted
 
     @FXML
-    private ImageView bottomRightIV; //Bottom right ImageView where the character is inserted
+    ImageView bottomRightIV; //Bottom right ImageView where the character is inserted
 
     @FXML
-    private Region bottomLeftBorder;
+    Region bottomLeftBorder;
 
     @FXML
-    private Region bottomRightBorder;
+    Region bottomRightBorder;
 
     @FXML
     private AnchorPane characterMenuAnchorPane;
@@ -60,9 +87,6 @@ public class TestController {
     private AnchorPane scrollPaneAnchorPane;
 
     @FXML
-    private GridPane buttonsGridPane;
-
-    @FXML
     protected GridPane charactersGridPane;
 
     @FXML
@@ -72,49 +96,25 @@ public class TestController {
     protected GridPane backgroundGridPane;
 
     @FXML
-    private ColorPicker bodyColourPicker;
+    ColorPicker bodyColourPicker;
 
     @FXML
-    private ColorPicker hairColourPicker;
+    ColorPicker hairColourPicker;
 
     @FXML
     protected ScrollPane midScrollPane;
 
     @FXML
-    private ImageView centreRight;
+    ImageView centreRight;
 
     @FXML
-    private ImageView centreLeft;
+    ImageView centreLeft;
 
     @FXML
-    private Button rotateCharacterButton;
+    TextField leftTextField;
 
     @FXML
-    private Button changeGenderButton;
-
-    @FXML
-    private Button speechBubbleButton;
-
-    @FXML
-    private Button thoughtBubbleButton;
-
-    @FXML
-    private Button deleteCharacterButton;
-
-    @FXML
-    private Button backgroundButton;
-
-    @FXML
-    public Button addCharacterLeftButton;
-
-    @FXML
-    private Button addCharacterRightButton;
-
-    @FXML
-    private TextField leftTextField;
-
-    @FXML
-    private TextField rightTextField;
+    TextField rightTextField;
 
     @FXML
     private ImageView leftTextImageview;
@@ -140,153 +140,16 @@ public class TestController {
     @FXML
     private GridPane bottomGridPane;
 
-    private MidScrollPaneController midScrollPaneController = new MidScrollPaneController(this);
+    @FXML
+    private GridPane buttonsGridPane;
 
-    public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
-    }
+    private MidScrollPaneController midScrollPaneController = new MidScrollPaneController(this);
 
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
         scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 30);
-
     }
-
-    @FXML
-    private void enableToolTips(){ //Method to enable tool tips when mouse is hovered over the buttons
-        addCharacterLeftButton.setTooltip(
-                new Tooltip("Add a character to the left side")
-        );
-
-        addCharacterRightButton.setTooltip(
-                new Tooltip("Add a character to the right side")
-        );
-
-        speechBubbleButton.setTooltip(
-                new Tooltip("Add speech bubble")
-        );
-
-        thoughtBubbleButton.setTooltip(
-                new Tooltip("Add thought bubble")
-        );
-
-        rotateCharacterButton.setTooltip(
-                new Tooltip("Rotate character")
-        );
-
-        changeGenderButton.setTooltip(
-                new Tooltip("Change gender of character")
-        );
-
-        deleteCharacterButton.setTooltip(
-                new Tooltip("Delete character")
-        );
-
-        backgroundButton.setTooltip(
-                new Tooltip("Add background")
-        );
-
-        hairColourPicker.setTooltip(
-                new Tooltip("Change hair colour")
-        );
-
-        bodyColourPicker.setTooltip(
-                new Tooltip("Change body colour")
-        );
-    }
-
-    @FXML
-    private void addCharacterRight(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the right panel
-
-        midScrollPaneController.addCharacterPane();
-
-        if(bottomRightIV.getImage() == null){
-            switchButtonState(false);
-        } else {
-            switchButtonState(true);
-        }
-
-        setBorder(bottomRightBorder);
-        comicSelection = bottomRightIV;
-        comicCharacterSelection = bottomRightIV;
-        event.consume();
-    }
-
-    public void insertCharacter(Image selectedImage) {
-        if (comicCharacterSelection == bottomLeftIV) {
-            insertLeftCharacter(selectedImage);
-        } else if (comicCharacterSelection == bottomRightIV) {
-            insertRightCharacter(selectedImage);
-        }
-    }
-
-    @FXML
-    public void insertRightCharacter(Image selectedImage){  //Method that inserts a character into the right panel and adds character data to the Comic class
-        comic.setRightCharacter(new Character(selectedImage, 1));
-        comic.setSelected(comic.getRightCharacter());
-        bottomRightIV.setImage(comic.getRightCharacter().getImage());
-        bottomRightIV.setScaleX(-1);
-        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            setBorder(bottomRightBorder);
-            comicSelection = bottomRightIV;
-            comicCharacterSelection = bottomRightIV;
-            comic.setSelected(comic.getRightCharacter());
-            switchButtonState(true);
-            event.consume();
-        });
-
-        switchButtonState(true);
-        removeHairAA();
-        clearBackground();
-        removeAAPixels();
-    }
-
-    @FXML
-    private void addCharacterLeft(ActionEvent event) throws IOException { //Method called when button is pressed to add a character into the left panel
-
-        midScrollPaneController.addCharacterPane();
-
-        if(bottomLeftIV.getImage() == null){
-            switchButtonState(false);
-        } else {
-            switchButtonState(true);
-        }
-
-        setBorder(bottomLeftBorder);
-        comicSelection = bottomLeftIV;
-        comicCharacterSelection = bottomLeftIV;
-        event.consume();
-    }
-
-    @FXML
-    public void insertLeftCharacter(Image selectedImage){ //Method that inserts a character into the left panel and adds character data to the Comic class
-        comic.setLeftCharacter(new Character(selectedImage, 1));
-        comic.setSelected(comic.getLeftCharacter());
-        bottomLeftIV.setImage(comic.getLeftCharacter().getImage());
-        bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            setBorder(bottomLeftBorder);
-            comicSelection = bottomLeftIV;
-            comicCharacterSelection = bottomLeftIV;
-            comic.setSelected(comic.getLeftCharacter());
-            switchButtonState(true);
-            event.consume();
-        });
-        switchButtonState(true);
-        removeHairAA();
-        clearBackground();
-        removeAAPixels();
-    }
-
-    private void switchButtonState(boolean areEnabled){
-        rotateCharacterButton.setDisable(!areEnabled);
-        changeGenderButton.setDisable(!areEnabled);
-        bodyColourPicker.setDisable(!areEnabled);
-        hairColourPicker.setDisable(!areEnabled);
-        speechBubbleButton.setDisable(!areEnabled);
-        thoughtBubbleButton.setDisable(!areEnabled);
-        deleteCharacterButton.setDisable(!areEnabled);
-    }
-
 
     @FXML
     public void rotate(){ //Method to rotate a character
@@ -295,12 +158,54 @@ public class TestController {
     }
 
     @FXML
-    private void setBorder(Region newBorder) { //Method that sets the border on a selected component
+    void setBorder(Region newBorder) { //Method that sets the border on a selected component
         if(selectedBorder != null){
             selectedBorder.setVisible(false);
         }
         selectedBorder = newBorder;
         selectedBorder.setVisible(true);
+    }
+
+    @FXML
+    private void addCharacterRight(ActionEvent event) throws IOException {
+        buttonsController.addCharacterRight();
+        event.consume();
+    }
+
+    @FXML
+    private void addCharacterLeft(ActionEvent event) throws IOException {
+        buttonsController.addCharacterLeft();
+        event.consume();
+    }
+
+    @FXML
+    private void changeGender(ActionEvent event) throws IOException {
+        buttonsController.changeGender();
+        event.consume();
+    }
+
+    @FXML
+    private void addSpeechBubble(ActionEvent event) throws IOException {
+        buttonsController.addSpeechBubble();
+        event.consume();
+    }
+
+    @FXML
+    private void addThoughtBubble(ActionEvent event) throws IOException {
+        buttonsController.addThoughtBubble();
+        event.consume();
+    }
+
+    @FXML
+    private void deleteCharacter(ActionEvent event) throws IOException {
+        buttonsController.deleteCharacter();
+        event.consume();
+    }
+
+    @FXML
+    private void enableToolTips(ActionEvent event) throws IOException {
+        buttonsController.enableToolTips();
+        event.consume();
     }
 
     @FXML
@@ -319,6 +224,10 @@ public class TestController {
     public Color getChosenBodyColour(){  //Method that fetches the body colour chosen by the user from the ColourPicker
         Color chosenColour = checkColour(bodyColourPicker.getValue());
         return chosenColour;
+    }
+
+    public MidScrollPaneController getMidScrollPaneController() {
+        return midScrollPaneController;
     }
 
     @FXML
@@ -422,18 +331,9 @@ public class TestController {
         comicSelection.setImage(wImage);
     }
 
-    @FXML
-    public void changeGender() { //Method called when user presses the change gender button
 
-        if(comic.getSelected().getGender().equals("female")){
-            setMale();
-        }
-        else{
-            setFemale();
-        }
-    }
 
-    private void setMale() {  //Method that sets the current character to be male (removing female hair + lipstick)
+    void setMale() {  //Method that sets the current character to be male (removing female hair + lipstick)
         Image image = comic.getSelected().getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -465,7 +365,7 @@ public class TestController {
         comic.getSelected().setImage(wImage);
     }
 
-    private void setFemale() { //Method that sets the current character to be female (adding female hair + lipstick)
+    void setFemale() { //Method that sets the current character to be female (adding female hair + lipstick)
         Image image = comic.getSelected().getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -580,36 +480,15 @@ public class TestController {
         return (Math.abs(colour_1.getRed() - colour_2.getRed()) < 0.01) && (Math.abs(colour_1.getGreen() - colour_2.getGreen()) < 0.01) && (Math.abs(colour_1.getBlue() - colour_2.getBlue()) < 0.01) && (colour_1.getOpacity() == colour_2.getOpacity());
     }
 
-    private void removeHairAA(){  //Method to remove hair anti-aliasing by calling the setMale and setFemale methode which handle the AA
+    void removeHairAA(){  //Method to remove hair anti-aliasing by calling the setMale and setFemale methode which handle the AA
         setMale();
         removeAAPixels();
         setFemale();
     }
 
-    @FXML
-    private void addSpeechBubble(){ //Method called when user presses the speech bubble button
-
-        URL url = getClass().getResource("/images/buttons/speech.png");
-        String currentPath = url.toString();
-
-        ImageView imageView = new ImageView(currentPath);
-
-        insertBubble(imageView);
-    }
 
 
-    @FXML
-    private void addThoughtBubble(){ //Method called when user presses the thought bubble button
-
-        URL url = getClass().getResource("/images/buttons/thought.PNG");
-        String currentPath = url.toString();
-
-        ImageView imageView = new ImageView(currentPath);
-
-        insertBubble(imageView);
-    }
-
-    private void insertBubble(ImageView imageView) { //Method that inserts the thought/speech bubble into the correct section of the comic
+    void insertBubble(ImageView imageView) { //Method that inserts the thought/speech bubble into the correct section of the comic
         if (comic.getSelected().equals(comic.getLeftCharacter())) {
             comic.setCentreLeft(imageView);
             comic.getCentreLeft().setScaleX(-1);
@@ -627,36 +506,13 @@ public class TestController {
     }
 
     @FXML
-    private void deleteCharacter() {  //Method called when the user presses the delete button which removes characters and text from the selected half of the comic
-        if(comic.getSelected().equals(comic.getLeftCharacter())){
-            bottomLeftIV.setImage(null);
-            comic.setLeftCharacter(null);
-            centreLeft.setImage(null);
-            leftTextField.clear();
-            leftTextField.setVisible(false);
-        }
-        else{
-            bottomRightIV.setImage(null);
-            comic.setRightCharacter(null);
-            centreRight.setImage(null);
-            rightTextField.clear();
-            rightTextField.setVisible(false);
-        }
-        selectedBorder.setVisible(false);
-        comic.setSelected(null);
-        comicSelection = null;
-        comicCharacterSelection = null;
-        switchButtonState(false);
-    }
-
-    @FXML
     private void insertTextGraphic(){
         TextGraphic textGraphic = new TextGraphic("the quick brown fox jumped over the lazy dog");
         leftTextImageview.setImage(textGraphic.getImage());
         leftHbox.setVisible(true);
     }
 
-    private void clearBackground() {  //Method that removes the white background in the character images and makes it transparent instead
+    void clearBackground() {  //Method that removes the white background in the character images and makes it transparent instead
         Image image = comic.getSelected().getImage();
         int imageHeight = (int)image.getHeight();
         int imageWidth = (int)image.getWidth();
@@ -689,7 +545,7 @@ public class TestController {
         background.setImage(comic.getBackground().getImage());
     }
 
-    private void removeAAPixels() {  //Mthod to remove anti-aliasing pixels in the image
+    void removeAAPixels() {  //Mthod to remove anti-aliasing pixels in the image
         Image image = comic.getSelected().getImage();
         int imageHeight = (int) image.getHeight();
         int imageWidth = (int) image.getWidth();

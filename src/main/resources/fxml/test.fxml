@@ -200,7 +200,7 @@
                                                             </content>
                                                         </ScrollPane>
                                                     </children></AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" onMouseEntered="#enableToolTips" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;">
                                                     <children>
                                                         <GridPane fx:id="buttonsGridPane" layoutX="-29.0" layoutY="88.0" prefHeight="266.4" prefWidth="159.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                             <columnConstraints>
