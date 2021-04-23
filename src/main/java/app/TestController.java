@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -22,12 +23,12 @@ import static javafx.geometry.Pos.CENTER;
 public class TestController {
 
     Comic comic = new Comic();
-    private LinkedList<Comic> comicPanelList = new LinkedList<>();
     private MidScrollPaneController midScrollPaneController = new MidScrollPaneController(this);
     private ComicController comicController = new ComicController(this);
     private CharacterController characterController = new CharacterController(this);
     private ButtonController buttonController = new ButtonController(this);
     private ColourController colourController = new ColourController(this);
+    private LowerPanelController lowerPanelController = new LowerPanelController(this);
 
     ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
@@ -77,7 +78,7 @@ public class TestController {
     private AnchorPane characterMenuAnchorPane;
 
     @FXML
-    private AnchorPane backgroundImageScale;
+    AnchorPane backgroundImageScale;
 
     @FXML
     private AnchorPane scrollPaneAnchorPane;
@@ -146,7 +147,7 @@ public class TestController {
     private HBox testHBox2;
 
     @FXML
-    private GridPane bottomGridPane;
+    GridPane bottomGridPane;
 
     private Help help;
 
@@ -157,7 +158,7 @@ public class TestController {
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
-        scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 30);
+        scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 60);
     }
 
     @FXML
@@ -258,40 +259,19 @@ public class TestController {
         return colourController;
     }
 
+    LowerPanelController getLowerPanelController(){
+        return lowerPanelController;
+    }
+
     @FXML
-    private void addToPanelList(){  //Method called when the save panel button is pressed
-
-        comic.setComicImage(getPanelAsImage());
-        selectedBorder.setVisible(true);
-        //PanelIV1.setImage(comic.getComicImage());
-
-        comicPanelList.add(comic);
-        loadBottomPanel();
+    private void addToPanelList(ActionEvent event) throws CloneNotSupportedException {
+        lowerPanelController.addToPanelList();
+        event.consume();
     }
 
-    private Image getPanelAsImage(){
-        selectedBorder.setVisible(false);
-        return backgroundImageScale.snapshot(null, null);
+    @FXML
+    private void keyPressed(KeyEvent event) throws CloneNotSupportedException {
+        lowerPanelController.keyPressed(event);
+        event.consume();
     }
-
-    private void loadBottomPanel(){
-
-        ImageView image = new ImageView(comicPanelList.getLast().getComicImage());
-
-        HBox comicImageHbox = new HBox(image);
-        comicImageHbox.setId("comicImageHbox" + comicPanelList.size());
-        comicImageHbox.setAlignment(CENTER);
-        AnchorPane panelAnchorPane = new AnchorPane(comicImageHbox);
-
-        image.fitWidthProperty().bind(panelAnchorPane.widthProperty());
-        image.fitHeightProperty().bind(panelAnchorPane.heightProperty());
-        image.setManaged(false);
-        image.setPickOnBounds(true);
-        image.setVisible(true);
-        image.setPreserveRatio(false);
-
-        bottomGridPane.add(panelAnchorPane,comicPanelList.size()-1,0);
-
-    }
-
 }
