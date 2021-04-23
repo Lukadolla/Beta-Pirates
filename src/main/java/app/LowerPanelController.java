@@ -33,6 +33,10 @@ public class LowerPanelController {
         @FXML
         void addToPanelList() throws CloneNotSupportedException {  //Method called when the save panel button is pressed
 
+            if(comicPanelList.size() == 50){ //limit
+                return;
+            }
+
             mainController.comic.setComicImage(getPanelAsImage());
             mainController.selectedBorder.setVisible(true);
 
