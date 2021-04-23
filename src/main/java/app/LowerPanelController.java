@@ -165,7 +165,9 @@ public class LowerPanelController {
             mainController.background.setImage(backgroundImage.getImage());
             mainController.comic.setBackground(backgroundImage);
 
+            mainController.topText.setVisible(true);
             mainController.topText.setText("");
+            mainController.bottomText.setVisible(true);
             mainController.bottomText.setText("");
         }
 
