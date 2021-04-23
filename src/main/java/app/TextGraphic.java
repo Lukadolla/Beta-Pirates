@@ -36,6 +36,8 @@ public class TextGraphic {
 
     System.out.println("- text after conditional = " + this.text);
 
+    this.text = "\n" + this.text;
+
     String[] text_array = this.text.split("[\\r?\\n]");
 
     g2d.setFont(font);
@@ -59,6 +61,7 @@ public class TextGraphic {
     g2d.setColor(Color.WHITE);
     g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
     g2d.setColor(Color.BLACK);
+    g2d.drawString(" ", 0, fm.getAscent() * 1);
     for (int i = 1; i <= lines; ++i) {
       g2d.drawString(text_array[i - 1], 0, fm.getAscent() * i);
     }
