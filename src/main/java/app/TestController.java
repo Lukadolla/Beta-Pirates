@@ -1,8 +1,7 @@
 package app;
 
-import java.net.URL;
 import java.util.LinkedList;
-import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -60,16 +59,13 @@ public class TestController {
     Button addCharacterRightButton;
 
     @FXML
-    private ImageView background;  //ImageView containing the background image
-
-    @FXML
     Region selectedBorder = null; //Global variable to track which border is currently selected
 
     @FXML
-    ImageView bottomLeftIV; //Bottom left ImageView where the character is inserted
+    protected ImageView bottomLeftIV; //Bottom left ImageView where the character is inserted
 
     @FXML
-    ImageView bottomRightIV; //Bottom right ImageView where the character is inserted
+    protected ImageView bottomRightIV; //Bottom right ImageView where the character is inserted
 
     @FXML
     Region bottomLeftBorder;
@@ -87,7 +83,19 @@ public class TestController {
     private AnchorPane scrollPaneAnchorPane;
 
     @FXML
+    protected TextField topText;
+
+    @FXML
+    protected TextField bottomText;
+
+    @FXML
+    private GridPane buttonsGridPane;
+
+    @FXML
     protected GridPane charactersGridPane;
+
+    @FXML
+    protected ImageView background;  //ImageView containing the background image
 
     @FXML
     private GridPane comicImageGridPane;
@@ -140,11 +148,11 @@ public class TestController {
     @FXML
     private GridPane bottomGridPane;
 
-    @FXML
-    private GridPane buttonsGridPane;
-
     private MidScrollPaneController midScrollPaneController = new MidScrollPaneController(this);
 
+    private ComicController comicController = new ComicController(this);
+
+    ComicController getComicController(){ return comicController; }
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
@@ -203,7 +211,7 @@ public class TestController {
     }
 
     @FXML
-    private void enableToolTips(ActionEvent event) throws IOException {
+    private void enableToolTips(MouseEvent event) throws IOException {
         buttonsController.enableToolTips();
         event.consume();
     }
@@ -331,7 +339,16 @@ public class TestController {
         comicSelection.setImage(wImage);
     }
 
+    @FXML
+    public void changeGender() { //Method called when user presses the change gender button
 
+        if(comic.getSelected().getGender().equals("female")){
+            setMale();
+        }
+        else{
+            setFemale();
+        }
+    }
 
     void setMale() {  //Method that sets the current character to be male (removing female hair + lipstick)
         Image image = comic.getSelected().getImage();
@@ -506,6 +523,29 @@ public class TestController {
     }
 
     @FXML
+    private void deleteCharacter() {  //Method called when the user presses the delete button which removes characters and text from the selected half of the comic
+        if(comic.getSelected().equals(comic.getLeftCharacter())){
+            bottomLeftIV.setImage(null);
+            comic.setLeftCharacter(null);
+            centreLeft.setImage(null);
+            leftTextField.clear();
+            leftTextField.setVisible(false);
+        }
+        else{
+            bottomRightIV.setImage(null);
+            comic.setRightCharacter(null);
+            centreRight.setImage(null);
+            rightTextField.clear();
+            rightTextField.setVisible(false);
+        }
+        selectedBorder.setVisible(false);
+        comic.setSelected(null);
+        comicSelection = null;
+        comicCharacterSelection = null;
+        buttonsController.switchButtonState(false);
+    }
+
+    @FXML
     private void insertTextGraphic(){
         TextGraphic textGraphic = new TextGraphic("the quick brown fox jumped over the lazy dog");
         leftTextImageview.setImage(textGraphic.getImage());
@@ -540,7 +580,6 @@ public class TestController {
     }
 
     protected void insertBackground(Image selectedImage){  //Method that places the background into the comic panel
-        System.out.println("hello");
         comic.setBackground(new ImageView(selectedImage));
         background.setImage(comic.getBackground().getImage());
     }

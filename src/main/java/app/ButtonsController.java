@@ -96,50 +96,10 @@ public class ButtonsController {
 
   public void insertCharacter(Image selectedImage) {
     if (mainController.comicCharacterSelection == mainController.bottomLeftIV) {
-      insertLeftCharacter(selectedImage);
+      mainController.getComicController().insertLeftCharacter(selectedImage);
     } else if (mainController.comicCharacterSelection == mainController.bottomRightIV) {
-      insertRightCharacter(selectedImage);
+      mainController.getComicController().insertRightCharacter(selectedImage);
     }
-  }
-
-  @FXML
-  public void insertRightCharacter(Image selectedImage){  //Method that inserts a character into the right panel and adds character data to the Comic class
-    mainController.comic.setRightCharacter(new Character(selectedImage, 1));
-    mainController.comic.setSelected(mainController.comic.getRightCharacter());
-    mainController.bottomRightIV.setImage(mainController.comic.getRightCharacter().getImage());
-    mainController.bottomRightIV.setScaleX(-1);
-    mainController.bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-      mainController.setBorder(mainController.bottomRightBorder);
-      mainController.comicSelection = mainController.bottomRightIV;
-      mainController.comicCharacterSelection = mainController.bottomRightIV;
-      mainController.comic.setSelected(mainController.comic.getRightCharacter());
-      switchButtonState(true);
-      event.consume();
-    });
-
-    switchButtonState(true);
-    mainController.removeHairAA();
-    mainController.clearBackground();
-    mainController.removeAAPixels();
-  }
-
-  @FXML
-  public void insertLeftCharacter(Image selectedImage){ //Method that inserts a character into the left panel and adds character data to the Comic class
-    mainController.comic.setLeftCharacter(new Character(selectedImage, 1));
-    mainController.comic.setSelected(mainController.comic.getLeftCharacter());
-    mainController.bottomLeftIV.setImage(mainController.comic.getLeftCharacter().getImage());
-    mainController.bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-      mainController.setBorder(mainController.bottomLeftBorder);
-      mainController.comicSelection = mainController.bottomLeftIV;
-      mainController.comicCharacterSelection = mainController.bottomLeftIV;
-      mainController.comic.setSelected(mainController.comic.getLeftCharacter());
-      switchButtonState(true);
-      event.consume();
-    });
-    switchButtonState(true);
-    mainController.removeHairAA();
-    mainController.clearBackground();
-    mainController.removeAAPixels();
   }
 
   void switchButtonState(boolean areEnabled){
