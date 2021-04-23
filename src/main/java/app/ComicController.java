@@ -20,7 +20,7 @@ public class ComicController {
         mainController.bottomRightIV.setImage(mainController.comic.getRightCharacter().getImage());
         mainController.bottomRightIV.setScaleX(-1);
         mainController.bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            setBorder(mainController.bottomRightBorder);
+            mainController.setBorder(mainController.bottomRightBorder);
             mainController.comicSelection = mainController.bottomRightIV;
             mainController.comicCharacterSelection = mainController.bottomRightIV;
             mainController.comic.setSelected(mainController.comic.getRightCharacter());
@@ -30,7 +30,7 @@ public class ComicController {
 
         mainController.getButtonController().switchButtonState(true);
         mainController.getColourController().removeHairAA();
-        mainController.clearBackground();
+        mainController.getCharacterController().clearBackground();
         mainController.getColourController().removeAAPixels();
     }
 
@@ -38,8 +38,9 @@ public class ComicController {
         mainController.comic.setLeftCharacter(new Character(selectedImage, 1));
         mainController.comic.setSelected(mainController.comic.getLeftCharacter());
         mainController.bottomLeftIV.setImage(mainController.comic.getLeftCharacter().getImage());
+        mainController.bottomLeftIV.setScaleX(1);
         mainController.bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            setBorder(mainController.bottomLeftBorder);
+            mainController.setBorder(mainController.bottomLeftBorder);
             mainController.comicSelection = mainController.bottomLeftIV;
             mainController.comicCharacterSelection = mainController.bottomLeftIV;
             mainController.comic.setSelected(mainController.comic.getLeftCharacter());
@@ -48,7 +49,7 @@ public class ComicController {
         });
         mainController.getButtonController().switchButtonState(true);
         mainController.getColourController().removeHairAA();
-        mainController.clearBackground();
+        mainController.getCharacterController().clearBackground();
         mainController.getColourController().removeAAPixels();
     }
 
@@ -79,14 +80,6 @@ public class ComicController {
     protected void insertBackground(Image selectedImage){  //Method that places the background into the comic panel
         mainController.comic.setBackground(new ImageView(selectedImage));
         mainController.background.setImage(mainController.comic.getBackground().getImage());
-    }
-
-    protected void setBorder(Region newBorder) { //Method that sets the border on a selected component
-        if(mainController.selectedBorder != null){
-            mainController.selectedBorder.setVisible(false);
-        }
-        mainController.selectedBorder = newBorder;
-        mainController.selectedBorder.setVisible(true);
     }
 
     public void saveText(){

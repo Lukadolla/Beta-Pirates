@@ -57,7 +57,6 @@ public class ButtonController {
     );
   }
 
-  @FXML
   void addCharacterLeft() throws IOException { //Method called when button is pressed to add a character into the left panel
 
     mainController.getMidScrollPaneController().addCharacterPane();
@@ -76,7 +75,6 @@ public class ButtonController {
     }
   }
 
-  @FXML
   void addCharacterRight() throws IOException { //Method called when button is pressed to add a character into the right panel
 
     mainController.getMidScrollPaneController().addCharacterPane();
@@ -118,10 +116,10 @@ public class ButtonController {
   public void changeGender() { //Method called when user presses the change gender button
 
     if(mainController.comic.getSelected().getGender().equals("female")){
-      mainController.setMale();
+      mainController.getCharacterController().setMale();
     }
     else{
-      mainController.setFemale();
+      mainController.getCharacterController().setFemale();
     }
   }
 

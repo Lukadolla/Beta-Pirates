@@ -168,7 +168,7 @@ public class ColourController {
     for (int i = 0; i < imageWidth; i++) {
       for (int j = 0; j < imageHeight; j++) {
         Color colour = PR.getColor(i, j);
-        if (!colour.equals(Color.web("000000")) && !compareColours(colour, mainController.comic.getSelected().getFemaleHairColour()) && !mainController.isBows(colour) && !compareColours(colour, mainController.comic.getSelected().getMaleHairColour()) && colour.getOpacity() > 0.02) {
+        if (!colour.equals(Color.web("000000")) && !compareColours(colour, mainController.comic.getSelected().getFemaleHairColour()) && !mainController.getCharacterController().isBows(colour) && !compareColours(colour, mainController.comic.getSelected().getMaleHairColour()) && colour.getOpacity() > 0.02) {
 
           Color leftPixel;
           Color rightPixel;
@@ -222,9 +222,9 @@ public class ColourController {
   }
 
   void removeHairAA(){  //Method to remove hair anti-aliasing by calling the setMale and setFemale methode which handle the AA
-    mainController.setMale();
+    mainController.getCharacterController().setMale();
     removeAAPixels();
-    mainController.setFemale();
+    mainController.getCharacterController().setFemale();
   }
 
   public Color checkColour(Color colour){  //Method to check if the chosen colour is pure white/black and if so, changing the tone slightly
