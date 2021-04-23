@@ -49,14 +49,14 @@ public class LowerPanelController {
             clearComic();
         }
 
-        private Image getPanelAsImage(){
+        private Image getPanelAsImage(){ //Converts the comic pane into an image to be returned
             mainController.selectedBorder.setVisible(false);
             saveText();
             removeNullText();
             return mainController.backgroundImageScale.snapshot(null, null);
         }
 
-        private void saveText(){
+        private void saveText(){ //Saves the input text to the comic
             mainController.comic.setLeftText(mainController.leftTextField.getText());
             mainController.comic.setRightText(mainController.rightTextField.getText());
             mainController.comic.setTopText(mainController.topText.getText());
@@ -64,7 +64,7 @@ public class LowerPanelController {
 
         }
 
-        private void loadBottomPanel(){
+        private void loadBottomPanel(){ //Loads the stored comics into the bottom panel
 
             for(int panelImage=0; panelImage < comicPanelList.size(); panelImage++) {
 
@@ -102,24 +102,24 @@ public class LowerPanelController {
         }
 
         @FXML
-        void keyPressed(KeyEvent event) throws CloneNotSupportedException {
+        void keyPressed(KeyEvent event) throws CloneNotSupportedException { //Handles key press events
 
-            if(event.getCode().equals(KeyCode.DELETE)){
+            if(event.getCode().equals(KeyCode.DELETE)){ //Deletes the selected panel
                 if(!comicPanelList.isEmpty()){
                     deletePanel();
                 }
             }
-            else if(event.getCode().equals(KeyCode.L)){
+            else if(event.getCode().equals(KeyCode.L)){ //Loads the selected panel
                 if(!comicPanelList.isEmpty()){
                     importPanel();
                 }
             }
-            else if(event.getCode().equals(KeyCode.S)){
+            else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
                 addToPanelList();
             }
         }
 
-        private void deletePanel(){
+        private void deletePanel(){ //Deletes selected panel
             mainController.bottomGridPane.getChildren().clear();
             comicPanelList.remove(selectedPanelIndex);
             if(selectedPanelIndex == loadedPanelIndex){
@@ -128,13 +128,13 @@ public class LowerPanelController {
             loadBottomPanel();
         }
 
-        private void importPanel() throws CloneNotSupportedException {
+        private void importPanel() throws CloneNotSupportedException { //Imports selected panel to the main comic panel
             clearComic();
             drawPanel();
             loadedPanelIndex = selectedPanelIndex;
         }
 
-        private void clearComic(){
+        private void clearComic(){ //Removes all elements from a comic
             if(mainController.comic.getLeftCharacter() != null){
                 mainController.bottomLeftIV.setImage(null);
                 mainController.comic.setLeftCharacter(null);
@@ -169,7 +169,7 @@ public class LowerPanelController {
             mainController.bottomText.setText("");
         }
 
-        private void drawPanel() throws CloneNotSupportedException {
+        private void drawPanel() throws CloneNotSupportedException { //Updates the main comic with a previously saved comic from the bottom pane
             Comic panelComic = (Comic) comicPanelList.get(selectedPanelIndex).clone();
 
             if(panelComic.getLeftCharacter() != null) {
@@ -252,7 +252,7 @@ public class LowerPanelController {
             }
         }
 
-        private void removeNullText(){
+        private void removeNullText(){ //Hides empty text fields
             if(mainController.leftTextField.getText().equals("")){
                 mainController.leftTextField.clear();
                 mainController.leftTextField.setVisible(false);
