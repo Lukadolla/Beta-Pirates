@@ -2,14 +2,10 @@ package app;
 
 import java.io.IOException;
 import java.net.URL;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 
 public class ButtonController {
 
@@ -75,6 +71,9 @@ public class ButtonController {
     mainController.setBorder(mainController.bottomLeftBorder);
     mainController.comicSelection = mainController.bottomLeftIV;
     mainController.comicCharacterSelection = mainController.bottomLeftIV;
+    if(mainController.comic.getLeftCharacter() != null) {
+      mainController.comic.setSelected(mainController.comic.getLeftCharacter());
+    }
   }
 
   @FXML
@@ -91,6 +90,9 @@ public class ButtonController {
     mainController.setBorder(mainController.bottomRightBorder);
     mainController.comicSelection = mainController.bottomRightIV;
     mainController.comicCharacterSelection = mainController.bottomRightIV;
+    if(mainController.comic.getRightCharacter() != null) {
+    mainController.comic.setSelected(mainController.comic.getRightCharacter());
+    }
   }
 
 

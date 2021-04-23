@@ -21,23 +21,17 @@ public class ComicController {
         mainController.bottomRightIV.setScaleX(-1);
         mainController.bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             setBorder(mainController.bottomRightBorder);
-            System.out.println(mainController.comicSelection);
-            System.out.println(mainController.comicCharacterSelection);
-            System.out.println(mainController.comic.getSelected() +"\n\n");
             mainController.comicSelection = mainController.bottomRightIV;
             mainController.comicCharacterSelection = mainController.bottomRightIV;
             mainController.comic.setSelected(mainController.comic.getRightCharacter());
-            System.out.println(mainController.comicSelection);
-            System.out.println(mainController.comicCharacterSelection);
-            System.out.println(mainController.comic.getSelected());
             mainController.getButtonController().switchButtonState(true);
             event.consume();
         });
 
         mainController.getButtonController().switchButtonState(true);
-        mainController.removeHairAA();
+        mainController.getColourController().removeHairAA();
         mainController.clearBackground();
-        mainController.removeAAPixels();
+        mainController.getColourController().removeAAPixels();
     }
 
     public void insertLeftCharacter(Image selectedImage){ //Method that inserts a character into the left panel and adds character data to the Comic class
@@ -53,9 +47,9 @@ public class ComicController {
             event.consume();
         });
         mainController.getButtonController().switchButtonState(true);
-        mainController.removeHairAA();
+        mainController.getColourController().removeHairAA();
         mainController.clearBackground();
-        mainController.removeAAPixels();
+        mainController.getColourController().removeAAPixels();
     }
 
     protected void insertBubble(ImageView imageView) { //Method that inserts the thought/speech bubble into the correct section of the comic
