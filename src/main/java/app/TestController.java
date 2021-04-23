@@ -3,14 +3,19 @@ package app;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -29,6 +34,7 @@ public class TestController {
 
     private LinkedList<Comic> comicPanelList = new LinkedList<>();
 
+    private LinkedList<ImageView> testList = new LinkedList<>();
 
     private ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
@@ -126,30 +132,30 @@ public class TestController {
     private ImageView rightTextImageview;
 
     @FXML
-    private ImageView PanelIV1;
-    
-    @FXML
     private HBox leftHbox;
 
     @FXML
     private MenuItem savePanel;
 
     @FXML
-    private HBox testHBox;
-
-    @FXML
-    private HBox testHBox2;
-
-    @FXML
     private GridPane bottomGridPane;
 
-    public void setCharactersMenuSelectionId(int charactersMenuSelectionId) {  //Sets the character selected variable
-    }
+    @FXML
+    private TextField topText;
+
+    @FXML
+    private TextField bottomText;
+
+    private int selectedPanelIndex;
+
+    private int loadedPanelIndex = -1;
+
+
 
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
-        scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 30);
+        scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 60);
 
     }
 
@@ -196,7 +202,7 @@ public class TestController {
         );
     }
 
-  @FXML
+    @FXML
     private void loadCharacterImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
 
         imageLists.loadCharacterImagesList();
@@ -214,7 +220,6 @@ public class TestController {
             region.setVisible(true);
             region.setStyle("-fx-border-color: #bbc4c4");
             region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                setCharactersMenuSelectionId(finalSelectedImage);
                 insertCharacter(finalSelectedImage);
                 event.consume();
             });
@@ -252,8 +257,8 @@ public class TestController {
 
         if(bottomRightIV.getImage() == null){
             switchButtonState(false);
-         } else {
-        switchButtonState(true);
+        } else {
+            switchButtonState(true);
         }
 
 
@@ -349,13 +354,13 @@ public class TestController {
     }
 
     private void switchButtonState(boolean areEnabled){
-            rotateCharacterButton.setDisable(!areEnabled);
-            changeGenderButton.setDisable(!areEnabled);
-            bodyColourPicker.setDisable(!areEnabled);
-            hairColourPicker.setDisable(!areEnabled);
-            speechBubbleButton.setDisable(!areEnabled);
-            thoughtBubbleButton.setDisable(!areEnabled);
-            deleteCharacterButton.setDisable(!areEnabled);
+        rotateCharacterButton.setDisable(!areEnabled);
+        changeGenderButton.setDisable(!areEnabled);
+        bodyColourPicker.setDisable(!areEnabled);
+        hairColourPicker.setDisable(!areEnabled);
+        speechBubbleButton.setDisable(!areEnabled);
+        thoughtBubbleButton.setDisable(!areEnabled);
+        deleteCharacterButton.setDisable(!areEnabled);
     }
 
 
@@ -780,7 +785,7 @@ public class TestController {
             region.setVisible(true);
             region.setStyle("-fx-border-color: #bbc4c4");
 
-           region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 insertBackground(finalSelectedImage);
                 event.consume();
             });
@@ -875,39 +880,223 @@ public class TestController {
 
 
     @FXML
-    private void addToPanelList(){  //Method called when the save panel button is pressed
+    private void addToPanelList() throws CloneNotSupportedException {  //Method called when the save panel button is pressed
 
         comic.setComicImage(getPanelAsImage());
         selectedBorder.setVisible(true);
-        //PanelIV1.setImage(comic.getComicImage());
 
-        comicPanelList.add(comic);
+        Comic comicClone = (Comic) comic.clone();
+        if(loadedPanelIndex != -1){
+            comicPanelList.set(loadedPanelIndex, (Comic) comic.clone());
+            loadedPanelIndex = -1;
+        }
+        else {
+            comicPanelList.add(comicClone);
+        }
+
         loadBottomPanel();
+        clearComic();
     }
 
     private Image getPanelAsImage(){
         selectedBorder.setVisible(false);
+        saveText();
         return backgroundImageScale.snapshot(null, null);
+    }
+
+    private void saveText(){
+        comic.setLeftText(leftTextField.getText());
+        comic.setRightText(rightTextField.getText());
+        comic.setTopText(topText.getText());
+        comic.setBottomText(bottomText.getText());
+
     }
 
     private void loadBottomPanel(){
 
-        ImageView image = new ImageView(comicPanelList.getLast().getComicImage());
+        for(int panelImage=0; panelImage < comicPanelList.size(); panelImage++) {
 
-        HBox comicImageHbox = new HBox(image);
-        comicImageHbox.setId("comicImageHbox" + comicPanelList.size());
-        comicImageHbox.setAlignment(CENTER);
-        AnchorPane panelAnchorPane = new AnchorPane(comicImageHbox);
+            ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
 
-        image.fitWidthProperty().bind(panelAnchorPane.widthProperty());
-        image.fitHeightProperty().bind(panelAnchorPane.heightProperty());
-        image.setManaged(false);
-        image.setPickOnBounds(true);
-        image.setVisible(true);
-        image.setPreserveRatio(false);
+            Region region = new Region();
+            region.setVisible(true);
+            region.setStyle("-fx-border-color: #2a52be");
+            int finalPanelImage = panelImage;
+            region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                selectedPanelIndex = finalPanelImage;
+                region.setVisible(true);
+                event.consume();
+            });
 
-        bottomGridPane.add(panelAnchorPane,comicPanelList.size()-1,0);
+            HBox comicImageHbox = new HBox(image);
+            comicImageHbox.setId("comicImageHbox" + panelImage);
+            comicImageHbox.setAlignment(CENTER);
+
+            AnchorPane panelAnchorPane = new AnchorPane(comicImageHbox, region);
+            AnchorPane.setLeftAnchor(region, 0.0);
+            AnchorPane.setRightAnchor(region, 0.0);
+            AnchorPane.setTopAnchor(region, 0.0);
+            AnchorPane.setBottomAnchor(region, 0.0);
+
+            image.fitWidthProperty().bind(panelAnchorPane.widthProperty());
+            image.fitHeightProperty().bind(panelAnchorPane.heightProperty());
+            image.setManaged(false);
+            image.setPickOnBounds(true);
+            image.setVisible(true);
+            image.setPreserveRatio(false);
+
+            bottomGridPane.add(panelAnchorPane, panelImage, 0);
+        }
+    }
+
+    @FXML
+    void keyPressed(KeyEvent event) throws CloneNotSupportedException {
+
+        if(event.getCode().equals(KeyCode.DELETE)){
+            if(!comicPanelList.isEmpty()){
+                deletePanel();
+            }
+        }
+        else if(event.getCode().equals(KeyCode.L)){
+            if(!comicPanelList.isEmpty()){
+                importPanel();
+            }
+        }
+        else if(event.getCode().equals(KeyCode.S)){
+            addToPanelList();
+        }
+    }
+
+    private void deletePanel(){
+        bottomGridPane.getChildren().clear();
+        comicPanelList.remove(selectedPanelIndex);
+        if(selectedPanelIndex == loadedPanelIndex){
+            loadedPanelIndex = -1;
+        }
+        loadBottomPanel();
+    }
+
+    private void importPanel() throws CloneNotSupportedException {
+        clearComic();
+        //comic = (Comic) comicPanelList.get(selectedPanelIndex).clone();
+        drawPanel();
+        loadedPanelIndex = selectedPanelIndex;
+    }
+
+    private void clearComic(){
+        if(comic.getLeftCharacter() != null){
+            bottomLeftIV.setImage(null);
+            comic.setLeftCharacter(null);
+            centreLeft.setImage(null);
+            comic.setCentreLeft(null);
+            leftTextField.clear();
+            leftTextField.setVisible(false);
+        }
+        if (comic.getRightCharacter() != null){
+            bottomRightIV.setImage(null);
+            comic.setRightCharacter(null);
+            centreRight.setImage(null);
+            comic.setCentreRight(null);
+            rightTextField.clear();
+            rightTextField.setVisible(false);
+        }
+
+        selectedBorder.setVisible(false);
+        comic.setSelected(null);
+        comicSelection = null;
+        comicCharacterSelection = null;
+        switchButtonState(false);
+
+
+        URL url = getClass().getResource("/images/backgrounds/default.png");
+        String currentPath = url.toString();
+        ImageView backgroundImage = new ImageView(currentPath);
+        background.setImage(backgroundImage.getImage());
+        comic.setBackground(backgroundImage);
+
+        topText.setText("");
+        bottomText.setText("");
+    }
+
+    private void drawPanel() throws CloneNotSupportedException {
+        Comic panelComic = (Comic) comicPanelList.get(selectedPanelIndex).clone();
+
+        if(panelComic.getLeftCharacter() != null) {
+            redrawLeftCharacter(panelComic.getLeftCharacter());
+        }
+        if(panelComic.getRightCharacter() != null) {
+            redrawRightCharacter(panelComic.getRightCharacter());
+        }
+
+        if(panelComic.getCentreLeft() != null){
+            redrawBubbles(panelComic.getCentreLeft(), 0);
+        }
+
+        if(panelComic.getCentreRight() != null){
+            redrawBubbles(panelComic.getCentreRight(), 1);
+        }
+
+        if(panelComic.getBackground() != null) {
+            comic.setBackground(panelComic.getBackground());
+            background.setImage(comic.getBackground().getImage());
+        }
+
+        comic.setLeftText(panelComic.getLeftText());
+        leftTextField.setText(panelComic.getLeftText());
+
+        comic.setRightText(panelComic.getRightText());
+        rightTextField.setText(panelComic.getRightText());
+
+        comic.setTopText(panelComic.getTopText());
+        topText.setText(panelComic.getTopText());
+
+        comic.setBottomText(panelComic.getBottomText());
+        bottomText.setText(panelComic.getBottomText());
+
 
     }
 
+    public void redrawRightCharacter(Character rightCharacter){  //Method that inserts a character into the right panel and adds character data to the Comic class
+        comic.setRightCharacter(rightCharacter);
+        bottomRightIV.setImage(comic.getRightCharacter().getImage());
+        bottomRightIV.setScaleX(-1);
+        bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            setBorder(bottomRightBorder);
+            comicSelection = bottomRightIV;
+            comicCharacterSelection = bottomRightIV;
+            comic.setSelected(comic.getRightCharacter());
+            switchButtonState(true);
+            event.consume();
+        });
+    }
+
+    public void redrawLeftCharacter(Character leftCharacter){  //Method that inserts a character into the right panel and adds character data to the Comic class
+        comic.setLeftCharacter(leftCharacter);
+        bottomLeftIV.setImage(comic.getLeftCharacter().getImage());
+        bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            setBorder(bottomLeftBorder);
+            comicSelection = bottomLeftIV;
+            comicCharacterSelection = bottomLeftIV;
+            comic.setSelected(comic.getLeftCharacter());
+            switchButtonState(true);
+            event.consume();
+        });
+    }
+
+    private void redrawBubbles(ImageView imageView, int side) { //Method that inserts the thought/speech bubble into the correct section of the comic
+        if (side == 0) {
+            comic.setCentreLeft(imageView);
+            comic.getCentreLeft().setScaleX(-1);
+            centreLeft.setImage(comic.getCentreLeft().getImage());
+            centreLeft.setScaleX(comic.getCentreLeft().getScaleX());
+            leftTextField.setDisable(false);
+            leftTextField.setVisible(true);
+        }
+        else{
+            comic.setCentreRight(imageView);
+            centreRight.setImage(comic.getCentreRight().getImage());
+            rightTextField.setDisable(false);
+            rightTextField.setVisible(true);
+        }
+    }
 }

@@ -34,6 +34,7 @@ public class Main extends Application {
 
         mainStage.getIcons().add(new Image(currentPath));
         Scene mainScene = new Scene(root);
+        mainScene.getRoot().requestFocus();
         mainStage.setTitle("Excelsior");
         mainStage.setScene(mainScene);
         mainStage.show();
