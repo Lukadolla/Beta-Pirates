@@ -28,6 +28,8 @@ public class LowerPanelController {
 
     private int selectedPanelIndex;
 
+    private Region selectedPanelRegion;
+
     @FXML
     void addToPanelList() throws CloneNotSupportedException {  //Method called when the save panel button is pressed
 
@@ -49,6 +51,7 @@ public class LowerPanelController {
 
         loadBottomPanel();
         clearComic();
+        selectedPanelIndex = -1;
     }
 
     private Image getPanelAsImage(){ //Converts the comic pane into an image to be returned
@@ -73,12 +76,15 @@ public class LowerPanelController {
             ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
 
             Region region = new Region();
-            region.setVisible(true);
-            region.setStyle("-fx-border-color: #2a52be");
+            region.setStyle("-fx-border-opacity: 1");
             int finalPanelImage = panelImage;
             region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                if(selectedPanelRegion != null){
+                    selectedPanelRegion.setStyle("-fx-border-opacity: 1");
+                }
                 selectedPanelIndex = finalPanelImage;
-                region.setVisible(true);
+                selectedPanelRegion = region;
+                selectedPanelRegion.setStyle("-fx-border-color: #2a52be; -fx-border-width: 5px; -fx-border-opacity: 0");
                 event.consume();
             });
 
