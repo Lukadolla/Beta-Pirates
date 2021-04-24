@@ -15,3 +15,8 @@ Instructions on use:
 - To add text to the characters, press the speech/thought balloon buttons and type the text into the speech area.
 - You can add a background to the comic by pressing the background button and selecting an image from the middle panel.
 - To add narrative text above or below a comic, enter it into the designated text area in the panel.
+
+Saving and creating comics:
+- Once you finish working on a panel, press Ctrl + S to save or go to File >> Save Panel.
+- The saved panel will appear in the bottom section of the screen.
+- Once selected, you can load the panel again to keep working on it (L) or delete it (Delete).
