@@ -17,6 +17,7 @@ import java.io.IOException;
 
 public class TestController {
 
+    //Creating instances of other controllers responsible for different aspects of the application.
     Comic comic = new Comic();
     private MidScrollPaneController midScrollPaneController = new MidScrollPaneController(this);
     private ComicController comicController = new ComicController(this);
@@ -132,10 +133,22 @@ public class TestController {
     @FXML
     GridPane bottomGridPane;
 
-
+    // Methods that call the other controllers
     CharacterController getCharacterController(){ return characterController; }
 
     ComicController getComicController(){ return comicController; }
+
+    ButtonController getButtonController() {
+        return buttonController;
+    }
+
+    ColourController getColourController() {
+        return colourController;
+    }
+
+    LowerPanelController getLowerPanelController(){
+        return lowerPanelController;
+    }
 
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
@@ -158,6 +171,20 @@ public class TestController {
         selectedBorder.setVisible(true);
     }
 
+    @FXML
+    public void help() throws IOException{  //Method called when user wants to display help menu
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
+        Stage helpStage = new Stage();
+        Scene helpScene = new Scene(root);
+        helpStage.setHeight(500.0);
+        helpStage.setWidth(800.0);
+        helpStage.setTitle("Help");
+        helpStage.setScene(helpScene);
+        helpStage.show();
+    }
+
+
+    //All methods below are proxy methods that are called in the main.fxml and then call the corresponding methods in the other controllers
     @FXML
     private void addCharacterRight(ActionEvent event) throws IOException {
         buttonController.addCharacterRight();
@@ -213,18 +240,6 @@ public class TestController {
     }
 
     @FXML
-    public void help() throws IOException{  //Method called when user wants to display help menu
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
-        Stage helpStage = new Stage();
-        Scene helpScene = new Scene(root);
-        helpStage.setHeight(500.0);
-        helpStage.setWidth(800.0);
-        helpStage.setTitle("Help");
-        helpStage.setScene(helpScene);
-        helpStage.show();
-    }
-
-    @FXML
     private void changeBackground() throws IOException {  //Method called when change background button is pressed
         midScrollPaneController.addBackgroundPane();
     }
@@ -233,17 +248,6 @@ public class TestController {
         return midScrollPaneController;
     }
 
-    ButtonController getButtonController() {
-        return buttonController;
-    }
-
-    ColourController getColourController() {
-        return colourController;
-    }
-
-    LowerPanelController getLowerPanelController(){
-        return lowerPanelController;
-    }
 
     @FXML
     private void addToPanelList(ActionEvent event) throws CloneNotSupportedException {
