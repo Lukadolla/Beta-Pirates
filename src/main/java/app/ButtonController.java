@@ -102,7 +102,7 @@ public class ButtonController {
     }
   }
 
-  void switchButtonState(boolean areEnabled){
+  void switchButtonState(boolean areEnabled){ //Method that switches the state of the buttons (active/inactive)
     mainController.rotateCharacterButton.setDisable(!areEnabled);
     mainController.changeGenderButton.setDisable(!areEnabled);
     mainController.bodyColourPicker.setDisable(!areEnabled);
