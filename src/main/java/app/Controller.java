@@ -26,7 +26,6 @@ public class Controller {
     private List<Image> characterImages;  //List of character Images
     private List<Image> backgroundImages;  //List of backgrounds
 
-
     private ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
     @FXML

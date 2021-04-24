@@ -3,7 +3,7 @@ package app;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Comic {
+public class Comic implements Cloneable {
 
   private Character leftCharacter;
   private Character rightCharacter;
@@ -21,6 +21,11 @@ public class Comic {
   // Add lines to bubbles
 
   public Comic(){
+  }
+
+  protected Object clone() throws CloneNotSupportedException {
+
+    return super.clone();
   }
 
   public Character getLeftCharacter() {
