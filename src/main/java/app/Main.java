@@ -42,6 +42,8 @@ public class Main extends Application {
     public void helpPage(Stage helpStage) throws IOException{ //Loads the help window and displays it
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
         Scene helpScene = new Scene(root);
+        helpStage.setHeight(650.0);
+        helpStage.setWidth(1500.0);
         helpStage.setTitle("Help");
         helpStage.setScene(helpScene);
         helpStage.show();

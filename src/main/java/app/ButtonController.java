@@ -61,11 +61,7 @@ public class ButtonController {
 
     mainController.getMidScrollPaneController().addCharacterPane();
 
-    if(mainController.bottomLeftIV.getImage() == null){
-      switchButtonState(false);
-    } else {
-      switchButtonState(true);
-    }
+    switchButtonState(mainController.bottomLeftIV.getImage() != null);
 
     mainController.setBorder(mainController.bottomLeftBorder);
     mainController.comicSelection = mainController.bottomLeftIV;
@@ -79,11 +75,7 @@ public class ButtonController {
 
     mainController.getMidScrollPaneController().addCharacterPane();
 
-    if(mainController.bottomRightIV.getImage() == null){
-      switchButtonState(false);
-    } else {
-      switchButtonState(true);
-    }
+    switchButtonState(mainController.bottomRightIV.getImage() != null);
 
     mainController.setBorder(mainController.bottomRightBorder);
     mainController.comicSelection = mainController.bottomRightIV;
