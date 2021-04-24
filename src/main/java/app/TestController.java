@@ -1,6 +1,5 @@
 package app;
 
-import java.util.LinkedList;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -9,16 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import static javafx.geometry.Pos.CENTER;
 
 public class TestController {
 
@@ -130,26 +125,13 @@ public class TestController {
 
     @FXML
     ImageView rightTextImageview;
-
-    @FXML
-    private ImageView PanelIV1;
     
     @FXML
     HBox leftHbox;
 
     @FXML
-    private MenuItem savePanel;
-
-    @FXML
-    private HBox testHBox;
-
-    @FXML
-    private HBox testHBox2;
-
-    @FXML
     GridPane bottomGridPane;
 
-    private Help help;
 
     CharacterController getCharacterController(){ return characterController; }
 
@@ -189,43 +171,43 @@ public class TestController {
     }
 
     @FXML
-    private void changeGender(ActionEvent event) throws IOException {
+    private void changeGender(ActionEvent event) {
         buttonController.changeGender();
         event.consume();
     }
 
     @FXML
-    private void addSpeechBubble(ActionEvent event) throws IOException {
+    private void addSpeechBubble(ActionEvent event) {
         buttonController.addSpeechBubble();
         event.consume();
     }
 
     @FXML
-    private void addThoughtBubble(ActionEvent event) throws IOException {
+    private void addThoughtBubble(ActionEvent event) {
         buttonController.addThoughtBubble();
         event.consume();
     }
 
     @FXML
-    private void deleteCharacter(ActionEvent event) throws IOException {
+    private void deleteCharacter(ActionEvent event) {
         buttonController.deleteCharacter();
         event.consume();
     }
 
     @FXML
-    private void enableToolTips(MouseEvent event) throws IOException {
+    private void enableToolTips(MouseEvent event) {
         buttonController.enableToolTips();
         event.consume();
     }
 
     @FXML
-    private void changeHairColour(ActionEvent event) throws IOException {
+    private void changeHairColour(ActionEvent event) {
         colourController.changeHairColour();
         event.consume();
     }
 
     @FXML
-    private void changeSkinColour(ActionEvent event) throws IOException {
+    private void changeSkinColour(ActionEvent event) {
         colourController.changeSkinColour();
         event.consume();
     }
