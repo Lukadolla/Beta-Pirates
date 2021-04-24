@@ -29,6 +29,8 @@ public class LowerPanelController {
 
     private Region selectedPanelRegion;
 
+    private Region loadedPanelRegion;
+
     @FXML
     void addToPanelList() throws CloneNotSupportedException {  //Method called when the save panel button is pressed
 
@@ -78,12 +80,14 @@ public class LowerPanelController {
             region.setStyle("-fx-border-opacity: 1");
             int finalPanelImage = panelImage;
             region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                if(selectedPanelRegion != null){
+                if(selectedPanelRegion != null && selectedPanelRegion != loadedPanelRegion){
                     selectedPanelRegion.setStyle("-fx-border-opacity: 1");
                 }
                 selectedPanelIndex = finalPanelImage;
                 selectedPanelRegion = region;
-                selectedPanelRegion.setStyle("-fx-border-color: #2a52be; -fx-border-width: 5px; -fx-border-opacity: 0");
+                if(selectedPanelRegion != loadedPanelRegion) {
+                    selectedPanelRegion.setStyle("-fx-border-color: #2a52be; -fx-border-width: 5px; -fx-border-opacity: 0");
+                }
                 event.consume();
             });
 
@@ -118,10 +122,15 @@ public class LowerPanelController {
         }
         else if(event.getCode().equals(KeyCode.L)){ //Loads the selected panel
             if(!comicPanelList.isEmpty()){
+                if(loadedPanelRegion != null) {
+                    loadedPanelRegion.setStyle("-fx-border-opacity: 1");
+                    loadedPanelRegion = null;
+                }
                 importPanel();
             }
         }
         else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
+            loadedPanelRegion = null;
             addToPanelList();
         }
     }
@@ -139,6 +148,8 @@ public class LowerPanelController {
         clearComic();
         drawPanel();
         loadedPanelIndex = selectedPanelIndex;
+        selectedPanelRegion.setStyle("-fx-border-color: #eb7134; -fx-border-width: 5px");
+        loadedPanelRegion = selectedPanelRegion;
     }
 
     private void clearComic(){ //Removes all elements from a comic
