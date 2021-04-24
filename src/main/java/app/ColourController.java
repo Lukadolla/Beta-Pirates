@@ -15,8 +15,7 @@ public class ColourController {
 
   @FXML
   public Color getChosenBodyColour(){  //Method that fetches the body colour chosen by the user from the ColourPicker
-    Color chosenColour = checkColour(mainController.bodyColourPicker.getValue());
-    return chosenColour;
+    return checkColour(mainController.bodyColourPicker.getValue());
   }
 
   @FXML
@@ -58,8 +57,7 @@ public class ColourController {
 
   @FXML
   public Color getChosenHairColour(){ //Method that fetches the hair colour chosen by the user from the ColourPicker
-    Color chosenColour = checkColour(mainController.hairColourPicker.getValue());
-    return chosenColour;
+    return checkColour(mainController.hairColourPicker.getValue());
   }
 
   @FXML

@@ -130,8 +130,4 @@ public class MidScrollPaneController {
             columnIndex = (columnIndex == 0) ? 1 : 0;
         }
     }
-
-    public GridPane getCharactersGridPane() { return mainController.charactersGridPane; }
-
-    public GridPane getBackgroundGridPane() { return mainController.backgroundGridPane; }
 }
