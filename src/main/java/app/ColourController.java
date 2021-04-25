@@ -9,9 +9,9 @@ import javafx.scene.paint.Color;
 
 public class ColourController {
 
-  private TestController mainController;
+  private Controller mainController;
 
-  public ColourController(TestController controller) { this.mainController = controller;}
+  public ColourController(Controller controller) { this.mainController = controller;}
 
   @FXML
   public Color getChosenBodyColour(){  //Method that fetches the body colour chosen by the user from the ColourPicker

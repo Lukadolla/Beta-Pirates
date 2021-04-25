@@ -16,9 +16,9 @@ import static javafx.geometry.Pos.CENTER;
 
 public class LowerPanelController {
 
-    private TestController mainController;
+    private Controller mainController;
 
-    public LowerPanelController(TestController TC){
+    public LowerPanelController(Controller TC){
         mainController = TC;
     }
 

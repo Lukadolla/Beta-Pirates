@@ -8,9 +8,9 @@ import javafx.scene.paint.Color;
 
 public class CharacterController {
 
-    private TestController mainController;
+    private Controller mainController;
 
-    public CharacterController(TestController TC){
+    public CharacterController(Controller TC){
         mainController = TC;
     }
 

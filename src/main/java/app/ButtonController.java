@@ -9,10 +9,10 @@ import javafx.scene.image.ImageView;
 
 public class ButtonController {
 
-  private TestController mainController;
+  private Controller mainController;
 
 
-  public ButtonController(TestController controller) { this.mainController = controller; }
+  public ButtonController(Controller controller) { this.mainController = controller; }
 
   @FXML
   void enableToolTips(){ //Method to enable tool tips when mouse is hovered over the buttons

@@ -7,9 +7,9 @@ import javafx.scene.input.MouseEvent;
 
 public class ComicController {
 
-    TestController mainController;
+    Controller mainController;
 
-    public ComicController(TestController mainController){
+    public ComicController(Controller mainController){
         this.mainController = mainController;
     }
 
