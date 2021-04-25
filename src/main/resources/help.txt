@@ -20,3 +20,4 @@ Saving and creating comics:
 - Once you finish working on a panel, press Ctrl + S to save or go to File >> Save Panel.
 - The saved panel will appear in the bottom section of the screen.
 - Once selected, you can load the panel again to keep working on it (L) or delete it (Delete).
+- The loaded in panel will be indicated by an orange border.
