@@ -152,7 +152,7 @@ public class Controller {
 
     @FXML
     private void resize(){  //Method to resize the middle anchor pane
-        characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 4);
+        characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 10);
         scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 60);
     }
 
