@@ -261,7 +261,7 @@
                      <content>
                         <AnchorPane fx:id="scrollPaneAnchorPane" prefHeight="70.0" prefWidth="30000.0">
                            <children>
-                              <GridPane fx:id="bottomGridPane" layoutX="180.0" layoutY="-3.0" prefHeight="83.0" prefWidth="586.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <GridPane fx:id="bottomGridPane" layoutX="180.0" layoutY="-3.0" prefHeight="83.0" prefWidth="586.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
