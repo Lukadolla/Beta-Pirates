@@ -133,6 +133,8 @@ public class Controller {
     @FXML
     GridPane bottomGridPane;
 
+    public int sizeScale=10;
+
     // Methods that call the other controllers
     CharacterController getCharacterController(){ return characterController; }
 
@@ -151,8 +153,8 @@ public class Controller {
     }
 
     @FXML
-    private void resize(){  //Method to resize the middle anchor pane
-        characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * 10);
+    void resize(){  //Method to resize the middle anchor pane
+        characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * sizeScale);
         scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 60);
     }
 

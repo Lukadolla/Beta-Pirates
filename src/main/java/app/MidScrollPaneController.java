@@ -55,6 +55,9 @@ public class MidScrollPaneController {
 
     public void addCharacterPane() throws IOException {
 
+        mainController.sizeScale = 10;
+        mainController.resize();
+
         swapMiddlePanel(mainController.backgroundGridPane, mainController.charactersGridPane);
         mainController.midScrollPane.setVvalue(0);
         mainController.midScrollPane.setVisible(true);
@@ -65,6 +68,10 @@ public class MidScrollPaneController {
     }
 
     public void addBackgroundPane() throws IOException {
+
+        mainController.sizeScale = 4;
+        mainController.resize();
+
         swapMiddlePanel(mainController.charactersGridPane, mainController.backgroundGridPane);
         mainController.midScrollPane.setVvalue(0);
         mainController.midScrollPane.setVisible(true);
