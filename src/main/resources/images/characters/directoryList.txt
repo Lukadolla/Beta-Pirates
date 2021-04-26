@@ -37,7 +37,7 @@
 /images/characters/hunting.png
 /images/characters/imprisoned.png
 /images/characters/inspired.png
-/images/characters/inspired.png
+/images/characters/inspiring.png
 /images/characters/joy.png
 /images/characters/killing.png
 /images/characters/laughing.png
