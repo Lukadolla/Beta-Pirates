@@ -39,7 +39,10 @@ public class LowerPanelController {
         }
 
         mainController.comic.setComicImage(getPanelAsImage());
-        mainController.selectedBorder.setVisible(true);
+
+        if(mainController.selectedBorder != null) {
+            mainController.selectedBorder.setVisible(true);
+        }
 
         Comic comicClone = (Comic) mainController.comic.clone();
         if(loadedPanelIndex != -1){
@@ -56,7 +59,9 @@ public class LowerPanelController {
     }
 
     private Image getPanelAsImage(){ //Converts the comic pane into an image to be returned
-        mainController.selectedBorder.setVisible(false);
+        if(mainController.selectedBorder != null) {
+            mainController.selectedBorder.setVisible(false);
+        }
         saveText();
         removeNullText();
         return mainController.backgroundImageScale.snapshot(null, null);
@@ -130,8 +135,10 @@ public class LowerPanelController {
             }
         }
         else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
-            loadedPanelRegion = null;
-            addToPanelList();
+            if(mainController.comic != null) {
+                loadedPanelRegion = null;
+                addToPanelList();
+            }
         }
     }
 
@@ -170,7 +177,10 @@ public class LowerPanelController {
             mainController.rightTextField.setVisible(false);
         }
 
-        mainController.selectedBorder.setVisible(false);
+        if(mainController.selectedBorder != null) {
+            mainController.selectedBorder.setVisible(false);
+        }
+
         mainController.comic.setSelected(null);
         mainController.comicSelection = null;
         mainController.comicCharacterSelection = null;
