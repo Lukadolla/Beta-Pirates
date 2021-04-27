@@ -1,6 +1,7 @@
 package app;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -307,11 +308,18 @@ public class LowerPanelController {
     @FXML
     void createXML() throws IOException {
 
+        TextInputDialog fileNameInput = new TextInputDialog("Enter a file name:");
+        fileNameInput.showAndWait();
+        String fileName = fileNameInput.getEditor().getText();
+
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.showSaveDialog(null);
+        String filePath = chooser.getSelectedFile().toString();
 
-        File file = new File("comic.xml");
+        System.out.println(filePath);
+
+        File file = new File(filePath + "\\" + fileName + ".xml");
         file.createNewFile();
 
         for(int node = 0; node < comicPanelList.size(); node++){
