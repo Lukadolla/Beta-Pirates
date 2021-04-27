@@ -1,9 +1,14 @@
 package app;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
+import static sun.swing.MenuItemLayoutHelper.MAX_TEXT_WIDTH;
 
 public class ComicController {
 

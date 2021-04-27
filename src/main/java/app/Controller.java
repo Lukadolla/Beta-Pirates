@@ -11,6 +11,7 @@ import javafx.scene.image.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -260,6 +261,12 @@ public class Controller {
     @FXML
     private void keyPressed(KeyEvent event) throws CloneNotSupportedException {
         lowerPanelController.keyPressed(event);
+        event.consume();
+    }
+
+    @FXML
+    private void createXML(ActionEvent event) throws IOException {
+        lowerPanelController.createXML();
         event.consume();
     }
 }

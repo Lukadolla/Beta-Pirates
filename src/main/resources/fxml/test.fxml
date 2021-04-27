@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseEntered="#resize" prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseEntered="#resize" prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
     <children>
         <SplitPane dividerPositions="0.7348484848484849" layoutX="46.0" layoutY="24.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
             <items>
@@ -353,7 +353,7 @@
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                   <MenuItem fx:id="savePanel" mnemonicParsing="false" onAction="#addToPanelList" text="Save Panel" />
-                        <MenuItem mnemonicParsing="false" text="Save as XML" />
+                        <MenuItem mnemonicParsing="false" onAction="#createXML" text="Save as XML" />
                         <MenuItem mnemonicParsing="false" text="Save as HTML" />
                         <MenuItem mnemonicParsing="false" text="Load XML" />
                     </items>

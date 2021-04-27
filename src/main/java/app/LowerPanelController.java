@@ -9,6 +9,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 
@@ -298,6 +301,23 @@ public class LowerPanelController {
         }
         if(mainController.bottomText.getText().equals("")){
             mainController.bottomText.setVisible(false);
+        }
+    }
+
+    @FXML
+    void createXML() throws IOException {
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.showSaveDialog(null);
+
+        File file = new File("comic.xml");
+        file.createNewFile();
+
+        for(int node = 0; node < comicPanelList.size(); node++){
+
+
+            comicPanelList.get(node);
         }
     }
 }
