@@ -308,19 +308,23 @@ public class LowerPanelController {
     @FXML
     void createXML() throws IOException {
 
-        TextInputDialog fileNameInput = new TextInputDialog("Enter a file name:");
+        TextInputDialog fileNameInput = new TextInputDialog();
+        fileNameInput.setTitle("Name your comic");
+        fileNameInput.setHeaderText("");
+        fileNameInput.setContentText("Enter a file name:");
         fileNameInput.showAndWait();
         String fileName = fileNameInput.getEditor().getText();
 
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        chooser.showSaveDialog(null);
-        String filePath = chooser.getSelectedFile().toString();
+        System.out.println(fileName);
+        if(!fileName.equals("")){
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            chooser.showSaveDialog(null);
+            String filePath = chooser.getSelectedFile().toString();
 
-        System.out.println(filePath);
-
-        File file = new File(filePath + "\\" + fileName + ".xml");
-        file.createNewFile();
+            File file = new File(filePath + "\\" + fileName + ".xml");
+            file.createNewFile();
+        }
 
         for(int node = 0; node < comicPanelList.size(); node++){
 
