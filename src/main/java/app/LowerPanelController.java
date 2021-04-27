@@ -309,16 +309,18 @@ public class LowerPanelController {
     void createXML() throws IOException {
 
         TextInputDialog fileNameInput = new TextInputDialog();
-        fileNameInput.setTitle("Name your comic");
+        fileNameInput.setTitle("Name your Comic");
         fileNameInput.setHeaderText("");
         fileNameInput.setContentText("Enter a file name:");
         fileNameInput.showAndWait();
         String fileName = fileNameInput.getEditor().getText();
 
         System.out.println(fileName);
+
         if(!fileName.equals("")){
             JFileChooser chooser = new JFileChooser();
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            chooser.setDialogTitle("Save Comic");
             chooser.showSaveDialog(null);
             String filePath = chooser.getSelectedFile().toString();
 

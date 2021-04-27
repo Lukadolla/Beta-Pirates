@@ -358,16 +358,6 @@
                         <MenuItem mnemonicParsing="false" text="Load XML" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="View">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="View" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Configure">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Configure" />
-                    </items>
-                </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
                         <MenuItem fx:id="helpMenu" mnemonicParsing="false" onAction="#help" text="Help" />
