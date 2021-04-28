@@ -1,9 +1,11 @@
 package app;
 
-import org.w3c.dom.Attr;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextInputDialog;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,17 +15,41 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.IOException;
 
 public class SaveComicController {
 
     Controller controller;
-    private static final String xmlFilePath = SaveComicController.class.getResource("/saves/save1.xml").toString();
 
     public SaveComicController(Controller controller){
         this.controller = controller;
     }
 
-    public void saveAsXML() {
+    @FXML
+    void createXML() throws IOException {
+
+        TextInputDialog fileNameInput = new TextInputDialog();
+        fileNameInput.setTitle("Name your Comic");
+        fileNameInput.setHeaderText("");
+        fileNameInput.setContentText("Enter a file name:");
+        fileNameInput.showAndWait();
+        String fileName = fileNameInput.getEditor().getText();
+
+        if(!fileName.equals("")){
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            chooser.setDialogTitle("Save Comic");
+            chooser.showSaveDialog(null);
+            String filePath = chooser.getSelectedFile().toString();
+
+            File file = new File(filePath + "\\" + fileName + ".xml");
+            file.createNewFile();
+
+            saveAsXML(file);
+        }
+    }
+
+    public void saveAsXML(File file) {
 
         try {
 
@@ -162,15 +188,9 @@ public class SaveComicController {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File("C:\\Users\\Kal\\IdeaProjects\\Beta-Pirates\\src\\main\\resources\\saves\\save1.xml"));
-            // If you use
-            // StreamResult result = new StreamResult(System.out);
-            // the output will be pushed to the standard output ...
-            // You can use that for debugging
+            StreamResult streamResult = new StreamResult(file);
 
             transformer.transform(domSource, streamResult);
-
-            System.out.println("Done creating XML File");
 
         } catch (ParserConfigurationException | TransformerException pce) {
             pce.printStackTrace();

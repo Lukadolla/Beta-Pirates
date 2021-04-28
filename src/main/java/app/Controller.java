@@ -189,11 +189,6 @@ public class Controller {
         helpStage.show();
     }
 
-    @FXML
-    public void saveAsXML(){
-        saveComicController.saveAsXML();
-    }
-
     //All methods below are proxy methods that are called in the main.fxml and then call the corresponding methods in the other controllers
     @FXML
     private void addCharacterRight(ActionEvent event) throws IOException {
@@ -273,7 +268,7 @@ public class Controller {
 
     @FXML
     private void createXML(ActionEvent event) throws IOException {
-        lowerPanelController.createXML();
+        saveComicController.createXML();
         event.consume();
     }
 }
