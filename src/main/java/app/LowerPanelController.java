@@ -172,7 +172,7 @@ public class LowerPanelController {
         loadedPanelRegion = selectedPanelRegion;
     }
 
-    private void clearComic(){ //Removes all elements from a comic
+    void clearComic(){ //Removes all elements from a comic
         if(mainController.comic.getLeftCharacter() != null){
             mainController.bottomLeftIV.setImage(null);
             mainController.comic.setLeftCharacter(null);

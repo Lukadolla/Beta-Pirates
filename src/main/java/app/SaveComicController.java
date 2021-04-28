@@ -158,7 +158,13 @@ public class SaveComicController {
                     background.appendChild(document.createTextNode(String.valueOf(comic.getChosenBackground())));
                 }
 
-                if (comic.getTopText() != null || comic.getBottomText() != null || comic.getLeftText() != null ||comic.getRightText() != null) {
+                else{
+                    Element background = document.createElement("background");
+                    panel.appendChild(background);
+                    background.appendChild(document.createTextNode("0"));
+                }
+
+                if (!(comic.getTopText().equals("")) || !(comic.getBottomText().equals("")) || !(comic.getLeftText().equals("")) || !(comic.getRightText().equals(""))) {
                     Element text = document.createElement("text");
                     panel.appendChild(text);
                     if (comic.getTopText() != null && !comic.getTopText().trim().equals("")) {

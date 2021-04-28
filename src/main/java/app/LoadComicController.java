@@ -29,7 +29,7 @@ public class LoadComicController {
     }
 
     @FXML
-    void loadXML() throws IOException {
+    void loadXML() {
 
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -42,6 +42,29 @@ public class LoadComicController {
         }
 
         File file = new File(filePath);
+
+        readXML(file);
+    }
+
+    private void readXML(File file){
+        controller.getLowerPanelController().clearComic();
+
+        /*controller.comic.setBackground(panelComic.getBackground());
+
+        controller.comic.setLeftText(panelComic.getLeftText());
+        controller.leftTextField.setText(panelComic.getLeftText());
+
+        controller.comic.setRightText(panelComic.getRightText());
+        controller.rightTextField.setText(panelComic.getRightText());
+
+        controller.comic.setTopText(panelComic.getTopText());
+        controller.topText.setText(panelComic.getTopText());
+
+        controller.comic.setBottomText(panelComic.getBottomText());
+        controller.bottomText.setText(panelComic.getBottomText());
+
+        controller.topText.setVisible(true);
+        controller.bottomText.setVisible(true);*/
     }
 
 }
