@@ -355,7 +355,7 @@
                   <MenuItem fx:id="savePanel" mnemonicParsing="false" onAction="#addToPanelList" text="Save Panel" />
                         <MenuItem fx:id="SaveXMLMenu" disable="true" mnemonicParsing="false" onAction="#createXML" text="Save as XML" />
                         <MenuItem mnemonicParsing="false" text="Save as HTML" />
-                        <MenuItem mnemonicParsing="false" text="Load XML" />
+                        <MenuItem onAction="#loadXML" mnemonicParsing="false" text="Load XML" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">

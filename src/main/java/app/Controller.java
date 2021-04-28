@@ -27,6 +27,7 @@ public class Controller {
     private ColourController colourController = new ColourController(this);
     private LowerPanelController lowerPanelController = new LowerPanelController(this);
     private SaveComicController saveComicController = new SaveComicController(this);
+    private LoadComicController loadComicController = new LoadComicController(this);
 
     ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
@@ -159,6 +160,8 @@ public class Controller {
 
     SaveComicController getSaveComicController() { return saveComicController; }
 
+    LoadComicController getLoadComicController() { return loadComicController; }
+
     @FXML
     void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * sizeScale);
@@ -272,6 +275,12 @@ public class Controller {
     @FXML
     private void createXML(ActionEvent event) throws IOException {
         saveComicController.createXML();
+        event.consume();
+    }
+
+    @FXML
+    private void loadXML(ActionEvent event) throws IOException {
+        loadComicController.loadXML();
         event.consume();
     }
 }
