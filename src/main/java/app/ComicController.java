@@ -18,8 +18,8 @@ public class ComicController {
         this.mainController = mainController;
     }
 
-    public void insertRightCharacter(Image selectedImage){  //Method that inserts a character into the right panel and adds character data to the Comic class
-        mainController.comic.setRightCharacter(new Character(selectedImage, 1));
+    public void insertRightCharacter(Image selectedImage, int image){  //Method that inserts a character into the right panel and adds character data to the Comic class
+        mainController.comic.setRightCharacter(new Character(selectedImage, 1, image));
         mainController.comic.setSelected(mainController.comic.getRightCharacter());
         mainController.bottomRightIV.setImage(mainController.comic.getRightCharacter().getImage());
         mainController.bottomRightIV.setScaleX(-1);
@@ -38,8 +38,8 @@ public class ComicController {
         mainController.getColourController().removeAAPixels();
     }
 
-    public void insertLeftCharacter(Image selectedImage){ //Method that inserts a character into the left panel and adds character data to the Comic class
-        mainController.comic.setLeftCharacter(new Character(selectedImage, 1));
+    public void insertLeftCharacter(Image selectedImage, int image){ //Method that inserts a character into the left panel and adds character data to the Comic class
+        mainController.comic.setLeftCharacter(new Character(selectedImage, 1, image));
         mainController.comic.setSelected(mainController.comic.getLeftCharacter());
         mainController.bottomLeftIV.setImage(mainController.comic.getLeftCharacter().getImage());
         mainController.bottomLeftIV.setScaleX(1);
@@ -74,9 +74,8 @@ public class ComicController {
         }
     }
 
-    @FXML
-    private void insertTextGraphic(){
-        TextGraphic textGraphic = new TextGraphic("the quick brown fox jumped over the lazy dog");
+    void insertTextGraphic(String text){
+        TextGraphic textGraphic = new TextGraphic(text);
         mainController.leftTextImageview.setImage(textGraphic.getImage());
         mainController.leftHbox.setVisible(true);
     }

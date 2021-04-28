@@ -41,7 +41,7 @@ public class MidScrollPaneController {
             region.setVisible(true);
             region.setStyle("-fx-border-color: #bbc4c4");
             region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                mainController.getButtonController().insertCharacter(characterImages.get(finalSelectedImage));
+                mainController.getButtonController().insertCharacter(characterImages.get(finalSelectedImage), finalSelectedImage);
                 event.consume();
             });
 
@@ -127,6 +127,7 @@ public class MidScrollPaneController {
 
             region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 mainController.getComicController().insertBackground(backgroundImages.get(finalSelectedImage));
+                mainController.comic.setChosenBackground(finalSelectedImage);
                 event.consume();
             });
 

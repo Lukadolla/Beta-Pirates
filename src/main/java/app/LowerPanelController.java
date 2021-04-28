@@ -27,7 +27,7 @@ public class LowerPanelController {
     }
 
     private int loadedPanelIndex = -1;
-    private LinkedList<Comic> comicPanelList = new LinkedList<>();
+    LinkedList<Comic> comicPanelList = new LinkedList<>();
 
     private int selectedPanelIndex;
 
@@ -245,7 +245,7 @@ public class LowerPanelController {
     public void redrawRightCharacter(Character rightCharacter){  //Method that inserts a character into the right panel and adds character data to the Comic class
         mainController.comic.setRightCharacter(rightCharacter);
         mainController.bottomRightIV.setImage(mainController.comic.getRightCharacter().getImage());
-        mainController.bottomRightIV.setScaleX(-1);
+        mainController.bottomRightIV.setScaleX(rightCharacter.getFacing());
         mainController.bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             mainController.setBorder(mainController.bottomRightBorder);
             mainController.comicSelection = mainController.bottomRightIV;
@@ -259,6 +259,7 @@ public class LowerPanelController {
     public void redrawLeftCharacter(Character leftCharacter){  //Method that inserts a character into the right panel and adds character data to the Comic class
         mainController.comic.setLeftCharacter(leftCharacter);
         mainController.bottomLeftIV.setImage(mainController.comic.getLeftCharacter().getImage());
+        mainController.bottomRightIV.setScaleX(leftCharacter.getFacing());
         mainController.bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             mainController.setBorder(mainController.bottomLeftBorder);
             mainController.comicSelection = mainController.bottomLeftIV;
@@ -287,20 +288,20 @@ public class LowerPanelController {
     }
 
     private void removeNullText(){ //Hides empty text fields
-        if(mainController.leftTextField.getText().equals("")){
+        if(mainController.leftTextField.getText().trim().equals("")){
             mainController.leftTextField.clear();
-            mainController.leftTextField.setVisible(false);
             mainController.centreLeft.setImage(null);
+            mainController.leftTextField.setVisible(false);
         }
-        if(mainController.rightTextField.getText().equals("")){
+        if(mainController.rightTextField.getText().trim().equals("")){
             mainController.rightTextField.clear();
-            mainController.rightTextField.setVisible(false);
             mainController.centreRight.setImage(null);
+            mainController.rightTextField.setVisible(false);
         }
-        if(mainController.topText.getText().equals("")){
+        if(mainController.topText.getText().trim().equals("")){
             mainController.topText.setVisible(false);
         }
-        if(mainController.bottomText.getText().equals("")){
+        if(mainController.bottomText.getText().trim().equals("")){
             mainController.bottomText.setVisible(false);
         }
     }

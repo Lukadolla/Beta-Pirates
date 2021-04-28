@@ -16,6 +16,7 @@ public class Comic implements Cloneable {
   private ImageView centreRight;
   private ImageView background;
   private Image comicImage;
+  private int chosenBackground;
 
 
   // Add lines to bubbles
@@ -114,5 +115,13 @@ public class Comic implements Cloneable {
 
   public void setComicImage(Image comicImage) {
     this.comicImage = comicImage;
+  }
+
+  public int getChosenBackground() {
+    return chosenBackground;
+  }
+
+  public void setChosenBackground(int chosenBackground) {
+    this.chosenBackground = chosenBackground;
   }
 }

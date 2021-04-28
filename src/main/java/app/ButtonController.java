@@ -86,11 +86,11 @@ public class ButtonController {
   }
 
 
-  public void insertCharacter(Image selectedImage) {
+  public void insertCharacter(Image selectedImage, int image) {
     if (mainController.comicCharacterSelection == mainController.bottomLeftIV) {
-      mainController.getComicController().insertLeftCharacter(selectedImage);
+      mainController.getComicController().insertLeftCharacter(selectedImage, image);
     } else if (mainController.comicCharacterSelection == mainController.bottomRightIV) {
-      mainController.getComicController().insertRightCharacter(selectedImage);
+      mainController.getComicController().insertRightCharacter(selectedImage, image);
     }
   }
 

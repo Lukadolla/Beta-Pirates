@@ -26,6 +26,7 @@ public class Controller {
     private ButtonController buttonController = new ButtonController(this);
     private ColourController colourController = new ColourController(this);
     private LowerPanelController lowerPanelController = new LowerPanelController(this);
+    private SaveComicController saveComicController = new SaveComicController(this);
 
     ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
@@ -153,6 +154,8 @@ public class Controller {
         return lowerPanelController;
     }
 
+    SaveComicController getSaveComicController() { return saveComicController; }
+
     @FXML
     void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * sizeScale);
@@ -186,6 +189,10 @@ public class Controller {
         helpStage.show();
     }
 
+    @FXML
+    public void saveAsXML(){
+        saveComicController.saveAsXML();
+    }
 
     //All methods below are proxy methods that are called in the main.fxml and then call the corresponding methods in the other controllers
     @FXML

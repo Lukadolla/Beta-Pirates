@@ -13,8 +13,9 @@ public class Character {
   private Color maleHairColour;
   private Color femaleHairColour;
   private Color lipColour;
+  private int chosenImage;
 
-  public Character(Image image, int position){
+  public Character(Image image, int position, int chosenImage){
     this.position=position;
     facing = 1;
     gender = "female";
@@ -23,6 +24,11 @@ public class Character {
     maleHairColour = Color.web("f9ff00");
     femaleHairColour = Color.web("f0ff00");
     lipColour = Color.web("ff0000");
+    this.chosenImage = chosenImage;
+  }
+
+  public int getChosenImage() {
+    return chosenImage;
   }
 
   public int getPosition() { return position; }
