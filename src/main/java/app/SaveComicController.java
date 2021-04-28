@@ -1,6 +1,7 @@
 package app;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -50,7 +51,6 @@ public class SaveComicController {
     }
 
     public void saveAsXML(File file) {
-
         try {
 
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();

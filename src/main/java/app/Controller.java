@@ -135,6 +135,9 @@ public class Controller {
     @FXML
     GridPane bottomGridPane;
 
+    @FXML
+    MenuItem SaveXMLMenu;
+
     public int sizeScale=10;
 
     // Methods that call the other controllers

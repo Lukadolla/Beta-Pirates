@@ -1,6 +1,7 @@
 package app;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyCode;
@@ -41,6 +42,9 @@ public class LowerPanelController {
         if(comicPanelList.size() == 50){ //limit
             return;
         }
+
+        mainController.SaveXMLMenu.setDisable(false);
+
 
         mainController.comic.setComicImage(getPanelAsImage());
 
@@ -149,6 +153,11 @@ public class LowerPanelController {
     private void deletePanel(){ //Deletes selected panel
         mainController.bottomGridPane.getChildren().clear();
         comicPanelList.remove(selectedPanelIndex);
+
+        if(comicPanelList.size() == 0){
+            mainController.SaveXMLMenu.setDisable(true);
+        }
+
         if(selectedPanelIndex == loadedPanelIndex){
             loadedPanelIndex = -1;
         }
