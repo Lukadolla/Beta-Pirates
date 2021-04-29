@@ -21,6 +21,8 @@ public class ComicController {
     public void insertRightCharacter(Image selectedImage, int image){  //Method that inserts a character into the right panel and adds character data to the Comic class
         mainController.comic.setRightCharacter(new Character(selectedImage, 1, image));
         mainController.comic.setSelected(mainController.comic.getRightCharacter());
+        mainController.comicSelection = mainController.bottomRightIV;
+        mainController.comicCharacterSelection = mainController.bottomRightIV;
         mainController.bottomRightIV.setImage(mainController.comic.getRightCharacter().getImage());
         mainController.bottomRightIV.setScaleX(-1);
         mainController.bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -41,6 +43,8 @@ public class ComicController {
     public void insertLeftCharacter(Image selectedImage, int image){ //Method that inserts a character into the left panel and adds character data to the Comic class
         mainController.comic.setLeftCharacter(new Character(selectedImage, 1, image));
         mainController.comic.setSelected(mainController.comic.getLeftCharacter());
+        mainController.comicSelection = mainController.bottomLeftIV;
+        mainController.comicCharacterSelection = mainController.bottomLeftIV;
         mainController.bottomLeftIV.setImage(mainController.comic.getLeftCharacter().getImage());
         mainController.bottomLeftIV.setScaleX(1);
         mainController.bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {

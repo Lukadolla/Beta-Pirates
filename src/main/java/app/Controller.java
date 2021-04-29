@@ -31,8 +31,7 @@ public class Controller {
 
     ImageView comicCharacterSelection; // Track character selection independent of comic selection
 
-    @FXML
-    ImageView comicSelection; //Global variable to track which section of the panel is currently selected
+    ImageView comicSelection=null; //Global variable to track which section of the panel is currently selected
 
     @FXML
     Button rotateCharacterButton;

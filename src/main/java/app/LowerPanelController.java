@@ -297,22 +297,21 @@ public class LowerPanelController {
     }
 
     private void removeNullText(){ //Hides empty text fields
-        if(mainController.leftTextField.getText().trim().equals("")){
+        if(mainController.leftTextField.getText() != null && mainController.leftTextField.getText().trim().equals("")) {
             mainController.leftTextField.clear();
             mainController.centreLeft.setImage(null);
             mainController.leftTextField.setVisible(false);
         }
-        if(mainController.rightTextField.getText().trim().equals("")){
+        if(mainController.rightTextField.getText() !=null && mainController.rightTextField.getText().trim().equals("")){
             mainController.rightTextField.clear();
             mainController.centreRight.setImage(null);
             mainController.rightTextField.setVisible(false);
         }
-        if(mainController.topText.getText().trim().equals("")){
+        if(mainController.topText.getText() != null && mainController.topText.getText().trim().equals("")){
             mainController.topText.setVisible(false);
         }
-        if(mainController.bottomText.getText().trim().equals("")){
+        if(mainController.bottomText.getText() != null && mainController.bottomText.getText().trim().equals("")){
             mainController.bottomText.setVisible(false);
         }
     }
-
 }
