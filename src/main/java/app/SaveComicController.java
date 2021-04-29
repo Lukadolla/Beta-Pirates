@@ -65,7 +65,7 @@ public class SaveComicController {
 
             for(int counter=0;counter<controller.getLowerPanelController().comicPanelList.size();counter++) {
 
-                Element panel = document.createElement("panel" + counter);
+                Element panel = document.createElement("panel");
                 root.appendChild(panel);
                 Comic comic = controller.getLowerPanelController().comicPanelList.get(counter);
 
@@ -74,11 +74,6 @@ public class SaveComicController {
                     Element character = document.createElement("characterLeft");
 
                     panel.appendChild(character);
-
-                    // position element
-                    Element position = document.createElement("position");
-                    position.appendChild(document.createTextNode("Left"));
-                    character.appendChild(position);
 
                     // female hair colour element
                     Element femaleHairColour = document.createElement("femaleHairColour");
@@ -100,10 +95,10 @@ public class SaveComicController {
                     gender.appendChild(document.createTextNode(comic.getLeftCharacter().getGender()));
                     character.appendChild(gender);
 
-                    //pose element
-                    Element pose = document.createElement("pose");
-                    pose.appendChild(document.createTextNode(String.valueOf(comic.getLeftCharacter().getChosenImage())));
-                    character.appendChild(pose);
+                    //chosenImage element
+                    Element chosenImage = document.createElement("chosenImage");
+                    chosenImage.appendChild(document.createTextNode(String.valueOf(comic.getLeftCharacter().getChosenImage())));
+                    character.appendChild(chosenImage);
 
                     //facing element
                     Element direction = document.createElement("direction");
@@ -115,11 +110,6 @@ public class SaveComicController {
                     Element character = document.createElement("characterRight");
 
                     panel.appendChild(character);
-
-                    // position element
-                    Element position = document.createElement("position");
-                    position.appendChild(document.createTextNode("Right"));
-                    character.appendChild(position);
 
                     // female hair colour element
                     Element femaleHairColour = document.createElement("femaleHairColour");
@@ -141,10 +131,10 @@ public class SaveComicController {
                     gender.appendChild(document.createTextNode(comic.getRightCharacter().getGender()));
                     character.appendChild(gender);
 
-                    //pose element
-                    Element pose = document.createElement("pose");
-                    pose.appendChild(document.createTextNode(String.valueOf(comic.getRightCharacter().getChosenImage())));
-                    character.appendChild(pose);
+                    //chosenImage element
+                    Element chosenImage = document.createElement("chosenImage");
+                    chosenImage.appendChild(document.createTextNode(String.valueOf(comic.getRightCharacter().getChosenImage())));
+                    character.appendChild(chosenImage);
 
                     //facing element
                     Element direction = document.createElement("direction");

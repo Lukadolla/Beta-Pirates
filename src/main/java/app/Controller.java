@@ -279,7 +279,7 @@ public class Controller {
     }
 
     @FXML
-    private void loadXML(ActionEvent event) throws IOException {
+    private void loadXML(ActionEvent event) {
         loadComicController.loadXML();
         event.consume();
     }

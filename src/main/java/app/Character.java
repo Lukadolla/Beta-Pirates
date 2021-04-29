@@ -92,4 +92,5 @@ public class Character {
   public Color getLipColour(){ return lipColour;}
 
   public void setLipColour(Color lipColour){ this.lipColour = lipColour;}
+
 }

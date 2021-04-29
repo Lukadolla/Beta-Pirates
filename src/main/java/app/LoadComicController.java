@@ -1,24 +1,23 @@
 package app;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import java.awt.*;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
+import javafx.fxml.FXML;
+
+import javax.swing.*;
 
 public class LoadComicController {
 
@@ -37,34 +36,126 @@ public class LoadComicController {
         chooser.showSaveDialog(null);
         String filePath = chooser.getSelectedFile().toString();
 
-        if(!(filePath.endsWith(".xml"))){
+        if (!(filePath.endsWith(".xml"))) {
             return;
         }
 
         File file = new File(filePath);
 
-        readXML(file);
+        loadFromXML(file);
     }
 
-    private void readXML(File file){
+    private void makeComic(Comic comic){
+
+        controller.getLowerPanelController().comicPanelList.add(comic);
         controller.getLowerPanelController().clearComic();
 
-        /*controller.comic.setBackground(panelComic.getBackground());
+        controller.comic.setBackground(comic.getBackground());
 
-        controller.comic.setLeftText(panelComic.getLeftText());
-        controller.leftTextField.setText(panelComic.getLeftText());
+        controller.comic.setLeftText(comic.getLeftText());
+        controller.leftTextField.setText(comic.getLeftText());
 
-        controller.comic.setRightText(panelComic.getRightText());
-        controller.rightTextField.setText(panelComic.getRightText());
+        controller.comic.setRightText(comic.getRightText());
+        controller.rightTextField.setText(comic.getRightText());
 
-        controller.comic.setTopText(panelComic.getTopText());
-        controller.topText.setText(panelComic.getTopText());
+        controller.comic.setTopText(comic.getTopText());
+        controller.topText.setText(comic.getTopText());
 
-        controller.comic.setBottomText(panelComic.getBottomText());
-        controller.bottomText.setText(panelComic.getBottomText());
+        controller.comic.setBottomText(comic.getBottomText());
+        controller.bottomText.setText(comic.getBottomText());
 
         controller.topText.setVisible(true);
-        controller.bottomText.setVisible(true);*/
+        controller.bottomText.setVisible(true);
+    }
+
+    public void loadFromXML(File file) {
+
+        // Instantiate the Factory
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        try {
+
+            // optional, but recommended
+            // process XML securely, avoid attacks like XML External Entities (XXE)
+            dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+            // parse XML file
+            DocumentBuilder db = dbf.newDocumentBuilder();
+
+            Document doc = db.parse(file);
+
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
+            System.out.println("------");
+
+            if(controller.getMidScrollPaneController().characterImages == null){
+                controller.getMidScrollPaneController().imageLists.loadCharacterImagesList();
+
+                controller.getMidScrollPaneController().characterImages = controller.getMidScrollPaneController().imageLists.getCharacterImages();
+            }
+
+            if(controller.getMidScrollPaneController().backgroundImages == null){
+                controller.getMidScrollPaneController().imageLists.loadBackgroundImagesList();
+
+                controller.getMidScrollPaneController().backgroundImages = controller.getMidScrollPaneController().imageLists.getBackgroundImages();
+            }
+
+            NodeList list = doc.getElementsByTagName("panel");
+
+            for (int temp = 0; temp < list.getLength(); temp++) {
+                Node node = list.item(temp);
+                Comic comic = new Comic();
+
+                Element element = (Element) node;
+                Element Left = (Element) element.getElementsByTagName("characterLeft").item(0);
+                Element Right = (Element) element.getElementsByTagName("characterRight").item(0);
+                Element Background = (Element) element.getElementsByTagName("background").item(0);
+                Element Text = (Element) element.getElementsByTagName("text").item(0);
+
+                if (Left != null) {
+                    int chosenImage = Integer.parseInt(Left.getElementsByTagName("chosenImage").item(0).getTextContent());
+
+                    Character character = new Character(controller.getMidScrollPaneController().characterImages.get(chosenImage), 0, chosenImage);
+                    character.setGender(Left.getElementsByTagName("gender").item(0).getTextContent());
+                    character.setFacing(Integer.parseInt(Left.getElementsByTagName("direction").item(0).getTextContent()));
+                    character.setSkinColour(Color.web(Left.getElementsByTagName("skinColour").item(0).getTextContent()));
+                    character.setMaleHairColour(Color.web(Left.getElementsByTagName("maleHairColour").item(0).getTextContent()));
+                    character.setFemaleHairColour(Color.web(Left.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
+                    comic.setLeftCharacter(character);
+                }
+
+                if (Right != null) {
+                    int chosenImage = Integer.parseInt(Right.getElementsByTagName("chosenImage").item(0).getTextContent());
+
+                    Character character = new Character(controller.getMidScrollPaneController().characterImages.get(chosenImage), 1, chosenImage);
+                    character.setGender(Right.getElementsByTagName("gender").item(0).getTextContent());
+                    character.setFacing(Integer.parseInt(Right.getElementsByTagName("direction").item(0).getTextContent()));
+                    character.setSkinColour(Color.web(Right.getElementsByTagName("skinColour").item(0).getTextContent()));
+                    character.setMaleHairColour(Color.web(Right.getElementsByTagName("maleHairColour").item(0).getTextContent()));
+                    character.setFemaleHairColour(Color.web(Right.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
+
+                    comic.setRightCharacter(character);
+                }
+
+                if (Background != null) {
+                    int background = Integer.parseInt(Background.getTextContent());
+                    comic.setBackground(new ImageView(controller.getMidScrollPaneController().backgroundImages.get(background)));
+                }
+
+                if (Text != null) {
+                    comic.setTopText(Text.getElementsByTagName("topText").item(0).getTextContent());
+                    comic.setLeftText(Text.getElementsByTagName("LeftText").item(0).getTextContent());
+                    comic.setRightText(Text.getElementsByTagName("RightText").item(0).getTextContent());
+                    comic.setBottomText(Text.getElementsByTagName("BottomText").item(0).getTextContent());
+                }
+                makeComic(comic);
+            }
+
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

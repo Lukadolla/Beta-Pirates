@@ -15,9 +15,9 @@ import static javafx.geometry.Pos.CENTER;
 
 public class MidScrollPaneController {
 
-    private ImageLists imageLists = new ImageLists();
-    private List<Image> characterImages;  //List of character Images
-    private List<Image> backgroundImages;  //List of backgrounds
+    ImageLists imageLists = new ImageLists();
+    List<Image> characterImages;  //List of character Images
+    List<Image> backgroundImages;  //List of backgrounds
     private Controller mainController;
 
     public MidScrollPaneController(Controller mainController) {
