@@ -57,7 +57,7 @@ public class ComicController {
         mainController.getColourController().removeAAPixels();
     }
 
-    protected void insertBubble(ImageView imageView) { //Method that inserts the thought/speech bubble into the correct section of the comic
+    void insertBubble(ImageView imageView) { //Method that inserts the thought/speech bubble into the correct section of the comic
         if (mainController.comic.getSelected().equals(mainController.comic.getLeftCharacter())) {
             mainController.comic.setCentreLeft(imageView);
             mainController.comic.getCentreLeft().setScaleX(-1);
@@ -80,7 +80,7 @@ public class ComicController {
         mainController.leftHbox.setVisible(true);
     }
 
-    protected void insertBackground(Image selectedImage){  //Method that places the background into the comic panel
+    void insertBackground(Image selectedImage){  //Method that places the background into the comic panel
         mainController.comic.setBackground(new ImageView(selectedImage));
         mainController.background.setImage(mainController.comic.getBackground().getImage());
     }
