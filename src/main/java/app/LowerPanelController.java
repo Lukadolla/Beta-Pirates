@@ -83,7 +83,7 @@ public class LowerPanelController {
 
     }
 
-    private void loadBottomPanel(){ //Loads the stored comics into the bottom panel
+    void loadBottomPanel(){ //Loads the stored comics into the bottom panel
 
         for(int panelImage=0; panelImage < comicPanelList.size(); panelImage++) {
 

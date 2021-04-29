@@ -47,6 +47,9 @@ public class LoadComicController {
 
     public void loadFromXML(File file) {
 
+        controller.getLowerPanelController().comicPanelList.clear();
+        controller.getLowerPanelController().loadBottomPanel();
+
         // Instantiate the Factory
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
