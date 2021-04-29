@@ -58,11 +58,8 @@ public class ButtonController {
   }
 
   void addCharacterLeft() throws IOException { //Method called when button is pressed to add a character into the left panel
-
     mainController.getMidScrollPaneController().addCharacterPane();
-
     switchButtonState(mainController.bottomLeftIV.getImage() != null);
-
     mainController.setBorder(mainController.bottomLeftBorder);
     mainController.comicSelection = mainController.bottomLeftIV;
     mainController.comicCharacterSelection = mainController.bottomLeftIV;
@@ -72,11 +69,8 @@ public class ButtonController {
   }
 
   void addCharacterRight() throws IOException { //Method called when button is pressed to add a character into the right panel
-
     mainController.getMidScrollPaneController().addCharacterPane();
-
     switchButtonState(mainController.bottomRightIV.getImage() != null);
-
     mainController.setBorder(mainController.bottomRightBorder);
     mainController.comicSelection = mainController.bottomRightIV;
     mainController.comicCharacterSelection = mainController.bottomRightIV;
@@ -84,7 +78,6 @@ public class ButtonController {
     mainController.comic.setSelected(mainController.comic.getRightCharacter());
     }
   }
-
 
   public void insertCharacter(Image selectedImage, int image) {
     if (mainController.comicCharacterSelection == mainController.bottomLeftIV) {
@@ -106,7 +99,6 @@ public class ButtonController {
 
   @FXML
   public void changeGender() { //Method called when user presses the change gender button
-
     if(mainController.comic.getSelected().getGender().equals("female")){
       mainController.getCharacterController().setMale();
     }
@@ -117,24 +109,18 @@ public class ButtonController {
 
   @FXML
   void addSpeechBubble(){ //Method called when user presses the speech bubble button
-
     URL url = getClass().getResource("/images/buttons/speech.png");
     String currentPath = url.toString();
-
     ImageView imageView = new ImageView(currentPath);
-
     mainController.getComicController().insertBubble(imageView);
   }
 
 
   @FXML
   void addThoughtBubble(){ //Method called when user presses the thought bubble button
-
     URL url = getClass().getResource("/images/buttons/thought.PNG");
     String currentPath = url.toString();
-
     ImageView imageView = new ImageView(currentPath);
-
     mainController.getComicController().insertBubble(imageView);
   }
 
