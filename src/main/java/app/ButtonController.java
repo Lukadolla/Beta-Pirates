@@ -80,7 +80,7 @@ public class ButtonController {
   }
 
   public void insertCharacter(Image selectedImage, int image) {
-    Character c = new Character(selectedImage, 0, image);
+    Character c = new Character(selectedImage, image);
     if (mainController.comicCharacterSelection == mainController.bottomLeftIV) {
       mainController.getComicController().insertLeftCharacter(c);
     } else if (mainController.comicCharacterSelection == mainController.bottomRightIV) {

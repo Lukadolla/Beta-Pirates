@@ -78,7 +78,6 @@ public class LoadComicController {
 
             for (int temp = 0; temp < list.getLength(); temp++) {
                 Node node = list.item(temp);
-                Comic comic = new Comic();
 
                 Element element = (Element) node;
                 Element Left = (Element) element.getElementsByTagName("characterLeft").item(0);
@@ -89,34 +88,33 @@ public class LoadComicController {
                 if (Left != null) {
                     int chosenImage = Integer.parseInt(Left.getElementsByTagName("chosenImage").item(0).getTextContent());
 
-                    Character character = new Character(controller.getMidScrollPaneController().characterImages.get(chosenImage), 0, chosenImage);
+                    Character character = new Character(controller.getMidScrollPaneController().characterImages.get(chosenImage), chosenImage);
                     character.setGender(Left.getElementsByTagName("gender").item(0).getTextContent());
                     character.setFacing(Integer.parseInt(Left.getElementsByTagName("direction").item(0).getTextContent()));
                     character.setSkinColour(Color.web(Left.getElementsByTagName("skinColour").item(0).getTextContent()));
                     character.setMaleHairColour(Color.web(Left.getElementsByTagName("maleHairColour").item(0).getTextContent()));
                     character.setFemaleHairColour(Color.web(Left.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
 
-                    controller.comic.setLeftCharacter(character);
                     controller.getComicController().insertLeftCharacter(character);
+                    controller.getColourController().loadSkinColour(character.getSkinColour());
                 }
 
                 if (Right != null) {
                     int chosenImage = Integer.parseInt(Right.getElementsByTagName("chosenImage").item(0).getTextContent());
 
-                    Character character = new Character(controller.getMidScrollPaneController().characterImages.get(chosenImage), 1, chosenImage);
+                    Character character = new Character(controller.getMidScrollPaneController().characterImages.get(chosenImage), chosenImage);
                     character.setGender(Right.getElementsByTagName("gender").item(0).getTextContent());
                     character.setFacing(Integer.parseInt(Right.getElementsByTagName("direction").item(0).getTextContent()));
                     character.setSkinColour(Color.web(Right.getElementsByTagName("skinColour").item(0).getTextContent()));
                     character.setMaleHairColour(Color.web(Right.getElementsByTagName("maleHairColour").item(0).getTextContent()));
                     character.setFemaleHairColour(Color.web(Right.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
 
-                    controller.comic.setRightCharacter(character);
                     controller.getComicController().insertRightCharacter(character);
+                    controller.getColourController().loadSkinColour(character.getSkinColour());
                 }
 
                 if (Background != null) {
-                    controller.comic.setBackground(new ImageView(controller.getMidScrollPaneController().backgroundImages.get(Integer.parseInt(Background.getTextContent()))));
-                    controller.getComicController().insertBackground(controller.comic.getBackground().getImage());
+                    controller.getComicController().insertBackground(controller.getMidScrollPaneController().backgroundImages.get(Integer.parseInt(Background.getTextContent())));
                 }
 
                 if (Text != null) {

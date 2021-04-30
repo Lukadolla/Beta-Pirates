@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 
 public class Character {
 
-  private int position;
   private int facing;
   private Image image;
   private String gender;
@@ -15,8 +14,7 @@ public class Character {
   private Color lipColour;
   private int chosenImage;
 
-  public Character(Image image, int position, int chosenImage){
-    this.position=position;
+  public Character(Image image, int chosenImage){
     facing = 1;
     gender = "female";
     this.image = image;
@@ -30,10 +28,6 @@ public class Character {
   public int getChosenImage() {
     return chosenImage;
   }
-
-  public int getPosition() { return position; }
-
-  public void setPosition(int position) {this.position=position;}
 
   public int getFacing() {
     return facing;

@@ -211,7 +211,7 @@ public class ColourController {
     mainController.comic.getSelected().setImage(wImage);
   }
 
-  void removeHairAA(){  //Method to remove hair anti-aliasing by calling the setMale and setFemale methode which handle the AA
+  void removeHairAA(){  //Method to remove hair anti-aliasing by calling the setMale and setFemale method which handle the AA
     mainController.getCharacterController().setMale();
     removeAAPixels();
     mainController.getCharacterController().setFemale();
@@ -226,6 +226,35 @@ public class ColourController {
     }
 
     return colour;
+  }
+
+  public void loadSkinColour(Color newColour){
+    Image image = mainController.comic.getSelected().getImage();
+    int imageHeight = (int)image.getHeight();
+    int imageWidth = (int)image.getWidth();
+    boolean changed = false;
+
+    WritableImage wImage = new WritableImage(imageWidth, imageHeight);
+    PixelWriter PW = wImage.getPixelWriter();
+    PixelReader PR = image.getPixelReader();
+    Color lipColour = new Color(0,0,0,0);
+
+    for(int i = 0; i < imageWidth; i++){
+      for(int j = 0; j < imageHeight; j++){
+        Color colour = PR.getColor(i, j);
+        if(colour.equals(Color.web("ffe8d8"))){
+          colour = newColour;
+        }
+        else if(mainController.comic.getSelected().getGender().equals("male") && compareColours(colour, mainController.comic.getSelected().getLipColour())){
+          colour = changeTone(newColour);
+          lipColour = colour;
+        }
+        PW.setColor(i, j, colour);
+      }
+    }
+    mainController.comic.getSelected().setLipColour(lipColour);
+    mainController.comic.getSelected().setImage(wImage);
+    mainController.comicSelection.setImage(wImage);
   }
 
 }
