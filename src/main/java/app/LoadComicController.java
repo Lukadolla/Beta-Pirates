@@ -34,7 +34,14 @@ public class LoadComicController {
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.setDialogTitle("Load Comic as XML");
         chooser.showOpenDialog(null);
-        String filePath = chooser.getSelectedFile().toString();
+        String filePath;
+
+        try {
+            filePath = chooser.getSelectedFile().toString();
+        }
+        catch(Exception e){
+            return;
+        }
 
         if (!(filePath.endsWith(".xml"))) {
             return;
