@@ -165,7 +165,7 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void loadXML(ActionEvent event) {
+    @FXML private void loadXML(ActionEvent event) throws CloneNotSupportedException {
         loadComicController.loadXML();
         event.consume();
     }

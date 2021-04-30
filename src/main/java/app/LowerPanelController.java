@@ -166,7 +166,7 @@ public class LowerPanelController {
 
     private void importPanel() throws CloneNotSupportedException { //Imports selected panel to the main comic panel
         clearComic();
-        drawPanel();
+        drawComic(comicPanelList.get(selectedPanelIndex));
         loadedPanelIndex = selectedPanelIndex;
         selectedPanelRegion.setStyle("-fx-border-color: #eb7134; -fx-border-width: 5px");
         loadedPanelRegion = selectedPanelRegion;
@@ -212,40 +212,39 @@ public class LowerPanelController {
         mainController.bottomText.setText("");
     }
 
-    private void drawPanel() throws CloneNotSupportedException { //Updates the main comic with a previously saved comic from the bottom pane
-        Comic panelComic = (Comic) comicPanelList.get(selectedPanelIndex).clone();
+    void drawComic(Comic comicCopy) throws CloneNotSupportedException { //Updates the main comic with a previously saved comic from the bottom pane
 
-        if(panelComic.getLeftCharacter() != null) {
-            redrawLeftCharacter(panelComic.getLeftCharacter());
+        if(comicCopy.getLeftCharacter() != null) {
+            redrawLeftCharacter(comicCopy.getLeftCharacter());
         }
-        if(panelComic.getRightCharacter() != null) {
-            redrawRightCharacter(panelComic.getRightCharacter());
-        }
-
-        if(panelComic.getCentreLeft() != null){
-            redrawBubbles(panelComic.getCentreLeft(), 0);
+        if(comicCopy.getRightCharacter() != null) {
+            redrawRightCharacter(comicCopy.getRightCharacter());
         }
 
-        if(panelComic.getCentreRight() != null){
-            redrawBubbles(panelComic.getCentreRight(), 1);
+        if(comicCopy.getCentreLeft() != null){
+            redrawBubbles(comicCopy.getCentreLeft(), 0);
         }
 
-        if(panelComic.getBackground() != null) {
-            mainController.comic.setBackground(panelComic.getBackground());
+        if(comicCopy.getCentreRight() != null){
+            redrawBubbles(comicCopy.getCentreRight(), 1);
+        }
+
+        if(comicCopy.getBackground() != null) {
+            mainController.comic.setBackground(comicCopy.getBackground());
             mainController.background.setImage(mainController.comic.getBackground().getImage());
         }
 
-        mainController.comic.setLeftText(panelComic.getLeftText());
-        mainController.leftTextField.setText(panelComic.getLeftText());
+        mainController.comic.setLeftText(comicCopy.getLeftText());
+        mainController.leftTextField.setText(comicCopy.getLeftText());
 
-        mainController.comic.setRightText(panelComic.getRightText());
-        mainController.rightTextField.setText(panelComic.getRightText());
+        mainController.comic.setRightText(comicCopy.getRightText());
+        mainController.rightTextField.setText(comicCopy.getRightText());
 
-        mainController.comic.setTopText(panelComic.getTopText());
-        mainController.topText.setText(panelComic.getTopText());
+        mainController.comic.setTopText(comicCopy.getTopText());
+        mainController.topText.setText(comicCopy.getTopText());
 
-        mainController.comic.setBottomText(panelComic.getBottomText());
-        mainController.bottomText.setText(panelComic.getBottomText());
+        mainController.comic.setBottomText(comicCopy.getBottomText());
+        mainController.bottomText.setText(comicCopy.getBottomText());
 
         mainController.topText.setVisible(true);
         mainController.bottomText.setVisible(true);
@@ -279,7 +278,7 @@ public class LowerPanelController {
         });
     }
 
-    private void redrawBubbles(ImageView imageView, int side) { //Method that inserts the thought/speech bubble into the correct section of the comic
+    public void redrawBubbles(ImageView imageView, int side) { //Method that inserts the thought/speech bubble into the correct section of the comic
         if (side == 0) {
             mainController.comic.setCentreLeft(imageView);
             mainController.comic.getCentreLeft().setScaleX(-1);

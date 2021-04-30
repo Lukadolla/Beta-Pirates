@@ -28,7 +28,7 @@ public class LoadComicController {
     }
 
     @FXML
-    void loadXML() {
+    void loadXML() throws CloneNotSupportedException {
 
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -49,10 +49,18 @@ public class LoadComicController {
 
         File file = new File(filePath);
 
+        Comic currentComic = (Comic) controller.comic.clone();
+
         loadFromXML(file);
+
+        controller.comic = (Comic) currentComic.clone();
+
+        controller.getLowerPanelController().drawComic(currentComic);
     }
 
     public void loadFromXML(File file) {
+
+        controller.getLowerPanelController().clearComic();
 
         controller.getLowerPanelController().comicPanelList.clear();
         controller.getLowerPanelController().loadBottomPanel();
