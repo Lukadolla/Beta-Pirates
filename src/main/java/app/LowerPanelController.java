@@ -21,7 +21,7 @@ public class LowerPanelController {
         mainController = TC;
     }
 
-    private int loadedPanelIndex = -1;
+    public int loadedPanelIndex = -1;
     LinkedList<Comic> comicPanelList = new LinkedList<>();
 
     private int selectedPanelIndex;

@@ -57,6 +57,8 @@ public class LoadComicController {
 
     public void loadFromXML(File file) {
 
+        controller.getLowerPanelController().loadedPanelIndex = -1;
+
         controller.getLowerPanelController().clearComic();
 
         controller.getLowerPanelController().comicPanelList.clear();
