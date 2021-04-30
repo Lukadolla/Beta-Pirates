@@ -114,6 +114,7 @@ public class ButtonController {
     URL url = getClass().getResource("/images/buttons/speech.png");
     String currentPath = url.toString();
     ImageView imageView = new ImageView(currentPath);
+    mainController.comic.getSelected().setSpeech();
     mainController.getComicController().insertBubble(imageView);
   }
 
@@ -123,6 +124,7 @@ public class ButtonController {
     URL url = getClass().getResource("/images/buttons/thought.PNG");
     String currentPath = url.toString();
     ImageView imageView = new ImageView(currentPath);
+    mainController.comic.getSelected().setThought();
     mainController.getComicController().insertBubble(imageView);
   }
 

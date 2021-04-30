@@ -100,6 +100,13 @@ public class SaveComicController {
                     Element direction = document.createElement("direction");
                     direction.appendChild(document.createTextNode(String.valueOf(comic.getLeftCharacter().getFacing())));
                     character.appendChild(direction);
+
+                    if(comic.getLeftCharacter().getBubble()!=null) {
+                        //speech/thought bubble element
+                        Element bubble = document.createElement("bubble");
+                        bubble.appendChild(document.createTextNode(comic.getLeftCharacter().getBubble()));
+                        character.appendChild(bubble);
+                    }
                 }
                 if (comic.getRightCharacter() != null) {
                     // character element
@@ -136,6 +143,13 @@ public class SaveComicController {
                     Element direction = document.createElement("direction");
                     direction.appendChild(document.createTextNode(String.valueOf(comic.getRightCharacter().getFacing())));
                     character.appendChild(direction);
+
+                    if(comic.getRightCharacter().getBubble()!=null) {
+                        //speech/thought bubble element
+                        Element bubble = document.createElement("bubble");
+                        bubble.appendChild(document.createTextNode(comic.getRightCharacter().getBubble()));
+                        character.appendChild(bubble);
+                    }
                 }
 
                 if (comic.getBackground() != null) {
@@ -143,7 +157,6 @@ public class SaveComicController {
                     panel.appendChild(background);
                     background.appendChild(document.createTextNode(String.valueOf(comic.getChosenBackground())));
                 }
-
                 else{
                     Element background = document.createElement("background");
                     panel.appendChild(background);

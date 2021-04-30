@@ -13,6 +13,7 @@ public class Character {
   private Color femaleHairColour;
   private Color lipColour;
   private int chosenImage;
+  private String bubble=null;
 
   public Character(Image image, int chosenImage){
     facing = 1;
@@ -87,4 +88,15 @@ public class Character {
 
   public void setLipColour(Color lipColour){ this.lipColour = lipColour;}
 
+  public void setSpeech(){
+    bubble="speech";
+  }
+
+  public void setThought(){
+    bubble="thought";
+  }
+
+  public String getBubble(){
+    return bubble;
+  }
 }

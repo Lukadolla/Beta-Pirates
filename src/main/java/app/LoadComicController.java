@@ -108,14 +108,25 @@ public class LoadComicController {
                     character.setSkinColour(Color.web(Left.getElementsByTagName("skinColour").item(0).getTextContent()));
                     character.setMaleHairColour(Color.web(Left.getElementsByTagName("maleHairColour").item(0).getTextContent()));
                     character.setFemaleHairColour(Color.web(Left.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
+                    Node bubble = Left.getElementsByTagName("bubble").item(0);
 
                     controller.getComicController().insertLeftCharacter(character);
+                    if(bubble!=null){
+                        if(bubble.getTextContent().equals("speech")){
+                            controller.comic.getLeftCharacter().setSpeech();
+                            controller.getButtonController().addSpeechBubble();
+                        }
+                        else if(bubble.getTextContent().equals("thought")){
+                            controller.comic.getLeftCharacter().setThought();
+                            controller.getButtonController().addThoughtBubble();
+                        }
+                    }
                     controller.getColourController().loadSkinColour(character.getSkinColour());
                 }
 
                 if (Right != null) {
                     int chosenImage = Integer.parseInt(Right.getElementsByTagName("chosenImage").item(0).getTextContent());
-
+                    Node bubble = Right.getElementsByTagName("bubble").item(0);
                     Character character = new Character(controller.getMidScrollPaneController().characterImages.get(chosenImage), chosenImage);
                     character.setGender(Right.getElementsByTagName("gender").item(0).getTextContent());
                     character.setFacing(Integer.parseInt(Right.getElementsByTagName("direction").item(0).getTextContent()));
@@ -123,7 +134,18 @@ public class LoadComicController {
                     character.setMaleHairColour(Color.web(Right.getElementsByTagName("maleHairColour").item(0).getTextContent()));
                     character.setFemaleHairColour(Color.web(Right.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
 
+
                     controller.getComicController().insertRightCharacter(character);
+                    if(bubble!=null){
+                        if(bubble.getTextContent().equals("speech")){
+                            controller.comic.getRightCharacter().setSpeech();
+                            controller.getButtonController().addSpeechBubble();
+                        }
+                        else if(bubble.getTextContent().equals("thought")){
+                            controller.comic.getRightCharacter().setThought();
+                            controller.getButtonController().addThoughtBubble();
+                        }
+                    }
                     controller.getColourController().loadSkinColour(character.getSkinColour());
                 }
 
@@ -131,19 +153,27 @@ public class LoadComicController {
                     controller.getComicController().insertBackground(controller.getMidScrollPaneController().backgroundImages.get(Integer.parseInt(Background.getTextContent())));
                 }
 
-                if (Text != null) {
-                    controller.comic.setLeftText(Text.getElementsByTagName("LeftText").item(0).getTextContent());
+                if (Text.getElementsByTagName("leftText").item(0) != null) {
+                    controller.comic.setLeftText(Text.getElementsByTagName("leftText").item(0).getTextContent());
                     controller.leftTextField.setText(controller.comic.getLeftText());
-
-                    controller.comic.setRightText(Text.getElementsByTagName("RightText").item(0).getTextContent());
+                    controller.leftTextField.setVisible(true);
+                    controller.leftTextField.setDisable(false);
+                }
+                if (Text.getElementsByTagName("rightText").item(0) != null) {
+                    controller.comic.setRightText(Text.getElementsByTagName("rightText").item(0).getTextContent());
                     controller.rightTextField.setText(controller.comic.getRightText());
-
+                    controller.rightTextField.setVisible(true);
+                    controller.rightTextField.setDisable(false);
+                }
+                if (Text.getElementsByTagName("topText").item(0) != null) {
                     controller.comic.setTopText(Text.getElementsByTagName("topText").item(0).getTextContent());
                     controller.topText.setText(controller.comic.getTopText());
-
-                    controller.comic.setBottomText(Text.getElementsByTagName("BottomText").item(0).getTextContent());
+                }
+                if (Text.getElementsByTagName("bottomText").item(0) != null) {
+                    controller.comic.setBottomText(Text.getElementsByTagName("bottomText").item(0).getTextContent());
                     controller.bottomText.setText(controller.comic.getBottomText());
                 }
+
                 controller.getLowerPanelController().addToPanelList();
             }
 
