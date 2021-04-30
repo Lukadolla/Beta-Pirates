@@ -1,5 +1,6 @@
 package app;
 
+
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +29,7 @@ public class Controller {
     private SaveComicController saveComicController = new SaveComicController(this);
     private LoadComicController loadComicController = new LoadComicController(this);
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
-    ImageView comicCharacterSelection; // Track character selection independent of comic selection
+    ImageView comicCharacterSelection=null; // Track character selection independent of comic selection
     int sizeScale = 10;
 
     @FXML AnchorPane backgroundImageScale;

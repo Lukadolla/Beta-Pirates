@@ -24,7 +24,7 @@ public class MidScrollPaneController {
         this.mainController = mainController;
     }
 
-    private void loadCharacterImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
+    void loadCharacterImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
 
         imageLists.loadCharacterImagesList();
 
@@ -107,8 +107,7 @@ public class MidScrollPaneController {
         return characterAnchorPane;
     }
 
-    @FXML
-    private void loadBackgroundImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
+    void loadBackgroundImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
 
         imageLists.loadBackgroundImagesList();
 

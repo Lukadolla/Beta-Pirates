@@ -20,7 +20,7 @@ public class ColourController {
 
   @FXML
   public void changeSkinColour() {  //Method called when user wants to change the character's skin colour
-    Image image = mainController.comicSelection.getImage();
+    Image image = mainController.comic.getSelected().getImage();
     int imageHeight = (int)image.getHeight();
     int imageWidth = (int)image.getWidth();
     boolean changed = false;
@@ -62,7 +62,7 @@ public class ColourController {
 
   @FXML
   public void changeHairColour() { //Method called when user wants to change the character's hair colour
-    Image image = mainController.comicSelection.getImage();
+    Image image = mainController.comic.getSelected().getImage();
     int imageHeight = (int)image.getHeight();
     int imageWidth = (int)image.getWidth();
     boolean changed = false;

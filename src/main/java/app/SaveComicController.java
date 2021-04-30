@@ -44,7 +44,6 @@ public class SaveComicController {
             String filePath = chooser.getSelectedFile().toString();
 
             File file = new File(filePath + "\\" + fileName + ".xml");
-            file.createNewFile();
 
             saveAsXML(file);
         }

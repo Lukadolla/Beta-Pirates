@@ -33,7 +33,7 @@ public class LoadComicController {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.setDialogTitle("Load Comic as XML");
-        chooser.showSaveDialog(null);
+        chooser.showOpenDialog(null);
         String filePath = chooser.getSelectedFile().toString();
 
         if (!(filePath.endsWith(".xml"))) {
@@ -45,30 +45,10 @@ public class LoadComicController {
         loadFromXML(file);
     }
 
-    private void makeComic(Comic comic){
-
-        controller.getLowerPanelController().comicPanelList.add(comic);
-        controller.getLowerPanelController().clearComic();
-
-        controller.comic.setBackground(comic.getBackground());
-
-        controller.comic.setLeftText(comic.getLeftText());
-        controller.leftTextField.setText(comic.getLeftText());
-
-        controller.comic.setRightText(comic.getRightText());
-        controller.rightTextField.setText(comic.getRightText());
-
-        controller.comic.setTopText(comic.getTopText());
-        controller.topText.setText(comic.getTopText());
-
-        controller.comic.setBottomText(comic.getBottomText());
-        controller.bottomText.setText(comic.getBottomText());
-
-        controller.topText.setVisible(true);
-        controller.bottomText.setVisible(true);
-    }
-
     public void loadFromXML(File file) {
+
+        controller.getLowerPanelController().comicPanelList.clear();
+        controller.getLowerPanelController().loadBottomPanel();
 
         // Instantiate the Factory
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -86,19 +66,12 @@ public class LoadComicController {
 
             doc.getDocumentElement().normalize();
 
-            System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
-            System.out.println("------");
-
             if(controller.getMidScrollPaneController().characterImages == null){
-                controller.getMidScrollPaneController().imageLists.loadCharacterImagesList();
-
-                controller.getMidScrollPaneController().characterImages = controller.getMidScrollPaneController().imageLists.getCharacterImages();
+                controller.getMidScrollPaneController().loadCharacterImages();
             }
 
             if(controller.getMidScrollPaneController().backgroundImages == null){
-                controller.getMidScrollPaneController().imageLists.loadBackgroundImagesList();
-
-                controller.getMidScrollPaneController().backgroundImages = controller.getMidScrollPaneController().imageLists.getBackgroundImages();
+                controller.getMidScrollPaneController().loadBackgroundImages();
             }
 
             NodeList list = doc.getElementsByTagName("panel");
@@ -122,7 +95,9 @@ public class LoadComicController {
                     character.setSkinColour(Color.web(Left.getElementsByTagName("skinColour").item(0).getTextContent()));
                     character.setMaleHairColour(Color.web(Left.getElementsByTagName("maleHairColour").item(0).getTextContent()));
                     character.setFemaleHairColour(Color.web(Left.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
-                    comic.setLeftCharacter(character);
+
+                    controller.comic.setLeftCharacter(character);
+                    controller.getComicController().insertLeftCharacter(character);
                 }
 
                 if (Right != null) {
@@ -135,24 +110,32 @@ public class LoadComicController {
                     character.setMaleHairColour(Color.web(Right.getElementsByTagName("maleHairColour").item(0).getTextContent()));
                     character.setFemaleHairColour(Color.web(Right.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
 
-                    comic.setRightCharacter(character);
+                    controller.comic.setRightCharacter(character);
+                    controller.getComicController().insertRightCharacter(character);
                 }
 
                 if (Background != null) {
-                    int background = Integer.parseInt(Background.getTextContent());
-                    comic.setBackground(new ImageView(controller.getMidScrollPaneController().backgroundImages.get(background)));
+                    controller.comic.setBackground(new ImageView(controller.getMidScrollPaneController().backgroundImages.get(Integer.parseInt(Background.getTextContent()))));
+                    controller.getComicController().insertBackground(controller.comic.getBackground().getImage());
                 }
 
                 if (Text != null) {
-                    comic.setTopText(Text.getElementsByTagName("topText").item(0).getTextContent());
-                    comic.setLeftText(Text.getElementsByTagName("LeftText").item(0).getTextContent());
-                    comic.setRightText(Text.getElementsByTagName("RightText").item(0).getTextContent());
-                    comic.setBottomText(Text.getElementsByTagName("BottomText").item(0).getTextContent());
+                    controller.comic.setLeftText(Text.getElementsByTagName("LeftText").item(0).getTextContent());
+                    controller.leftTextField.setText(controller.comic.getLeftText());
+
+                    controller.comic.setRightText(Text.getElementsByTagName("RightText").item(0).getTextContent());
+                    controller.rightTextField.setText(controller.comic.getRightText());
+
+                    controller.comic.setTopText(Text.getElementsByTagName("topText").item(0).getTextContent());
+                    controller.topText.setText(controller.comic.getTopText());
+
+                    controller.comic.setBottomText(Text.getElementsByTagName("BottomText").item(0).getTextContent());
+                    controller.bottomText.setText(controller.comic.getBottomText());
                 }
-                makeComic(comic);
+                controller.getLowerPanelController().addToPanelList();
             }
 
-        } catch (ParserConfigurationException | SAXException | IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException | CloneNotSupportedException e) {
             e.printStackTrace();
         }
 
