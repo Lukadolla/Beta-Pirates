@@ -152,26 +152,27 @@ public class LoadComicController {
                 if (Background != null) {
                     controller.getComicController().insertBackground(controller.getMidScrollPaneController().backgroundImages.get(Integer.parseInt(Background.getTextContent())));
                 }
-
-                if (Text.getElementsByTagName("leftText").item(0) != null) {
-                    controller.comic.setLeftText(Text.getElementsByTagName("leftText").item(0).getTextContent());
-                    controller.leftTextField.setText(controller.comic.getLeftText());
-                    controller.leftTextField.setVisible(true);
-                    controller.leftTextField.setDisable(false);
-                }
-                if (Text.getElementsByTagName("rightText").item(0) != null) {
-                    controller.comic.setRightText(Text.getElementsByTagName("rightText").item(0).getTextContent());
-                    controller.rightTextField.setText(controller.comic.getRightText());
-                    controller.rightTextField.setVisible(true);
-                    controller.rightTextField.setDisable(false);
-                }
-                if (Text.getElementsByTagName("topText").item(0) != null) {
-                    controller.comic.setTopText(Text.getElementsByTagName("topText").item(0).getTextContent());
-                    controller.topText.setText(controller.comic.getTopText());
-                }
-                if (Text.getElementsByTagName("bottomText").item(0) != null) {
-                    controller.comic.setBottomText(Text.getElementsByTagName("bottomText").item(0).getTextContent());
-                    controller.bottomText.setText(controller.comic.getBottomText());
+                if(Text != null) {
+                    if (Text.getElementsByTagName("leftText").item(0) != null) {
+                        controller.comic.setLeftText(Text.getElementsByTagName("leftText").item(0).getTextContent());
+                        controller.leftTextField.setText(controller.comic.getLeftText());
+                        controller.leftTextField.setVisible(true);
+                        controller.leftTextField.setDisable(false);
+                    }
+                    if (Text.getElementsByTagName("rightText").item(0) != null) {
+                        controller.comic.setRightText(Text.getElementsByTagName("rightText").item(0).getTextContent());
+                        controller.rightTextField.setText(controller.comic.getRightText());
+                        controller.rightTextField.setVisible(true);
+                        controller.rightTextField.setDisable(false);
+                    }
+                    if (Text.getElementsByTagName("topText").item(0) != null) {
+                        controller.comic.setTopText(Text.getElementsByTagName("topText").item(0).getTextContent());
+                        controller.topText.setText(controller.comic.getTopText());
+                    }
+                    if (Text.getElementsByTagName("bottomText").item(0) != null) {
+                        controller.comic.setBottomText(Text.getElementsByTagName("bottomText").item(0).getTextContent());
+                        controller.bottomText.setText(controller.comic.getBottomText());
+                    }
                 }
 
                 controller.getLowerPanelController().addToPanelList();
