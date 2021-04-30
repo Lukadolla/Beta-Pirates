@@ -97,7 +97,7 @@ public class LoadComicController {
                     character.setFemaleHairColour(Color.web(Left.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
 
                     controller.comic.setLeftCharacter(character);
-                    controller.getComicController().insertLeftCharacter(character.getImage(), chosenImage);
+                    controller.getComicController().insertLeftCharacter(character);
                 }
 
                 if (Right != null) {
@@ -111,7 +111,7 @@ public class LoadComicController {
                     character.setFemaleHairColour(Color.web(Right.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
 
                     controller.comic.setRightCharacter(character);
-                    controller.getComicController().insertRightCharacter(character.getImage(), chosenImage);
+                    controller.getComicController().insertRightCharacter(character);
                 }
 
                 if (Background != null) {

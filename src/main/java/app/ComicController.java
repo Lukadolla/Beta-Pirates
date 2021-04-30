@@ -18,13 +18,13 @@ public class ComicController {
         this.mainController = mainController;
     }
 
-    public void insertRightCharacter(Image selectedImage, int image){  //Method that inserts a character into the right panel and adds character data to the Comic class
-        mainController.comic.setRightCharacter(new Character(selectedImage, 1, image));
+    public void insertRightCharacter(Character character){  //Method that inserts a character into the right panel and adds character data to the Comic class
+        mainController.comic.setRightCharacter(character);
         mainController.comic.setSelected(mainController.comic.getRightCharacter());
         mainController.comicSelection = mainController.bottomRightIV;
         mainController.comicCharacterSelection = mainController.bottomRightIV;
         mainController.bottomRightIV.setImage(mainController.comic.getRightCharacter().getImage());
-        mainController.bottomRightIV.setScaleX(-1);
+        mainController.bottomRightIV.setScaleX(character.getFacing());
         mainController.bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             mainController.setBorder(mainController.bottomRightBorder);
             mainController.comicSelection = mainController.bottomRightIV;
@@ -40,13 +40,13 @@ public class ComicController {
         mainController.getColourController().removeAAPixels();
     }
 
-    public void insertLeftCharacter(Image selectedImage, int image){ //Method that inserts a character into the left panel and adds character data to the Comic class
-        mainController.comic.setLeftCharacter(new Character(selectedImage, 1, image));
+    public void insertLeftCharacter(Character character){ //Method that inserts a character into the left panel and adds character data to the Comic class
+        mainController.comic.setLeftCharacter(character);
         mainController.comic.setSelected(mainController.comic.getLeftCharacter());
         mainController.comicSelection = mainController.bottomLeftIV;
         mainController.comicCharacterSelection = mainController.bottomLeftIV;
+        mainController.bottomLeftIV.setScaleX(character.getFacing());
         mainController.bottomLeftIV.setImage(mainController.comic.getLeftCharacter().getImage());
-        mainController.bottomLeftIV.setScaleX(1);
         mainController.bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             mainController.setBorder(mainController.bottomLeftBorder);
             mainController.comicSelection = mainController.bottomLeftIV;
