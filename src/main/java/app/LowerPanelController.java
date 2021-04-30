@@ -98,6 +98,10 @@ public class LowerPanelController {
                 event.consume();
             });
 
+            if(panelImage == loadedPanelIndex){
+                region.setStyle("-fx-border-color: #eb7134; -fx-border-width: 5px; -fx-border-opacity: 0");
+            }
+
             HBox comicImageHbox = new HBox(image);
             comicImageHbox.setId("comicImageHbox" + panelImage);
             comicImageHbox.setAlignment(CENTER);
@@ -155,6 +159,11 @@ public class LowerPanelController {
         if(selectedPanelIndex == loadedPanelIndex){
             loadedPanelIndex = -1;
         }
+
+        if(selectedPanelIndex < loadedPanelIndex){
+            loadedPanelIndex -= 1;
+        }
+
         loadBottomPanel();
     }
 
