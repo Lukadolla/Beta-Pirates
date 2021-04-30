@@ -36,8 +36,6 @@ public class TextGraphic {
 
     System.out.println("- text after conditional = " + this.text);
 
-    this.text = "\n" + this.text;
-
     String[] text_array = this.text.split("[\\r?\\n]");
 
     g2d.setFont(font);
@@ -61,7 +59,6 @@ public class TextGraphic {
     g2d.setColor(Color.WHITE);
     g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
     g2d.setColor(Color.BLACK);
-    g2d.drawString(" ", 0, fm.getAscent() * 1);
     for (int i = 1; i <= lines; ++i) {
       g2d.drawString(text_array[i - 1], 0, fm.getAscent() * i);
     }
@@ -81,21 +78,8 @@ public class TextGraphic {
     System.out.println("-> firstLine = " + firstLine);
     String secondLine = Stream.of(words).skip(middle).collect(Collectors.joining(" "));
     System.out.println("-> secondLine = " + secondLine);
-
-//    if (firstLine.length() != secondLine.length()){
-//      int difference = firstLine.length() - secondLine.length();
-//      if (difference > 0) {
-//        secondLine = padText(secondLine, difference);
-//      } else
-//        firstLine = padText(firstLine, Math.abs(difference) );
-//    }
-
-    secondLine = padText(secondLine, 8);
-    System.out.println("-> secondLine again = " + secondLine);
-
     String multipleLines = firstLine + "\n" + secondLine;
     System.out.println("-> multipleLines = " + multipleLines);
-
     return multipleLines;
   }
 
@@ -107,17 +91,6 @@ public class TextGraphic {
       }
     }
     return max;
-  }
-
-  private String padText(String text, int n) {
-
-    StringBuilder sb = new StringBuilder(text);
-    while (sb.length() <= (text.length() + n)) {
-      sb.insert(0, " ");
-    }
-
-    return sb.toString();
-
   }
 
   public int getLineCount(String text) {
