@@ -21,3 +21,6 @@ Saving and creating comics:
 - The saved panel will appear in the bottom section of the screen.
 - Once selected, you can load the panel again to keep working on it (L) or delete it (Delete).
 - The loaded in panel will be indicated by an orange border.
+- Once you are finished creating your comic, you can save it in XML format in File >> Save as XML.
+- Choose a file name and location for the file using the menus that appear.
+- You can load in any saved comics by selecting Load XML from the File menu and choose a file from your computer.

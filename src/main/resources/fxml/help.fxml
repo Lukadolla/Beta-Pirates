@@ -51,7 +51,7 @@
                      <content>
                         <AnchorPane prefHeight="580.0" prefWidth="506.0">
                            <children>
-                              <Text layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saving and creating comics:">
+                              <Text layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0"  text="Saving and creating comics:">
                                  <font>
                                     <Font name="Arial" size="15.0" />
                                  </font>
@@ -60,6 +60,14 @@
                               <Text layoutX="7.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The saved panel will appear in the bottom section of the screen." />
                               <Text layoutX="12.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Once selected, you can load the panel again to keep working on it (L) or delete it (Delete)." />
                               <Text layoutX="14.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The loaded in panel will be indicated by an orange border. " />
+                              <Text layoutX="14.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Once you are finished creating your comic, you can save it in XML format in File &gt;&gt; Save as XML." />
+                              <Text layoutX="14.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading comics:">
+                                 <font>
+                                    <Font name="Arial" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="14.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Choose a file name and location for the file using the menus that appear." />
+                              <Text layoutX="14.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can load in any saved comics by selecting Load XML from the File menu and choose a file from your computer." wrappingWidth="616.60546875" />
                            </children>
                         </AnchorPane>
                      </content>
