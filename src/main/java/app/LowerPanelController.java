@@ -1,8 +1,6 @@
 package app;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -10,10 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
-import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 

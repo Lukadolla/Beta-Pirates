@@ -1,11 +1,9 @@
 package app;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -16,7 +14,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.IOException;
 
 public class SaveComicController {
 
@@ -27,7 +24,7 @@ public class SaveComicController {
     }
 
     @FXML
-    void createXML() throws IOException {
+    void createXML() {
 
         TextInputDialog fileNameInput = new TextInputDialog();
         fileNameInput.setTitle("Name your Comic");
