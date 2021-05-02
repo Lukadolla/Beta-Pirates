@@ -25,7 +25,7 @@ public class LoadComicController {
     }
 
     @FXML
-    void loadXML() throws CloneNotSupportedException {
+    void loadXML() throws CloneNotSupportedException {  //Method called when Load XML menu item is pressed which prompts user to select file to load
 
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -55,7 +55,7 @@ public class LoadComicController {
         controller.getLowerPanelController().drawComic(currentComic);
     }
 
-    public void loadFromXML(File file) {
+    public void loadFromXML(File file) { //Method that takes in an XML comic file and saves the data into the lower panel
 
         controller.getLowerPanelController().loadedPanelIndex = -1;
 

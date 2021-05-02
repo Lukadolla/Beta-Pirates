@@ -24,7 +24,7 @@ public class SaveComicController {
     }
 
     @FXML
-    void createXML() {
+    void createXML() {  //Method called when Save as XML menu item is pressed which prompts user to input file name and directory
 
         TextInputDialog fileNameInput = new TextInputDialog();
         fileNameInput.setTitle("Name your Comic");
@@ -46,7 +46,7 @@ public class SaveComicController {
         }
     }
 
-    public void saveAsXML(File file) {
+    public void saveAsXML(File file) {  //Method that takes the data saved in the lower panel and saves it to XML
         try {
 
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
