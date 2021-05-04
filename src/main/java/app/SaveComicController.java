@@ -109,7 +109,7 @@ public class SaveComicController {
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
-                "<table style=\"margin-left: 20%\">\n");
+                "<table style=\"margin-left: 20%; border-spacing: 20px\">\n");
 
         for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
 
