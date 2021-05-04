@@ -1,9 +1,13 @@
 package app;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,7 +17,10 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class SaveComicController {
 
@@ -47,7 +54,7 @@ public class SaveComicController {
     }
 
     @FXML
-    void createHTML() {  //Method called when Save as HTML menu item is pressed which prompts user to input file name and directory
+    void createHTML() throws IOException {  //Method called when Save as HTML menu item is pressed which prompts user to input file name and directory
 
         TextInputDialog fileNameInput = new TextInputDialog();
         fileNameInput.setTitle("Name your Comic");
@@ -64,8 +71,19 @@ public class SaveComicController {
             String filePath = chooser.getSelectedFile().toString();
 
             File file = new File(filePath + "\\" + fileName + ".html");
+
+            saveComicAsImages(filePath, fileName);
         }
     }
+
+    private void saveComicAsImages(String filePath, String fileName) throws IOException {
+        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
+
+            File path = new File(filePath + "\\" + fileName + image + ".png");
+            ImageIO.write(SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(image).getComicImage(), null), "png", path);
+        }
+    }
+
 
     public void saveAsXML(File file) {  //Method that takes the data saved in the lower panel and saves it to XML
         try {

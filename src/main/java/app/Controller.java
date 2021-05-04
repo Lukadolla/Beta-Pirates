@@ -164,7 +164,7 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void createHTML(ActionEvent event) {
+    @FXML private void createHTML(ActionEvent event) throws IOException {
         saveComicController.createHTML();
         event.consume();
     }
