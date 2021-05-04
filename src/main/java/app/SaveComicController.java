@@ -46,6 +46,27 @@ public class SaveComicController {
         }
     }
 
+    @FXML
+    void createHTML() {  //Method called when Save as HTML menu item is pressed which prompts user to input file name and directory
+
+        TextInputDialog fileNameInput = new TextInputDialog();
+        fileNameInput.setTitle("Name your Comic");
+        fileNameInput.setHeaderText("");
+        fileNameInput.setContentText("Enter a file name:");
+        fileNameInput.showAndWait();
+        String fileName = fileNameInput.getEditor().getText();
+
+        if(!fileName.equals("")){
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            chooser.setDialogTitle("Save Comic");
+            chooser.showSaveDialog(null);
+            String filePath = chooser.getSelectedFile().toString();
+
+            File file = new File(filePath + "\\" + fileName + ".html");
+        }
+    }
+
     public void saveAsXML(File file) {  //Method that takes the data saved in the lower panel and saves it to XML
         try {
 

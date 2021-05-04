@@ -56,6 +56,7 @@ public class Controller {
     @FXML ImageView leftTextImageview;
     @FXML ImageView rightTextImageview;
     @FXML MenuItem SaveXMLMenu;
+    @FXML MenuItem SaveHTMLMenu;
     @FXML Region bottomLeftBorder;
     @FXML Region bottomRightBorder;
     @FXML Region selectedBorder = null; //Global variable to track which border is currently selected
@@ -158,8 +159,13 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void createXML(ActionEvent event) throws IOException {
+    @FXML private void createXML(ActionEvent event) {
         saveComicController.createXML();
+        event.consume();
+    }
+
+    @FXML private void createHTML(ActionEvent event) {
+        saveComicController.createHTML();
         event.consume();
     }
 
