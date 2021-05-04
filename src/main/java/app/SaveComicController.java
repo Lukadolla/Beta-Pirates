@@ -20,6 +20,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class SaveComicController {
@@ -70,18 +71,62 @@ public class SaveComicController {
             chooser.showSaveDialog(null);
             String filePath = chooser.getSelectedFile().toString();
 
-            File file = new File(filePath + "\\" + fileName + ".html");
+            File directory = new File(filePath + "\\" + fileName);
+            directory.mkdir();
 
-            saveComicAsImages(filePath, fileName);
+            File file = new File( directory + "\\" + fileName + ".html");
+
+            saveAsHTML(file, fileName);
+            saveComicAsImages(directory.toString(), fileName);
         }
     }
 
     private void saveComicAsImages(String filePath, String fileName) throws IOException {
+
+        File imageDirectory = new File(filePath + "\\" + fileName + "images");
+        imageDirectory.mkdir();
+
         for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
 
-            File path = new File(filePath + "\\" + fileName + image + ".png");
-            ImageIO.write(SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(image).getComicImage(), null), "png", path);
+            File imageFile = new File(imageDirectory + "\\" + fileName + image + ".png");
+            ImageIO.write(SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(image).getComicImage(), null), "png", imageFile);
         }
+    }
+
+    public void saveAsHTML(File file, String fileName) throws IOException {
+
+        file.createNewFile();
+
+
+        FileWriter writer = new FileWriter(file);
+
+        writer.write("<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <title>Title</title>\n" +
+                "\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "\n" +
+                "<table>\n");
+
+        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
+
+            String imagePath = fileName + "images" + "\\" + fileName + image + ".png";
+
+            writer.write("\t<tr>\n" +
+                    "        <td>\n" +
+                    "            <img src=\"" + imagePath + "\">\n" +
+                    "        </td>\n" +
+                    "    </tr>\n");
+        }
+
+        writer.write("</table>\n" +
+                "\n" +
+                "</body>\n" +
+                "</html>");
+        writer.close();
     }
 
 
