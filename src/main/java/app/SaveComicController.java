@@ -104,19 +104,19 @@ public class SaveComicController {
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Title</title>\n" +
+                "    <title>"+ fileName +"</title>\n" +
                 "\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
-                "<table>\n");
+                "<table style=\"margin-left: 20%\">\n");
 
         for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
 
             String imagePath = fileName + "images" + "\\" + fileName + image + ".png";
 
             writer.write("\t<tr>\n" +
-                    "        <td>\n" +
+                    "        <td style=\"border: 5px solid cornflowerblue\">\n" +
                     "            <img src=\"" + imagePath + "\">\n" +
                     "        </td>\n" +
                     "    </tr>\n");
