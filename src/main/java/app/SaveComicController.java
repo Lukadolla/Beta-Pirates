@@ -43,29 +43,68 @@ public class SaveComicController {
     @FXML
     void createXML() {  //Method called when Save as XML menu item is pressed which prompts user to input file name and directory
 
-        TextInputDialog fileNameInput = new TextInputDialog();
-        fileNameInput.setTitle("Name your Comic");
-        fileNameInput.setHeaderText("");
-        fileNameInput.setContentText("Enter a file name:");
-        fileNameInput.showAndWait();
-        String fileName = fileNameInput.getEditor().getText();
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("XML Details");
+        dialog.setHeaderText("");
 
-        if(!fileName.equals("")){
-            try {
-                JFileChooser chooser = new JFileChooser();
-                chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                chooser.setDialogTitle("Save Comic");
-                chooser.showSaveDialog(null);
-                String filePath = chooser.getSelectedFile().toString();
+        // Set the button types.
+        ButtonType submitButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, ButtonType.CANCEL);
 
-                File file = new File(filePath + "\\" + fileName + ".xml");
-                saveAsXML(file);
+        // Create the name labels and fields.
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
 
-            } catch(Exception e){
-                return;
+        TextField comicName = new TextField();
+        comicName.setPromptText("Comic Name");
+
+        grid.add(new Label("Name:"), 0, 0);
+        grid.add(comicName, 1, 0);
+
+        // Enable/Disable save button depending on whether a name was entered.
+        Node submitButton = dialog.getDialogPane().lookupButton(submitButtonType);
+        submitButton.setDisable(true);
+
+        // Do some validation.
+        comicName.textProperty().addListener((observable, oldValue, newValue) -> {
+            submitButton.setDisable(newValue.trim().isEmpty());
+        });
+
+        dialog.getDialogPane().setContent(grid);
+
+        // Request focus on the name field by default.
+        Platform.runLater(() -> comicName.requestFocus());
+
+        // Convert the result to a String when the save button is clicked.
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == submitButtonType) {
+                return comicName.getText();
             }
+            return null;
+        });
 
-        }
+        Optional<String> result = dialog.showAndWait();
+
+        result.ifPresent(details -> {
+
+            if(!details.equals("")){
+                try {
+                    JFileChooser chooser = new JFileChooser();
+                    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    chooser.setDialogTitle("Save Comic");
+                    chooser.showSaveDialog(null);
+                    String filePath = chooser.getSelectedFile().toString();
+
+                    File file = new File(filePath + "\\" + details + ".xml");
+                    saveAsXML(file);
+
+                } catch(Exception e){
+                    return;
+                }
+            }
+        });
     }
 
     @FXML
