@@ -107,7 +107,7 @@ public class SaveComicController {
                 "    <title>"+ fileName +"</title>\n" +
                 "\n" +
                 "</head>\n" +
-                "<body>\n" +
+                "<body style=\"background-color: #bbc4c4\">\n" +
                 "\n" +
                 "<table style=\"margin-left: 20%; border-spacing: 20px\">\n");
 
