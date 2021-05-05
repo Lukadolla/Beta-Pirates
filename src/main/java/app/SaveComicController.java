@@ -1,9 +1,15 @@
 package app;
 
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextInputDialog;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -22,6 +28,9 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class SaveComicController {
 
@@ -62,33 +71,77 @@ public class SaveComicController {
     @FXML
     void createHTML() throws IOException {  //Method called when Save as HTML menu item is pressed which prompts user to input file name and directory
 
-        TextInputDialog fileNameInput = new TextInputDialog();
-        fileNameInput.setTitle("Name your Comic");
-        fileNameInput.setHeaderText("");
-        fileNameInput.setContentText("Enter a file name:");
-        fileNameInput.showAndWait();
-        String fileName = fileNameInput.getEditor().getText();
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Details");
+        dialog.setHeaderText("");
 
-        if(!fileName.equals("")){
-            try {
-                JFileChooser chooser = new JFileChooser();
-                chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                chooser.setDialogTitle("Save Comic");
-                chooser.showSaveDialog(null);
-                String filePath = chooser.getSelectedFile().toString();
+        // Set the button types.
+        ButtonType submitButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, ButtonType.CANCEL);
 
-                File directory = new File(filePath + "\\" + fileName);
-                directory.mkdir();
+        // Create the username and password labels and fields.
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
 
-                File file = new File(directory + "\\" + fileName + ".html");
+        TextField comicName = new TextField();
+        comicName.setPromptText("Comic Name");
+        TextField comicDescription = new TextField();
+        comicDescription.setPromptText("Comic Description");
 
-                saveAsHTML(file, fileName);
-                saveComicAsImages(directory.toString(), fileName);
+        grid.add(new Label("Name:"), 0, 0);
+        grid.add(comicName, 1, 0);
+        grid.add(new Label("Description:"), 0, 1);
+        grid.add(comicDescription, 1, 1);
+
+        // Enable/Disable login button depending on whether a username was entered.
+        Node submitButton = dialog.getDialogPane().lookupButton(submitButtonType);
+        submitButton.setDisable(true);
+
+        // Do some validation (using the Java 8 lambda syntax).
+        comicName.textProperty().addListener((observable, oldValue, newValue) -> {
+            submitButton.setDisable(newValue.trim().isEmpty());
+        });
+
+        dialog.getDialogPane().setContent(grid);
+
+        // Request focus on the username field by default.
+        Platform.runLater(() -> comicName.requestFocus());
+
+        // Convert the result to a username-password-pair when the login button is clicked.
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == submitButtonType) {
+                return new Pair<>(comicName.getText(), comicDescription.getText());
             }
-            catch(Exception e){
-                return;
+            return null;
+        });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+
+        result.ifPresent(details -> {
+
+            if(!details.getKey().equals("")){
+                try {
+                    JFileChooser chooser = new JFileChooser();
+                    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    chooser.setDialogTitle("Save Comic");
+                    chooser.showSaveDialog(null);
+                    String filePath = chooser.getSelectedFile().toString();
+
+                    File directory = new File(filePath + "\\" + details.getKey());
+                    directory.mkdir();
+
+                    File file = new File(directory + "\\" + details.getKey() + ".html");
+
+                    saveAsHTML(file, details.getKey(), details.getValue());
+                    saveComicAsImages(directory.toString(), details.getKey());
+                }
+                catch(Exception e){
+                    return;
+                }
             }
-        }
+        });
     }
 
     private void saveComicAsImages(String filePath, String fileName) throws IOException {
@@ -103,7 +156,7 @@ public class SaveComicController {
         }
     }
 
-    public void saveAsHTML(File file, String fileName) throws IOException {
+    public void saveAsHTML(File file, String fileName, String description) throws IOException {
 
         file.createNewFile();
 
@@ -119,7 +172,9 @@ public class SaveComicController {
                 "</head>\n" +
                 "<body style=\"background-color: #bbc4c4\">\n" +
                 "\n" +
-                "<table style=\"margin-left: 20%; border-spacing: 20px\">\n");
+                 "<h1 style=\"text-align: center\">" + description + "</h1>" +
+                "\n" +
+                "<table style=\"margin-left: auto; margin-right: auto; font-family: georgia, garamond, serif; border-spacing: 20px\">\n");
 
         for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
 
