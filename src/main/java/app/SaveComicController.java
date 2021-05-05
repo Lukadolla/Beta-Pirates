@@ -42,15 +42,20 @@ public class SaveComicController {
         String fileName = fileNameInput.getEditor().getText();
 
         if(!fileName.equals("")){
-            JFileChooser chooser = new JFileChooser();
-            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            chooser.setDialogTitle("Save Comic");
-            chooser.showSaveDialog(null);
-            String filePath = chooser.getSelectedFile().toString();
+            try {
+                JFileChooser chooser = new JFileChooser();
+                chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                chooser.setDialogTitle("Save Comic");
+                chooser.showSaveDialog(null);
+                String filePath = chooser.getSelectedFile().toString();
 
-            File file = new File(filePath + "\\" + fileName + ".xml");
+                File file = new File(filePath + "\\" + fileName + ".xml");
+                saveAsXML(file);
 
-            saveAsXML(file);
+            } catch(Exception e){
+                return;
+            }
+
         }
     }
 
@@ -65,19 +70,24 @@ public class SaveComicController {
         String fileName = fileNameInput.getEditor().getText();
 
         if(!fileName.equals("")){
-            JFileChooser chooser = new JFileChooser();
-            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            chooser.setDialogTitle("Save Comic");
-            chooser.showSaveDialog(null);
-            String filePath = chooser.getSelectedFile().toString();
+            try {
+                JFileChooser chooser = new JFileChooser();
+                chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                chooser.setDialogTitle("Save Comic");
+                chooser.showSaveDialog(null);
+                String filePath = chooser.getSelectedFile().toString();
 
-            File directory = new File(filePath + "\\" + fileName);
-            directory.mkdir();
+                File directory = new File(filePath + "\\" + fileName);
+                directory.mkdir();
 
-            File file = new File( directory + "\\" + fileName + ".html");
+                File file = new File(directory + "\\" + fileName + ".html");
 
-            saveAsHTML(file, fileName);
-            saveComicAsImages(directory.toString(), fileName);
+                saveAsHTML(file, fileName);
+                saveComicAsImages(directory.toString(), fileName);
+            }
+            catch(Exception e){
+                return;
+            }
         }
     }
 
