@@ -69,7 +69,7 @@ public class SaveComicController {
     }
 
     @FXML
-    void createHTML() throws IOException {  //Method called when Save as HTML menu item is pressed which prompts user to input file name and directory
+    void createHTML() {  //Method called when Save as HTML menu item is pressed which prompts user to input file name and directory
 
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Details");
@@ -79,7 +79,7 @@ public class SaveComicController {
         ButtonType submitButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, ButtonType.CANCEL);
 
-        // Create the username and password labels and fields.
+        // Create the description and name labels and fields.
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -95,21 +95,21 @@ public class SaveComicController {
         grid.add(new Label("Description:"), 0, 1);
         grid.add(comicDescription, 1, 1);
 
-        // Enable/Disable login button depending on whether a username was entered.
+        // Enable/Disable save button depending on whether a name was entered.
         Node submitButton = dialog.getDialogPane().lookupButton(submitButtonType);
         submitButton.setDisable(true);
 
-        // Do some validation (using the Java 8 lambda syntax).
+        // Do some validation.
         comicName.textProperty().addListener((observable, oldValue, newValue) -> {
             submitButton.setDisable(newValue.trim().isEmpty());
         });
 
         dialog.getDialogPane().setContent(grid);
 
-        // Request focus on the username field by default.
+        // Request focus on the name field by default.
         Platform.runLater(() -> comicName.requestFocus());
 
-        // Convert the result to a username-password-pair when the login button is clicked.
+        // Convert the result to a pair when the save button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == submitButtonType) {
                 return new Pair<>(comicName.getText(), comicDescription.getText());
