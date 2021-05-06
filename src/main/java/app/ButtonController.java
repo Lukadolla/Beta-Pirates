@@ -150,5 +150,4 @@ public class ButtonController {
     mainController.comicCharacterSelection = null;
     switchButtonState(false);
   }
-
 }
