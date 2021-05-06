@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Menu?>
@@ -101,37 +102,39 @@
                                                       </AnchorPane>
                                                       <AnchorPane fx:id="leftTextAnchor" prefHeight="34.0" prefWidth="110.0">
       
+                                                                <HBox fx:id="leftHbox" alignment="CENTER" prefHeight="41.6" prefWidth="100.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                              <children>
+                                                                  <ImageView fx:id="leftTextImageview" fitHeight="${leftTextAnchor.height}" fitWidth="${leftTextAnchor.width}" managed="false" pickOnBounds="true">
+                                                      <HBox.margin>
+                                                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                      </HBox.margin></ImageView>
+                                                   <Region fx:id="leftTextRegion" onMouseClicked="#swapLeftVisibility" prefHeight="200.0" prefWidth="200.0" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" HBox.hgrow="ALWAYS" />
+                                                              </children>
+                                                          </HBox>
+      
                                                                 <TextField fx:id="leftTextField" alignment="CENTER" disable="true" prefHeight="56.0" prefWidth="109.6" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2; -fx-background-color: -fx-control-inner-background; -fx-background-radius: 25" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                               <font>
                                                                   <Font name="Rockwell" size="19.0" />
                                                               </font>
                                              </TextField>
-      
-                                                                <HBox fx:id="leftHbox" alignment="CENTER" prefHeight="41.6" prefWidth="100.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                              <children>
-                                                                  <ImageView fx:id="leftTextImageview" fitHeight="${leftTextAnchor.height}" fitWidth="${leftTextAnchor.width}" managed="false" pickOnBounds="true">
-                                                            </ImageView>
-                                                   <Region fx:id="leftTextRegion" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2;" HBox.hgrow="ALWAYS"/>
-                                                              </children>
-                                                          </HBox>
                                                       </AnchorPane>
       
                                                             <AnchorPane fx:id="rightTextAnchor" GridPane.columnIndex="2">
-      
-                                                                <TextField fx:id="rightTextField" alignment="CENTER" disable="true" prefHeight="41.6" prefWidth="148.8" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2; -fx-background-color: -fx-control-inner-background; -fx-background-radius: 25" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                              <font>
-                                                                  <Font name="Rockwell" size="19.0" />
-                                                              </font>
-                                             </TextField>
       
                                                                 <HBox fx:id="rightHbox" alignment="CENTER" prefHeight="41.6" prefWidth="100.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                               <children>
       
                                                                         <ImageView fx:id="rightTextImageview" fitHeight="${rightTextAnchor.height}" fitWidth="${rightTextAnchor.width}" managed="false" pickOnBounds="true">
                                                             </ImageView>
-                                                                <Region fx:id="rightTextRegion" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2;" HBox.hgrow="ALWAYS"/>
+                                                                <Region fx:id="rightTextRegion" onMouseClicked="#swapRightVisibility" prefHeight="200.0" prefWidth="200.0" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" HBox.hgrow="ALWAYS" />
                                                               </children>
                                                           </HBox>
+      
+                                                                <TextField fx:id="rightTextField" alignment="CENTER" disable="true" prefHeight="41.6" prefWidth="148.8" style="-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2; -fx-background-color: -fx-control-inner-background; -fx-background-radius: 25" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                              <font>
+                                                                  <Font name="Rockwell" size="19.0" />
+                                                              </font>
+                                             </TextField>
                                                       </AnchorPane>
                                                   </children>
                                               </GridPane>

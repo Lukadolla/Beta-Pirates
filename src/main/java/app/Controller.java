@@ -124,9 +124,17 @@ public class Controller {
         event.consume();
     }
 
+    @FXML private void swapLeftVisibility() {
+        System.out.println("SWAP CALLED!");
+        leftTextField.setVisible(true);
+        leftTextImageview.setVisible(false);
+    }
 
-
-
+    @FXML private void swapRightVisibility() {
+        System.out.println("SWAP CALLED!");
+        rightTextField.setVisible(true);
+        rightTextImageview.setVisible(false);
+    }
 
     @FXML private void addThoughtBubble(ActionEvent event) {
         buttonController.addThoughtBubble();

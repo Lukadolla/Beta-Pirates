@@ -147,18 +147,18 @@ public class LowerPanelController {
                 addToPanelList();
             }
         }
-//        else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
-//            if (mainController.comic != null) {
-//                if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
-//                    mainController.getComicController()
-//                        .insertLeftTextGraphic(mainController.leftTextField.getText());
-//                }
-//                if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
-//                    mainController.getComicController()
-//                        .insertRightTextGraphic(mainController.rightTextField.getText());
-//                }
-//            }
-//        }
+        else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
+            if (mainController.comic != null) {
+                if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
+                    mainController.getComicController()
+                        .insertLeftTextGraphic(mainController.leftTextField.getText());
+                }
+                if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
+                    mainController.getComicController()
+                        .insertRightTextGraphic(mainController.rightTextField.getText());
+                }
+            }
+        }
     }
 
     private void deletePanel(){ //Deletes selected panel
