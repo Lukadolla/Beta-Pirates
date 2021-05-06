@@ -72,10 +72,18 @@ public class ComicController {
         }
     }
 
-    void insertTextGraphic(String text){
-        TextGraphic textGraphic = new TextGraphic(text);
-        mainController.leftTextImageview.setImage(textGraphic.getImage());
+    void insertLeftTextGraphic(String leftText){
+        System.out.println("TEXT GRAPHIC FIRED!");
+        TextGraphic leftTextGraphic = new TextGraphic(leftText);
+        mainController.leftTextImageview.setImage(leftTextGraphic.getImage());
         mainController.leftHbox.setVisible(true);
+        mainController.leftTextField.setVisible(false);
+    }
+
+    void insertRightTextGraphic(String rightText){
+        TextGraphic rightTextGraphic = new TextGraphic(rightText);
+        mainController.rightTextImageview.setImage(rightTextGraphic.getImage());
+        mainController.rightHbox.setVisible(true);
     }
 
     void insertBackground(Image selectedImage){  //Method that places the background into the comic panel

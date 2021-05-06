@@ -6,6 +6,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javafx.embed.swing.SwingFXUtils;
@@ -28,15 +30,21 @@ public class TextGraphic {
   public TextGraphic(String text) {
     System.out.println("TextGraphic fired!");
 
-    this.text = text;
+    this.text = text.toUpperCase();
 
     if (text.length() > 16) {
       this.text = addNewLines(text);
     }
 
+    StringBuilder sb = new StringBuilder(this.text);
+    sb.insert(0,"\n\n");
+    this.text = sb.toString();
+
     System.out.println("- text after conditional = " + this.text);
 
     String[] text_array = this.text.split("[\\r?\\n]");
+
+    System.out.println("- text after conditional = " + Arrays.toString(text_array));
 
     g2d.setFont(font);
     fm = g2d.getFontMetrics();
@@ -70,17 +78,41 @@ public class TextGraphic {
     System.out.println("-> addNewLines");
     String[] words = text.split(" ");
     System.out.println(words.toString());
-    int length = words.length;
-    System.out.println("-> length = " + length);
-    int middle = (length / 2) + (length % 2);
-    System.out.println("-> middle = " + middle);
+    int numWords = words.length;
+    System.out.println("-> number of words = " + numWords);
+    int middle = (numWords / 2) + (numWords % 2);
+    System.out.println("-> line break after word = " + middle);
     String firstLine = Stream.of(words).limit(middle).collect(Collectors.joining(" "));
     System.out.println("-> firstLine = " + firstLine);
     String secondLine = Stream.of(words).skip(middle).collect(Collectors.joining(" "));
+
+    if (secondLine.length() < firstLine.length()){
+      secondLine = padText(secondLine, (firstLine.length()-secondLine.length()));
+    }
+
     System.out.println("-> secondLine = " + secondLine);
     String multipleLines = firstLine + "\n" + secondLine;
     System.out.println("-> multipleLines = " + multipleLines);
+
+
+
     return multipleLines;
+  }
+
+//  private int characterCount(String string) {
+//    int count = 0;
+//    for(int i = 0; i < string.length(); i++)
+//      count += string[i].length();
+//
+//    return count;
+//  }
+
+  private String padText(String text, int n) {
+
+    StringBuilder sb = new StringBuilder(text);
+    for (int i = 0; i <= n/2; i++)
+      sb.insert(0, " ");
+    return sb.toString();
   }
 
   private static String getLongestLine(String[] arr) {

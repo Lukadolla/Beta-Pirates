@@ -97,7 +97,7 @@ public class SaveComicController {
                     chooser.showSaveDialog(null);
                     String filePath = chooser.getSelectedFile().toString();
 
-                    File file = new File(filePath + "\\" + details + ".xml");
+                    File file = new File(filePath + "/" + details + ".xml");
                     saveAsXML(file);
 
                 } catch(Exception e){
@@ -168,10 +168,10 @@ public class SaveComicController {
                     chooser.showSaveDialog(null);
                     String filePath = chooser.getSelectedFile().toString();
 
-                    File directory = new File(filePath + "\\" + details.getKey());
+                    File directory = new File(filePath + "/" + details.getKey());
                     directory.mkdir();
 
-                    File file = new File(directory + "\\" + details.getKey() + ".html");
+                    File file = new File(directory + "/" + details.getKey() + ".html");
 
                     saveAsHTML(file, details.getKey(), details.getValue());
                     saveComicAsImages(directory.toString(), details.getKey());
@@ -185,12 +185,12 @@ public class SaveComicController {
 
     private void saveComicAsImages(String filePath, String fileName) throws IOException {
 
-        File imageDirectory = new File(filePath + "\\" + fileName + "images");
+        File imageDirectory = new File(filePath + "/" + fileName + "images");
         imageDirectory.mkdir();
 
         for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
 
-            File imageFile = new File(imageDirectory + "\\" + fileName + image + ".png");
+            File imageFile = new File(imageDirectory + "/" + fileName + image + ".png");
             ImageIO.write(SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(image).getComicImage(), null), "png", imageFile);
         }
     }
@@ -217,7 +217,7 @@ public class SaveComicController {
 
         for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
 
-            String imagePath = fileName + "images" + "\\" + fileName + image + ".png";
+            String imagePath = fileName + "images" + "/" + fileName + image + ".png";
 
             writer.write("\t<tr>\n" +
                     "        <td style=\"border: 5px solid cornflowerblue\">\n" +

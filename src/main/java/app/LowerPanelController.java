@@ -147,6 +147,22 @@ public class LowerPanelController {
                 addToPanelList();
             }
         }
+//        else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
+//            System.out.println("KEY LISTENER FIRED!");
+//            if (mainController.comic != null) {
+//                System.out.println("first if!");
+//                System.out.println("GETLEFTEXT =>" + mainController.comic.getLeftText());
+//                if (mainController.leftTextField.getText() != null) {
+//                    System.out.println("second if!");
+//                    mainController.getComicController()
+//                        .insertLeftTextGraphic(mainController.leftTextField.getText());
+//                }
+//                if (mainController.rightTextField.getText() != null) {
+//                    mainController.getComicController()
+//                        .insertRightTextGraphic(mainController.rightTextField.getText());
+//                }
+//            }
+//        }
     }
 
     private void deletePanel(){ //Deletes selected panel

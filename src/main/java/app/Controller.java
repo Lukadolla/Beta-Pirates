@@ -48,6 +48,7 @@ public class Controller {
     @FXML GridPane buttonsGridPane;
     @FXML GridPane charactersGridPane;
     @FXML HBox leftHbox;
+    @FXML HBox rightHbox;
     @FXML ImageView background;  //ImageView containing the background image
     @FXML ImageView bottomLeftIV; //Bottom left ImageView where the character is inserted
     @FXML ImageView bottomRightIV; //Bottom right ImageView where the character is inserted
@@ -57,6 +58,8 @@ public class Controller {
     @FXML ImageView rightTextImageview;
     @FXML MenuItem SaveXMLMenu;
     @FXML MenuItem SaveHTMLMenu;
+    @FXML Region leftTextRegion;
+    @FXML Region rightTextRegion;
     @FXML Region bottomLeftBorder;
     @FXML Region bottomRightBorder;
     @FXML Region selectedBorder = null; //Global variable to track which border is currently selected
@@ -117,8 +120,13 @@ public class Controller {
 
     @FXML private void addSpeechBubble(ActionEvent event) {
         buttonController.addSpeechBubble();
+//        comicController.insertTextGraphic("The quick brown fox jumps over the lazy dog");
         event.consume();
     }
+
+
+
+
 
     @FXML private void addThoughtBubble(ActionEvent event) {
         buttonController.addThoughtBubble();
