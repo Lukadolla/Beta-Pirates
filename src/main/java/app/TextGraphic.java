@@ -94,11 +94,17 @@ public class TextGraphic {
     String firstLine = Stream.of(words).limit(middle).collect(Collectors.joining(" "));
     System.out.println("-> firstLine = " + firstLine);
     String secondLine = Stream.of(words).skip(middle).collect(Collectors.joining(" "));
-    StringBuilder sb = new StringBuilder(firstLine);
 
-    sb.append(" ");
-    sb.insert(0, " ");
-    firstLine = sb.toString();
+    StringBuilder sb1 = new StringBuilder(firstLine);
+    sb1.append(" ");
+    sb1.insert(0, " ");
+    firstLine = sb1.toString();
+
+    StringBuilder sb2 = new StringBuilder(secondLine);
+    sb2.append(" ");
+    sb2.insert(0, " ");
+    secondLine = sb2.toString();
+
     if (secondLine.length() < firstLine.length()){
       secondLine = padText(secondLine, (firstLine.length()-secondLine.length()));
     }

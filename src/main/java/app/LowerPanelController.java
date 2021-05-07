@@ -144,6 +144,16 @@ public class LowerPanelController {
         else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
             if(mainController.comic != null) {
                 loadedPanelRegion = null;
+                if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
+                    mainController.getComicController()
+                            .insertLeftTextGraphic(mainController.leftTextField.getText());
+                    mainController.leftTextRegion.setVisible(true);
+                }
+                if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
+                    mainController.getComicController()
+                            .insertRightTextGraphic(mainController.rightTextField.getText());
+                    mainController.rightTextRegion.setVisible(true);
+                }
                 addToPanelList();
             }
         }
@@ -152,10 +162,12 @@ public class LowerPanelController {
                 if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
                     mainController.getComicController()
                         .insertLeftTextGraphic(mainController.leftTextField.getText());
+                    mainController.leftTextRegion.setVisible(true);
                 }
                 if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
                     mainController.getComicController()
                         .insertRightTextGraphic(mainController.rightTextField.getText());
+                    mainController.rightTextRegion.setVisible(true);
                 }
             }
         }
@@ -196,6 +208,8 @@ public class LowerPanelController {
             mainController.centreLeft.setImage(null);
             mainController.comic.setCentreLeft(null);
             mainController.leftTextField.clear();
+            mainController.leftTextImageview.setImage(null);
+            mainController.leftTextRegion.setVisible(false);
             mainController.leftTextField.setVisible(false);
         }
         if (mainController.comic.getRightCharacter() != null){
@@ -204,6 +218,8 @@ public class LowerPanelController {
             mainController.centreRight.setImage(null);
             mainController.comic.setCentreRight(null);
             mainController.rightTextField.clear();
+            mainController.rightTextImageview.setImage(null);
+            mainController.rightTextRegion.setVisible(false);
             mainController.rightTextField.setVisible(false);
         }
 
