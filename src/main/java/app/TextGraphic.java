@@ -30,14 +30,23 @@ public class TextGraphic {
   public TextGraphic(String text) {
     System.out.println("TextGraphic fired!");
 
-    this.text = text.toUpperCase();
-
     if (text.length() > 16) {
       this.text = addNewLines(text);
     }
 
+    else {
+      while (text.length() < 15) {
+
+        StringBuilder builder = new StringBuilder(text);
+        builder.append(" ");
+        builder.insert(0, " ");
+        text = builder.toString();
+      }
+      this.text = text;
+    }
+
     StringBuilder sb = new StringBuilder(this.text);
-    sb.insert(0,"\n\n");
+    //sb.insert(0,"\n\n");
     this.text = sb.toString();
 
     System.out.println("- text after conditional = " + this.text);
@@ -50,7 +59,7 @@ public class TextGraphic {
     fm = g2d.getFontMetrics();
     width = fm.stringWidth(getLongestLine(text_array));
     lines = getLineCount(this.text);
-    height = fm.getHeight() * (lines + 4);
+    height = fm.getHeight() * (lines);
     g2d.dispose();
     img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     g2d = img.createGraphics();
@@ -85,7 +94,11 @@ public class TextGraphic {
     String firstLine = Stream.of(words).limit(middle).collect(Collectors.joining(" "));
     System.out.println("-> firstLine = " + firstLine);
     String secondLine = Stream.of(words).skip(middle).collect(Collectors.joining(" "));
+    StringBuilder sb = new StringBuilder(firstLine);
 
+    sb.append(" ");
+    sb.insert(0, " ");
+    firstLine = sb.toString();
     if (secondLine.length() < firstLine.length()){
       secondLine = padText(secondLine, (firstLine.length()-secondLine.length()));
     }
@@ -112,6 +125,7 @@ public class TextGraphic {
     StringBuilder sb = new StringBuilder(text);
     for (int i = 0; i <= n/2; i++)
       sb.insert(0, " ");
+      sb.append(" ");
     return sb.toString();
   }
 
