@@ -13,3 +13,4 @@
 /images/backgrounds/holy_place.png
 /images/backgrounds/mordor.jpg
 /images/backgrounds/nyan.jpg
+/images/backgrounds/end.png
