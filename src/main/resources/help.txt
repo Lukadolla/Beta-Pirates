@@ -23,4 +23,11 @@ Saving and creating comics:
 - The loaded in panel will be indicated by an orange border.
 - Once you are finished creating your comic, you can save it in XML format in File >> Save as XML.
 - Choose a file name and location for the file using the menus that appear.
+
+- You can save your comic in HTML format in File >> Save as HTML.
+- Enter a file name, description and location for the file using the menus that appear.
+
+
 - You can load in any saved comics by selecting Load XML from the File menu and choose a file from your computer.
+- To access your HTML comic, find the location to which you saved it.
+- You will find a folder with the name of your file, go into it and inside you can access the HTML file which can be opened in your internet browser

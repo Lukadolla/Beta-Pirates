@@ -49,9 +49,9 @@
                <children>
                   <ScrollPane layoutX="100.0" layoutY="57.0" prefHeight="386.4" prefWidth="422.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <AnchorPane prefHeight="580.0" prefWidth="506.0">
+                        <AnchorPane prefHeight="986.0" prefWidth="621.0">
                            <children>
-                              <Text layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0"  text="Saving and creating comics:">
+                              <Text layoutX="17.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saving and creating comics:">
                                  <font>
                                     <Font name="Arial" size="15.0" />
                                  </font>
@@ -60,14 +60,33 @@
                               <Text layoutX="7.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The saved panel will appear in the bottom section of the screen." />
                               <Text layoutX="12.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Once selected, you can load the panel again to keep working on it (L) or delete it (Delete)." />
                               <Text layoutX="14.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- The loaded in panel will be indicated by an orange border. " />
-                              <Text layoutX="14.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Once you are finished creating your comic, you can save it in XML format in File &gt;&gt; Save as XML." />
-                              <Text layoutX="14.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading comics:">
+                              <Text layoutX="12.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Once you are finished creating your comic, you can save it in XML format in File &gt;&gt; Save as XML." />
+                              <Text layoutX="2.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading XML comics:">
                                  <font>
                                     <Font name="Arial" size="15.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="14.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Choose a file name and location for the file using the menus that appear." />
-                              <Text layoutX="14.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can load in any saved comics by selecting Load XML from the File menu and choose a file from your computer." wrappingWidth="616.60546875" />
+                              <Text layoutX="12.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Choose a file name and location for the file using the menus that appear." />
+                              <Text layoutX="2.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can load in any saved comics by selecting Load XML from the File menu and choose a file from your computer." wrappingWidth="616.60546875" />
+                              <Text layoutX="14.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can save your comic in HTML format in File &gt;&gt; Save as HTML." />
+                              <Text layoutX="16.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Enter a file name, description and location for the file using the menus that appear." />
+                              <Text layoutX="1.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To access your HTML comic, find the location to which you saved it." wrappingWidth="616.60546875" />
+                              <Text layoutX="1.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You will find a folder with the name of your file, go into it and inside you can access the HTML file which can be opened in your internet browser" wrappingWidth="616.60546875" />
+                              <Text layoutX="14.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saving XML:">
+                                 <font>
+                                    <Font name="Arial" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="16.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saving HTML:">
+                                 <font>
+                                    <Font name="Arial" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="9.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Viewing HTML comics:">
+                                 <font>
+                                    <Font name="Arial" size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                      </content>
