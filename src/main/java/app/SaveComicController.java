@@ -6,13 +6,10 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
@@ -23,14 +20,10 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class SaveComicController {
 
@@ -108,7 +101,7 @@ public class SaveComicController {
     }
 
     @FXML
-    void createHTML() {  //Method called when Save as HTML menu item is pressed which prompts user to input file name and directory
+    void createHTML() {  //Method called when Save as HTML menu item is pressed which prompts user to input file name, description and directory
 
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Details");
@@ -182,57 +175,6 @@ public class SaveComicController {
             }
         });
     }
-
-    private void saveComicAsImages(String filePath, String fileName) throws IOException {
-
-        File imageDirectory = new File(filePath + "/" + fileName + "images");
-        imageDirectory.mkdir();
-
-        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
-
-            File imageFile = new File(imageDirectory + "/" + fileName + image + ".png");
-            ImageIO.write(SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(image).getComicImage(), null), "png", imageFile);
-        }
-    }
-
-    public void saveAsHTML(File file, String fileName, String description) throws IOException {
-
-        file.createNewFile();
-
-
-        FileWriter writer = new FileWriter(file);
-
-        writer.write("<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <title>"+ fileName +"</title>\n" +
-                "\n" +
-                "</head>\n" +
-                "<body style=\"background-color: #bbc4c4\">\n" +
-                "\n" +
-                 "<h1 style=\"text-align: center\">" + description + "</h1>" +
-                "\n" +
-                "<table style=\"margin-left: auto; margin-right: auto; font-family: georgia, garamond, serif; border-spacing: 20px\">\n");
-
-        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
-
-            String imagePath = fileName + "images" + "/" + fileName + image + ".png";
-
-            writer.write("\t<tr>\n" +
-                    "        <td style=\"border: 5px solid cornflowerblue\">\n" +
-                    "            <img src=\"" + imagePath + "\">\n" +
-                    "        </td>\n" +
-                    "    </tr>\n");
-        }
-
-        writer.write("</table>\n" +
-                "\n" +
-                "</body>\n" +
-                "</html>");
-        writer.close();
-    }
-
 
     public void saveAsXML(File file) {  //Method that takes the data saved in the lower panel and saves it to XML
         try {
@@ -388,5 +330,55 @@ public class SaveComicController {
         } catch (ParserConfigurationException | TransformerException pce) {
             pce.printStackTrace();
         }
+    }
+
+    private void saveComicAsImages(String filePath, String fileName) throws IOException { //Method to save the comic panels as images in a separate directory to the HTML
+
+        File imageDirectory = new File(filePath + "/" + fileName + "images");
+        imageDirectory.mkdir();
+
+        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
+
+            File imageFile = new File(imageDirectory + "/" + fileName + image + ".png");
+            ImageIO.write(SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(image).getComicImage(), null), "png", imageFile);
+        }
+    }
+
+    public void saveAsHTML(File file, String fileName, String description) throws IOException {  //Method that takes in the panels as images and creates a HTML file
+
+        file.createNewFile();
+
+
+        FileWriter writer = new FileWriter(file);
+
+        writer.write("<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <title>"+ fileName +"</title>\n" +
+                "\n" +
+                "</head>\n" +
+                "<body style=\"background-color: #bbc4c4\">\n" +
+                "\n" +
+                "<h1 style=\"text-align: center\">" + description + "</h1>" +
+                "\n" +
+                "<table style=\"margin-left: auto; margin-right: auto; font-family: georgia, garamond, serif; border-spacing: 20px\">\n");
+
+        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
+
+            String imagePath = fileName + "images" + "/" + fileName + image + ".png";
+
+            writer.write("\t<tr>\n" +
+                    "        <td style=\"border: 5px solid cornflowerblue\">\n" +
+                    "            <img src=\"" + imagePath + "\">\n" +
+                    "        </td>\n" +
+                    "    </tr>\n");
+        }
+
+        writer.write("</table>\n" +
+                "\n" +
+                "</body>\n" +
+                "</html>");
+        writer.close();
     }
 }
