@@ -38,7 +38,7 @@
                         <Text layoutX="7.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Your selection will be indicated by a highlight around the clicked image." />
                         <Text layoutX="1.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can change the character's gender by pressing the M/F button." />
                         <Text layoutX="-1.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can delete an character in the comic using the delete button when the character is selected." />
-                        <Text layoutX="1.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To add text to the characters, press the speech/thought balloon buttons and type the text into the speech area." wrappingWidth="575.1331787109376" />
+                        <Text layoutX="1.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To add text to the characters, press the speech/thought balloon buttons and type the text into the speech area, then press ENTER to save it." wrappingWidth="575.1331787109376" />
                         <Text layoutX="1.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- You can add a background to the comic by pressing the background button and selecting an image from the middle panel." wrappingWidth="575.1331787109376" />
                         <Text layoutX="1.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- To add narrative text above or below a comic, enter it into the designated text area in the panel." wrappingWidth="575.1331787109376" />
                      </children>
