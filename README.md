@@ -35,15 +35,14 @@ edited.
 - MidScrollPaneController.java - Contains functionality for the middle panel of the application which displays all available characters and backgrounds. 
 
 
-## New Files added/updated in Sprint 7
+## New Files added/updated in Sprint 8
 - Controller.java - contains instances of all controllers, proxy methods for fxml functions and runs the main application 
-- testController.java - used for testing new implementations and ideas without affecting old working ones. 
 - main.fxml - contains fxml for the application main window.
-- LoadComicCOntroller.java - contains functionality for loading in the comic in XML format.
-- SaveComicCOntroller.java - contains functionality for saving the comic in XML format.
--test.fxml - used to test new implementations in the layout of the application without breaking/interfering with already working features.
+- SaveComicCOntroller.java - contains functionality for saving the comic in HTML format.
+- test.fxml - used to test new implementations in the layout of the application without breaking/interfering with already working features.
 - help.txt - a file containing useful information for the user on how to use the application.
 - help.fxml - simple stage where the help.txt will be displayed to the user.
+- TextGraphic.java - class which is used to convert text in the speech/thought bubbles to images. 
 
  
 ## Instructions on setting up and running the project
@@ -64,11 +63,15 @@ project folder and use the command: java -jar Beta_Pirates.jar. It still runs fr
 In order to make the JUnit test class work, add junit/junit/4.12 to the class path. IDES like IntelliJ should prompt to do this automatically when you hover over
 the Test annotations or import statements.
 
-## General Info about implementation of Sprint 7
+## General Info about implementation of Sprint 8
 
-Once you have the comic saved as a series of panels in the bottom section of the application, you can save the comic as XML. To do so, go to File >> Save as XML. Once 
-you select that option, a prompt will appear asking for the name of the new file. Following that, you will be asked to choose a directory to save the file to. Once 
-you choose the directory, press save and the file will be saved there. You can then load this file by going to File >> Load XML where you can navigate to the XML file 
-and open it. The content of the XML will be loaded into the bottom panel where you can edit/delete panels as well as add new ones. 
+Once you have saved at least one panel into the bottom panel, you can save the comic in HTML format in File >> Save as HTML. When you press this option, you will be 
+prompted to give a file name and an optional description of your comic. Another prompt will appear asking for a directory in which the HTML will be saved. Once you 
+save your comic, you can navigate to the chosen directory where you will find a folder with the same name as the one chosen for the file. Enter this folder and you 
+will see a HTML file which you can then open and view in your internet browser.
+
+This week we also worked on the TextGraphic implementation in our code. The TextGraphic.java class is used to take in input from the speech/thought bubbled and 
+convert the text to an image which has appropriate sizing, scaling and resizability. Once you input text into a text area, press ENTER to convert the text to an 
+image. If you wish to edit the text, simply click on it and it will become editable again.
 
 For more information on how the program works, go to the help menu in the application. 
