@@ -74,7 +74,7 @@ public class TextGraphic {
     g2d.setFont(font);
     fm = g2d.getFontMetrics();
     g2d.setColor(Color.WHITE);
-    g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
+    g2d.fillRoundRect(15, 5, img.getWidth()-30, img.getHeight()-10, 90, 90);
     g2d.setColor(Color.BLACK);
     for (int i = 1; i <= lines; ++i) {
       g2d.drawString(text_array[i - 1], 0, fm.getAscent() * i);
