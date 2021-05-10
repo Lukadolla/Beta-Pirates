@@ -7,13 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.net.URL;
 
 public class Controller {
 
@@ -99,6 +97,11 @@ public class Controller {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
         Stage helpStage = new Stage();
         Scene helpScene = new Scene(root);
+
+        URL url = getClass().getResource("/images/buttons/help-icon.png");
+        String imagePath = url.toString();
+        helpStage.getIcons().add(new Image(imagePath));
+
         helpStage.setHeight(650.0);
         helpStage.setWidth(1500.0);
         helpStage.setTitle("Help");
