@@ -147,11 +147,6 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void enableToolTips(MouseEvent event) {
-        buttonController.enableToolTips();
-        event.consume();
-    }
-
     @FXML private void changeHairColour(ActionEvent event) {
         colourController.changeHairColour();
         event.consume();

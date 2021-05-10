@@ -14,49 +14,6 @@ public class ButtonController {
 
   public ButtonController(Controller controller) { this.mainController = controller; }
 
-  @FXML
-  void enableToolTips(){ //Method to enable tool tips when mouse is hovered over the buttons
-    mainController.addCharacterLeftButton.setTooltip(
-        new Tooltip("Add a character to the left side")
-    );
-
-    mainController.addCharacterRightButton.setTooltip(
-        new Tooltip("Add a character to the right side")
-    );
-
-    mainController.speechBubbleButton.setTooltip(
-        new Tooltip("Add speech bubble")
-    );
-
-    mainController.thoughtBubbleButton.setTooltip(
-        new Tooltip("Add thought bubble")
-    );
-
-    mainController.rotateCharacterButton.setTooltip(
-        new Tooltip("Rotate character")
-    );
-
-    mainController.changeGenderButton.setTooltip(
-        new Tooltip("Change gender of character")
-    );
-
-    mainController.deleteCharacterButton.setTooltip(
-        new Tooltip("Delete character")
-    );
-
-    mainController.backgroundButton.setTooltip(
-        new Tooltip("Add background")
-    );
-
-    mainController.hairColourPicker.setTooltip(
-        new Tooltip("Change hair colour")
-    );
-
-    mainController.bodyColourPicker.setTooltip(
-        new Tooltip("Change body colour")
-    );
-  }
-
   void addCharacterLeft() throws IOException { //Method called when button is pressed to add a character into the left panel
     mainController.getMidScrollPaneController().addCharacterPane();
     switchButtonState(mainController.bottomLeftIV.getImage() != null);
