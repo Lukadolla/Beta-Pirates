@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -21,14 +22,12 @@ public class LowerPanelController {
         mainController = TC;
     }
 
-    public int loadedPanelIndex = -1;
+    public boolean overwrite = false;
     LinkedList<Comic> comicPanelList = new LinkedList<>();
 
-    private int selectedPanelIndex;
+    private int selectedPanelIndex = -1;
 
     private Region selectedPanelRegion;
-
-    private Region loadedPanelRegion;
 
     @FXML
     void addToPanelList() throws CloneNotSupportedException {  //Method called when the save panel button is pressed
@@ -48,9 +47,9 @@ public class LowerPanelController {
         }
 
         Comic comicClone = (Comic) mainController.comic.clone();
-        if(loadedPanelIndex != -1){
-            comicPanelList.set(loadedPanelIndex, (Comic) mainController.comic.clone());
-            loadedPanelIndex = -1;
+        if(overwrite == true){
+            comicPanelList.set(selectedPanelIndex, (Comic) mainController.comic.clone());
+            overwrite = false;
         }
         else {
             comicPanelList.add(comicClone);
@@ -58,7 +57,7 @@ public class LowerPanelController {
 
         loadBottomPanel();
         clearComic();
-        selectedPanelIndex = -1;
+        //selectedPanelIndex = -1;
     }
 
     private Image getPanelAsImage(){ //Converts the comic pane into an image to be returned
@@ -87,20 +86,25 @@ public class LowerPanelController {
             Region region = new Region();
             region.setStyle("-fx-border-opacity: 1");
             int finalPanelImage = panelImage;
-            region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                if(selectedPanelRegion != null && selectedPanelRegion != loadedPanelRegion){
-                    selectedPanelRegion.setStyle("-fx-border-opacity: 1");
-                }
-                selectedPanelIndex = finalPanelImage;
-                selectedPanelRegion = region;
-                if(selectedPanelRegion != loadedPanelRegion) {
+            region.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+                if(event.isPrimaryButtonDown()) {
+                    if (selectedPanelIndex != -1) {
+                        selectedPanelRegion.setStyle("-fx-border-opacity: 1");
+                    }
+                    selectedPanelIndex = finalPanelImage;
+                    selectedPanelRegion = region;
                     selectedPanelRegion.setStyle("-fx-border-color: #2a52be; -fx-border-width: 5px; -fx-border-opacity: 0");
                 }
+                else if(event.isSecondaryButtonDown()){
+                    swapPanels(finalPanelImage, region);
+                }
+
                 event.consume();
             });
 
-            if(panelImage == loadedPanelIndex){
-                region.setStyle("-fx-border-color: #eb7134; -fx-border-width: 5px; -fx-border-opacity: 0");
+            if(panelImage == selectedPanelIndex){
+                region.setStyle("-fx-border-color: #2a52be; -fx-border-width: 5px; -fx-border-opacity: 0");
+                selectedPanelRegion = region;
             }
 
             HBox comicImageHbox = new HBox(image);
@@ -134,16 +138,11 @@ public class LowerPanelController {
         }
         else if(event.getCode().equals(KeyCode.L)){ //Loads the selected panel
             if(!comicPanelList.isEmpty()){
-                if(loadedPanelRegion != null) {
-                    loadedPanelRegion.setStyle("-fx-border-opacity: 1");
-                    loadedPanelRegion = null;
-                }
                 importPanel();
             }
         }
         else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
             if(mainController.comic != null) {
-                loadedPanelRegion = null;
                 if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
                     mainController.getComicController()
                             .insertLeftTextGraphic(mainController.leftTextField.getText());
@@ -157,16 +156,32 @@ public class LowerPanelController {
                 addToPanelList();
             }
         }
-        else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
-            if (mainController.comic != null) {
+        else if(event.getCode().equals(KeyCode.O)){ //Saves the comic as a panel
+            if(mainController.comic != null) {
                 if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
                     mainController.getComicController()
-                        .insertLeftTextGraphic(mainController.leftTextField.getText());
+                            .insertLeftTextGraphic(mainController.leftTextField.getText());
                     mainController.leftTextRegion.setVisible(true);
                 }
                 if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
                     mainController.getComicController()
-                        .insertRightTextGraphic(mainController.rightTextField.getText());
+                            .insertRightTextGraphic(mainController.rightTextField.getText());
+                    mainController.rightTextRegion.setVisible(true);
+                }
+                overwrite = true;
+                addToPanelList();
+            }
+        }
+        else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
+            if (mainController.comic != null) {
+                if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
+                    mainController.getComicController()
+                            .insertLeftTextGraphic(mainController.leftTextField.getText());
+                    mainController.leftTextRegion.setVisible(true);
+                }
+                if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
+                    mainController.getComicController()
+                            .insertRightTextGraphic(mainController.rightTextField.getText());
                     mainController.rightTextRegion.setVisible(true);
                 }
             }
@@ -176,18 +191,12 @@ public class LowerPanelController {
     private void deletePanel(){ //Deletes selected panel
         mainController.bottomGridPane.getChildren().clear();
         comicPanelList.remove(selectedPanelIndex);
+        selectedPanelRegion.setStyle("-fx-border-opacity: 0");
+        selectedPanelIndex = -1;
 
         if(comicPanelList.size() == 0){
             mainController.SaveXMLMenu.setDisable(true);
             mainController.SaveHTMLMenu.setDisable(true);
-        }
-
-        if(selectedPanelIndex == loadedPanelIndex){
-            loadedPanelIndex = -1;
-        }
-
-        if(selectedPanelIndex < loadedPanelIndex){
-            loadedPanelIndex -= 1;
         }
 
         loadBottomPanel();
@@ -196,9 +205,6 @@ public class LowerPanelController {
     private void importPanel() throws CloneNotSupportedException { //Imports selected panel to the main comic panel
         clearComic();
         drawComic(comicPanelList.get(selectedPanelIndex));
-        loadedPanelIndex = selectedPanelIndex;
-        selectedPanelRegion.setStyle("-fx-border-color: #eb7134; -fx-border-width: 5px");
-        loadedPanelRegion = selectedPanelRegion;
     }
 
     void clearComic(){ //Removes all elements from a comic
@@ -345,5 +351,38 @@ public class LowerPanelController {
         if(mainController.bottomText.getText() != null && mainController.bottomText.getText().trim().equals("")){
             mainController.bottomText.setVisible(false);
         }
+    }
+
+    void swapPanels(int finalPanelImage, Region region){
+        Comic tempComic;
+        if (selectedPanelIndex == -1 || selectedPanelIndex == finalPanelImage) {
+            return;
+        }
+
+        try {
+            tempComic = (Comic) comicPanelList.get(selectedPanelIndex).clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        try {
+            comicPanelList.set(selectedPanelIndex, (Comic) comicPanelList.get(finalPanelImage).clone());
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        try {
+            comicPanelList.set(finalPanelImage, (Comic) tempComic.clone());
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        selectedPanelRegion.setStyle("-fx-border-opacity: 0");
+        selectedPanelRegion = region;
+        selectedPanelIndex = finalPanelImage;
+        loadBottomPanel();
     }
 }

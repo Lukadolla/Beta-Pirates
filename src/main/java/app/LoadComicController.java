@@ -57,8 +57,6 @@ public class LoadComicController {
 
     public void loadFromXML(File file) { //Method that takes in an XML comic file and saves the data into the lower panel
 
-        controller.getLowerPanelController().loadedPanelIndex = -1;
-
         controller.getLowerPanelController().clearComic();
 
         controller.getLowerPanelController().comicPanelList.clear();
