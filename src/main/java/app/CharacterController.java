@@ -86,7 +86,7 @@ public class CharacterController {
             isItLips = true;
         }
 
-        if(color.equals(Color.web("ff6666")) || color.equals(Color.web("ff8080")) || color.equals(Color.web("ff9999")) || color.equals(Color.web("ffb3b3")) || color.equals(Color.web("ffcccc"))) {
+        if(mainController.getColourController().compareColours(color, mainController.comic.getSelected().getLipColour())) {
             isItLips = false;
         }
 
@@ -104,7 +104,7 @@ public class CharacterController {
             isItHair = true;
         }
 
-        if(mainController.getColourController().compareColours(colour, character.getMaleHairColour()) || colour.equals(Color.web("fbff5e")) || colour.equals(Color.web("ffff66")) || colour.equals(Color.web("ffff4d"))){
+        if(mainController.getColourController().compareColours(colour, character.getMaleHairColour()) || mainController.getColourController().compareColours(colour, character.getSkinColour())){
             isItHair = false;
         }
         if(mainController.getColourController().compareColours(colour, character.getFemaleHairColour())){

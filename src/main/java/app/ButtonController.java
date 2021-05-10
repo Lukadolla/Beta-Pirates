@@ -78,7 +78,7 @@ public class ButtonController {
 
   @FXML
   void addThoughtBubble(){ //Method called when user presses the thought bubble button
-    URL url = getClass().getResource("/images/buttons/thought.PNG");
+    URL url = getClass().getResource("/images/buttons/thought.png");
     String currentPath = url.toString();
     ImageView imageView = new ImageView(currentPath);
     mainController.comic.getSelected().setThought();

@@ -68,7 +68,7 @@ public class SaveComicController {
         dialog.getDialogPane().setContent(grid);
 
         // Request focus on the name field by default.
-        Platform.runLater(() -> comicName.requestFocus());
+        Platform.runLater(comicName::requestFocus);
 
         // Convert the result to a String when the save button is clicked.
         dialog.setResultConverter(dialogButton -> {
@@ -93,8 +93,7 @@ public class SaveComicController {
                     File file = new File(filePath + "/" + details + ".xml");
                     saveAsXML(file);
 
-                } catch(Exception e){
-                    return;
+                } catch(Exception ignored){
                 }
             }
         });
@@ -139,7 +138,7 @@ public class SaveComicController {
         dialog.getDialogPane().setContent(grid);
 
         // Request focus on the name field by default.
-        Platform.runLater(() -> comicName.requestFocus());
+        Platform.runLater(comicName::requestFocus);
 
         // Convert the result to a pair when the save button is clicked.
         dialog.setResultConverter(dialogButton -> {
@@ -169,8 +168,7 @@ public class SaveComicController {
                     saveAsHTML(file, details.getKey(), details.getValue());
                     saveComicAsImages(directory.toString(), details.getKey());
                 }
-                catch(Exception e){
-                    return;
+                catch(Exception ignored){
                 }
             }
         });

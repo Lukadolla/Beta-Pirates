@@ -6,6 +6,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,6 +32,9 @@ public class LoadComicController {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.setDialogTitle("Load Comic as XML");
+        FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter(
+                "xml files (*.xml)", "xml");
+        chooser.setFileFilter(xmlfilter);
         chooser.showOpenDialog(null);
         String filePath;
 
@@ -111,11 +116,9 @@ public class LoadComicController {
                     controller.getComicController().insertLeftCharacter(character);
                     if(bubble!=null){
                         if(bubble.getTextContent().equals("speech")){
-                            controller.comic.getLeftCharacter().setSpeech();
                             controller.getButtonController().addSpeechBubble();
                         }
                         else if(bubble.getTextContent().equals("thought")){
-                            controller.comic.getLeftCharacter().setThought();
                             controller.getButtonController().addThoughtBubble();
                         }
                     }
@@ -136,11 +139,9 @@ public class LoadComicController {
                     controller.getComicController().insertRightCharacter(character);
                     if(bubble!=null){
                         if(bubble.getTextContent().equals("speech")){
-                            controller.comic.getRightCharacter().setSpeech();
                             controller.getButtonController().addSpeechBubble();
                         }
                         else if(bubble.getTextContent().equals("thought")){
-                            controller.comic.getRightCharacter().setThought();
                             controller.getButtonController().addThoughtBubble();
                         }
                     }
@@ -149,19 +150,19 @@ public class LoadComicController {
 
                 if (Background != null) {
                     controller.getComicController().insertBackground(controller.getMidScrollPaneController().backgroundImages.get(Integer.parseInt(Background.getTextContent())));
+                    controller.comic.setChosenBackground(Integer.parseInt(Background.getTextContent()));
                 }
+
                 if(Text != null) {
                     if (Text.getElementsByTagName("leftText").item(0) != null) {
                         controller.comic.setLeftText(Text.getElementsByTagName("leftText").item(0).getTextContent());
                         controller.leftTextField.setText(controller.comic.getLeftText());
-                        controller.leftTextField.setVisible(true);
-                        controller.leftTextField.setDisable(false);
+                        controller.getComicController().insertLeftTextGraphic(controller.comic.getLeftText());
                     }
                     if (Text.getElementsByTagName("rightText").item(0) != null) {
                         controller.comic.setRightText(Text.getElementsByTagName("rightText").item(0).getTextContent());
                         controller.rightTextField.setText(controller.comic.getRightText());
-                        controller.rightTextField.setVisible(true);
-                        controller.rightTextField.setDisable(false);
+                        controller.getComicController().insertRightTextGraphic(controller.comic.getRightText());
                     }
                     if (Text.getElementsByTagName("topText").item(0) != null) {
                         controller.comic.setTopText(Text.getElementsByTagName("topText").item(0).getTextContent());

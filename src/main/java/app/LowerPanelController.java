@@ -49,7 +49,7 @@ public class LowerPanelController {
         }
 
         Comic comicClone = (Comic) mainController.comic.clone();
-        if(overwrite == true){
+        if(overwrite){
             comicPanelList.set(selectedPanelIndex, (Comic) mainController.comic.clone());
             overwrite = false;
         }
@@ -144,41 +144,19 @@ public class LowerPanelController {
             }
         }
         else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
-            if(mainController.comic != null) {
-                if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
-                    mainController.getComicController()
-                            .insertLeftTextGraphic(mainController.leftTextField.getText());
-                    mainController.leftTextRegion.setVisible(true);
-                }
-                if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
-                    mainController.getComicController()
-                            .insertRightTextGraphic(mainController.rightTextField.getText());
-                    mainController.rightTextRegion.setVisible(true);
-                }
-                addToPanelList();
-            }
+            checkTextForGraphic();
+            addToPanelList();
         }
         else if(event.getCode().equals(KeyCode.O)){ //Saves the comic as a panel
             overwritePanel();
         }
         else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
-            if (mainController.comic != null) {
-                if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
-                    mainController.getComicController()
-                            .insertLeftTextGraphic(mainController.leftTextField.getText());
-                    mainController.leftTextRegion.setVisible(true);
-                }
-                if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
-                    mainController.getComicController()
-                            .insertRightTextGraphic(mainController.rightTextField.getText());
-                    mainController.rightTextRegion.setVisible(true);
-                }
-            }
+            checkTextForGraphic();
         }
     }
 
-    void overwritePanel() throws CloneNotSupportedException {
-        if(mainController.comic != null) {
+    void checkTextForGraphic(){
+        if (mainController.comic != null) {
             if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
                 mainController.getComicController()
                         .insertLeftTextGraphic(mainController.leftTextField.getText());
@@ -189,9 +167,13 @@ public class LowerPanelController {
                         .insertRightTextGraphic(mainController.rightTextField.getText());
                 mainController.rightTextRegion.setVisible(true);
             }
-            overwrite = true;
-            addToPanelList();
         }
+    }
+
+    void overwritePanel() throws CloneNotSupportedException {
+        checkTextForGraphic();
+        overwrite = true;
+        addToPanelList();
     }
 
     void deletePanel(){ //Deletes selected panel
