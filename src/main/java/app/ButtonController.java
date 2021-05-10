@@ -150,4 +150,10 @@ public class ButtonController {
     mainController.comicCharacterSelection = null;
     switchButtonState(false);
   }
+
+  void lowerButtonState(boolean areEnabled){
+    mainController.deletePanelButton.setDisable(!areEnabled);
+    mainController.loadPanelButton.setDisable(!areEnabled);
+    mainController.replacePanelButton.setDisable(!areEnabled);
+  }
 }

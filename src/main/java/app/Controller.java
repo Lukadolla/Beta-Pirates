@@ -41,6 +41,9 @@ public class Controller {
     @FXML Button rotateCharacterButton;
     @FXML Button speechBubbleButton;
     @FXML Button thoughtBubbleButton;
+    @FXML Button loadPanelButton;
+    @FXML Button deletePanelButton;
+    @FXML Button replacePanelButton;
     @FXML ColorPicker bodyColourPicker;
     @FXML ColorPicker hairColourPicker;
     @FXML GridPane backgroundGridPane;
@@ -165,6 +168,21 @@ public class Controller {
 
     @FXML private void addToPanelList(ActionEvent event) throws CloneNotSupportedException {
         lowerPanelController.addToPanelList();
+        event.consume();
+    }
+
+    @FXML private void importPanel(ActionEvent event) throws CloneNotSupportedException {
+        lowerPanelController.importPanel();
+        event.consume();
+    }
+
+    @FXML private void deletePanel(ActionEvent event) throws CloneNotSupportedException {
+        lowerPanelController.deletePanel();
+        event.consume();
+    }
+
+    @FXML private void overwritePanel(ActionEvent event) throws CloneNotSupportedException {
+        lowerPanelController.overwritePanel();
         event.consume();
     }
 

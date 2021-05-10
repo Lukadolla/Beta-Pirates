@@ -39,7 +39,6 @@ public class LowerPanelController {
         mainController.SaveXMLMenu.setDisable(false);
         mainController.SaveHTMLMenu.setDisable(false);
 
-
         mainController.comic.setComicImage(getPanelAsImage());
 
         if(mainController.selectedBorder != null) {
@@ -57,7 +56,6 @@ public class LowerPanelController {
 
         loadBottomPanel();
         clearComic();
-        //selectedPanelIndex = -1;
     }
 
     private Image getPanelAsImage(){ //Converts the comic pane into an image to be returned
@@ -91,6 +89,7 @@ public class LowerPanelController {
                     if (selectedPanelIndex != -1) {
                         selectedPanelRegion.setStyle("-fx-border-opacity: 1");
                     }
+                    mainController.getButtonController().lowerButtonState(true);
                     selectedPanelIndex = finalPanelImage;
                     selectedPanelRegion = region;
                     selectedPanelRegion.setStyle("-fx-border-color: #2a52be; -fx-border-width: 5px; -fx-border-opacity: 0");
@@ -157,20 +156,7 @@ public class LowerPanelController {
             }
         }
         else if(event.getCode().equals(KeyCode.O)){ //Saves the comic as a panel
-            if(mainController.comic != null) {
-                if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
-                    mainController.getComicController()
-                            .insertLeftTextGraphic(mainController.leftTextField.getText());
-                    mainController.leftTextRegion.setVisible(true);
-                }
-                if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
-                    mainController.getComicController()
-                            .insertRightTextGraphic(mainController.rightTextField.getText());
-                    mainController.rightTextRegion.setVisible(true);
-                }
-                overwrite = true;
-                addToPanelList();
-            }
+            overwritePanel();
         }
         else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
             if (mainController.comic != null) {
@@ -188,21 +174,40 @@ public class LowerPanelController {
         }
     }
 
-    private void deletePanel(){ //Deletes selected panel
+    void overwritePanel() throws CloneNotSupportedException {
+        if(mainController.comic != null) {
+            if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
+                mainController.getComicController()
+                        .insertLeftTextGraphic(mainController.leftTextField.getText());
+                mainController.leftTextRegion.setVisible(true);
+            }
+            if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
+                mainController.getComicController()
+                        .insertRightTextGraphic(mainController.rightTextField.getText());
+                mainController.rightTextRegion.setVisible(true);
+            }
+            overwrite = true;
+            addToPanelList();
+        }
+    }
+
+    void deletePanel(){ //Deletes selected panel
         mainController.bottomGridPane.getChildren().clear();
         comicPanelList.remove(selectedPanelIndex);
         selectedPanelRegion.setStyle("-fx-border-opacity: 0");
         selectedPanelIndex = -1;
+        mainController.getButtonController().lowerButtonState(false);
 
         if(comicPanelList.size() == 0){
             mainController.SaveXMLMenu.setDisable(true);
             mainController.SaveHTMLMenu.setDisable(true);
+            mainController.getButtonController().lowerButtonState(false);
         }
 
         loadBottomPanel();
     }
 
-    private void importPanel() throws CloneNotSupportedException { //Imports selected panel to the main comic panel
+    void importPanel() throws CloneNotSupportedException { //Imports selected panel to the main comic panel
         clearComic();
         drawComic(comicPanelList.get(selectedPanelIndex));
     }
