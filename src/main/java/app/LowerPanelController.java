@@ -1,6 +1,8 @@
 package app;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -11,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.Optional;
 
 import static javafx.geometry.Pos.CENTER;
 
@@ -192,19 +195,31 @@ public class LowerPanelController {
     }
 
     void deletePanel(){ //Deletes selected panel
-        mainController.bottomGridPane.getChildren().clear();
-        comicPanelList.remove(selectedPanelIndex);
-        selectedPanelRegion.setStyle("-fx-border-opacity: 0");
-        selectedPanelIndex = -1;
-        mainController.getButtonController().lowerButtonState(false);
 
-        if(comicPanelList.size() == 0){
-            mainController.SaveXMLMenu.setDisable(true);
-            mainController.SaveHTMLMenu.setDisable(true);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Deletion");
+        alert.setHeaderText("Are you sure you want to delete the panel?");
+        alert.setContentText("");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.CANCEL){
+            return;
+        } else {
+
+            mainController.bottomGridPane.getChildren().clear();
+            comicPanelList.remove(selectedPanelIndex);
+            selectedPanelRegion.setStyle("-fx-border-opacity: 0");
+            selectedPanelIndex = -1;
             mainController.getButtonController().lowerButtonState(false);
-        }
 
-        loadBottomPanel();
+            if (comicPanelList.size() == 0) {
+                mainController.SaveXMLMenu.setDisable(true);
+                mainController.SaveHTMLMenu.setDisable(true);
+                mainController.getButtonController().lowerButtonState(false);
+            }
+
+            loadBottomPanel();
+        }
     }
 
     void importPanel() throws CloneNotSupportedException { //Imports selected panel to the main comic panel
