@@ -29,9 +29,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
 
         URL url = getClass().getResource("/images/buttons/icon.png");
-        String currentPath = url.toString();
+        String imagePath = url.toString();
+        mainStage.getIcons().add(new Image(imagePath));
 
-        mainStage.getIcons().add(new Image(currentPath));
         Scene mainScene = new Scene(root);
         mainScene.getRoot().requestFocus();
         mainStage.setTitle("Excelsior");
@@ -41,6 +41,11 @@ public class Main extends Application {
 
     public void helpPage(Stage helpStage) throws IOException{ //Loads the help window and displays it
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/help.fxml"));
+
+        URL url = getClass().getResource("/images/buttons/help-icon.png");
+        String imagePath = url.toString();
+        helpStage.getIcons().add(new Image(imagePath));
+
         Scene helpScene = new Scene(root);
         helpStage.setHeight(650.0);
         helpStage.setWidth(1500.0);
