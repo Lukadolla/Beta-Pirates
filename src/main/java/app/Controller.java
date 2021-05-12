@@ -29,7 +29,6 @@ public class Controller {
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
     ImageView comicCharacterSelection=null; // Track character selection independent of comic selection
     int sizeScale = 10;
-    GridPane selectedGridPane;
 
     @FXML AnchorPane backgroundImageScale;
     @FXML AnchorPane characterMenuAnchorPane;
@@ -75,16 +74,12 @@ public class Controller {
 
 
     @FXML void resize(){  //Method to resize the middle anchor pane
-        getSizeScale();
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * sizeScale);
         scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 60);
     }
 
-    void getSizeScale(){
-        if(selectedGridPane==null)
-            return;
-        sizeScale = selectedGridPane.getRowConstraints().size()/3;
-        System.out.print(sizeScale);
+    void getSizeScale(GridPane gridpane){
+        sizeScale = gridpane.getRowConstraints().size()/3;
     }
 
     @FXML public void rotate(){ //Method to rotate a character

@@ -8,15 +8,15 @@ public class Comic implements Cloneable {
   private Character leftCharacter;
   private Character rightCharacter;
   private Character selected;
-  private String topText;
-  private String bottomText;
-  private String leftText;
-  private String rightText;
+  private String topText = "";
+  private String bottomText = "";
+  private String leftText = "";
+  private String rightText = "";
   private ImageView centreLeft;
   private ImageView centreRight;
   private ImageView background;
   private Image comicImage;
-  private int chosenBackground;
+  private String chosenBackground;
 
 
   // Add lines to bubbles
@@ -117,11 +117,11 @@ public class Comic implements Cloneable {
     this.comicImage = comicImage;
   }
 
-  public int getChosenBackground() {
+  public String getChosenBackground() {
     return chosenBackground;
   }
 
-  public void setChosenBackground(int chosenBackground) {
+  public void setChosenBackground(String chosenBackground) {
     this.chosenBackground = chosenBackground;
   }
 }

@@ -221,7 +221,7 @@ public class SaveComicController {
 
                     //chosenImage element
                     Element chosenImage = document.createElement("chosenImage");
-                    chosenImage.appendChild(document.createTextNode(String.valueOf(comic.getLeftCharacter().getChosenImage())));
+                    chosenImage.appendChild(document.createTextNode(comic.getLeftCharacter().getChosenImage()));
                     character.appendChild(chosenImage);
 
                     //facing element
@@ -264,7 +264,7 @@ public class SaveComicController {
 
                     //chosenImage element
                     Element chosenImage = document.createElement("chosenImage");
-                    chosenImage.appendChild(document.createTextNode(String.valueOf(comic.getRightCharacter().getChosenImage())));
+                    chosenImage.appendChild(document.createTextNode(comic.getRightCharacter().getChosenImage()));
                     character.appendChild(chosenImage);
 
                     //facing element
@@ -280,36 +280,35 @@ public class SaveComicController {
                     }
                 }
 
+                Element background = document.createElement("background");
+                panel.appendChild(background);
+
                 if (comic.getBackground() != null) {
-                    Element background = document.createElement("background");
-                    panel.appendChild(background);
-                    background.appendChild(document.createTextNode(String.valueOf(comic.getChosenBackground())));
+                    background.appendChild(document.createTextNode(comic.getChosenBackground()));
                 }
                 else{
-                    Element background = document.createElement("background");
-                    panel.appendChild(background);
-                    background.appendChild(document.createTextNode("0"));
+                    background.appendChild(document.createTextNode("default.png"));
                 }
 
-                if (!(comic.getTopText().equals("")) || !(comic.getBottomText().equals("")) || !(comic.getLeftText().equals("")) || !(comic.getRightText().equals(""))) {
+                if (!(comic.getTopText().equals("") && comic.getBottomText().equals("") && comic.getLeftText().equals("") && comic.getRightText().equals(""))) {
                     Element text = document.createElement("text");
                     panel.appendChild(text);
-                    if (comic.getTopText() != null && !comic.getTopText().trim().equals("")) {
+                    if (!comic.getTopText().trim().equals("")) {
                         Element topText = document.createElement("topText");
                         text.appendChild(topText);
                         topText.appendChild(document.createTextNode(comic.getTopText().trim()));
                     }
-                    if (comic.getBottomText() != null && !comic.getBottomText().trim().equals("")) {
+                    if (!comic.getBottomText().trim().equals("")) {
                         Element bottomText = document.createElement("bottomText");
                         text.appendChild(bottomText);
                         bottomText.appendChild(document.createTextNode(comic.getBottomText().trim()));
                     }
-                    if (comic.getLeftText() != null && !comic.getLeftText().trim().equals("")) {
+                    if (!comic.getLeftText().trim().equals("")) {
                         Element leftText = document.createElement("leftText");
                         text.appendChild(leftText);
                         leftText.appendChild(document.createTextNode(comic.getLeftText().trim()));
                     }
-                    if (comic.getRightText() != null && !comic.getRightText().trim().equals("")) {
+                    if (!comic.getRightText().trim().equals("")) {
                         Element rightText = document.createElement("rightText");
                         text.appendChild(rightText);
                         rightText.appendChild(document.createTextNode(comic.getRightText().trim()));
@@ -325,7 +324,7 @@ public class SaveComicController {
 
             transformer.transform(domSource, streamResult);
 
-        } catch (ParserConfigurationException | TransformerException pce) {
+        } catch (NullPointerException | ParserConfigurationException | TransformerException pce) {
             pce.printStackTrace();
         }
     }

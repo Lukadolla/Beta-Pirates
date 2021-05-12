@@ -12,10 +12,10 @@ public class Character {
   private Color maleHairColour;
   private Color femaleHairColour;
   private Color lipColour;
-  private int chosenImage;
+  private String chosenImage;
   private String bubble=null;
 
-  public Character(Image image, int chosenImage){
+  public Character(Image image, String chosenImage){
     facing = 1;
     gender = "female";
     this.image = image;
@@ -26,7 +26,7 @@ public class Character {
     this.chosenImage = chosenImage;
   }
 
-  public int getChosenImage() {
+  public String getChosenImage() {
     return chosenImage;
   }
 
@@ -38,6 +38,8 @@ public class Character {
     if (facing == 1 || facing == -1) {
       this.facing = facing;
     }
+    else
+      throw new IllegalArgumentException("Incorrect Facing Syntax");
   }
 
   public void changeFacing(){
@@ -57,7 +59,12 @@ public class Character {
   }
 
   public void setGender(String gender) {
-    this.gender = gender;
+    if(gender.equals("male") || gender.equals("female")) {
+      this.gender = gender;
+    }
+    else{
+      throw new IllegalArgumentException("Incorrect Gender Syntax");
+    }
   }
 
   public Color getSkinColour() {
