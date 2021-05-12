@@ -1,9 +1,9 @@
 package app;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import javafx.fxml.FXML;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -14,7 +14,7 @@ public class ButtonController {
 
   public ButtonController(Controller controller) { this.mainController = controller; }
 
-  void addCharacterLeft() throws IOException { //Method called when button is pressed to add a character into the left panel
+  void addCharacterLeft() throws IOException, URISyntaxException { //Method called when button is pressed to add a character into the left panel
     mainController.getMidScrollPaneController().addCharacterPane();
     switchButtonState(mainController.bottomLeftIV.getImage() != null);
     mainController.setBorder(mainController.bottomLeftBorder);
@@ -25,7 +25,7 @@ public class ButtonController {
     }
   }
 
-  void addCharacterRight() throws IOException { //Method called when button is pressed to add a character into the right panel
+  void addCharacterRight() throws IOException, URISyntaxException { //Method called when button is pressed to add a character into the right panel
     mainController.getMidScrollPaneController().addCharacterPane();
     switchButtonState(mainController.bottomRightIV.getImage() != null);
     mainController.setBorder(mainController.bottomRightBorder);

@@ -14,6 +14,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+
 import javafx.fxml.FXML;
 
 import javax.swing.*;
@@ -177,7 +179,7 @@ public class LoadComicController {
                 controller.getLowerPanelController().addToPanelList();
             }
 
-        } catch (ParserConfigurationException | SAXException | IOException | CloneNotSupportedException e) {
+        } catch (ParserConfigurationException | SAXException | IOException | CloneNotSupportedException | URISyntaxException e) {
             e.printStackTrace();
         }
 

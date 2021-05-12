@@ -1,11 +1,19 @@
 package app;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
+
 import javafx.scene.image.Image;
 
 public class ImageLists {
@@ -18,25 +26,62 @@ public class ImageLists {
     backgroundImages = new ArrayList<>();
   }
 
-  public void loadCharacterImagesList() throws IOException {  //Loads images currently in the image directory
+  void getImageFiles(String subDir) throws URISyntaxException, IOException {
+    URI uri = LowerPanelController.class.getResource(subDir).toURI();
 
-    BufferedReader txtReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/images/characters/directoryList.txt")));
+    if (uri.getScheme().equals("jar")) {
+      handleJar(uri, subDir);
 
-    for (String line; (line = txtReader.readLine()) != null;) {
-        URL url = getClass().getResource(line);
-        String currentPath = url.toString();
-        this.addCharacterImage(new Image(currentPath));
+    } else {
+      handleIDE(uri, subDir);
     }
   }
 
-  public void loadBackgroundImagesList() throws IOException {  //Loads images currently in the image directory
+  private void handleJar(URI uri, String subDir) throws IOException {
+    FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+    Path myPath = fileSystem.getPath(subDir);
+    Stream<Path> walk = Files.walk(myPath, 1);
 
-    BufferedReader txtReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/images/backgrounds/backgroundList.txt")));
+    Iterator<Path> it = walk.iterator();
 
-    for (String line; (line = txtReader.readLine()) != null;) {
-      URL url = getClass().getResource(line);
+    while (it.hasNext()){
+      String filePath = it.next().toString();
+      if((filePath.endsWith(".txt")) || (!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")))){
+        continue;
+      }
+      String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+      URL url = getClass().getResource(subDir + "/" + fileName);
       String currentPath = url.toString();
-      this.addBackgroundImage(new Image(currentPath));
+      if(subDir.equals("/images/characters")) {
+        this.addCharacterImage(new Image(currentPath));
+      }
+      else{
+        this.addBackgroundImage(new Image(currentPath));
+      }
+    }
+    fileSystem.close();
+  }
+
+  private void handleIDE(URI uri, String subDir) throws IOException {
+    Path myPath = Paths.get(uri);
+    Stream<Path> walk = Files.walk(myPath, 1);
+
+    Iterator<Path> it = walk.iterator();
+
+    while (it.hasNext()){
+      String filePath = it.next().toString();
+      if((filePath.endsWith(".txt")) || (!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")))){
+        continue;
+      }
+      String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
+      URL url = getClass().getResource(subDir + "\\" + fileName);
+      String currentPath = url.toString();
+      if(subDir.equals("/images/characters")) {
+        this.addCharacterImage(new Image(currentPath));
+      }
+      else{
+        this.addBackgroundImage(new Image(currentPath));
+      }
     }
   }
 

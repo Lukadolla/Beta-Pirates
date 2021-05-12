@@ -11,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Controller {
@@ -110,12 +111,12 @@ public class Controller {
     }
 
     //All methods below are proxy methods that are called in the main.fxml and then call the corresponding methods in the other controllers
-    @FXML private void addCharacterRight(ActionEvent event) throws IOException {
+    @FXML private void addCharacterRight(ActionEvent event) throws IOException, URISyntaxException {
         buttonController.addCharacterRight();
         event.consume();
     }
 
-    @FXML private void addCharacterLeft(ActionEvent event) throws IOException {
+    @FXML private void addCharacterLeft(ActionEvent event) throws IOException, URISyntaxException {
         buttonController.addCharacterLeft();
         event.consume();
     }
@@ -161,11 +162,11 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void changeBackground() throws IOException {  //Method called when change background button is pressed
+    @FXML private void changeBackground() throws IOException, URISyntaxException {  //Method called when change background button is pressed
         midScrollPaneController.addBackgroundPane();
     }
 
-    @FXML private void addToPanelList(ActionEvent event) throws CloneNotSupportedException {
+    @FXML private void addToPanelList(ActionEvent event) throws CloneNotSupportedException, IOException, URISyntaxException {
         lowerPanelController.addToPanelList();
         event.consume();
     }
@@ -180,12 +181,12 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void overwritePanel(ActionEvent event) throws CloneNotSupportedException {
+    @FXML private void overwritePanel(ActionEvent event) throws CloneNotSupportedException, IOException, URISyntaxException {
         lowerPanelController.overwritePanel();
         event.consume();
     }
 
-    @FXML private void keyPressed(KeyEvent event) throws CloneNotSupportedException {
+    @FXML private void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException {
         lowerPanelController.keyPressed(event);
         event.consume();
     }
@@ -212,6 +213,4 @@ public class Controller {
     ButtonController getButtonController() { return buttonController; }
     ColourController getColourController() { return colourController; }
     LowerPanelController getLowerPanelController(){ return lowerPanelController; }
-    SaveComicController getSaveComicController() { return saveComicController; }
-    LoadComicController getLoadComicController() { return loadComicController; }
 }

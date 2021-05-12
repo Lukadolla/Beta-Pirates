@@ -6,14 +6,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.Optional;
+import java.util.*;
 
 import static javafx.geometry.Pos.CENTER;
 
@@ -33,7 +33,7 @@ public class LowerPanelController {
     private Region selectedPanelRegion;
 
     @FXML
-    void addToPanelList() throws CloneNotSupportedException {  //Method called when the save panel button is pressed
+    void addToPanelList() throws CloneNotSupportedException, IOException, URISyntaxException {  //Method called when the save panel button is pressed
 
         if(comicPanelList.size() == 50){ //limit
             return;
@@ -131,7 +131,7 @@ public class LowerPanelController {
     }
 
     @FXML
-    void keyPressed(KeyEvent event) throws CloneNotSupportedException { //Handles key press events
+    void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException { //Handles key press events
 
         if(event.getCode().equals(KeyCode.DELETE)){ //Deletes the selected panel
             if(!comicPanelList.isEmpty()){
@@ -170,7 +170,7 @@ public class LowerPanelController {
         }
     }
 
-    void overwritePanel() throws CloneNotSupportedException {
+    void overwritePanel() throws CloneNotSupportedException, IOException, URISyntaxException {
         checkTextForGraphic();
         overwrite = true;
         addToPanelList();

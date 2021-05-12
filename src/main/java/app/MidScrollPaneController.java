@@ -1,6 +1,5 @@
 package app;
 
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -9,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import static javafx.geometry.Pos.CENTER;
@@ -24,9 +24,9 @@ public class MidScrollPaneController {
         this.mainController = mainController;
     }
 
-    void loadCharacterImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
+    void loadCharacterImages() throws IOException, URISyntaxException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
 
-        imageLists.loadCharacterImagesList();
+        imageLists.getImageFiles("/images/characters");
 
         this.characterImages = imageLists.getCharacterImages();
 
@@ -53,7 +53,7 @@ public class MidScrollPaneController {
         }
     }
 
-    public void addCharacterPane() throws IOException {
+    public void addCharacterPane() throws IOException, URISyntaxException {
 
         mainController.sizeScale = 10;
         mainController.resize();
@@ -67,7 +67,7 @@ public class MidScrollPaneController {
         }
     }
 
-    public void addBackgroundPane() throws IOException {
+    public void addBackgroundPane() throws IOException, URISyntaxException {
 
         mainController.sizeScale = 4;
         mainController.resize();
@@ -107,9 +107,9 @@ public class MidScrollPaneController {
         return characterAnchorPane;
     }
 
-    void loadBackgroundImages() throws IOException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
+    void loadBackgroundImages() throws IOException, URISyntaxException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
 
-        imageLists.loadBackgroundImagesList();
+        imageLists.getImageFiles("/images/backgrounds");
 
         this.backgroundImages = imageLists.getBackgroundImages();
 
