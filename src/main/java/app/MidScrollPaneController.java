@@ -55,7 +55,7 @@ public class MidScrollPaneController {
 
     public void addCharacterPane() throws IOException, URISyntaxException {
 
-        mainController.sizeScale = 10;
+        mainController.selectedGridPane = mainController.charactersGridPane;
         mainController.resize();
 
         swapMiddlePanel(mainController.backgroundGridPane, mainController.charactersGridPane);
@@ -69,7 +69,7 @@ public class MidScrollPaneController {
 
     public void addBackgroundPane() throws IOException, URISyntaxException {
 
-        mainController.sizeScale = 4;
+        mainController.selectedGridPane = mainController.backgroundGridPane;
         mainController.resize();
 
         swapMiddlePanel(mainController.charactersGridPane, mainController.backgroundGridPane);

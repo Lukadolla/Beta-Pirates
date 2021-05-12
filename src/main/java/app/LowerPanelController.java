@@ -184,10 +184,10 @@ public class LowerPanelController {
         alert.setContentText("");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.CANCEL){
+        if (result.get() == ButtonType.CANCEL) {
             return;
-        } else {
-
+        }
+        else {
             mainController.bottomGridPane.getChildren().clear();
             comicPanelList.remove(selectedPanelIndex);
             selectedPanelRegion.setStyle("-fx-border-opacity: 0");
@@ -280,6 +280,8 @@ public class LowerPanelController {
 
         mainController.comic.setRightText(comicCopy.getRightText());
         mainController.rightTextField.setText(comicCopy.getRightText());
+
+        checkTextForGraphic();
 
         mainController.comic.setTopText(comicCopy.getTopText());
         mainController.topText.setText(comicCopy.getTopText());
