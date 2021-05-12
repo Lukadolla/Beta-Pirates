@@ -46,7 +46,7 @@ public class ImageLists {
 
     while (it.hasNext()){
       String filePath = it.next().toString();
-      if((filePath.endsWith(".txt")) || (!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")))){
+      if((filePath.endsWith(".txt")) || (!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")) && (!(filePath.endsWith(".gif")) && !(filePath.endsWith(".PNG")) && !(filePath.endsWith(".JPG")) && !(filePath.endsWith(".GIF"))))){
         continue;
       }
       String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
@@ -70,7 +70,7 @@ public class ImageLists {
 
     while (it.hasNext()){
       String filePath = it.next().toString();
-      if((filePath.endsWith(".txt")) || (!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")))){
+      if((filePath.endsWith(".txt")) || (!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")) && (!(filePath.endsWith(".gif")) && !(filePath.endsWith(".PNG")) && !(filePath.endsWith(".JPG")) && !(filePath.endsWith(".GIF"))))){
         continue;
       }
       String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);

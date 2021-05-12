@@ -379,4 +379,10 @@ public class SaveComicController {
                 "</html>");
         writer.close();
     }
+
+//    private void saveComicAsGif(){
+//        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++) {
+//            controller.getLowerPanelController().comicPanelList;
+//        }
+//    }
 }
