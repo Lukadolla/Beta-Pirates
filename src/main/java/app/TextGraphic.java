@@ -125,4 +125,6 @@ public class TextGraphic {
     return image;
   }
 
+  public void setImage(Image image) { this.image = image; }
+
 }

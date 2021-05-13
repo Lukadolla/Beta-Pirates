@@ -202,6 +202,8 @@ public class LowerPanelController {
             mainController.comic.setCentreLeft(null);
             mainController.leftTextField.clear();
             mainController.leftTextImageview.setImage(null);
+            mainController.comic.setLeftGraphic(null);
+            mainController.comic.setRightGraphic(null);
             mainController.leftTextRegion.setVisible(false);
             mainController.leftTextField.setVisible(false);
         }
