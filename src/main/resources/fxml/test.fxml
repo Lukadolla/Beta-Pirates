@@ -22,9 +22,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseEntered="#resize" prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
     <children>
-        <SplitPane dividerPositions="0.7348484848484849" layoutX="46.0" layoutY="24.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
+        <SplitPane dividerPositions="0.1810810810810811" layoutX="46.0" layoutY="24.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="160.0">
                     <children>
                         <SplitPane dividerPositions="0.44966442953020136" layoutX="44.0" layoutY="47.0" prefHeight="267.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <items>
@@ -366,11 +366,11 @@
                         </SplitPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="bottomAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="93.0" prefWidth="598.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;">
+                <AnchorPane fx:id="bottomAnchorPane" maxHeight="-Infinity" minHeight="300.0" minWidth="0.0" prefHeight="400.0" prefWidth="598.0" style="-fx-background-color: #bbc4c4; -fx-border-color: #323636; -fx-border-radius: 3; -fx-border-width: 2; -fx-border-insets: 3;">
                     <children>
                   <SplitPane dividerPositions="0.22206800832755033" layoutY="5.0" prefHeight="95.2" prefWidth="598.4" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="50.0">
+                      <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="450.0" prefHeight="160.0" prefWidth="550.0">
                            <children>
                               <GridPane layoutX="-39.0" layoutY="-8.0" prefHeight="73.6" prefWidth="121.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columnConstraints>
@@ -384,7 +384,7 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Button fx:id="savePanelButton" style="-fx-background-image: url('/images/buttons/save-panel.png'); -fx-background-size: 100% 100%;" layoutY="10.0" mnemonicParsing="false" onAction="#addToPanelList" prefHeight="36.8" prefWidth="61.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Button fx:id="savePanelButton" layoutY="10.0" mnemonicParsing="false" onAction="#addToPanelList" prefHeight="36.8" prefWidth="61.6" style="-fx-background-image: url('/images/buttons/save-panel.png'); -fx-background-size: 100% 100%;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <tooltip>
                                                 <Tooltip text="Save the current panel" />
                                              </tooltip></Button>
@@ -392,7 +392,7 @@
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Button fx:id="loadPanelButton" style="-fx-background-image: url('/images/buttons/import-panel.png'); -fx-background-size: 100% 100%;" disable="true" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" onAction="#importPanel" prefHeight="36.8" prefWidth="61.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Button fx:id="loadPanelButton" disable="true" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" onAction="#importPanel" prefHeight="36.8" prefWidth="61.6" style="-fx-background-image: url('/images/buttons/import-panel.png'); -fx-background-size: 100% 100%;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <tooltip>
                                                 <Tooltip text="Load selected Panel" />
                                              </tooltip></Button>
@@ -400,7 +400,7 @@
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                        <children>
-                                          <Button fx:id="deletePanelButton" style="-fx-background-image: url('/images/buttons/delete-panel.png'); -fx-background-size: 100% 100%;" disable="true" layoutX="5.0" layoutY="10.0" mnemonicParsing="false" onAction="#deletePanel" prefHeight="36.8" prefWidth="61.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Button fx:id="deletePanelButton" disable="true" layoutX="5.0" layoutY="10.0" mnemonicParsing="false" onAction="#deletePanel" prefHeight="36.8" prefWidth="61.6" style="-fx-background-image: url('/images/buttons/delete-panel.png'); -fx-background-size: 100% 100%;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <tooltip>
                                                 <Tooltip text="Delete selecter panel" />
                                              </tooltip></Button>
@@ -408,7 +408,7 @@
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <Button fx:id="replacePanelButton" style="-fx-background-image: url('/images/buttons/overwrite-panel.png'); -fx-background-size: 100% 100%;" disable="true" layoutY="-7.0" mnemonicParsing="false" onAction="#overwritePanel" prefHeight="36.8" prefWidth="61.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Button fx:id="replacePanelButton" disable="true" layoutY="-7.0" mnemonicParsing="false" onAction="#overwritePanel" prefHeight="36.8" prefWidth="61.6" style="-fx-background-image: url('/images/buttons/overwrite-panel.png'); -fx-background-size: 100% 100%;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <tooltip>
                                                 <Tooltip text="Replace selected panel with content of the working panel" />
                                              </tooltip></Button>

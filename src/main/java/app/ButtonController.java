@@ -11,7 +11,6 @@ public class ButtonController {
 
   private Controller mainController;
 
-
   public ButtonController(Controller controller) { this.mainController = controller; }
 
   void addCharacterLeft() throws IOException, URISyntaxException { //Method called when button is pressed to add a character into the left panel
@@ -93,6 +92,9 @@ public class ButtonController {
       mainController.centreLeft.setImage(null);
       mainController.leftTextField.clear();
       mainController.leftTextField.setVisible(false);
+      mainController.leftTextImageview.setImage(null);
+      mainController.leftTextRegion.setVisible(false);
+      mainController.comic.setLeftGraphic(null);
     }
     else{
       mainController.bottomRightIV.setImage(null);
@@ -100,6 +102,9 @@ public class ButtonController {
       mainController.centreRight.setImage(null);
       mainController.rightTextField.clear();
       mainController.rightTextField.setVisible(false);
+      mainController.rightTextImageview.setImage(null);
+      mainController.rightTextRegion.setVisible(false);
+      mainController.comic.setRightGraphic(null);
     }
     mainController.selectedBorder.setVisible(false);
     mainController.comic.setSelected(null);

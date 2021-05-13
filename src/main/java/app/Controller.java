@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -26,6 +27,7 @@ public class Controller {
     private LowerPanelController lowerPanelController = new LowerPanelController(this);
     private SaveComicController saveComicController = new SaveComicController(this);
     private LoadComicController loadComicController = new LoadComicController(this);
+    private TextGraphic textGraphic = new TextGraphic(this);
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
     ImageView comicCharacterSelection=null; // Track character selection independent of comic selection
     int sizeScale = 10;
@@ -113,6 +115,31 @@ public class Controller {
         helpStage.show();
     }
 
+    @FXML
+    void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException { //Handles key press events
+
+        if(event.getCode().equals(KeyCode.DELETE)){ //Deletes the selected panel
+            if(!getLowerPanelController().comicPanelList.isEmpty()){
+                getLowerPanelController().deletePanel();
+            }
+        }
+        else if(event.getCode().equals(KeyCode.L)){ //Loads the selected panel
+            if(!getLowerPanelController().comicPanelList.isEmpty()){
+                getLowerPanelController().importPanel();
+            }
+        }
+        else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
+            getTextGraphicController().checkTextForGraphic();
+            getLowerPanelController().addToPanelList();
+        }
+        else if(event.getCode().equals(KeyCode.O)){ //Saves the comic as a panel
+            getLowerPanelController().overwritePanel();
+        }
+        else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
+            getTextGraphicController().checkTextForGraphic();
+        }
+    }
+
     //All methods below are proxy methods that are called in the main.fxml and then call the corresponding methods in the other controllers
     @FXML private void addCharacterRight(ActionEvent event) throws IOException, URISyntaxException {
         buttonController.addCharacterRight();
@@ -135,6 +162,11 @@ public class Controller {
         event.consume();
     }
 
+    @FXML private void addThoughtBubble(ActionEvent event) {
+        buttonController.addThoughtBubble();
+        event.consume();
+    }
+
     @FXML private void swapLeftVisibility() {
         leftTextField.setVisible(true);
         leftTextImageview.setVisible(false);
@@ -143,11 +175,6 @@ public class Controller {
     @FXML private void swapRightVisibility() {
         rightTextField.setVisible(true);
         rightTextImageview.setVisible(false);
-    }
-
-    @FXML private void addThoughtBubble(ActionEvent event) {
-        buttonController.addThoughtBubble();
-        event.consume();
     }
 
     @FXML private void deleteCharacter(ActionEvent event) {
@@ -179,7 +206,7 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void deletePanel(ActionEvent event) throws CloneNotSupportedException {
+    @FXML private void deletePanel(ActionEvent event) {
         lowerPanelController.deletePanel();
         event.consume();
     }
@@ -189,17 +216,12 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException {
-        lowerPanelController.keyPressed(event);
-        event.consume();
-    }
-
     @FXML private void createXML(ActionEvent event) {
         saveComicController.createXML();
         event.consume();
     }
 
-    @FXML private void createHTML(ActionEvent event) throws IOException {
+    @FXML private void createHTML(ActionEvent event) {
         saveComicController.createHTML();
         event.consume();
     }
@@ -216,4 +238,5 @@ public class Controller {
     ButtonController getButtonController() { return buttonController; }
     ColourController getColourController() { return colourController; }
     LowerPanelController getLowerPanelController(){ return lowerPanelController; }
+    TextGraphic getTextGraphicController(){return textGraphic; }
 }

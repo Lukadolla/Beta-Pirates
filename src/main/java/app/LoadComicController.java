@@ -63,12 +63,12 @@ public class LoadComicController {
 
         controller.comic = (Comic) currentComic.clone();
 
-        controller.getLowerPanelController().drawComic(currentComic);
+        controller.getComicController().drawComic(currentComic);
     }
 
     public void loadFromXML(File file) { //Method that takes in an XML comic file and saves the data into the lower panel
 
-        controller.getLowerPanelController().clearComic();
+        controller.getComicController().clearComic();
 
         controller.getLowerPanelController().comicPanelList.clear();
         controller.getLowerPanelController().loadBottomPanel();
@@ -134,7 +134,7 @@ public class LoadComicController {
                         }
                         controller.getColourController().loadSkinColour(character.getSkinColour());
                     } catch(IllegalArgumentException | NullPointerException ex){
-                        controller.getLowerPanelController().clearComic();
+                        controller.getComicController().clearComic();
                         errorMessage("XML file data corrupted - couldn't load file");
                         return;
                     }
@@ -164,7 +164,7 @@ public class LoadComicController {
                         }
                         controller.getColourController().loadSkinColour(character.getSkinColour());
                     }catch(IllegalArgumentException | NullPointerException ex){
-                        controller.getLowerPanelController().clearComic();
+                        controller.getComicController().clearComic();
                         errorMessage("XML file data corrupted - couldn't load file");
                         return;
                     }

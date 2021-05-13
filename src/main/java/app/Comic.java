@@ -16,6 +16,8 @@ public class Comic implements Cloneable {
   private ImageView centreRight;
   private ImageView background;
   private Image comicImage;
+  private TextGraphic leftGraphic;
+  private TextGraphic rightGraphic;
   private String chosenBackground;
 
 
@@ -116,6 +118,13 @@ public class Comic implements Cloneable {
   public void setComicImage(Image comicImage) {
     this.comicImage = comicImage;
   }
+  public TextGraphic getLeftGraphic() { return leftGraphic; }
+
+  public void setLeftGraphic(TextGraphic leftGraphic) { this.leftGraphic = leftGraphic; }
+
+  public TextGraphic getRightGraphic() { return rightGraphic; }
+
+  public void setRightGraphic(TextGraphic rightGraphic) { this.rightGraphic = rightGraphic; }
 
   public String getChosenBackground() {
     return chosenBackground;
