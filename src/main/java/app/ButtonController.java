@@ -93,6 +93,9 @@ public class ButtonController {
       mainController.centreLeft.setImage(null);
       mainController.leftTextField.clear();
       mainController.leftTextField.setVisible(false);
+      mainController.leftTextImageview.setImage(null);
+      mainController.leftTextRegion.setVisible(false);
+      mainController.comic.setLeftGraphic(null);
     }
     else{
       mainController.bottomRightIV.setImage(null);
@@ -100,6 +103,9 @@ public class ButtonController {
       mainController.centreRight.setImage(null);
       mainController.rightTextField.clear();
       mainController.rightTextField.setVisible(false);
+      mainController.rightTextImageview.setImage(null);
+      mainController.rightTextRegion.setVisible(false);
+      mainController.comic.setRightGraphic(null);
     }
     mainController.selectedBorder.setVisible(false);
     mainController.comic.setSelected(null);
