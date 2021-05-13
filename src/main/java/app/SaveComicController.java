@@ -11,6 +11,8 @@ import javafx.util.Pair;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageOutputStream;
+import javax.imageio.stream.ImageOutputStream;
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,6 +22,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -167,6 +170,7 @@ public class SaveComicController {
 
                     saveAsHTML(file, details.getKey(), details.getValue());
                     saveComicAsImages(directory.toString(), details.getKey());
+                    //controller.getLowerPanelController().GIFTest(directory.toString(), details.getKey());
                 }
                 catch(Exception ignored){
                 }
@@ -379,9 +383,89 @@ public class SaveComicController {
         writer.close();
     }
 
-//    private void saveComicAsGif(){
-//        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++) {
-//            controller.getLowerPanelController().comicPanelList;
-//        }
-//    }
+    public void saveAsGIF(File file) throws IOException {
+        if(controller.getLowerPanelController().comicPanelList.size() <= 0){
+            return;
+        }
+
+        ImageOutputStream output = new FileImageOutputStream(file);
+
+        BufferedImage first = SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(0).getComicImage(), null);
+
+        GifSequenceWriter writer = new GifSequenceWriter(output, first.getType(), 1000, true);
+        writer.writeToSequence(first);
+
+        for(int i = 1; i < controller.getLowerPanelController().comicPanelList.size(); i++){
+            BufferedImage current = SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(i).getComicImage(), null);
+            writer.writeToSequence(current);
+        }
+
+        writer.close();
+        output.close();
+    }
+
+    public void createGIF(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("GIF Details");
+        dialog.setHeaderText("");
+
+        // Set the button types.
+        ButtonType submitButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, ButtonType.CANCEL);
+
+        // Create the name labels and fields.
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        TextField gifName = new TextField();
+        gifName.setPromptText("GIF Name");
+
+        grid.add(new Label("Name:"), 0, 0);
+        grid.add(gifName, 1, 0);
+
+        // Enable/Disable save button depending on whether a name was entered.
+        Node submitButton = dialog.getDialogPane().lookupButton(submitButtonType);
+        submitButton.setDisable(true);
+
+        // Do some validation.
+        gifName.textProperty().addListener((observable, oldValue, newValue) -> {
+            submitButton.setDisable(newValue.trim().isEmpty());
+        });
+
+        dialog.getDialogPane().setContent(grid);
+
+        // Request focus on the name field by default.
+        Platform.runLater(gifName::requestFocus);
+
+        // Convert the result to a String when the save button is clicked.
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == submitButtonType) {
+                return gifName.getText();
+            }
+            return null;
+        });
+
+        Optional<String> result = dialog.showAndWait();
+
+        result.ifPresent(details -> {
+
+            if(!details.equals("")){
+                try {
+                    JFileChooser chooser = new JFileChooser();
+                    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    chooser.setDialogTitle("Save GIF");
+                    chooser.showSaveDialog(null);
+                    String filePath = chooser.getSelectedFile().toString();
+
+                    File file = new File(filePath + "/" + details + ".gif");
+                    file.createNewFile();
+                    saveAsGIF(file);
+
+                } catch(Exception ignored){
+                }
+            }
+        });
+    }
 }

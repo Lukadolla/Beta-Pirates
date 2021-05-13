@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseEntered="#resize" prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseEntered="#resize" prefHeight="398.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
     <children>
         <SplitPane dividerPositions="0.1810810810810811" layoutX="46.0" layoutY="24.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
             <items>
@@ -497,6 +497,7 @@
                         <MenuItem fx:id="SaveXMLMenu" disable="true" mnemonicParsing="false" onAction="#createXML" text="Save as XML" />
                         <MenuItem fx:id="SaveHTMLMenu" disable="true" mnemonicParsing="false" onAction="#createHTML" text="Save as HTML" />
                         <MenuItem mnemonicParsing="false" onAction="#loadXML" text="Load XML" />
+                  <MenuItem mnemonicParsing="false" onAction="#createGIF" text="Save as GIF" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">

@@ -241,6 +241,11 @@ public class Controller {
         event.consume();
     }
 
+    @FXML private void createGIF(ActionEvent event) {
+        saveComicController.createGIF();
+        event.consume();
+    }
+
     // Methods that call the other controllers
     CharacterController getCharacterController(){ return characterController; }
     ComicController getComicController(){ return comicController; }
