@@ -527,6 +527,7 @@ public class LowerPanelController {
         //Bottom Left
         try{
             ImageView bottomLeftImage = new ImageView(comicPanelList.get(panelImage).getLeftCharacter().getImage());
+            bottomLeftImage.setScaleX(comicPanelList.get(panelImage).getLeftCharacter().getFacing());
             AnchorPane bottomLeftAnchor = new AnchorPane(bottomLeftImage);
 
             bottomLeftImage.fitWidthProperty().bind(bottomLeftAnchor.widthProperty());
@@ -541,13 +542,13 @@ public class LowerPanelController {
         //Bottom Right
         try{
             ImageView bottomRightImage = new ImageView(comicPanelList.get(panelImage).getRightCharacter().getImage());
+            bottomRightImage.setScaleX(comicPanelList.get(panelImage).getRightCharacter().getFacing());
             AnchorPane bottomRightAnchor = new AnchorPane(bottomRightImage);
 
             bottomRightImage.fitWidthProperty().bind(bottomRightAnchor.widthProperty());
             bottomRightImage.fitHeightProperty().bind(bottomRightAnchor.heightProperty());
             bottomRightImage.setManaged(false);
             bottomRightImage.setPickOnBounds(true);
-            bottomRightImage.setScaleX(-1);
 
             gridpane.add(bottomRightAnchor, 2, 2);
         } catch(NullPointerException ignored){
