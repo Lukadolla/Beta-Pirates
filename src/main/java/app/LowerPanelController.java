@@ -5,11 +5,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -115,48 +112,9 @@ public class LowerPanelController {
         }
     }
 
-    @FXML
-    void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException { //Handles key press events
-
-        if(event.getCode().equals(KeyCode.DELETE)){ //Deletes the selected panel
-            if(!comicPanelList.isEmpty()){
-                deletePanel();
-            }
-        }
-        else if(event.getCode().equals(KeyCode.L)){ //Loads the selected panel
-            if(!comicPanelList.isEmpty()){
-                importPanel();
-            }
-        }
-        else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
-            checkTextForGraphic();
-            addToPanelList();
-        }
-        else if(event.getCode().equals(KeyCode.O)){ //Saves the comic as a panel
-            overwritePanel();
-        }
-        else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
-            checkTextForGraphic();
-        }
-    }
-
-    void checkTextForGraphic(){
-        if (mainController.comic != null) {
-            if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().equals("")) {
-                mainController.getComicController()
-                        .insertLeftTextGraphic(mainController.leftTextField.getText());
-                mainController.leftTextRegion.setVisible(true);
-            }
-            if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().equals("")) {
-                mainController.getComicController()
-                        .insertRightTextGraphic(mainController.rightTextField.getText());
-                mainController.rightTextRegion.setVisible(true);
-            }
-        }
-    }
 
     void overwritePanel() throws CloneNotSupportedException, IOException, URISyntaxException {
-        checkTextForGraphic();
+        mainController.getTextGraphicController().checkTextForGraphic();
         overwrite = true;
         addToPanelList();
     }
@@ -268,7 +226,7 @@ public class LowerPanelController {
         mainController.comic.setRightText(comicCopy.getRightText());
         mainController.rightTextField.setText(comicCopy.getRightText());
 
-        checkTextForGraphic();
+        mainController.getTextGraphicController().checkTextForGraphic();
 
         mainController.comic.setTopText(comicCopy.getTopText());
         mainController.topText.setText(comicCopy.getTopText());

@@ -11,7 +11,6 @@ public class ButtonController {
 
   private Controller mainController;
 
-
   public ButtonController(Controller controller) { this.mainController = controller; }
 
   void addCharacterLeft() throws IOException, URISyntaxException { //Method called when button is pressed to add a character into the left panel
