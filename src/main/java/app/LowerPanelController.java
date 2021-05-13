@@ -3,13 +3,13 @@ package app;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.scene.image.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -80,9 +80,9 @@ public class LowerPanelController {
 
     void loadBottomPanel(){ //Loads the stored comics into the bottom panel
 
-        for(int panelImage=0; panelImage < comicPanelList.size(); panelImage++) {
+        mainController.bottomGridPane.getChildren().clear();
 
-            ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
+        for(int panelImage=0; panelImage < comicPanelList.size(); panelImage++) {
 
             Region region = new Region();
             region.setStyle("-fx-border-opacity: 1");
@@ -109,24 +109,9 @@ public class LowerPanelController {
                 selectedPanelRegion = region;
             }
 
-            HBox comicImageHbox = new HBox(image);
-            comicImageHbox.setId("comicImageHbox" + panelImage);
-            comicImageHbox.setAlignment(CENTER);
+            createPanelComic(panelImage, region);
 
-            AnchorPane panelAnchorPane = new AnchorPane(comicImageHbox, region);
-            AnchorPane.setLeftAnchor(region, 0.0);
-            AnchorPane.setRightAnchor(region, 0.0);
-            AnchorPane.setTopAnchor(region, 0.0);
-            AnchorPane.setBottomAnchor(region, 0.0);
-
-            image.fitWidthProperty().bind(panelAnchorPane.widthProperty());
-            image.fitHeightProperty().bind(panelAnchorPane.heightProperty());
-            image.setManaged(false);
-            image.setPickOnBounds(true);
-            image.setVisible(true);
-            image.setPreserveRatio(false);
-
-            mainController.bottomGridPane.add(panelAnchorPane, panelImage, 0);
+//            ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
         }
     }
 
@@ -388,5 +373,214 @@ public class LowerPanelController {
         selectedPanelRegion = region;
         selectedPanelIndex = finalPanelImage;
         loadBottomPanel();
+    }
+
+    private void createPanelComic(int panelImage, Region region){
+        //Setup
+        ImageView background = new ImageView();
+
+        try{
+            background.setImage(comicPanelList.get(panelImage).getBackground().getImage());
+        } catch(NullPointerException e){
+        }
+
+        HBox hbox = new HBox(background);
+        TextField topText = new TextField(comicPanelList.get(panelImage).getTopText());
+        TextField bottomText = new TextField(comicPanelList.get(panelImage).getBottomText());
+        GridPane gridpane = new GridPane();
+        AnchorPane container = new AnchorPane(hbox, topText, bottomText, gridpane, region);
+
+        //TextFields
+        if(topText.getText().equals("")){
+            topText.setVisible(false);
+        }
+
+        if(bottomText.getText().equals("")){
+            bottomText.setVisible(false);
+        }
+
+        //Region
+        AnchorPane.setLeftAnchor(region, 0.0);
+        AnchorPane.setRightAnchor(region, 0.0);
+        AnchorPane.setTopAnchor(region, 0.0);
+        AnchorPane.setBottomAnchor(region, 0.0);
+
+        //GridPane
+        AnchorPane.setLeftAnchor(gridpane, 5.0);
+        AnchorPane.setRightAnchor(gridpane, 25.0);
+        AnchorPane.setTopAnchor(gridpane, 36.0);
+        AnchorPane.setBottomAnchor(gridpane, 35.0);
+
+        ColumnConstraints column = new ColumnConstraints();
+        column.setHgrow(Priority.SOMETIMES);
+        column.setPercentWidth(42.5);
+        gridpane.getColumnConstraints().add(column);
+
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setHgrow(Priority.SOMETIMES);
+        column2.setPercentWidth(15.0);
+        gridpane.getColumnConstraints().add(column2);
+
+        ColumnConstraints column3 = new ColumnConstraints();
+        column3.setHgrow(Priority.SOMETIMES);
+        column3.setPercentWidth(42.5);
+        gridpane.getColumnConstraints().add(column3);
+
+        RowConstraints row = new RowConstraints();
+        row.setVgrow(Priority.SOMETIMES);
+        row.setPercentHeight(30.0);
+        gridpane.getRowConstraints().add(row);
+
+        RowConstraints row2 = new RowConstraints();
+        row2.setVgrow(Priority.SOMETIMES);
+        row2.setPercentHeight(30.0);
+        gridpane.getRowConstraints().add(row2);
+
+        RowConstraints row3 = new RowConstraints();
+        row3.setVgrow(Priority.SOMETIMES);
+        row3.setPercentHeight(40.0);
+        gridpane.getRowConstraints().add(row3);
+
+        //Inside GridPane
+
+        //Left Text
+        try{
+            //Top Left
+            ImageView leftTextImage = new ImageView(comicPanelList.get(panelImage).getLeftGraphic().getImage());
+            Region leftTextRegion = new Region();
+            AnchorPane leftTextAnchor = new AnchorPane(leftTextRegion, leftTextImage);
+
+            leftTextRegion.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2; -fx-background-radius: 20; -fx-background-color: #ffffff");
+            AnchorPane.setLeftAnchor(leftTextRegion, 0.0);
+            AnchorPane.setRightAnchor(leftTextRegion, 0.0);
+            AnchorPane.setTopAnchor(leftTextRegion, 0.0);
+            AnchorPane.setBottomAnchor(leftTextRegion, 0.0);
+
+            leftTextImage.fitWidthProperty().bind(leftTextAnchor.widthProperty());
+            leftTextImage.fitHeightProperty().bind(leftTextAnchor.heightProperty());
+            leftTextImage.setManaged(false);
+            leftTextImage.setPickOnBounds(true);
+
+            gridpane.add(leftTextAnchor, 0, 0);
+
+            //Left Centre
+            ImageView centreLeftImage = new ImageView(comicPanelList.get(panelImage).getCentreLeft().getImage());
+            AnchorPane centreLeftScale = new AnchorPane(centreLeftImage);
+            AnchorPane centreLeftAnchor = new AnchorPane(centreLeftScale);
+
+            centreLeftImage.fitWidthProperty().bind(centreLeftScale.widthProperty());
+            centreLeftImage.fitHeightProperty().bind(centreLeftScale.heightProperty());
+            centreLeftImage.setScaleX(-1);
+            centreLeftImage.setManaged(false);
+            centreLeftImage.setPickOnBounds(true);
+
+            AnchorPane.setBottomAnchor(centreLeftScale, 10.0);
+            AnchorPane.setLeftAnchor(centreLeftScale, 26.0);
+            AnchorPane.setRightAnchor(centreLeftScale, 30.0);
+            AnchorPane.setTopAnchor(centreLeftScale, 19.0);
+
+            gridpane.add(centreLeftAnchor, 0, 1);
+        } catch(NullPointerException e){
+        }
+
+        //Right Text
+        try{
+            //Top Right
+            ImageView rightTextImage = new ImageView(comicPanelList.get(panelImage).getRightGraphic().getImage());
+            Region rightTextRegion = new Region();
+            AnchorPane rightTextAnchor = new AnchorPane(rightTextRegion, rightTextImage);
+
+            rightTextRegion.setStyle("-fx-border-radius: 20; -fx-border-color: #000000; -fx-border-width: 2; -fx-background-radius: 20; -fx-background-color: #ffffff");
+            AnchorPane.setLeftAnchor(rightTextRegion, 0.0);
+            AnchorPane.setRightAnchor(rightTextRegion, 0.0);
+            AnchorPane.setTopAnchor(rightTextRegion, 0.0);
+            AnchorPane.setBottomAnchor(rightTextRegion, 0.0);
+
+            rightTextImage.fitWidthProperty().bind(rightTextAnchor.widthProperty());
+            rightTextImage.fitHeightProperty().bind(rightTextAnchor.heightProperty());
+            rightTextImage.setManaged(false);
+            rightTextImage.setPickOnBounds(true);
+
+            gridpane.add(rightTextAnchor, 2, 0);
+
+            //Centre Right
+            ImageView centreRightImage = new ImageView(comicPanelList.get(panelImage).getCentreRight().getImage());
+            AnchorPane centreRightScale = new AnchorPane(centreRightImage);
+            AnchorPane centreRightAnchor = new AnchorPane(centreRightScale);
+
+            centreRightImage.fitWidthProperty().bind(centreRightScale.widthProperty());
+            centreRightImage.fitHeightProperty().bind(centreRightScale.heightProperty());
+            centreRightImage.setManaged(false);
+            centreRightImage.setPickOnBounds(true);
+
+            AnchorPane.setBottomAnchor(centreRightScale, 10.0);
+            AnchorPane.setLeftAnchor(centreRightScale, 26.0);
+            AnchorPane.setRightAnchor(centreRightScale, 30.0);
+            AnchorPane.setTopAnchor(centreRightScale, 19.0);
+
+            gridpane.add(centreRightAnchor, 2, 1);
+        } catch(NullPointerException e){
+        }
+
+        //Bottom Left
+        try{
+            ImageView bottomLeftImage = new ImageView(comicPanelList.get(panelImage).getLeftCharacter().getImage());
+            AnchorPane bottomLeftAnchor = new AnchorPane(bottomLeftImage);
+
+            bottomLeftImage.fitWidthProperty().bind(bottomLeftAnchor.widthProperty());
+            bottomLeftImage.fitHeightProperty().bind(bottomLeftAnchor.heightProperty());
+            bottomLeftImage.setManaged(false);
+            bottomLeftImage.setPickOnBounds(true);
+
+            gridpane.add(bottomLeftAnchor, 0, 2);
+        } catch(NullPointerException e){
+        }
+
+        //Bottom Right
+        try{
+            ImageView bottomRightImage = new ImageView(comicPanelList.get(panelImage).getRightCharacter().getImage());
+            AnchorPane bottomRightAnchor = new AnchorPane(bottomRightImage);
+
+            bottomRightImage.fitWidthProperty().bind(bottomRightAnchor.widthProperty());
+            bottomRightImage.fitHeightProperty().bind(bottomRightAnchor.heightProperty());
+            bottomRightImage.setManaged(false);
+            bottomRightImage.setPickOnBounds(true);
+            bottomRightImage.setScaleX(-1);
+
+            gridpane.add(bottomRightAnchor, 2, 2);
+        } catch(NullPointerException e){
+        }
+
+        //END OF GRID
+
+        //Top/Bottom Text
+        topText.setDisable(true);
+        topText.setOpacity(1);
+        bottomText.setDisable(true);
+        bottomText.setOpacity(1);
+        topText.setAlignment(CENTER);
+        bottomText.setAlignment(CENTER);
+        AnchorPane.setLeftAnchor(topText, 0.0);
+        AnchorPane.setLeftAnchor(bottomText, 0.0);
+        AnchorPane.setRightAnchor(topText, 0.0);
+        AnchorPane.setRightAnchor(bottomText, 0.0);
+        AnchorPane.setTopAnchor(topText, 0.0);
+        AnchorPane.setBottomAnchor(bottomText, 0.0);
+
+        //HBox
+        hbox.setFillHeight(true);
+        hbox.setAlignment(CENTER);
+        AnchorPane.setLeftAnchor(hbox, 0.0);
+        AnchorPane.setRightAnchor(hbox, 0.0);
+        AnchorPane.setTopAnchor(hbox, 0.0);
+        AnchorPane.setBottomAnchor(hbox, 0.0);
+
+        //Background Image
+        background.fitWidthProperty().bind(container.widthProperty());
+        background.fitHeightProperty().bind(container.heightProperty());
+        background.setManaged(false);
+        background.setPickOnBounds(true);
+
+        mainController.bottomGridPane.add(container, panelImage, 0);
     }
 }

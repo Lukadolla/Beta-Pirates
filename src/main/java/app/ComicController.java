@@ -76,6 +76,7 @@ public class ComicController {
 
     void insertLeftTextGraphic(String leftText){
         TextGraphic leftTextGraphic = new TextGraphic(leftText);
+        mainController.comic.setLeftGraphic(leftTextGraphic);
         mainController.leftTextImageview.setImage(leftTextGraphic.getImage());
         mainController.leftTextImageview.setVisible(true);
         mainController.leftHbox.setVisible(true);
@@ -84,6 +85,7 @@ public class ComicController {
 
     void insertRightTextGraphic(String rightText){
         TextGraphic rightTextGraphic = new TextGraphic(rightText);
+        mainController.comic.setRightGraphic(rightTextGraphic);
         mainController.rightTextImageview.setImage(rightTextGraphic.getImage());
         mainController.rightHbox.setVisible(true);
         mainController.rightTextImageview.setVisible(true);
