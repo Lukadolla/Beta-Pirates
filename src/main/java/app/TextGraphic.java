@@ -12,6 +12,11 @@ import javafx.scene.image.Image;
 
 public class TextGraphic {
 
+  private Controller mainController;
+
+  public TextGraphic(Controller mainController) { this.mainController = mainController; }
+
+
   private BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
   private Graphics2D g2d = img.createGraphics();
   private Font font = new Font("Arial", Font.PLAIN, 48);
@@ -126,5 +131,20 @@ public class TextGraphic {
   }
 
   public void setImage(Image image) { this.image = image; }
+
+  void checkTextForGraphic(){
+    if (mainController.comic != null) {
+      if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().trim().equals("")) {
+        mainController.getComicController()
+                .insertLeftTextGraphic(mainController.leftTextField.getText());
+        mainController.leftTextRegion.setVisible(true);
+      }
+      if (mainController.rightTextField.getText() != null && !mainController.rightTextField.getText().trim().equals("")) {
+        mainController.getComicController()
+                .insertRightTextGraphic(mainController.rightTextField.getText());
+        mainController.rightTextRegion.setVisible(true);
+      }
+    }
+  }
 
 }

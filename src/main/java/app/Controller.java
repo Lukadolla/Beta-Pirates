@@ -27,6 +27,7 @@ public class Controller {
     private LowerPanelController lowerPanelController = new LowerPanelController(this);
     private SaveComicController saveComicController = new SaveComicController(this);
     private LoadComicController loadComicController = new LoadComicController(this);
+    private TextGraphic textGraphic = new TextGraphic(this);
     ImageView comicSelection; //Global variable to track which section of the panel is currently selected
     ImageView comicCharacterSelection=null; // Track character selection independent of comic selection
     int sizeScale = 10;
@@ -128,14 +129,14 @@ public class Controller {
             }
         }
         else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
-            getLowerPanelController().checkTextForGraphic();
+            getTextGraphicController().checkTextForGraphic();
             getLowerPanelController().addToPanelList();
         }
         else if(event.getCode().equals(KeyCode.O)){ //Saves the comic as a panel
             getLowerPanelController().overwritePanel();
         }
         else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
-            getLowerPanelController().checkTextForGraphic();
+            getTextGraphicController().checkTextForGraphic();
         }
     }
 
@@ -237,4 +238,5 @@ public class Controller {
     ButtonController getButtonController() { return buttonController; }
     ColourController getColourController() { return colourController; }
     LowerPanelController getLowerPanelController(){ return lowerPanelController; }
+    TextGraphic getTextGraphicController(){return textGraphic; }
 }
