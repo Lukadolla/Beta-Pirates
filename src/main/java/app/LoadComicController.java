@@ -1,5 +1,7 @@
 package app;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,6 +17,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 
@@ -93,6 +97,8 @@ public class LoadComicController {
                 controller.getMidScrollPaneController().loadBackgroundImages();
             }
 
+            ArrayList<String> characters = controller.getMidScrollPaneController().imageLists.getCharacterImageNames();
+            ArrayList<String> backgrounds = controller.getMidScrollPaneController().imageLists.getBackgroundImageNames();
             NodeList list = doc.getElementsByTagName("panel");
 
             for (int temp = 0; temp < list.getLength(); temp++) {
@@ -105,54 +111,73 @@ public class LoadComicController {
                 Element Text = (Element) element.getElementsByTagName("text").item(0);
 
                 if (Left != null) {
-                    int chosenImage = Integer.parseInt(Left.getElementsByTagName("chosenImage").item(0).getTextContent());
+                    String chosenImage = Left.getElementsByTagName("chosenImage").item(0).getTextContent();
+                    try {
+                        Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(characters.indexOf(chosenImage)), chosenImage);
+                        character.setGender(Left.getElementsByTagName("gender").item(0).getTextContent());
+                        character.setFacing(Integer.parseInt(Left.getElementsByTagName("direction").item(0).getTextContent()));
+                        character.setSkinColour(Color.web(Left.getElementsByTagName("skinColour").item(0).getTextContent()));
+                        character.setMaleHairColour(Color.web(Left.getElementsByTagName("maleHairColour").item(0).getTextContent()));
+                        character.setFemaleHairColour(Color.web(Left.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
 
-                    Character character = new Character(controller.getMidScrollPaneController().characterImages.get(chosenImage), chosenImage);
-                    character.setGender(Left.getElementsByTagName("gender").item(0).getTextContent());
-                    character.setFacing(Integer.parseInt(Left.getElementsByTagName("direction").item(0).getTextContent()));
-                    character.setSkinColour(Color.web(Left.getElementsByTagName("skinColour").item(0).getTextContent()));
-                    character.setMaleHairColour(Color.web(Left.getElementsByTagName("maleHairColour").item(0).getTextContent()));
-                    character.setFemaleHairColour(Color.web(Left.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
-                    Node bubble = Left.getElementsByTagName("bubble").item(0);
-
-                    controller.getComicController().insertLeftCharacter(character);
-                    if(bubble!=null){
-                        if(bubble.getTextContent().equals("speech")){
-                            controller.getButtonController().addSpeechBubble();
+                        Node bubble = Left.getElementsByTagName("bubble").item(0);
+                        controller.getComicController().insertLeftCharacter(character);
+                        if (bubble != null) {
+                            if (bubble.getTextContent().equals("speech")) {
+                                controller.getButtonController().addSpeechBubble();
+                            } else if (bubble.getTextContent().equals("thought")) {
+                                controller.getButtonController().addThoughtBubble();
+                            }
+                            else{
+                                throw new IllegalArgumentException();
+                            }
                         }
-                        else if(bubble.getTextContent().equals("thought")){
-                            controller.getButtonController().addThoughtBubble();
-                        }
+                        controller.getColourController().loadSkinColour(character.getSkinColour());
+                    } catch(IllegalArgumentException | NullPointerException ex){
+                        controller.getLowerPanelController().clearComic();
+                        errorMessage("XML file data corrupted - couldn't load file");
+                        return;
                     }
-                    controller.getColourController().loadSkinColour(character.getSkinColour());
                 }
 
                 if (Right != null) {
-                    int chosenImage = Integer.parseInt(Right.getElementsByTagName("chosenImage").item(0).getTextContent());
-                    Node bubble = Right.getElementsByTagName("bubble").item(0);
-                    Character character = new Character(controller.getMidScrollPaneController().characterImages.get(chosenImage), chosenImage);
-                    character.setGender(Right.getElementsByTagName("gender").item(0).getTextContent());
-                    character.setFacing(Integer.parseInt(Right.getElementsByTagName("direction").item(0).getTextContent()));
-                    character.setSkinColour(Color.web(Right.getElementsByTagName("skinColour").item(0).getTextContent()));
-                    character.setMaleHairColour(Color.web(Right.getElementsByTagName("maleHairColour").item(0).getTextContent()));
-                    character.setFemaleHairColour(Color.web(Right.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
+                    String chosenImage = Right.getElementsByTagName("chosenImage").item(0).getTextContent();
+                    try {
+                        Node bubble = Right.getElementsByTagName("bubble").item(0);
+                        Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(characters.indexOf(chosenImage)), chosenImage);
+                        character.setGender(Right.getElementsByTagName("gender").item(0).getTextContent());
+                        character.setFacing(Integer.parseInt(Right.getElementsByTagName("direction").item(0).getTextContent()));
+                        character.setSkinColour(Color.web(Right.getElementsByTagName("skinColour").item(0).getTextContent()));
+                        character.setMaleHairColour(Color.web(Right.getElementsByTagName("maleHairColour").item(0).getTextContent()));
+                        character.setFemaleHairColour(Color.web(Right.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
 
 
-                    controller.getComicController().insertRightCharacter(character);
-                    if(bubble!=null){
-                        if(bubble.getTextContent().equals("speech")){
-                            controller.getButtonController().addSpeechBubble();
+                        controller.getComicController().insertRightCharacter(character);
+                        if (bubble != null) {
+                            if (bubble.getTextContent().equals("speech")) {
+                                controller.getButtonController().addSpeechBubble();
+                            } else if (bubble.getTextContent().equals("thought")) {
+                                controller.getButtonController().addThoughtBubble();
+                            } else {
+                                throw new IllegalArgumentException();
+                            }
                         }
-                        else if(bubble.getTextContent().equals("thought")){
-                            controller.getButtonController().addThoughtBubble();
-                        }
+                        controller.getColourController().loadSkinColour(character.getSkinColour());
+                    }catch(IllegalArgumentException | NullPointerException ex){
+                        controller.getLowerPanelController().clearComic();
+                        errorMessage("XML file data corrupted - couldn't load file");
+                        return;
                     }
-                    controller.getColourController().loadSkinColour(character.getSkinColour());
                 }
 
                 if (Background != null) {
-                    controller.getComicController().insertBackground(controller.getMidScrollPaneController().backgroundImages.get(Integer.parseInt(Background.getTextContent())));
-                    controller.comic.setChosenBackground(Integer.parseInt(Background.getTextContent()));
+                    try {
+                        controller.getComicController().insertBackground(controller.getMidScrollPaneController().backgroundImages.get(backgrounds.indexOf(Background.getTextContent())));
+                        controller.comic.setChosenBackground(Background.getTextContent());
+                    }catch (Exception ex){
+                        errorMessage("Couldn't Find Background");
+                        return;
+                    }
                 }
 
                 if(Text != null) {
@@ -183,6 +208,14 @@ public class LoadComicController {
             e.printStackTrace();
         }
 
+    }
+
+    void errorMessage(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(message);
+        alert.setContentText("");
+        alert.showAndWait();
     }
 
 }

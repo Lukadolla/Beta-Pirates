@@ -41,7 +41,7 @@ public class MidScrollPaneController {
             region.setVisible(true);
             region.setStyle("-fx-border-color: #bbc4c4");
             region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                mainController.getButtonController().insertCharacter(characterImages.get(finalSelectedImage), finalSelectedImage);
+                mainController.getButtonController().insertCharacter(characterImages.get(finalSelectedImage), imageLists.getCharacterImageNames().get(finalSelectedImage));
                 event.consume();
             });
 
@@ -55,7 +55,7 @@ public class MidScrollPaneController {
 
     public void addCharacterPane() throws IOException, URISyntaxException {
 
-        mainController.selectedGridPane = mainController.charactersGridPane;
+        mainController.getSizeScale(mainController.charactersGridPane);
         mainController.resize();
 
         swapMiddlePanel(mainController.backgroundGridPane, mainController.charactersGridPane);
@@ -69,7 +69,7 @@ public class MidScrollPaneController {
 
     public void addBackgroundPane() throws IOException, URISyntaxException {
 
-        mainController.selectedGridPane = mainController.backgroundGridPane;
+        mainController.getSizeScale(mainController.backgroundGridPane);
         mainController.resize();
 
         swapMiddlePanel(mainController.charactersGridPane, mainController.backgroundGridPane);
@@ -126,7 +126,7 @@ public class MidScrollPaneController {
 
             region.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 mainController.getComicController().insertBackground(backgroundImages.get(finalSelectedImage));
-                mainController.comic.setChosenBackground(finalSelectedImage);
+                mainController.comic.setChosenBackground(imageLists.getBackgroundImageNames().get(finalSelectedImage));
                 event.consume();
             });
 

@@ -36,7 +36,7 @@ public class ButtonController {
     }
   }
 
-  public void insertCharacter(Image selectedImage, int image) {
+  public void insertCharacter(Image selectedImage, String image) {
     Character c = new Character(selectedImage, image);
     if (mainController.comicCharacterSelection == mainController.bottomLeftIV) {
       mainController.getComicController().insertLeftCharacter(c);

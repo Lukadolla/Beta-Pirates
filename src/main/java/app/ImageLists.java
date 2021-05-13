@@ -1,25 +1,20 @@
 package app;
 
-import java.io.BufferedReader;
-import java.io.File;
+import javafx.scene.image.Image;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
-
-import javafx.scene.image.Image;
 
 public class ImageLists {
 
   private List<Image> characterImages;
   private List<Image> backgroundImages;
+  private ArrayList<String> characterImageNames = new ArrayList<>();
+  private ArrayList<String> backgroundImageNames = new ArrayList<>();
 
   public ImageLists() {
     characterImages = new ArrayList<>();
@@ -46,7 +41,7 @@ public class ImageLists {
 
     while (it.hasNext()){
       String filePath = it.next().toString();
-      if((filePath.endsWith(".txt")) || (!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")) && (!(filePath.endsWith(".gif")) && !(filePath.endsWith(".PNG")) && !(filePath.endsWith(".JPG")) && !(filePath.endsWith(".GIF"))))){
+      if(!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")) && (!(filePath.endsWith(".gif")) && !(filePath.endsWith(".PNG")) && !(filePath.endsWith(".JPG")) && !(filePath.endsWith(".GIF")))){
         continue;
       }
       String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
@@ -70,17 +65,20 @@ public class ImageLists {
 
     while (it.hasNext()){
       String filePath = it.next().toString();
-      if((filePath.endsWith(".txt")) || (!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")) && (!(filePath.endsWith(".gif")) && !(filePath.endsWith(".PNG")) && !(filePath.endsWith(".JPG")) && !(filePath.endsWith(".GIF"))))){
+      if(!(filePath.endsWith(".png") || filePath.endsWith(".jpg") || filePath.endsWith(".gif") || filePath.endsWith(".PNG") || filePath.endsWith(".JPG") || filePath.endsWith(".GIF"))){
         continue;
       }
       String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
       URL url = getClass().getResource(subDir + "\\" + fileName);
       String currentPath = url.toString();
+      String name = currentPath.substring(currentPath.lastIndexOf("%5c")+3);
       if(subDir.equals("/images/characters")) {
         this.addCharacterImage(new Image(currentPath));
+        characterImageNames.add(name);
       }
       else{
         this.addBackgroundImage(new Image(currentPath));
+        backgroundImageNames.add(name);
       }
     }
   }
@@ -101,4 +99,7 @@ public class ImageLists {
     return backgroundImages;
   }
 
+  public ArrayList<String> getCharacterImageNames(){ return characterImageNames; }
+
+  public ArrayList<String> getBackgroundImageNames(){ return backgroundImageNames; }
 }
