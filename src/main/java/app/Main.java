@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 
@@ -17,10 +16,8 @@ public class Main extends Application {
         Stage mainStage = new Stage();
         Stage helpStage = new Stage();
         mainStage.setMaximized(true);
-        helpStage.setHeight(500.0);
-        helpStage.setWidth(800.0);
-        mainStage.setMinHeight(192.0);
-        mainStage.setMinWidth(256.0);
+        mainStage.setMinHeight(850.0);
+        mainStage.setMinWidth(1150.0);
         mainPage(mainStage);
         helpPage(helpStage);
     }
