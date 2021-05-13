@@ -151,6 +151,7 @@ public class ComicController {
             redrawLeftCharacter(comicCopy.getLeftCharacter());
 
             if(comicCopy.getCentreLeft() != null){
+                mainController.comic.setSelected(comicCopy.getLeftCharacter());
                 insertBubble(comicCopy.getCentreLeft());
             }
         }
@@ -159,6 +160,7 @@ public class ComicController {
             redrawRightCharacter(comicCopy.getRightCharacter());
 
             if(comicCopy.getCentreRight() != null){
+                mainController.comic.setSelected(comicCopy.getRightCharacter());
                 insertBubble(comicCopy.getCentreRight());
             }
         }
