@@ -55,7 +55,7 @@ public class LowerPanelController {
         }
 
         loadBottomPanel();
-        clearComic();
+        mainController.getComicController().clearComic();
     }
 
     private Image getPanelAsImage(){ //Converts the comic pane into an image to be returned
@@ -63,7 +63,7 @@ public class LowerPanelController {
             mainController.selectedBorder.setVisible(false);
         }
         saveText();
-        removeNullText();
+        mainController.getComicController().removeNullText();
         return mainController.backgroundImageScale.snapshot(null, null);
     }
 
@@ -120,7 +120,9 @@ public class LowerPanelController {
     }
 
     void deletePanel(){ //Deletes selected panel
-
+        if(selectedPanelIndex == -1){
+            return;
+        }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Deletion");
         alert.setHeaderText("Are you sure you want to delete the panel?");
@@ -148,158 +150,8 @@ public class LowerPanelController {
     }
 
     void importPanel() throws CloneNotSupportedException { //Imports selected panel to the main comic panel
-        clearComic();
-        drawComic(comicPanelList.get(selectedPanelIndex));
-    }
-
-    void clearComic(){ //Removes all elements from a comic
-        if(mainController.comic.getLeftCharacter() != null){
-            mainController.bottomLeftIV.setImage(null);
-            mainController.comic.setLeftCharacter(null);
-            mainController.centreLeft.setImage(null);
-            mainController.comic.setCentreLeft(null);
-            mainController.leftTextField.clear();
-            mainController.leftTextImageview.setImage(null);
-            mainController.comic.setLeftGraphic(null);
-            mainController.comic.setRightGraphic(null);
-            mainController.leftTextRegion.setVisible(false);
-            mainController.leftTextField.setVisible(false);
-        }
-        if (mainController.comic.getRightCharacter() != null){
-            mainController.bottomRightIV.setImage(null);
-            mainController.comic.setRightCharacter(null);
-            mainController.centreRight.setImage(null);
-            mainController.comic.setCentreRight(null);
-            mainController.rightTextField.clear();
-            mainController.rightTextImageview.setImage(null);
-            mainController.rightTextRegion.setVisible(false);
-            mainController.rightTextField.setVisible(false);
-        }
-
-        if(mainController.selectedBorder != null) {
-            mainController.selectedBorder.setVisible(false);
-        }
-
-        mainController.comic.setSelected(null);
-        mainController.comicSelection = null;
-        mainController.comicCharacterSelection = null;
-        mainController.getButtonController().switchButtonState(false);
-
-
-        URL url = getClass().getResource("/images/backgrounds/default.png");
-        String currentPath = url.toString();
-        ImageView backgroundImage = new ImageView(currentPath);
-        mainController.background.setImage(backgroundImage.getImage());
-        mainController.comic.setBackground(backgroundImage);
-
-        mainController.topText.setVisible(true);
-        mainController.topText.setText("");
-        mainController.bottomText.setVisible(true);
-        mainController.bottomText.setText("");
-    }
-
-    void drawComic(Comic comicCopy) throws CloneNotSupportedException { //Updates the main comic with a previously saved comic from the bottom pane
-
-        if(comicCopy.getLeftCharacter() != null) {
-            redrawLeftCharacter(comicCopy.getLeftCharacter());
-        }
-        if(comicCopy.getRightCharacter() != null) {
-            redrawRightCharacter(comicCopy.getRightCharacter());
-        }
-
-        if(comicCopy.getCentreLeft() != null){
-            redrawBubbles(comicCopy.getCentreLeft(), 0);
-        }
-
-        if(comicCopy.getCentreRight() != null){
-            redrawBubbles(comicCopy.getCentreRight(), 1);
-        }
-
-        if(comicCopy.getBackground() != null) {
-            mainController.comic.setBackground(comicCopy.getBackground());
-            mainController.background.setImage(mainController.comic.getBackground().getImage());
-        }
-
-        mainController.comic.setLeftText(comicCopy.getLeftText());
-        mainController.leftTextField.setText(comicCopy.getLeftText());
-
-        mainController.comic.setRightText(comicCopy.getRightText());
-        mainController.rightTextField.setText(comicCopy.getRightText());
-
-        mainController.getTextGraphicController().checkTextForGraphic();
-
-        mainController.comic.setTopText(comicCopy.getTopText());
-        mainController.topText.setText(comicCopy.getTopText());
-
-        mainController.comic.setBottomText(comicCopy.getBottomText());
-        mainController.bottomText.setText(comicCopy.getBottomText());
-
-        mainController.topText.setVisible(true);
-        mainController.bottomText.setVisible(true);
-    }
-
-    public void redrawRightCharacter(Character rightCharacter){  //Method that inserts a character into the right panel and adds character data to the Comic class
-        mainController.comic.setRightCharacter(rightCharacter);
-        mainController.bottomRightIV.setImage(mainController.comic.getRightCharacter().getImage());
-        mainController.bottomRightIV.setScaleX(rightCharacter.getFacing());
-        mainController.bottomRightIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            mainController.setBorder(mainController.bottomRightBorder);
-            mainController.comicSelection = mainController.bottomRightIV;
-            mainController.comicCharacterSelection = mainController.bottomRightIV;
-            mainController.comic.setSelected(mainController.comic.getRightCharacter());
-            mainController.getButtonController().switchButtonState(true);
-            event.consume();
-        });
-    }
-
-    public void redrawLeftCharacter(Character leftCharacter){  //Method that inserts a character into the right panel and adds character data to the Comic class
-        mainController.comic.setLeftCharacter(leftCharacter);
-        mainController.bottomLeftIV.setImage(mainController.comic.getLeftCharacter().getImage());
-        mainController.bottomRightIV.setScaleX(leftCharacter.getFacing());
-        mainController.bottomLeftIV.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            mainController.setBorder(mainController.bottomLeftBorder);
-            mainController.comicSelection = mainController.bottomLeftIV;
-            mainController.comicCharacterSelection = mainController.bottomLeftIV;
-            mainController.comic.setSelected(mainController.comic.getLeftCharacter());
-            mainController.getButtonController().switchButtonState(true);
-            event.consume();
-        });
-    }
-
-    public void redrawBubbles(ImageView imageView, int side) { //Method that inserts the thought/speech bubble into the correct section of the comic
-        if (side == 0) {
-            mainController.comic.setCentreLeft(imageView);
-            mainController.comic.getCentreLeft().setScaleX(-1);
-            mainController.centreLeft.setImage(mainController.comic.getCentreLeft().getImage());
-            mainController.centreLeft.setScaleX(mainController.comic.getCentreLeft().getScaleX());
-            mainController.leftTextField.setDisable(false);
-            mainController.leftTextField.setVisible(true);
-        }
-        else{
-            mainController.comic.setCentreRight(imageView);
-            mainController.centreRight.setImage(mainController.comic.getCentreRight().getImage());
-            mainController.rightTextField.setDisable(false);
-            mainController.rightTextField.setVisible(true);
-        }
-    }
-
-    private void removeNullText(){ //Hides empty text fields
-        if(mainController.leftTextField.getText() != null && mainController.leftTextField.getText().trim().equals("")) {
-            mainController.leftTextField.clear();
-            mainController.centreLeft.setImage(null);
-            mainController.leftTextField.setVisible(false);
-        }
-        if(mainController.rightTextField.getText() !=null && mainController.rightTextField.getText().trim().equals("")){
-            mainController.rightTextField.clear();
-            mainController.centreRight.setImage(null);
-            mainController.rightTextField.setVisible(false);
-        }
-        if(mainController.topText.getText() != null && mainController.topText.getText().trim().equals("")){
-            mainController.topText.setVisible(false);
-        }
-        if(mainController.bottomText.getText() != null && mainController.bottomText.getText().trim().equals("")){
-            mainController.bottomText.setVisible(false);
-        }
+        mainController.getComicController().clearComic();
+        mainController.getComicController().drawComic(comicPanelList.get(selectedPanelIndex));
     }
 
     void swapPanels(int finalPanelImage, Region region){

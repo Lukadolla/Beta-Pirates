@@ -162,6 +162,11 @@ public class Controller {
         event.consume();
     }
 
+    @FXML private void addThoughtBubble(ActionEvent event) {
+        buttonController.addThoughtBubble();
+        event.consume();
+    }
+
     @FXML private void swapLeftVisibility() {
         leftTextField.setVisible(true);
         leftTextImageview.setVisible(false);
@@ -170,11 +175,6 @@ public class Controller {
     @FXML private void swapRightVisibility() {
         rightTextField.setVisible(true);
         rightTextImageview.setVisible(false);
-    }
-
-    @FXML private void addThoughtBubble(ActionEvent event) {
-        buttonController.addThoughtBubble();
-        event.consume();
     }
 
     @FXML private void deleteCharacter(ActionEvent event) {
@@ -206,7 +206,7 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void deletePanel(ActionEvent event) throws CloneNotSupportedException {
+    @FXML private void deletePanel(ActionEvent event) {
         lowerPanelController.deletePanel();
         event.consume();
     }
@@ -221,7 +221,7 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void createHTML(ActionEvent event) throws IOException {
+    @FXML private void createHTML(ActionEvent event) {
         saveComicController.createHTML();
         event.consume();
     }

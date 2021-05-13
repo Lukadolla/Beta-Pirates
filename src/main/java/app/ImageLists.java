@@ -35,35 +35,18 @@ public class ImageLists {
   private void handleJar(URI uri, String subDir) throws IOException {
     FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
     Path myPath = fileSystem.getPath(subDir);
-    Stream<Path> walk = Files.walk(myPath, 1);
 
-    Iterator<Path> it = walk.iterator();
-
-    while (it.hasNext()){
-      String filePath = it.next().toString();
-      if(!(filePath.endsWith(".png")) && !(filePath.endsWith(".jpg")) && (!(filePath.endsWith(".gif")) && !(filePath.endsWith(".PNG")) && !(filePath.endsWith(".JPG")) && !(filePath.endsWith(".GIF")))){
-        continue;
-      }
-      String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
-      URL url = getClass().getResource(subDir + "/" + fileName);
-      String currentPath = url.toString();
-      String name = currentPath.substring(currentPath.lastIndexOf("%5c")+3);
-      if(subDir.equals("/images/characters")) {
-        this.addCharacterImage(new Image(currentPath));
-        characterImageNames.add(name);
-      }
-      else{
-        this.addBackgroundImage(new Image(currentPath));
-        backgroundImageNames.add(name);
-      }
-    }
+    loadImages(myPath, subDir);
     fileSystem.close();
   }
 
   private void handleIDE(URI uri, String subDir) throws IOException {
     Path myPath = Paths.get(uri);
-    Stream<Path> walk = Files.walk(myPath, 1);
+    loadImages(myPath, subDir);
+  }
 
+  void loadImages(Path myPath, String subDir) throws IOException {
+    Stream<Path> walk = Files.walk(myPath, 1);
     Iterator<Path> it = walk.iterator();
 
     while (it.hasNext()){
@@ -75,14 +58,13 @@ public class ImageLists {
       String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
       URL url = getClass().getResource(subDir + "/" + fileName);
       String currentPath = url.toString();
-      String name = currentPath.substring(currentPath.lastIndexOf("%5c")+3);
       if(subDir.equals("/images/characters")) {
         this.addCharacterImage(new Image(currentPath));
-        characterImageNames.add(name);
+        characterImageNames.add(fileName);
       }
       else{
         this.addBackgroundImage(new Image(currentPath));
-        backgroundImageNames.add(name);
+        backgroundImageNames.add(fileName);
       }
     }
   }
