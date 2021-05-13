@@ -168,13 +168,23 @@ public class Controller {
     }
 
     @FXML private void swapLeftVisibility() {
-        leftTextField.setVisible(true);
-        leftTextImageview.setVisible(false);
+        try{
+            if(comic.getCentreLeft().getImage() != null) {
+                leftTextField.setVisible(true);
+                leftTextImageview.setVisible(false);
+            }
+        } catch(NullPointerException e){
+        }
     }
 
     @FXML private void swapRightVisibility() {
-        rightTextField.setVisible(true);
-        rightTextImageview.setVisible(false);
+        try{
+            if(comic.getCentreRight().getImage() != null) {
+                rightTextField.setVisible(true);
+                rightTextImageview.setVisible(false);
+            }
+        } catch(NullPointerException e){
+        }
     }
 
     @FXML private void deleteCharacter(ActionEvent event) {

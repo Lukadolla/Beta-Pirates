@@ -151,8 +151,9 @@ public class ComicController {
             redrawLeftCharacter(comicCopy.getLeftCharacter());
 
             if(comicCopy.getCentreLeft() != null){
-                mainController.comic.setSelected(comicCopy.getLeftCharacter());
-                insertBubble(comicCopy.getCentreLeft());
+                ImageView centreLeftCopy = new ImageView(comicCopy.getCentreLeft().getImage());
+                mainController.comic.setCentreLeft(centreLeftCopy);
+                mainController.centreLeft.setImage(centreLeftCopy.getImage());
             }
         }
 
@@ -160,8 +161,9 @@ public class ComicController {
             redrawRightCharacter(comicCopy.getRightCharacter());
 
             if(comicCopy.getCentreRight() != null){
-                mainController.comic.setSelected(comicCopy.getRightCharacter());
-                insertBubble(comicCopy.getCentreRight());
+                ImageView centreRightCopy = new ImageView(comicCopy.getCentreRight().getImage());
+                mainController.comic.setCentreRight(centreRightCopy);
+                mainController.centreRight.setImage(centreRightCopy.getImage());
             }
         }
 
