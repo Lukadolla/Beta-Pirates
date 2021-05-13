@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -113,6 +114,31 @@ public class Controller {
         helpStage.show();
     }
 
+    @FXML
+    void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException { //Handles key press events
+
+        if(event.getCode().equals(KeyCode.DELETE)){ //Deletes the selected panel
+            if(!getLowerPanelController().comicPanelList.isEmpty()){
+                getLowerPanelController().deletePanel();
+            }
+        }
+        else if(event.getCode().equals(KeyCode.L)){ //Loads the selected panel
+            if(!getLowerPanelController().comicPanelList.isEmpty()){
+                getLowerPanelController().importPanel();
+            }
+        }
+        else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
+            getLowerPanelController().checkTextForGraphic();
+            getLowerPanelController().addToPanelList();
+        }
+        else if(event.getCode().equals(KeyCode.O)){ //Saves the comic as a panel
+            getLowerPanelController().overwritePanel();
+        }
+        else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
+            getLowerPanelController().checkTextForGraphic();
+        }
+    }
+
     //All methods below are proxy methods that are called in the main.fxml and then call the corresponding methods in the other controllers
     @FXML private void addCharacterRight(ActionEvent event) throws IOException, URISyntaxException {
         buttonController.addCharacterRight();
@@ -186,11 +212,6 @@ public class Controller {
 
     @FXML private void overwritePanel(ActionEvent event) throws CloneNotSupportedException, IOException, URISyntaxException {
         lowerPanelController.overwritePanel();
-        event.consume();
-    }
-
-    @FXML private void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException {
-        lowerPanelController.keyPressed(event);
         event.consume();
     }
 

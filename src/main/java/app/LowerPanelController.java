@@ -9,7 +9,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -112,31 +111,6 @@ public class LowerPanelController {
             createPanelComic(panelImage, region);
 
 //            ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
-        }
-    }
-
-    @FXML
-    void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException { //Handles key press events
-
-        if(event.getCode().equals(KeyCode.DELETE)){ //Deletes the selected panel
-            if(!comicPanelList.isEmpty()){
-                deletePanel();
-            }
-        }
-        else if(event.getCode().equals(KeyCode.L)){ //Loads the selected panel
-            if(!comicPanelList.isEmpty()){
-                importPanel();
-            }
-        }
-        else if(event.getCode().equals(KeyCode.S)){ //Saves the comic as a panel
-            checkTextForGraphic();
-            addToPanelList();
-        }
-        else if(event.getCode().equals(KeyCode.O)){ //Saves the comic as a panel
-            overwritePanel();
-        }
-        else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
-            checkTextForGraphic();
         }
     }
 
