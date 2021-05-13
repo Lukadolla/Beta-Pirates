@@ -480,7 +480,7 @@ public class LowerPanelController {
             AnchorPane.setTopAnchor(centreLeftScale, 19.0);
 
             gridpane.add(centreLeftAnchor, 0, 1);
-        } catch(NullPointerException e){
+        } catch(NullPointerException ignored){
         }
 
         //Right Text
@@ -519,7 +519,7 @@ public class LowerPanelController {
             AnchorPane.setTopAnchor(centreRightScale, 19.0);
 
             gridpane.add(centreRightAnchor, 2, 1);
-        } catch(NullPointerException e){
+        } catch(NullPointerException ignored){
         }
 
         //Bottom Left
@@ -533,7 +533,7 @@ public class LowerPanelController {
             bottomLeftImage.setPickOnBounds(true);
 
             gridpane.add(bottomLeftAnchor, 0, 2);
-        } catch(NullPointerException e){
+        } catch(NullPointerException ignored){
         }
 
         //Bottom Right
@@ -548,7 +548,7 @@ public class LowerPanelController {
             bottomRightImage.setScaleX(-1);
 
             gridpane.add(bottomRightAnchor, 2, 2);
-        } catch(NullPointerException e){
+        } catch(NullPointerException ignored){
         }
 
         //END OF GRID

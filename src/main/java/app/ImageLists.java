@@ -47,11 +47,14 @@ public class ImageLists {
       String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
       URL url = getClass().getResource(subDir + "/" + fileName);
       String currentPath = url.toString();
+      String name = currentPath.substring(currentPath.lastIndexOf("%5c")+3);
       if(subDir.equals("/images/characters")) {
         this.addCharacterImage(new Image(currentPath));
+        characterImageNames.add(name);
       }
       else{
         this.addBackgroundImage(new Image(currentPath));
+        backgroundImageNames.add(name);
       }
     }
     fileSystem.close();
@@ -65,11 +68,12 @@ public class ImageLists {
 
     while (it.hasNext()){
       String filePath = it.next().toString();
+      filePath = filePath.replaceAll("\\\\", "/");
       if(!(filePath.endsWith(".png") || filePath.endsWith(".jpg") || filePath.endsWith(".gif") || filePath.endsWith(".PNG") || filePath.endsWith(".JPG") || filePath.endsWith(".GIF"))){
         continue;
       }
-      String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
-      URL url = getClass().getResource(subDir + "\\" + fileName);
+      String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+      URL url = getClass().getResource(subDir + "/" + fileName);
       String currentPath = url.toString();
       String name = currentPath.substring(currentPath.lastIndexOf("%5c")+3);
       if(subDir.equals("/images/characters")) {
