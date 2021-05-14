@@ -81,7 +81,7 @@ public class Controller {
 
     @FXML void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * sizeScale);
-        scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 35);
+        scrollPaneAnchorPane.setPrefWidth(20000);
     }
 
     void getSizeScale(GridPane gridpane){
