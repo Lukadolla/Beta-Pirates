@@ -24,7 +24,7 @@ public class LowerPanelController {
     public boolean overwrite = false;
     LinkedList<Comic> comicPanelList = new LinkedList<>();
 
-    private int selectedPanelIndex = -1;
+    int selectedPanelIndex = -1;
 
     private Region selectedPanelRegion;
 

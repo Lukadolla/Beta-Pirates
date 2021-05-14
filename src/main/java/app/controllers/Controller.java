@@ -127,7 +127,7 @@ public class Controller {
             }
         }
         else if(event.getCode().equals(KeyCode.L)){ //Loads the selected panel
-            if(!getLowerPanelController().comicPanelList.isEmpty()){
+            if(!getLowerPanelController().comicPanelList.isEmpty() && getLowerPanelController().selectedPanelIndex != -1){
                 getLowerPanelController().importPanel();
             }
         }
@@ -136,7 +136,9 @@ public class Controller {
             getLowerPanelController().addToPanelList();
         }
         else if(event.getCode().equals(KeyCode.O)){ //Saves the comic as a panel
-            getLowerPanelController().overwritePanel();
+            if(!getLowerPanelController().comicPanelList.isEmpty() && getLowerPanelController().selectedPanelIndex != -1){
+                getLowerPanelController().overwritePanel();
+            }
         }
         else if(event.getCode().equals(KeyCode.ENTER)) { //Saves the comic as a panel
             getTextGraphicController().checkTextForGraphic();
