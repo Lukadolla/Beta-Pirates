@@ -36,6 +36,8 @@ public class LowerPanelController {
             return;
         }
 
+        mainController.getTextGraphicController().checkTextForGraphic();
+
         mainController.SaveXMLMenu.setDisable(false);
         mainController.SaveHTMLMenu.setDisable(false);
         mainController.SaveGIFMenu.setDisable(false);
@@ -78,9 +80,9 @@ public class LowerPanelController {
 
     void loadBottomPanel(){ //Loads the stored comics into the bottom panel
 
-        mainController.bottomGridPane.getChildren().clear();
-
         for(int panelImage=0; panelImage < comicPanelList.size(); panelImage++) {
+
+            ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
 
             Region region = new Region();
             region.setStyle("-fx-border-opacity: 1");
@@ -107,9 +109,24 @@ public class LowerPanelController {
                 selectedPanelRegion = region;
             }
 
-            createPanelComic(panelImage, region);
+            HBox comicImageHbox = new HBox(image);
+            comicImageHbox.setId("comicImageHbox" + panelImage);
+            comicImageHbox.setAlignment(CENTER);
 
-//            ImageView image = new ImageView(comicPanelList.get(panelImage).getComicImage());
+            AnchorPane panelAnchorPane = new AnchorPane(comicImageHbox, region);
+            AnchorPane.setLeftAnchor(region, 0.0);
+            AnchorPane.setRightAnchor(region, 0.0);
+            AnchorPane.setTopAnchor(region, 0.0);
+            AnchorPane.setBottomAnchor(region, 0.0);
+
+            image.fitWidthProperty().bind(panelAnchorPane.widthProperty());
+            image.fitHeightProperty().bind(panelAnchorPane.heightProperty());
+            image.setManaged(false);
+            image.setPickOnBounds(true);
+            image.setVisible(true);
+            image.setPreserveRatio(false);
+
+            mainController.bottomGridPane.add(panelAnchorPane, panelImage, 0);
         }
     }
 
