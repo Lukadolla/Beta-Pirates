@@ -226,11 +226,13 @@ public class ComicController {
         if(mainController.leftTextField.getText() != null && mainController.leftTextField.getText().trim().equals("")) {
             mainController.leftTextField.clear();
             mainController.centreLeft.setImage(null);
+            mainController.comic.setCentreLeft(null);
             mainController.leftTextField.setVisible(false);
         }
         if(mainController.rightTextField.getText() !=null && mainController.rightTextField.getText().trim().equals("")){
             mainController.rightTextField.clear();
             mainController.centreRight.setImage(null);
+            mainController.comic.setCentreRight(null);
             mainController.rightTextField.setVisible(false);
         }
         if(mainController.topText.getText() != null && mainController.topText.getText().trim().equals("")){
