@@ -392,7 +392,7 @@ public class SaveComicController {
 
         BufferedImage first = SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(0).getComicImage(), null);
 
-        GifSequenceWriter writer = new GifSequenceWriter(output, first.getType(), 1000, true);
+        GifSequenceWriter writer = new GifSequenceWriter(output, first.getType(), 6000, true);
         writer.writeToSequence(first);
 
         for(int i = 1; i < controller.getLowerPanelController().comicPanelList.size(); i++){
