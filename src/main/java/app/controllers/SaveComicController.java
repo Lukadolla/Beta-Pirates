@@ -235,7 +235,7 @@ public class SaveComicController {
                     direction.appendChild(document.createTextNode(String.valueOf(comic.getLeftCharacter().getFacing())));
                     character.appendChild(direction);
 
-                    if(comic.getLeftCharacter().getBubble()!=null) {
+                    if(!comic.getLeftCharacter().getBubble().equals("")) {
                         //speech/thought bubble element
                         Element bubble = document.createElement("bubble");
                         bubble.appendChild(document.createTextNode(comic.getLeftCharacter().getBubble()));
@@ -278,7 +278,7 @@ public class SaveComicController {
                     direction.appendChild(document.createTextNode(String.valueOf(comic.getRightCharacter().getFacing())));
                     character.appendChild(direction);
 
-                    if(comic.getRightCharacter().getBubble()!=null) {
+                    if(!comic.getRightCharacter().getBubble().equals("")) {
                         //speech/thought bubble element
                         Element bubble = document.createElement("bubble");
                         bubble.appendChild(document.createTextNode(comic.getRightCharacter().getBubble()));

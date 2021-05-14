@@ -7,7 +7,6 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import app.controllers.Controller;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
@@ -101,8 +100,7 @@ public class TextGraphic {
       secondLine = padText(secondLine, (firstLine.length()-secondLine.length()));
     }
 
-    String multipleLines = firstLine + "\n" + secondLine;
-    return multipleLines;
+    return firstLine + "\n" + secondLine;
   }
 
   private String padText(String text, int n) {

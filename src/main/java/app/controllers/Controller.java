@@ -2,7 +2,6 @@ package app.controllers;
 
 import app.Comic;
 import app.TextGraphic;
-import app.controllers.*;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -81,7 +80,7 @@ public class Controller {
 
     @FXML void resize(){  //Method to resize the middle anchor pane
         characterMenuAnchorPane.setPrefHeight(buttonsGridPane.getHeight() * sizeScale);
-        scrollPaneAnchorPane.setPrefWidth(buttonsGridPane.getHeight() * 60);
+        scrollPaneAnchorPane.setPrefWidth(20000);
     }
 
     void getSizeScale(GridPane gridpane){
@@ -94,7 +93,7 @@ public class Controller {
     }
 
 
-    @FXML void setBorder(Region newBorder) { //Method that sets the border on a selected component
+    void setBorder(Region newBorder) { //Method that sets the border on a selected component
         if(selectedBorder != null){
             selectedBorder.setVisible(false);
         }
@@ -161,13 +160,21 @@ public class Controller {
     }
 
     @FXML private void addSpeechBubble(ActionEvent event) {
-        buttonController.addSpeechBubble();
+        if(comic.getSelected().getBubble().equals("speech")){
+            comicController.removeBubble();
+        } else {
+            buttonController.addSpeechBubble();
+        }
 //        comicController.insertTextGraphic("The quick brown fox jumps over the lazy dog");
         event.consume();
     }
 
     @FXML private void addThoughtBubble(ActionEvent event) {
-        buttonController.addThoughtBubble();
+        if(comic.getSelected().getBubble().equals("thought")){
+            comicController.removeBubble();
+        } else {
+            buttonController.addThoughtBubble();
+        }
         event.consume();
     }
 
@@ -177,7 +184,7 @@ public class Controller {
                 leftTextField.setVisible(true);
                 leftTextImageview.setVisible(false);
             }
-        } catch(NullPointerException e){
+        } catch(NullPointerException ignored){
         }
     }
 
@@ -187,7 +194,7 @@ public class Controller {
                 rightTextField.setVisible(true);
                 rightTextImageview.setVisible(false);
             }
-        } catch(NullPointerException e){
+        } catch(NullPointerException ignored){
         }
     }
 

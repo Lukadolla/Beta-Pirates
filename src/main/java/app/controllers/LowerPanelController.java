@@ -5,11 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.image.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.*;
 
 import static javafx.geometry.Pos.CENTER;
@@ -30,7 +29,7 @@ public class LowerPanelController {
     private Region selectedPanelRegion;
 
     @FXML
-    void addToPanelList() throws CloneNotSupportedException, IOException, URISyntaxException {  //Method called when the save panel button is pressed
+    void addToPanelList() throws CloneNotSupportedException {  //Method called when the save panel button is pressed
 
         if(comicPanelList.size() == 50){ //limit
             return;
@@ -131,7 +130,7 @@ public class LowerPanelController {
     }
 
 
-    void overwritePanel() throws CloneNotSupportedException, IOException, URISyntaxException {
+    void overwritePanel() throws CloneNotSupportedException {
         mainController.getTextGraphicController().checkTextForGraphic();
         overwrite = true;
         addToPanelList();
@@ -168,7 +167,7 @@ public class LowerPanelController {
         }
     }
 
-    void importPanel() throws CloneNotSupportedException { //Imports selected panel to the main comic panel
+    void importPanel() { //Imports selected panel to the main comic panel
         mainController.getComicController().clearComic();
         mainController.getComicController().drawComic(comicPanelList.get(selectedPanelIndex));
     }
@@ -212,7 +211,7 @@ public class LowerPanelController {
 
         try{
             background.setImage(comicPanelList.get(panelImage).getBackground().getImage());
-        } catch(NullPointerException e){
+        } catch(NullPointerException ignored){
         }
 
         HBox hbox = new HBox(background);

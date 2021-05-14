@@ -232,7 +232,6 @@ public class ColourController {
     Image image = mainController.comic.getSelected().getImage();
     int imageHeight = (int)image.getHeight();
     int imageWidth = (int)image.getWidth();
-    boolean changed = false;
 
     WritableImage wImage = new WritableImage(imageWidth, imageHeight);
     PixelWriter PW = wImage.getPixelWriter();
