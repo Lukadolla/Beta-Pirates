@@ -2,7 +2,6 @@ package app.controllers;
 
 import app.Comic;
 import app.TextGraphic;
-import app.controllers.*;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
