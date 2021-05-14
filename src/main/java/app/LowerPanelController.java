@@ -203,11 +203,11 @@ public class LowerPanelController {
         AnchorPane container = new AnchorPane(hbox, topText, bottomText, gridpane, region);
 
         //TextFields
-        if(topText.getText().equals("")){
+        if(topText.getText().trim().equals("")){
             topText.setVisible(false);
         }
 
-        if(bottomText.getText().equals("")){
+        if(bottomText.getText().trim().equals("")){
             bottomText.setVisible(false);
         }
 
