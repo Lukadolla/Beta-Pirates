@@ -134,7 +134,7 @@ public class LoadComicController {
                             }
                         }
                         controller.getColourController().loadSkinColour(character.getSkinColour());
-                    } catch(IllegalArgumentException | NullPointerException ex){
+                    } catch(IllegalArgumentException | NullPointerException | ArrayIndexOutOfBoundsException ex){
                         errorMessage("XML file data corrupted - couldn't load file");
                         controller.getComicController().clearComic();
                         return;
@@ -177,8 +177,8 @@ public class LoadComicController {
                         controller.getComicController().insertBackground(controller.getMidScrollPaneController().backgroundImages.get(backgrounds.indexOf(Background.getTextContent())));
                         controller.comic.setChosenBackground(Background.getTextContent());
                     }catch (Exception ex){
-                        errorMessage("Couldn't Find Background");
                         controller.getComicController().clearComic();
+                        errorMessage("Couldn't Find Background");
                         return;
                     }
                 }
