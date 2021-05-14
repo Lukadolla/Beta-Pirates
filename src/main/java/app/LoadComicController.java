@@ -129,12 +129,12 @@ public class LoadComicController {
                                 controller.getButtonController().addThoughtBubble();
                             }
                             else{
+                                controller.getComicController().clearComic();
                                 throw new IllegalArgumentException();
                             }
                         }
                         controller.getColourController().loadSkinColour(character.getSkinColour());
                     } catch(IllegalArgumentException | NullPointerException ex){
-                        controller.getComicController().clearComic();
                         errorMessage("XML file data corrupted - couldn't load file");
                         controller.getComicController().clearComic();
                         return;
@@ -160,13 +160,14 @@ public class LoadComicController {
                             } else if (bubble.getTextContent().equals("thought")) {
                                 controller.getButtonController().addThoughtBubble();
                             } else {
+                                controller.getComicController().clearComic();
                                 throw new IllegalArgumentException();
                             }
                         }
                         controller.getColourController().loadSkinColour(character.getSkinColour());
                     }catch(IllegalArgumentException | NullPointerException ex){
-                        controller.getComicController().clearComic();
                         errorMessage("XML file data corrupted - couldn't load file");
+                        controller.getComicController().clearComic();
                         return;
                     }
                 }
@@ -177,6 +178,7 @@ public class LoadComicController {
                         controller.comic.setChosenBackground(Background.getTextContent());
                     }catch (Exception ex){
                         errorMessage("Couldn't Find Background");
+                        controller.getComicController().clearComic();
                         return;
                     }
                 }
@@ -206,6 +208,7 @@ public class LoadComicController {
             }
 
         } catch (ParserConfigurationException | SAXException | IOException | CloneNotSupportedException | URISyntaxException e) {
+            controller.getComicController().clearComic();
             e.printStackTrace();
         }
 
