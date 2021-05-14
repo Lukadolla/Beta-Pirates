@@ -86,6 +86,17 @@
             <artifactId>javafx-swing</artifactId>
             <version>11</version>
         </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.16-alpha</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit</artifactId>
+            <version>4.0.15-alpha</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
