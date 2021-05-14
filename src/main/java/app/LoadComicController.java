@@ -136,6 +136,7 @@ public class LoadComicController {
                     } catch(IllegalArgumentException | NullPointerException ex){
                         controller.getComicController().clearComic();
                         errorMessage("XML file data corrupted - couldn't load file");
+                        controller.getComicController().clearComic();
                         return;
                     }
                 }
