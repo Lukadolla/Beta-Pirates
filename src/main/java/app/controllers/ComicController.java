@@ -249,6 +249,8 @@ public class ComicController {
             mainController.centreLeft.setImage(null);
             mainController.comic.setLeftText("");
             mainController.comic.setCentreLeft(null);
+            mainController.leftTextRegion.setVisible(false);
+            mainController.leftTextImageview.setVisible(false);
         }
         else{
             mainController.rightTextField.clear();
@@ -257,6 +259,8 @@ public class ComicController {
             mainController.centreRight.setImage(null);
             mainController.comic.setRightText("");
             mainController.comic.setCentreRight(null);
+            mainController.rightTextRegion.setVisible(false);
+            mainController.rightTextImageview.setVisible(false);
         }
         mainController.comic.getSelected().setNullBubble();
     }
