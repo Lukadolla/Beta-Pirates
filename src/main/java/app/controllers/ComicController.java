@@ -204,6 +204,7 @@ public class ComicController {
             mainController.getButtonController().switchButtonState(true);
             event.consume();
         });
+        mainController.bottomRightIV.setDisable(false);
     }
 
     public void redrawLeftCharacter(Character leftCharacter){  //Method that inserts a character into the right panel and adds character data to the Comic class
@@ -218,6 +219,7 @@ public class ComicController {
             mainController.getButtonController().switchButtonState(true);
             event.consume();
         });
+        mainController.bottomLeftIV.setDisable(false);
     }
 
     void removeNullText(){ //Hides empty text fields
