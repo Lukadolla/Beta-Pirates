@@ -55,7 +55,6 @@ public class ButtonController {
     mainController.deleteCharacterButton.setDisable(!areEnabled);
   }
 
-  @FXML
   public void changeGender() { //Method called when user presses the change gender button
     if(mainController.comic.getSelected().getGender().equals("female")){
       mainController.getCharacterController().setMale();
@@ -65,7 +64,6 @@ public class ButtonController {
     }
   }
 
-  @FXML
   void addSpeechBubble(){ //Method called when user presses the speech bubble button
     URL url = getClass().getResource("/images/buttons/speech.png");
     String currentPath = url.toString();
@@ -74,8 +72,6 @@ public class ButtonController {
     mainController.getComicController().insertBubble(imageView);
   }
 
-
-  @FXML
   void addThoughtBubble(){ //Method called when user presses the thought bubble button
     URL url = getClass().getResource("/images/buttons/thought.png");
     String currentPath = url.toString();
@@ -84,29 +80,36 @@ public class ButtonController {
     mainController.getComicController().insertBubble(imageView);
   }
 
-  @FXML
   void deleteCharacter() {  //Method called when the user presses the delete button which removes characters and text from the selected half of the comic
     if(mainController.comic.getSelected().equals(mainController.comic.getLeftCharacter())){
       mainController.bottomLeftIV.setImage(null);
       mainController.comic.setLeftCharacter(null);
       mainController.centreLeft.setImage(null);
-      mainController.comic.getCentreLeft().setImage(null);
+      if(mainController.comic.getCentreLeft() != null) {
+        mainController.comic.getCentreLeft().setImage(null);
+      }
       mainController.leftTextField.clear();
       mainController.leftTextField.setVisible(false);
+      mainController.leftTextField.setDisable(true);
       mainController.leftTextImageview.setImage(null);
       mainController.leftTextRegion.setVisible(false);
       mainController.comic.setLeftGraphic(null);
+      mainController.bottomLeftIV.setDisable(true);
     }
     else{
       mainController.bottomRightIV.setImage(null);
       mainController.comic.setRightCharacter(null);
       mainController.centreRight.setImage(null);
-      mainController.comic.getCentreRight().setImage(null);
+      if(mainController.comic.getCentreRight() != null) {
+        mainController.comic.getCentreRight().setImage(null);
+      }
       mainController.rightTextField.clear();
       mainController.rightTextField.setVisible(false);
+      mainController.rightTextField.setDisable(true);
       mainController.rightTextImageview.setImage(null);
       mainController.rightTextRegion.setVisible(false);
       mainController.comic.setRightGraphic(null);
+      mainController.bottomRightIV.setDisable(true);
     }
     mainController.selectedBorder.setVisible(false);
     mainController.comic.setSelected(null);
