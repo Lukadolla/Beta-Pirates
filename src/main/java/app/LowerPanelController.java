@@ -38,6 +38,7 @@ public class LowerPanelController {
 
         mainController.SaveXMLMenu.setDisable(false);
         mainController.SaveHTMLMenu.setDisable(false);
+        mainController.SaveGIFMenu.setDisable(false);
 
         mainController.comic.setComicImage(getPanelAsImage());
 
@@ -142,6 +143,7 @@ public class LowerPanelController {
             if (comicPanelList.size() == 0) {
                 mainController.SaveXMLMenu.setDisable(true);
                 mainController.SaveHTMLMenu.setDisable(true);
+                mainController.SaveGIFMenu.setDisable(true);
                 mainController.getButtonController().lowerButtonState(false);
             }
 

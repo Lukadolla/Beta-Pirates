@@ -63,6 +63,7 @@ public class Controller {
     @FXML ImageView rightTextImageview;
     @FXML MenuItem SaveXMLMenu;
     @FXML MenuItem SaveHTMLMenu;
+    @FXML MenuItem SaveGIFMenu;
     @FXML Region leftTextRegion;
     @FXML Region rightTextRegion;
     @FXML Region bottomLeftBorder;
