@@ -1,5 +1,8 @@
-package app;
+package app.controllers;
 
+import app.Comic;
+import app.TextGraphic;
+import app.controllers.*;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +21,7 @@ import java.net.URL;
 public class Controller {
 
     //Creating instances of other controllers responsible for different aspects of the application.
-    Comic comic = new Comic();
+    public Comic comic = new Comic();
     private MidScrollPaneController midScrollPaneController = new MidScrollPaneController(this);
     private ComicController comicController = new ComicController(this);
     private CharacterController characterController = new CharacterController(this);
@@ -64,15 +67,15 @@ public class Controller {
     @FXML MenuItem SaveXMLMenu;
     @FXML MenuItem SaveHTMLMenu;
     @FXML MenuItem SaveGIFMenu;
-    @FXML Region leftTextRegion;
-    @FXML Region rightTextRegion;
+    @FXML public Region leftTextRegion;
+    @FXML public Region rightTextRegion;
     @FXML Region bottomLeftBorder;
     @FXML Region bottomRightBorder;
     @FXML Region selectedBorder = null; //Global variable to track which border is currently selected
     @FXML ScrollPane midScrollPane;
     @FXML TextField bottomText;
-    @FXML TextField leftTextField;
-    @FXML TextField rightTextField;
+    @FXML public TextField leftTextField;
+    @FXML public TextField rightTextField;
     @FXML TextField topText;
 
 
@@ -249,7 +252,7 @@ public class Controller {
 
     // Methods that call the other controllers
     CharacterController getCharacterController(){ return characterController; }
-    ComicController getComicController(){ return comicController; }
+    public ComicController getComicController(){ return comicController; }
     MidScrollPaneController getMidScrollPaneController() { return midScrollPaneController; }
     ButtonController getButtonController() { return buttonController; }
     ColourController getColourController() { return colourController; }

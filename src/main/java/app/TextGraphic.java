@@ -7,6 +7,8 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import app.controllers.Controller;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
@@ -132,7 +134,7 @@ public class TextGraphic {
 
   public void setImage(Image image) { this.image = image; }
 
-  void checkTextForGraphic(){
+  public void checkTextForGraphic(){
     if (mainController.comic != null) {
       if (mainController.leftTextField.getText() != null && !mainController.leftTextField.getText().trim().equals("")) {
         mainController.getComicController()

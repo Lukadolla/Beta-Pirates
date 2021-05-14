@@ -1,9 +1,10 @@
-package app;
+package app.controllers;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import javafx.fxml.FXML;
+
+import app.Character;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

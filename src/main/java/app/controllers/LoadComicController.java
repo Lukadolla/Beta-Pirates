@@ -1,7 +1,8 @@
-package app;
+package app.controllers;
 
+import app.Character;
+import app.Comic;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 import javafx.fxml.FXML;
 

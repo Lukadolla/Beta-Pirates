@@ -26,7 +26,7 @@ public class Comic implements Cloneable {
   public Comic(){
   }
 
-  protected Object clone() throws CloneNotSupportedException {
+  public Object clone() throws CloneNotSupportedException {
 
     return super.clone();
   }

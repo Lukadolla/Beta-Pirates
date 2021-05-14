@@ -1,5 +1,6 @@
-package app;
+package app.controllers;
 
+import app.Character;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;

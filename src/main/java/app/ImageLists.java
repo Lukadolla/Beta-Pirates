@@ -1,5 +1,6 @@
 package app;
 
+import app.controllers.LowerPanelController;
 import javafx.scene.image.Image;
 import java.io.IOException;
 import java.net.URI;
@@ -21,7 +22,7 @@ public class ImageLists {
     backgroundImages = new ArrayList<>();
   }
 
-  void getImageFiles(String subDir) throws URISyntaxException, IOException {
+  public void getImageFiles(String subDir) throws URISyntaxException, IOException {
     URI uri = LowerPanelController.class.getResource(subDir).toURI();
 
     if (uri.getScheme().equals("jar")) {

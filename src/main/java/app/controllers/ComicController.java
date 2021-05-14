@@ -1,10 +1,11 @@
-package app;
+package app.controllers;
 
+import app.Character;
+import app.Comic;
+import app.TextGraphic;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 
@@ -76,7 +77,7 @@ public class ComicController {
         }
     }
 
-    void insertLeftTextGraphic(String leftText){
+    public void insertLeftTextGraphic(String leftText){
         TextGraphic leftTextGraphic = new TextGraphic(leftText);
         mainController.comic.setLeftGraphic(leftTextGraphic);
         mainController.leftTextImageview.setImage(leftTextGraphic.getImage());
@@ -85,7 +86,7 @@ public class ComicController {
         mainController.leftTextField.setVisible(false);
     }
 
-    void insertRightTextGraphic(String rightText){
+    public void insertRightTextGraphic(String rightText){
         TextGraphic rightTextGraphic = new TextGraphic(rightText);
         mainController.comic.setRightGraphic(rightTextGraphic);
         mainController.rightTextImageview.setImage(rightTextGraphic.getImage());

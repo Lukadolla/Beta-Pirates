@@ -1,5 +1,7 @@
-package app;
+package app.controllers;
 
+import app.Comic;
+import app.GifSequenceWriter;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;

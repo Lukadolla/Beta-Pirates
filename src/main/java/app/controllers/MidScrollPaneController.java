@@ -1,5 +1,6 @@
-package app;
+package app.controllers;
 
+import app.ImageLists;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
