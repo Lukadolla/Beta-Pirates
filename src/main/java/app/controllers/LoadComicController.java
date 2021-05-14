@@ -10,6 +10,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -20,10 +21,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-import javafx.fxml.FXML;
-
-import javax.swing.*;
-
 public class LoadComicController {
 
     Controller controller;
@@ -32,7 +29,6 @@ public class LoadComicController {
         this.controller = controller;
     }
 
-    @FXML
     void loadXML() throws CloneNotSupportedException {  //Method called when Load XML menu item is pressed which prompts user to select file to load
 
         JFileChooser chooser = new JFileChooser();
@@ -52,6 +48,7 @@ public class LoadComicController {
         }
 
         if (!(filePath.endsWith(".xml"))) {
+            errorMessage("File could not be opened");
             return;
         }
 
@@ -89,17 +86,19 @@ public class LoadComicController {
 
             doc.getDocumentElement().normalize();
 
-            if(controller.getMidScrollPaneController().characterImages == null){
+            if (controller.getMidScrollPaneController().characterImages == null) {
                 controller.getMidScrollPaneController().loadCharacterImages();
             }
 
-            if(controller.getMidScrollPaneController().backgroundImages == null){
+            if (controller.getMidScrollPaneController().backgroundImages == null) {
                 controller.getMidScrollPaneController().loadBackgroundImages();
             }
 
-            ArrayList<String> characters = controller.getMidScrollPaneController().imageLists.getCharacterImageNames();
             ArrayList<String> backgrounds = controller.getMidScrollPaneController().imageLists.getBackgroundImageNames();
             NodeList list = doc.getElementsByTagName("panel");
+            if (list.getLength() == 0) {
+                errorMessage("Couldn't load file");
+            }
 
             for (int temp = 0; temp < list.getLength(); temp++) {
                 Node node = list.item(temp);
@@ -111,63 +110,21 @@ public class LoadComicController {
                 Element Text = (Element) element.getElementsByTagName("text").item(0);
 
                 if (Left != null) {
-                    String chosenImage = Left.getElementsByTagName("chosenImage").item(0).getTextContent();
                     try {
-                        Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(characters.indexOf(chosenImage)), chosenImage);
-                        character.setGender(Left.getElementsByTagName("gender").item(0).getTextContent());
-                        character.setFacing(Integer.parseInt(Left.getElementsByTagName("direction").item(0).getTextContent()));
-                        character.setSkinColour(Color.web(Left.getElementsByTagName("skinColour").item(0).getTextContent()));
-                        character.setMaleHairColour(Color.web(Left.getElementsByTagName("maleHairColour").item(0).getTextContent()));
-                        character.setFemaleHairColour(Color.web(Left.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
-
-                        Node bubble = Left.getElementsByTagName("bubble").item(0);
-                        controller.getComicController().insertLeftCharacter(character);
-                        if (bubble != null) {
-                            if (bubble.getTextContent().equals("speech")) {
-                                controller.getButtonController().addSpeechBubble();
-                            } else if (bubble.getTextContent().equals("thought")) {
-                                controller.getButtonController().addThoughtBubble();
-                            }
-                            else{
-                                controller.getComicController().clearComic();
-                                throw new IllegalArgumentException();
-                            }
-                        }
-                        controller.getColourController().loadSkinColour(character.getSkinColour());
-                    } catch(IllegalArgumentException | NullPointerException | ArrayIndexOutOfBoundsException ex){
-                        errorMessage("XML file data corrupted - couldn't load file");
+                        controller.getComicController().insertLeftCharacter(loadCharacter(Left));
+                    } catch (IllegalArgumentException | NullPointerException ex) {
                         controller.getComicController().clearComic();
+                        errorMessage("XML file data corrupted - couldn't load file");
                         return;
                     }
                 }
 
                 if (Right != null) {
-                    String chosenImage = Right.getElementsByTagName("chosenImage").item(0).getTextContent();
                     try {
-                        Node bubble = Right.getElementsByTagName("bubble").item(0);
-                        Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(characters.indexOf(chosenImage)), chosenImage);
-                        character.setGender(Right.getElementsByTagName("gender").item(0).getTextContent());
-                        character.setFacing(Integer.parseInt(Right.getElementsByTagName("direction").item(0).getTextContent()));
-                        character.setSkinColour(Color.web(Right.getElementsByTagName("skinColour").item(0).getTextContent()));
-                        character.setMaleHairColour(Color.web(Right.getElementsByTagName("maleHairColour").item(0).getTextContent()));
-                        character.setFemaleHairColour(Color.web(Right.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
-
-
-                        controller.getComicController().insertRightCharacter(character);
-                        if (bubble != null) {
-                            if (bubble.getTextContent().equals("speech")) {
-                                controller.getButtonController().addSpeechBubble();
-                            } else if (bubble.getTextContent().equals("thought")) {
-                                controller.getButtonController().addThoughtBubble();
-                            } else {
-                                controller.getComicController().clearComic();
-                                throw new IllegalArgumentException();
-                            }
-                        }
-                        controller.getColourController().loadSkinColour(character.getSkinColour());
-                    }catch(IllegalArgumentException | NullPointerException ex){
-                        errorMessage("XML file data corrupted - couldn't load file");
+                        controller.getComicController().insertRightCharacter(loadCharacter(Right));
+                    } catch (IllegalArgumentException | NullPointerException ex) {
                         controller.getComicController().clearComic();
+                        errorMessage("XML file data corrupted - couldn't load file");
                         return;
                     }
                 }
@@ -176,14 +133,13 @@ public class LoadComicController {
                     try {
                         controller.getComicController().insertBackground(controller.getMidScrollPaneController().backgroundImages.get(backgrounds.indexOf(Background.getTextContent())));
                         controller.comic.setChosenBackground(Background.getTextContent());
-                    }catch (Exception ex){
-                        controller.getComicController().clearComic();
+                    } catch (Exception ex) {
                         errorMessage("Couldn't Find Background");
                         return;
                     }
                 }
 
-                if(Text != null) {
+                if (Text != null) {
                     if (Text.getElementsByTagName("leftText").item(0) != null) {
                         controller.comic.setLeftText(Text.getElementsByTagName("leftText").item(0).getTextContent());
                         controller.leftTextField.setText(controller.comic.getLeftText());
@@ -208,10 +164,33 @@ public class LoadComicController {
             }
 
         } catch (ParserConfigurationException | SAXException | IOException | CloneNotSupportedException | URISyntaxException e) {
-            controller.getComicController().clearComic();
-            e.printStackTrace();
+            errorMessage("File corrupted - couldn't load comic");
         }
+    }
 
+    Character loadCharacter(Element node){
+        String chosenImage = node.getElementsByTagName("chosenImage").item(0).getTextContent();
+        Node bubble = node.getElementsByTagName("bubble").item(0);
+        Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(controller.getMidScrollPaneController().imageLists.getCharacterImageNames().indexOf(chosenImage)), chosenImage);
+        character.setGender(node.getElementsByTagName("gender").item(0).getTextContent());
+        character.setFacing(Integer.parseInt(node.getElementsByTagName("direction").item(0).getTextContent()));
+        character.setSkinColour(Color.web(node.getElementsByTagName("skinColour").item(0).getTextContent()));
+        character.setMaleHairColour(Color.web(node.getElementsByTagName("maleHairColour").item(0).getTextContent()));
+        character.setFemaleHairColour(Color.web(node.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
+
+
+        controller.getComicController().insertRightCharacter(character);
+        if (bubble != null) {
+            if (bubble.getTextContent().equals("speech")) {
+                controller.getButtonController().addSpeechBubble();
+            } else if (bubble.getTextContent().equals("thought")) {
+                controller.getButtonController().addThoughtBubble();
+            } else {
+                throw new IllegalArgumentException();
+            }
+        }
+        controller.getColourController().loadSkinColour(character.getSkinColour());
+        return character;
     }
 
     void errorMessage(String message){

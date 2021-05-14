@@ -94,7 +94,7 @@ public class Controller {
     }
 
 
-    @FXML void setBorder(Region newBorder) { //Method that sets the border on a selected component
+    void setBorder(Region newBorder) { //Method that sets the border on a selected component
         if(selectedBorder != null){
             selectedBorder.setVisible(false);
         }
@@ -177,7 +177,7 @@ public class Controller {
                 leftTextField.setVisible(true);
                 leftTextImageview.setVisible(false);
             }
-        } catch(NullPointerException e){
+        } catch(NullPointerException ignored){
         }
     }
 
@@ -187,7 +187,7 @@ public class Controller {
                 rightTextField.setVisible(true);
                 rightTextImageview.setVisible(false);
             }
-        } catch(NullPointerException e){
+        } catch(NullPointerException ignored){
         }
     }
 

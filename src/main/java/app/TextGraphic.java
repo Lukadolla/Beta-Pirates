@@ -101,8 +101,7 @@ public class TextGraphic {
       secondLine = padText(secondLine, (firstLine.length()-secondLine.length()));
     }
 
-    String multipleLines = firstLine + "\n" + secondLine;
-    return multipleLines;
+    return firstLine + "\n" + secondLine;
   }
 
   private String padText(String text, int n) {
