@@ -222,7 +222,7 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void importPanel(ActionEvent event) throws CloneNotSupportedException {
+    @FXML private void importPanel(ActionEvent event) {
         lowerPanelController.importPanel();
         event.consume();
     }
@@ -232,7 +232,7 @@ public class Controller {
         event.consume();
     }
 
-    @FXML private void overwritePanel(ActionEvent event) throws CloneNotSupportedException, IOException, URISyntaxException {
+    @FXML private void overwritePanel(ActionEvent event) throws CloneNotSupportedException {
         lowerPanelController.overwritePanel();
         event.consume();
     }

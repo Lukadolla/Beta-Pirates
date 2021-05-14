@@ -142,6 +142,7 @@ public class ComicController {
         ImageView backgroundImage = new ImageView(currentPath);
         mainController.background.setImage(backgroundImage.getImage());
         mainController.comic.setBackground(backgroundImage);
+        mainController.comic.setChosenBackground("default.png");
 
         mainController.topText.setVisible(true);
         mainController.topText.setText("");

@@ -110,7 +110,10 @@ public class LoadComicController {
 
                 if (Left != null) {
                     try {
-                        controller.getComicController().insertLeftCharacter(loadCharacter(Left));
+                        String chosenImage = Left.getElementsByTagName("chosenImage").item(0).getTextContent();
+                        Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(controller.getMidScrollPaneController().imageLists.getCharacterImageNames().indexOf(chosenImage)), chosenImage);
+                        controller.getComicController().insertLeftCharacter(character);
+                        loadCharacter(Left, character);
                     } catch (IllegalArgumentException | NullPointerException ex) {
                         controller.getComicController().clearComic();
                         errorMessage("XML file data corrupted - couldn't load file");
@@ -120,7 +123,10 @@ public class LoadComicController {
 
                 if (Right != null) {
                     try {
-                        controller.getComicController().insertRightCharacter(loadCharacter(Right));
+                        String chosenImage = Right.getElementsByTagName("chosenImage").item(0).getTextContent();
+                        Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(controller.getMidScrollPaneController().imageLists.getCharacterImageNames().indexOf(chosenImage)), chosenImage);
+                        controller.getComicController().insertRightCharacter(character);
+                        loadCharacter(Right, character);
                     } catch (IllegalArgumentException | NullPointerException ex) {
                         controller.getComicController().clearComic();
                         errorMessage("XML file data corrupted - couldn't load file");
@@ -167,16 +173,13 @@ public class LoadComicController {
         }
     }
 
-    Character loadCharacter(Element node){
-        String chosenImage = node.getElementsByTagName("chosenImage").item(0).getTextContent();
+    void loadCharacter(Element node, Character character){
         Node bubble = node.getElementsByTagName("bubble").item(0);
-        Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(controller.getMidScrollPaneController().imageLists.getCharacterImageNames().indexOf(chosenImage)), chosenImage);
         character.setGender(node.getElementsByTagName("gender").item(0).getTextContent());
         character.setFacing(Integer.parseInt(node.getElementsByTagName("direction").item(0).getTextContent()));
         character.setSkinColour(Color.web(node.getElementsByTagName("skinColour").item(0).getTextContent()));
         character.setMaleHairColour(Color.web(node.getElementsByTagName("maleHairColour").item(0).getTextContent()));
         character.setFemaleHairColour(Color.web(node.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
-
         if (bubble != null) {
             if (bubble.getTextContent().equals("speech")) {
                 controller.getButtonController().addSpeechBubble();
@@ -187,7 +190,6 @@ public class LoadComicController {
             }
         }
         controller.getColourController().loadSkinColour(character.getSkinColour());
-        return character;
     }
 
     void errorMessage(String message){

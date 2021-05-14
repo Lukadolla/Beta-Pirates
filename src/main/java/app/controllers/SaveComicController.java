@@ -25,9 +25,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Optional;
 
 public class SaveComicController {
@@ -292,11 +290,11 @@ public class SaveComicController {
                 if (comic.getBackground() != null) {
                     background.appendChild(document.createTextNode(comic.getChosenBackground()));
                 }
-                else{
+                else {
                     background.appendChild(document.createTextNode("default.png"));
                 }
 
-                if (!(comic.getTopText().equals("") && comic.getBottomText().equals("") && comic.getLeftText().equals("") && comic.getRightText().equals(""))) {
+                if (!(comic.getTopText().trim().equals("") && comic.getBottomText().trim().equals("") && comic.getLeftText().trim().equals("") && comic.getRightText().trim().equals(""))) {
                     Element text = document.createElement("text");
                     panel.appendChild(text);
                     if (!comic.getTopText().trim().equals("")) {
@@ -321,16 +319,14 @@ public class SaveComicController {
                     }
                 }
             }
-            // create the xml file
-            //transform the DOM Object to an XML File
+
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(file);
+            StreamResult result = new StreamResult(file);
 
-            transformer.transform(domSource, streamResult);
-
-        } catch (NullPointerException | ParserConfigurationException | TransformerException pce) {
+            transformer.transform(domSource, result);
+        } catch (ParserConfigurationException | TransformerException pce) {
             pce.printStackTrace();
         }
     }
