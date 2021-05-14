@@ -240,4 +240,24 @@ public class ComicController {
             mainController.bottomText.setVisible(false);
         }
     }
+
+    void removeBubble(){
+        if(mainController.comic.getSelected().equals(mainController.comic.getLeftCharacter())){
+            mainController.leftTextField.clear();
+            mainController.leftTextField.setDisable(true);
+            mainController.leftTextField.setVisible(false);
+            mainController.centreLeft.setImage(null);
+            mainController.comic.setLeftText("");
+            mainController.comic.setCentreLeft(null);
+        }
+        else{
+            mainController.rightTextField.clear();
+            mainController.rightTextField.setDisable(true);
+            mainController.rightTextField.setVisible(false);
+            mainController.centreRight.setImage(null);
+            mainController.comic.setRightText("");
+            mainController.comic.setCentreRight(null);
+        }
+        mainController.comic.getSelected().setNullBubble();
+    }
 }

@@ -177,8 +177,6 @@ public class LoadComicController {
         character.setMaleHairColour(Color.web(node.getElementsByTagName("maleHairColour").item(0).getTextContent()));
         character.setFemaleHairColour(Color.web(node.getElementsByTagName("femaleHairColour").item(0).getTextContent()));
 
-
-        controller.getComicController().insertRightCharacter(character);
         if (bubble != null) {
             if (bubble.getTextContent().equals("speech")) {
                 controller.getButtonController().addSpeechBubble();

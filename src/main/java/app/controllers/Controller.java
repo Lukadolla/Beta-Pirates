@@ -160,13 +160,21 @@ public class Controller {
     }
 
     @FXML private void addSpeechBubble(ActionEvent event) {
-        buttonController.addSpeechBubble();
+        if(comic.getSelected().getBubble().equals("speech")){
+            comicController.removeBubble();
+        } else {
+            buttonController.addSpeechBubble();
+        }
 //        comicController.insertTextGraphic("The quick brown fox jumps over the lazy dog");
         event.consume();
     }
 
     @FXML private void addThoughtBubble(ActionEvent event) {
-        buttonController.addThoughtBubble();
+        if(comic.getSelected().getBubble().equals("thought")){
+            comicController.removeBubble();
+        } else {
+            buttonController.addThoughtBubble();
+        }
         event.consume();
     }
 

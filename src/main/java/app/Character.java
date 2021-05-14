@@ -13,7 +13,7 @@ public class Character {
   private Color femaleHairColour;
   private Color lipColour;
   private String chosenImage;
-  private String bubble=null;
+  private String bubble="";
 
   public Character(Image image, String chosenImage){
     facing = 1;
@@ -102,6 +102,8 @@ public class Character {
   public void setThought(){
     bubble="thought";
   }
+
+  public void setNullBubble() { bubble=""; }
 
   public String getBubble(){
     return bubble;
