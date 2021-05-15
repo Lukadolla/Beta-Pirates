@@ -19,13 +19,18 @@ Instructions on use:
 Saving and creating comics:
 - Once you finish working on a panel, press Ctrl + S to save or go to File >> Save Panel.
 - The saved panel will appear in the bottom section of the screen.
-- Once selected, you can load the panel again to keep working on it (L) or delete it (Delete).
-- The loaded in panel will be indicated by an orange border.
+- Once selected, you can load the panel again to keep working on it (L), delete it (Delete) or overwrite the panel with the content of the working panel (O).
+- All of these operations can be done using the buttons in the bottom left of the application.
+- You can switch the order of the panels by selecting a panel and then right clicking another to switch their places.
+
 - Once you are finished creating your comic, you can save it in XML format in File >> Save as XML.
 - Choose a file name and location for the file using the menus that appear.
 
 - You can save your comic in HTML format in File >> Save as HTML.
 - Enter a file name, description and location for the file using the menus that appear.
+
+- You can save your comic as a GIF in File >> Save as GIF.
+- Enter a file name and location for the file using the menus that appear.
 
 
 - You can load in any saved comics by selecting Load XML from the File menu and choose a file from your computer.
