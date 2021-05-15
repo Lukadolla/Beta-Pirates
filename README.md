@@ -14,8 +14,7 @@ Repository for Software Engineering Project 3
 - help.fxml - simple stage where the help.txt will be displayed to the user.
 -test.fxml - used to test new implementations in the layout of the application without breaking/interfering with already working features.
 - resource folder- added icon for the application in the top left conrner once launched.
-- Controller.java - contains functionality for saving/loading, editing and deleting a panel from the bottom section of the application.
-- testController.java - used for testing new implementations and ideas without affecting old working ones. 
+- Controller.java - contains functionality for saving/loading, editing and deleting a panel from the bottom section of the application. 
 - Character.java - a class containing data of each new character object such as their hair colour, gender etc.
 - ImageLists.java - a class that contains the list of all character images and background images as well as a method to access them from the controller which has been 
 edited. 
@@ -35,21 +34,23 @@ edited.
 - MidScrollPaneController.java - Contains functionality for the middle panel of the application which displays all available characters and backgrounds. 
 
 
-## New Files added/updated in Sprint 8
+## New Files added/updated in Sprint 9
 - Controller.java - contains instances of all controllers, proxy methods for fxml functions and runs the main application 
 - main.fxml - contains fxml for the application main window.
-- SaveComicCOntroller.java - contains functionality for saving the comic in HTML format.
+- SaveComicCOntroller.java - contains functionality for saving the comic as a GIF.
+- LowerPanelController.java - contains functionality for swapping positions of already saved panels.
 - test.fxml - used to test new implementations in the layout of the application without breaking/interfering with already working features.
 - help.txt - a file containing useful information for the user on how to use the application.
 - help.fxml - simple stage where the help.txt will be displayed to the user.
-- TextGraphic.java - class which is used to convert text in the speech/thought bubbles to images. 
 
  
 ## Instructions on setting up and running the project
 Java version: 8
 JUnit version: 4
 
-The following link outlines ways to set up the JavaFX project if versions other than Java 8 are used. You will need to add a library which is pointing to the lib file of the JavaFX SDK as well as edit the VM options (The VM options only need to be edited if a version other than Java 8 is used). The link walks through this process for a variety of IDEs and Java versions.
+The following link outlines ways to set up the JavaFX project if versions other than Java 8 are used. You will need to add a library which is pointing to the lib file 
+of the JavaFX SDK as well as edit the VM options (The VM options only need to be edited if a version other than Java 8 is used). The link walks through this process 
+for a variety of IDEs and Java versions.
 https://openjfx.io/openjfx-docs/
 
 For IntelliJ users: File >> Project Structure >> Libraries >> '+' icon and navigate to the lib file of your Java SDK
@@ -63,15 +64,16 @@ project folder and use the command: java -jar Beta_Pirates.jar. It still runs fr
 In order to make the JUnit test class work, add junit/junit/4.12 to the class path. IDES like IntelliJ should prompt to do this automatically when you hover over
 the Test annotations or import statements.
 
-## General Info about implementation of Sprint 8
+## General Info about implementation of Sprint 9
 
-Once you have saved at least one panel into the bottom panel, you can save the comic in HTML format in File >> Save as HTML. When you press this option, you will be 
-prompted to give a file name and an optional description of your comic. Another prompt will appear asking for a directory in which the HTML will be saved. Once you 
-save your comic, you can navigate to the chosen directory where you will find a folder with the same name as the one chosen for the file. Enter this folder and you 
-will see a HTML file which you can then open and view in your internet browser.
+In this sprint, we focussed on both the necessary implementation of swapping panels as well as saving a comic as a GIF, making the program "discover" the character 
+and background image directories wiich allows for the addition of new characters and backgrounds dynamically, moving the controllers into their own package, general 
+bug fixing and small changes to the look of the program.
 
-This week we also worked on the TextGraphic implementation in our code. The TextGraphic.java class is used to take in input from the speech/thought bubbled and 
-convert the text to an image which has appropriate sizing, scaling and resizability. Once you input text into a text area, press ENTER to convert the text to an 
-image. If you wish to edit the text, simply click on it and it will become editable again.
+In order to swap 2 panels, select one panel that is already saved in the bottom section. Then, press the right mouse button on the other panel you wish to swap. The 2
+panels will swap places with each other.
+
+We also implemented the ability to save a comic as a GIF. Once you have a series of panels saved, go to File >> Save as GIF. You will be promped to give the file a 
+name and a save directory. You can access the generated GIF in the specified directory.
 
 For more information on how the program works, go to the help menu in the application. 
