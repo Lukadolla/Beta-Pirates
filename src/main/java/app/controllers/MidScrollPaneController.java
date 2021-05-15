@@ -11,7 +11,6 @@ import javafx.scene.layout.Region;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
-
 import static javafx.geometry.Pos.CENTER;
 
 public class MidScrollPaneController {
@@ -21,8 +20,8 @@ public class MidScrollPaneController {
     List<Image> backgroundImages;  //List of backgrounds
     private Controller mainController;
 
-    public MidScrollPaneController(Controller mainController) {
-        this.mainController = mainController;
+    public MidScrollPaneController(Controller controller) {
+        this.mainController = controller;
     }
 
     void loadCharacterImages() throws IOException, URISyntaxException {  //Method that loads character images from the CharacterList class and displays them in the middle panel
@@ -54,7 +53,7 @@ public class MidScrollPaneController {
         }
     }
 
-    public void addCharacterPane() throws IOException, URISyntaxException {
+    public void addCharacterPane() throws IOException, URISyntaxException {  //Method to display the characters in the middle panel
 
         mainController.getSizeScale(mainController.charactersGridPane);
         mainController.resize();
@@ -68,7 +67,7 @@ public class MidScrollPaneController {
         }
     }
 
-    public void addBackgroundPane() throws IOException, URISyntaxException {
+    public void addBackgroundPane() throws IOException, URISyntaxException { //Method to display the backgrounds in the middle panel
 
         mainController.getSizeScale(mainController.backgroundGridPane);
         mainController.resize();

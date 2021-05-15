@@ -11,8 +11,8 @@ public class CharacterController {
 
     private Controller mainController;
 
-    public CharacterController(Controller TC){
-        mainController = TC;
+    public CharacterController(Controller controller){
+        mainController = controller;
     }
 
     void setMale() {  //Method that sets the current character to be male (removing female hair + lipstick)

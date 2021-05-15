@@ -25,7 +25,6 @@ public class TextGraphic {
   private int width;
   private int height;
   private int lines;
-  //  private ImageView imageview;
   private Image image;
   private String text;
 

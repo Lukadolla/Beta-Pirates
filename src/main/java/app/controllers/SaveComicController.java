@@ -30,10 +30,10 @@ import java.util.Optional;
 
 public class SaveComicController {
 
-    Controller controller;
+    Controller mainController;
 
     public SaveComicController(Controller controller){
-        this.controller = controller;
+        this.mainController = controller;
     }
 
     @FXML
@@ -191,11 +191,11 @@ public class SaveComicController {
             Element root = document.createElement("comic");
             document.appendChild(root);
 
-            for(int counter=0;counter<controller.getLowerPanelController().comicPanelList.size();counter++) {
+            for(int counter=0;counter<mainController.getLowerPanelController().comicPanelList.size();counter++) {
 
                 Element panel = document.createElement("panel");
                 root.appendChild(panel);
-                Comic comic = controller.getLowerPanelController().comicPanelList.get(counter);
+                Comic comic = mainController.getLowerPanelController().comicPanelList.get(counter);
 
                 if (comic.getLeftCharacter() != null) {
                     // character element
@@ -336,10 +336,10 @@ public class SaveComicController {
         File imageDirectory = new File(filePath + "/" + fileName + "images");
         imageDirectory.mkdir();
 
-        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
+        for(int image = 0; image < mainController.getLowerPanelController().comicPanelList.size(); image++){
 
             File imageFile = new File(imageDirectory + "/" + fileName + image + ".png");
-            ImageIO.write(SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(image).getComicImage(), null), "png", imageFile);
+            ImageIO.write(SwingFXUtils.fromFXImage(mainController.getLowerPanelController().comicPanelList.get(image).getComicImage(), null), "png", imageFile);
         }
     }
 
@@ -363,7 +363,7 @@ public class SaveComicController {
                 "\n" +
                 "<table style=\"margin-left: auto; margin-right: auto; font-family: georgia, garamond, serif; border-spacing: 20px\">\n");
 
-        for(int image = 0; image < controller.getLowerPanelController().comicPanelList.size(); image++){
+        for(int image = 0; image < mainController.getLowerPanelController().comicPanelList.size(); image++){
 
             String imagePath = fileName + "images" + "/" + fileName + image + ".png";
 
@@ -381,28 +381,7 @@ public class SaveComicController {
         writer.close();
     }
 
-    public void saveAsGIF(File file) throws IOException {
-        if(controller.getLowerPanelController().comicPanelList.size() <= 0){
-            return;
-        }
-
-        ImageOutputStream output = new FileImageOutputStream(file);
-
-        BufferedImage first = SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(0).getComicImage(), null);
-
-        GifSequenceWriter writer = new GifSequenceWriter(output, first.getType(), 6000, true);
-        writer.writeToSequence(first);
-
-        for(int i = 1; i < controller.getLowerPanelController().comicPanelList.size(); i++){
-            BufferedImage current = SwingFXUtils.fromFXImage(controller.getLowerPanelController().comicPanelList.get(i).getComicImage(), null);
-            writer.writeToSequence(current);
-        }
-
-        writer.close();
-        output.close();
-    }
-
-    public void createGIF(){
+    public void createGIF(){ //Method called when Save as GIF menu item is pressed which prompts user to input file name and directory
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("GIF Details");
         dialog.setHeaderText("");
@@ -465,5 +444,26 @@ public class SaveComicController {
                 }
             }
         });
+    }
+
+    public void saveAsGIF(File file) throws IOException { //Method that takes in the panels as images and creates a GIF file
+        if(mainController.getLowerPanelController().comicPanelList.size() <= 0){
+            return;
+        }
+
+        ImageOutputStream output = new FileImageOutputStream(file);
+
+        BufferedImage first = SwingFXUtils.fromFXImage(mainController.getLowerPanelController().comicPanelList.get(0).getComicImage(), null);
+
+        GifSequenceWriter writer = new GifSequenceWriter(output, first.getType(), 6000, true);
+        writer.writeToSequence(first);
+
+        for(int i = 1; i < mainController.getLowerPanelController().comicPanelList.size(); i++){
+            BufferedImage current = SwingFXUtils.fromFXImage(mainController.getLowerPanelController().comicPanelList.get(i).getComicImage(), null);
+            writer.writeToSequence(current);
+        }
+
+        writer.close();
+        output.close();
     }
 }

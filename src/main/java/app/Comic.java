@@ -20,9 +20,6 @@ public class Comic implements Cloneable {
   private TextGraphic rightGraphic;
   private String chosenBackground;
 
-
-  // Add lines to bubbles
-
   public Comic(){
   }
 
@@ -118,11 +115,8 @@ public class Comic implements Cloneable {
   public void setComicImage(Image comicImage) {
     this.comicImage = comicImage;
   }
-  public TextGraphic getLeftGraphic() { return leftGraphic; }
 
   public void setLeftGraphic(TextGraphic leftGraphic) { this.leftGraphic = leftGraphic; }
-
-  public TextGraphic getRightGraphic() { return rightGraphic; }
 
   public void setRightGraphic(TextGraphic rightGraphic) { this.rightGraphic = rightGraphic; }
 

@@ -228,7 +228,7 @@ public class ColourController {
     return colour;
   }
 
-  public void loadSkinColour(Color newColour){
+  public void loadSkinColour(Color newColour){  //Method used to load in the saved skin colour in the XML
     Image image = mainController.comic.getSelected().getImage();
     int imageHeight = (int)image.getHeight();
     int imageWidth = (int)image.getWidth();

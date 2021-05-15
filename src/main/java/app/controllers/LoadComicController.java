@@ -173,7 +173,7 @@ public class LoadComicController {
         }
     }
 
-    void loadCharacter(Element node, Character character){
+    void loadCharacter(Element node, Character character){  //Method that fetches the data about a character from th XML and loads it into a character object.
         Node bubble = node.getElementsByTagName("bubble").item(0);
         character.setGender(node.getElementsByTagName("gender").item(0).getTextContent());
         character.setFacing(Integer.parseInt(node.getElementsByTagName("direction").item(0).getTextContent()));
