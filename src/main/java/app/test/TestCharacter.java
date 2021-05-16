@@ -1,19 +1,18 @@
 package app.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import app.Character;
-import app.ImageLists;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
-
-import static org.junit.Assert.*;
 
 public class TestCharacter extends ApplicationTest {
 
@@ -39,50 +38,50 @@ public class TestCharacter extends ApplicationTest {
     // check instance of Character
     assertTrue("Not a Character object.", character instanceof Character);
     // check contains correct image
-    assertEquals(character.getImage() , image1);
+    assertEquals("Image is incorrect", character.getImage() , image1);
 
     // check set image
     character.setImage(image2);
-    assertEquals(character.getImage(), image2);
+    assertEquals("Image is incorrect", character.getImage(), image2);
 
     // check facing correct direction
-    assertEquals(character.getFacing(), 1);
+    assertEquals("Direction is incorrect", character.getFacing(), 1);
 
     // check change facing
     character.changeFacing();
-    assertEquals(character.getFacing(), -1);
+    assertEquals("Direction is incorrect after changeFacing", character.getFacing(), -1);
 
     // check gender
-    assertEquals(character.getGender(), "female");
+    assertEquals("Gender is incorrect", character.getGender(), "female");
 
     // check set gender
     character.setGender("male");
-    assertEquals(character.getGender(), "male");
+    assertEquals("Gender is incorrect after setGender", character.getGender(), "male");
 
     // check skin colour
-    assertEquals(character.getSkinColour(), Color.web("ffe8d8"));
+    assertEquals("Skin colour is incorrect", character.getSkinColour(), Color.web("ffe8d8"));
 
     // check hair colour
-    assertEquals(character.getMaleHairColour(), Color.web("f9ff00"));
-    assertEquals(character.getFemaleHairColour(), Color.web("f0ff00"));
+    assertEquals("Male hair colour is incorrect", character.getMaleHairColour(), Color.web("f9ff00"));
+    assertEquals("Female hair is incorrect", character.getFemaleHairColour(), Color.web("f0ff00"));
 
     // check lip colour
-    assertEquals(character.getLipColour(), Color.web("ff0000"));
+    assertEquals("Lip colour is incorrect", character.getLipColour(), Color.web("ff0000"));
 
     // check set lip colour
     character.setLipColour(Color.web("ffe8d8"));
-    assertEquals(character.getLipColour(), Color.web("ffe8d8"));
+    assertEquals("Lip colour is incorrect after setLipColour", character.getLipColour(), Color.web("ffe8d8"));
 
     // check get bubble
-    assertEquals(character.getBubble(), "");
+    assertEquals("Bubble is not empty string", character.getBubble(), "");
 
     // check set speech
     character.setSpeech();
-    assertEquals(character.getBubble(), "speech");
+    assertEquals("Bubble is not speech", character.getBubble(), "speech");
 
     // check set thought
     character.setThought();
-    assertEquals(character.getBubble(), "thought");
+    assertEquals("Bubble is not thought", character.getBubble(), "thought");
   }
 
 }
