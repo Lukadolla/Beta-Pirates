@@ -66,6 +66,7 @@ public class Controller {
     @FXML MenuItem SaveXMLMenu;
     @FXML MenuItem SaveHTMLMenu;
     @FXML MenuItem SaveGIFMenu;
+    @FXML MenuItem DeleteComicMenu;
     @FXML public Region leftTextRegion;
     @FXML public Region rightTextRegion;
     @FXML Region bottomLeftBorder;
@@ -119,7 +120,7 @@ public class Controller {
     }
 
     @FXML
-    void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException { //Handles key press events
+    void keyPressed(KeyEvent event) throws CloneNotSupportedException { //Handles key press events
 
         if(event.getCode().equals(KeyCode.DELETE)){ //Deletes the selected panel
             if(!getLowerPanelController().comicPanelList.isEmpty()){
@@ -200,6 +201,10 @@ public class Controller {
         }
     }
 
+    @FXML private void deleteComic() {
+        lowerPanelController.deleteComic();
+    }
+
     @FXML private void deleteCharacter(ActionEvent event) {
         buttonController.deleteCharacter();
         event.consume();
@@ -267,4 +272,5 @@ public class Controller {
     ColourController getColourController() { return colourController; }
     LowerPanelController getLowerPanelController(){ return lowerPanelController; }
     TextGraphic getTextGraphicController(){return textGraphic; }
+    SaveComicController getSaveComicController() { return saveComicController; }
 }

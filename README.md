@@ -61,8 +61,7 @@ We have created a .jar file in the root directory of the project which runs when
 project folder and use the command: java -jar Beta_Pirates.jar. It still runs from within the IDE which can be done by right clicking on the .jar file and selecting 
 "Run Beta_Pirates.jar".
 
-In order to make the JUnit test class work, add junit/junit/4.12 to the class path. IDES like IntelliJ should prompt to do this automatically when you hover over
-the Test annotations or import statements.
+In addition to using Maven to load the dependencies in the pom.xml file, tesing JavaFX properly with TestFX requires RobotFX, and manually adding the library org.testfx:testfx-junit:4.0.14-alpha to the project. In IntelliJ this can be achieved from the settings, Project Structure >> Library >> (+) New Library >> Maven >> org.testfx:testfx-junit:4.0.14-alpha or browsing org.testfx:testfx-junit. Right clicking the project, and then selecting reload project from the Maven menu may be required. In case of any issue, please just comment out the tests.
 
 ## General Info about implementation of Sprint 9
 
@@ -73,7 +72,15 @@ bug fixing and small changes to the look of the program.
 In order to swap 2 panels, select one panel that is already saved in the bottom section. Then, press the right mouse button on the other panel you wish to swap. The 2
 panels will swap places with each other.
 
+An additional implementation was added to the application which allows for deleting the entire contents of the bottom panel. Go to File >> Delete Comic to do so. A confirmation 
+prompt will appear asking if you want to save first or proceed with the deletion.
+
 We also implemented the ability to save a comic as a GIF. Once you have a series of panels saved, go to File >> Save as GIF. You will be promped to give the file a 
 name and a save directory. You can access the generated GIF in the specified directory.
+
+We tried a seperate approach to implementing the bottom panel in which we displayed each panel as a comic, rather than a screenshot. We attempted this method as it would
+allow the user to import and use GIFs in the background of their comic, although we ran into a critical issue.
+While the implementation worked, we found that the program would struggle to handle more than a few panels at a time, as each comic object is quite resource heavy, and
+so we had to revert back to using screenshots in the panels.
 
 For more information on how the program works, go to the help menu in the application. 

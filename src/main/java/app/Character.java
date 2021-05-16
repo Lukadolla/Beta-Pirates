@@ -12,7 +12,7 @@ public class Character {
   private Color maleHairColour;
   private Color femaleHairColour;
   private Color lipColour;
-  private String chosenImage;
+  private String chosenImage; //Stores the name of the image as a String eg: angry.png
   private String bubble="";
 
   public Character(Image image, String chosenImage){
