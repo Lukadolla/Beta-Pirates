@@ -119,7 +119,7 @@ public class Controller {
     }
 
     @FXML
-    void keyPressed(KeyEvent event) throws CloneNotSupportedException, IOException, URISyntaxException { //Handles key press events
+    void keyPressed(KeyEvent event) throws CloneNotSupportedException { //Handles key press events
 
         if(event.getCode().equals(KeyCode.DELETE)){ //Deletes the selected panel
             if(!getLowerPanelController().comicPanelList.isEmpty()){

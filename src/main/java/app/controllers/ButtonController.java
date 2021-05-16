@@ -35,7 +35,7 @@ public class ButtonController {
     }
   }
 
-  public void insertCharacter(Image selectedImage, String image) {
+  public void insertCharacter(Image selectedImage, String image) { //Method that inserts a character image into the corresponding side if the panel
     Character c = new Character(selectedImage, image);
     if (mainController.comicCharacterSelection == mainController.bottomLeftIV) {
       mainController.getComicController().insertLeftCharacter(c);
@@ -118,7 +118,7 @@ public class ButtonController {
     switchButtonState(false);
   }
 
-  void lowerButtonState(boolean areEnabled){
+  void lowerButtonState(boolean areEnabled){  //Method to enable/disable the buttons in the bottom panel responsible for deleting, loading and replacing a panel
     mainController.deletePanelButton.setDisable(!areEnabled);
     mainController.loadPanelButton.setDisable(!areEnabled);
     mainController.replacePanelButton.setDisable(!areEnabled);

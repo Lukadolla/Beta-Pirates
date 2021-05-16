@@ -78,7 +78,7 @@ public class ComicController {
         }
     }
 
-    public void insertLeftTextGraphic(String leftText){
+    public void insertLeftTextGraphic(String leftText){  //Method that inserts the image of user inputted text into the left speech/thought bubble
         TextGraphic leftTextGraphic = new TextGraphic(leftText);
         mainController.comic.setLeftGraphic(leftTextGraphic);
         mainController.leftTextImageview.setImage(leftTextGraphic.getImage());
@@ -87,7 +87,7 @@ public class ComicController {
         mainController.leftTextField.setVisible(false);
     }
 
-    public void insertRightTextGraphic(String rightText){
+    public void insertRightTextGraphic(String rightText){ //Method that inserts the image of user inputted text into the right speech/thought bubble
         TextGraphic rightTextGraphic = new TextGraphic(rightText);
         mainController.comic.setRightGraphic(rightTextGraphic);
         mainController.rightTextImageview.setImage(rightTextGraphic.getImage());
