@@ -114,8 +114,12 @@ public class LoadComicController {
                         Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(controller.getMidScrollPaneController().imageLists.getCharacterImageNames().indexOf(chosenImage)), chosenImage);
                         controller.getComicController().insertLeftCharacter(character);
                         loadCharacter(Left, character);
-                    } catch (IllegalArgumentException | NullPointerException ex) {
+                    } catch (Exception ex) {
                         controller.getComicController().clearComic();
+                        if(ex instanceof ArrayIndexOutOfBoundsException){
+                            errorMessage("Unable to find character image");
+                            return;
+                        }
                         errorMessage("XML file data corrupted - couldn't load file");
                         return;
                     }
@@ -127,8 +131,12 @@ public class LoadComicController {
                         Character character = new Character(controller.getMidScrollPaneController().imageLists.getCharacterImages().get(controller.getMidScrollPaneController().imageLists.getCharacterImageNames().indexOf(chosenImage)), chosenImage);
                         controller.getComicController().insertRightCharacter(character);
                         loadCharacter(Right, character);
-                    } catch (IllegalArgumentException | NullPointerException ex) {
+                    } catch (Exception ex) {
                         controller.getComicController().clearComic();
+                        if(ex instanceof ArrayIndexOutOfBoundsException){
+                            errorMessage("Unable to find character image");
+                            return;
+                        }
                         errorMessage("XML file data corrupted - couldn't load file");
                         return;
                     }
@@ -139,8 +147,7 @@ public class LoadComicController {
                         controller.getComicController().insertBackground(controller.getMidScrollPaneController().backgroundImages.get(backgrounds.indexOf(Background.getTextContent())));
                         controller.comic.setChosenBackground(Background.getTextContent());
                     } catch (Exception ex) {
-                        errorMessage("Couldn't Find Background");
-                        return;
+                        errorMessage("Unable to find background for panel " + controller.getLowerPanelController().comicPanelList.size()+1);
                     }
                 }
 

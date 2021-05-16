@@ -40,6 +40,7 @@ public class LowerPanelController {
         mainController.SaveXMLMenu.setDisable(false);
         mainController.SaveHTMLMenu.setDisable(false);
         mainController.SaveGIFMenu.setDisable(false);
+        mainController.DeleteComicMenu.setDisable(false);
 
         mainController.comic.setComicImage(getPanelAsImage());
 
@@ -160,10 +161,43 @@ public class LowerPanelController {
                 mainController.SaveXMLMenu.setDisable(true);
                 mainController.SaveHTMLMenu.setDisable(true);
                 mainController.SaveGIFMenu.setDisable(true);
+                mainController.DeleteComicMenu.setDisable(true);
                 mainController.getButtonController().lowerButtonState(false);
             }
 
             loadBottomPanel();
+        }
+    }
+
+    void deleteComic(){    //method to delete entire comic
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Deletion");   //ensure that the user has saved and wants to delete the comic
+        alert.setHeaderText("This will delete all unsaved progress!");
+        alert.setContentText("Would you like to save before quitting?");
+        ButtonType quit = new ButtonType("Continue");
+        ButtonType save = new ButtonType("Save");
+        ButtonType cancel = new ButtonType("Cancel");
+        alert.getButtonTypes().setAll(quit, save, cancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == cancel) {//cancel if they choose cancel
+                return;
+        }
+        else {
+            if(result.get()==save){
+                mainController.getSaveComicController().createXML();  //call save method if they choose save
+            }
+            mainController.getComicController().clearComic();
+            selectedPanelIndex = 0;
+            while(comicPanelList.size()>0)  {//delete entire list of comics
+                comicPanelList.remove(selectedPanelIndex);
+            }
+            mainController.bottomGridPane.getChildren().clear();  //clear gridpane of comic images
+            selectedPanelIndex = -1;
+            mainController.SaveXMLMenu.setDisable(true);
+            mainController.SaveHTMLMenu.setDisable(true);
+            mainController.SaveGIFMenu.setDisable(true);
+            mainController.DeleteComicMenu.setDisable(true);
+            mainController.getButtonController().lowerButtonState(false);
         }
     }
 

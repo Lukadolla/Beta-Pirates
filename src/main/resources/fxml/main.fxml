@@ -498,7 +498,7 @@
                   <MenuItem fx:id="SaveHTMLMenu" disable="true" mnemonicParsing="false" onAction="#createHTML" text="Save as HTML" />
                   <MenuItem fx:id="SaveGIFMenu" disable="true" mnemonicParsing="false" onAction="#createGIF" text="Save as GIF" />
                   <MenuItem mnemonicParsing="false" onAction="#loadXML" text="Load XML" />
-                  <MenuItem mnemonicParsing="false" onAction="#deleteComic" text="Delete Comic" />
+                  <MenuItem fx:id="DeleteComicMenu" disable="true" mnemonicParsing="false" onAction="#deleteComic" text="Delete Comic" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
