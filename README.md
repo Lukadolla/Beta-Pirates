@@ -72,6 +72,9 @@ bug fixing and small changes to the look of the program.
 In order to swap 2 panels, select one panel that is already saved in the bottom section. Then, press the right mouse button on the other panel you wish to swap. The 2
 panels will swap places with each other.
 
+An additional implementation was added to the application which allows for deleting the entire contents of the bottom panel. Go to File >> Delete Comic to do so. A confirmation 
+prompt will appear asking if you want to save first or proceed with the deletion.
+
 We also implemented the ability to save a comic as a GIF. Once you have a series of panels saved, go to File >> Save as GIF. You will be promped to give the file a 
 name and a save directory. You can access the generated GIF in the specified directory.
 
