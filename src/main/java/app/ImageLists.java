@@ -12,17 +12,17 @@ import java.util.stream.Stream;
 
 public class ImageLists {
 
-  private List<Image> characterImages;
-  private List<Image> backgroundImages;
-  private ArrayList<String> characterImageNames = new ArrayList<>();
-  private ArrayList<String> backgroundImageNames = new ArrayList<>();
+  private List<Image> characterImages;  //List of character images
+  private List<Image> backgroundImages;  //List of background images
+  private ArrayList<String> characterImageNames = new ArrayList<>(); //List of file names corresponding to the character images
+  private ArrayList<String> backgroundImageNames = new ArrayList<>(); //List of file names corresponding to the background images
 
   public ImageLists() {
     characterImages = new ArrayList<>();
     backgroundImages = new ArrayList<>();
   }
 
-  public void getImageFiles(String subDir) throws URISyntaxException, IOException {
+  public void getImageFiles(String subDir) throws URISyntaxException, IOException {  //Method that checks if the program is running from IDE or JAR and calls methods to handle files
     URI uri = LowerPanelController.class.getResource(subDir).toURI();
 
     if (uri.getScheme().equals("jar")) {
@@ -33,7 +33,7 @@ public class ImageLists {
     }
   }
 
-  private void handleJar(URI uri, String subDir) throws IOException {
+  private void handleJar(URI uri, String subDir) throws IOException { //If the program is running from a JAR, call loadImages which fetches the image files from their directory
     FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
     Path myPath = fileSystem.getPath(subDir);
 
@@ -41,12 +41,12 @@ public class ImageLists {
     fileSystem.close();
   }
 
-  private void handleIDE(URI uri, String subDir) throws IOException {
+  private void handleIDE(URI uri, String subDir) throws IOException { //If the program is running from the IDE, call loadImages which fetches the image files from their directory
     Path myPath = Paths.get(uri);
     loadImages(myPath, subDir);
   }
 
-  void loadImages(Path myPath, String subDir) throws IOException {
+  void loadImages(Path myPath, String subDir) throws IOException { //Method that loads the images in a specified directory to the middle panel
     Stream<Path> walk = Files.walk(myPath, 1);
     Iterator<Path> it = walk.iterator();
 
