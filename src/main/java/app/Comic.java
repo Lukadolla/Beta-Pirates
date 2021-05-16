@@ -15,7 +15,7 @@ public class Comic implements Cloneable {
   private ImageView centreLeft;
   private ImageView centreRight;
   private ImageView background;
-  private Image comicImage;
+  private Image comicImage;  //Stores screenshot of the comic
   private TextGraphic leftGraphic;
   private TextGraphic rightGraphic;
   private String chosenBackground;
