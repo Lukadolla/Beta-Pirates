@@ -76,4 +76,9 @@ panels will swap places with each other.
 We also implemented the ability to save a comic as a GIF. Once you have a series of panels saved, go to File >> Save as GIF. You will be promped to give the file a 
 name and a save directory. You can access the generated GIF in the specified directory.
 
+We tried a seperate approach to implementing the bottom panel in which we displayed each panel as a comic, rather than a screenshot. We attempted this method as it would
+allow the user to import and use GIFs in the background of their comic, although we ran into a critical issue.
+While the implementation worked, we found that the program would struggle to handle more than a few panels at a time, as each comic object is quite resource heavy, and
+so we had to revert back to using screenshots in the panels.
+
 For more information on how the program works, go to the help menu in the application. 
