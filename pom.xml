@@ -94,10 +94,14 @@
         <dependency>
             <groupId>org.testfx</groupId>
             <artifactId>testfx-junit</artifactId>
+            <version>4.0.2-alpha</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit</artifactId>
             <version>4.0.15-alpha</version>
             <scope>compile</scope>
         </dependency>
-
     </dependencies>
 
 </project>
